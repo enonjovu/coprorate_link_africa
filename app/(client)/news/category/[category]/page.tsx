@@ -1,5 +1,6 @@
+import TopStories from "@/app/(client)/components/TopStories";
 import { fetchBlogsByCategory} from "@/app/action";
-import TopStories from "@/app/components/TopStories";
+
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Link from "next/link";
 type paramProps = {

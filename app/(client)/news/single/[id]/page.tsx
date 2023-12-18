@@ -1,6 +1,6 @@
+import Ads from "@/app/(client)/components/Advertisment";
+import TopStories from "@/app/(client)/components/TopStories";
 import { fetchBlogsById } from "@/app/action";
-import Ads from "@/app/components/Advertisment";
-import TopStories from "@/app/components/TopStories";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 type paramProps = {
@@ -11,7 +11,6 @@ const SingleBlogPage = async ({params}:paramProps) => {
     const id: string = params.id;
     const result = await fetchBlogsById(id);
     const blog = result[0]
-
     return (
         <main id="content">
             {/* block news */}
