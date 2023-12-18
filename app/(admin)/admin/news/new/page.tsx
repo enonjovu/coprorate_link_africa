@@ -1,7 +1,10 @@
 "use client"
+import "@uploadthing/react/styles.css"; 
 import Modal from "@/app/(admin)/components/Modal";
 import { postBlog } from "@/app/action";
+import { UploadButton } from "@/utils/uploadthing";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import('preline')
 // Initial state with types
 type FormData = {
@@ -25,28 +28,29 @@ const NewPost: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [formKey, setFormKey] = useState<number>(0);
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [images,setImages] = useState<{url: string;key: string;}[]>([])
 
   useEffect(()=>{import('preline')},[])
 
-  const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if(event.target){
-        if(event.target.files?.length ){
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                if (typeof event.target?.result === "string") {
-                    const base64Image = Buffer.from(event.target?.result).toString("base64");
-                    setFormData({
-                        ...formData,
-                        image: base64Image,
-                        imageType: file.type,
-                    });
-                }
-            };
-            reader.readAsArrayBuffer(file);
-        }
-    }   
-  };
+//   const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     if(event.target){
+//         if(event.target.files?.length ){
+//             const file = event.target.files[0];
+//             const reader = new FileReader();
+//             reader.onload = (event) => {
+//                 if (typeof event.target?.result === "string") {
+//                     const base64Image = Buffer.from(event.target?.result).toString("base64");
+//                     setFormData({
+//                         ...formData,
+//                         image: base64Image,
+//                         imageType: file.type,
+//                     });
+//                 }
+//             };
+//             reader.readAsArrayBuffer(file);
+//         }
+//     }   
+//   };
 
   const handleSubmit = async () => {
     console.log("file", formData);
@@ -58,15 +62,40 @@ const NewPost: React.FC = () => {
       setFormData(initialFormData);
     }
   };
+
+  const title = images.length ?(
+    <>
+        <h1>Upload Complete</h1>
+        <p>Uploaded {images.length} files</p>
+    </>):null;
+
+    const imageList = (
+        <>
+            {title}
+            <ul>
+                {
+                    images.map(image=>(
+                        <li key={image.key}>
+                            <Link href={image.url} target="_blank">{image.url}</Link>
+                        </li>
+                    ))
+                }
+            </ul>
+        </>
+    )
+
+
     
     return ( 
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div className="max-w-xl mx-auto">
             <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
-                Create new Post
+                Create new article
             </h1>
             </div>
+
+            {imageList}
 
             <div className="mt-12">
             {/* Form */}
@@ -89,8 +118,21 @@ const NewPost: React.FC = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                         <div>
                             <label htmlFor="blog-image" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Blog Image</label>
-                            <input type="file" name="blog-image" id="blog-image" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                onChange={(e)=>{handleChangeImage(e)}}
+                            <UploadButton
+                                endpoint="imageUploader"
+                                onClientUploadComplete={(res) => {
+                                    if(res){
+                                        // Do something with the response
+                                        setImages(res)
+                                        const json = JSON.stringify(res);
+                                        console.log(json);
+                                        alert("Upload Completed");
+                                    }
+                                }}
+                                onUploadError={(error: Error) => {
+                                // Do something with the error.
+                                alert(`ERROR! ${error.message}`);
+                                }}
                             />
                         </div>
 

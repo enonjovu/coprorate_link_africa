@@ -35,7 +35,7 @@ const BlogCategoryPage = async ({params}:paramProps) => {
                                             <h3 className="text-lg font-bold text-black leading-tight mb-2">
                                                 <a href="#">{blog.title}</a>
                                             </h3>
-                                            <p className="hidden md:block text-gray-600 leading-tight mb-1">{blog.story}</p>
+                                            <p className="hidden md:block text-gray-800 leading-tight mb-1">{blog.story}</p>
                                             <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{blog.category.toUpperCase()}</a>
                                         </div>
                                         </div>

@@ -18,7 +18,7 @@ const Hero = async () => {
                 {/*Start box news*/}
                 <div className="flex-shrink max-w-full w-full lg:w-1/2">
                     <div className="box-one flex flex-row flex-wrap">
-                        {blogs.map((blog)=>(
+                        {blogs?.map((blog)=>(
                             <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
                                 <div className="relative hover-img max-h-48 overflow-hidden">
                                     <a href="#">
