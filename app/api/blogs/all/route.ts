@@ -7,7 +7,7 @@ export async function GET(req:Request ,res:Response)
     try{
         const mongoClient = await clientPromise;
         // Databse Name
-        const db = mongoClient.db("simplyNews");
+        const db = mongoClient.db("coporate");
 
         // Table
         const collection = db.collection("blogs");
