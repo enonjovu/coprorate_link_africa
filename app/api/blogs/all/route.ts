@@ -21,7 +21,7 @@ export async function GET(req:Request ,res:Response)
         
         // Create an empty array to store converted blogs
         const convertedBlogs = [];
-        const convertImage = (image : String, imageType : Buffer) : String => {
+        const convertImage = (image : Buffer, imageType : String) : String => {
             return `data:${imageType};charset=utf-8;base64,${image.toString('base64')}`;
         };
 
