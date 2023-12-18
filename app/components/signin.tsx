@@ -36,7 +36,7 @@ const SignInForm = () => {
               <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
-                  <label for="email" className="block text-sm mb-2 dark:text-white">Email address</label>
+                  <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email address</label>
                   <div className="relative">
                     <input type="email" id="email" name="email" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" required aria-describedby="email-error" />
                     <div className="hidden absolute inset-y-0 end-0 items-center pointer-events-none pe-3">
@@ -52,7 +52,7 @@ const SignInForm = () => {
                 {/* Form Group */}
                 <div>
                   <div className="flex justify-between items-center">
-                    <label for="password" className="block text-sm mb-2 dark:text-white">Password</label>
+                    <label htmlFor="password" className="block text-sm mb-2 dark:text-white">Password</label>
                     <a className="text-sm text-red-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="../examples/html/recover-account.html">Forgot password?</a>
                   </div>
                   <div className="relative">
@@ -73,7 +73,7 @@ const SignInForm = () => {
                     <input id="remember-me" name="remember-me" type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-red-600 pointer-events-none focus:ring-red-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-red-500 dark:checked:border-red-500 dark:focus:ring-offset-gray-800"/>
                   </div>
                   <div className="ms-3">
-                    <label for="remember-me" className="text-sm dark:text-white">Remember me</label>
+                    <label htmlFor="remember-me" className="text-sm dark:text-white">Remember me</label>
                   </div>
                 </div>
                 {/* End Checkbox */}
