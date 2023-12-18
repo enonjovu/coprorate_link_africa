@@ -27,3 +27,15 @@ export const fetchBlogsById = async (id:string) : Promise<blogProps> =>{
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
+
+
+export const postBlog = async (formData:{}) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/blogs/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify(formData),
+  });
+  if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}

@@ -1,5 +1,5 @@
 import Slider from "./Slider";
-import { fetchLatestBlogs } from "../action";
+import { fetchLatestBlogs } from "../../action";
 import Image from 'next/image';
 
 const Hero = async () => {
