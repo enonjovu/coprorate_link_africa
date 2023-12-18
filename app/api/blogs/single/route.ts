@@ -15,6 +15,10 @@ export async function GET(req:Request ,res:Response)
 
         // Table
         const collection = db.collection("blogs");
+        if (!id) {
+            // Handle the case where id is missing or null
+            return NextResponse.json({ error: 'Missing blog ID' });
+        }
 
         // Fetch the data
         const results = await collection
