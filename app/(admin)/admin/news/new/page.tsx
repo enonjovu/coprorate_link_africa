@@ -29,19 +29,23 @@ const NewPost: React.FC = () => {
   useEffect(()=>{import('preline')},[])
 
   const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if(event.target.files?.length && event.target!=null){
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = (event) => {
-        const base64Image = Buffer.from(event.target?.result).toString("base64");
-        setFormData({
-            ...formData,
-            image: base64Image,
-            imageType: file.type,
-        });
-        };
-        reader.readAsArrayBuffer(file);
-}
+    if(event.target){
+        if(event.target.files?.length ){
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                if (typeof event.target?.result === "string") {
+                    const base64Image = Buffer.from(event.target?.result).toString("base64");
+                    setFormData({
+                        ...formData,
+                        image: base64Image,
+                        imageType: file.type,
+                    });
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    }   
   };
 
   const handleSubmit = async () => {
