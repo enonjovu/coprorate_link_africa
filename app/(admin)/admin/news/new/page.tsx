@@ -65,7 +65,7 @@ const NewPost: React.FC = () => {
 
   const title = images.length ?(
     <>
-        <h1>Upload Complete</h1>
+        <h1 className="my-5 text-xl">Upload Complete</h1>
         <p>Uploaded {images.length} files</p>
     </>):null;
 
