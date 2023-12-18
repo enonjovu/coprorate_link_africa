@@ -1,6 +1,6 @@
 import LatestNews from './components/LatestNews'
 import Ads from './components/Advertisment'
-import Hero from './components/Hero'
+// import Hero from './components/Hero'
 import Videos from './components/Videos'
 
 
@@ -9,7 +9,7 @@ export default async function Home() {
       <main id="content">
 
           {/* hero big grid */}
-          <Hero/>
+          {/* <Hero/> */}
 
           {/* advertisement */}
           <Ads/>
