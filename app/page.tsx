@@ -12,7 +12,7 @@ export default async function Home() {
           <Hero/>
 
           {/* advertisement */}
-          <Ads/>
+          {/* <Ads/> */}
 
           <LatestNews/>
 
