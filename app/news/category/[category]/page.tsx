@@ -25,7 +25,7 @@ const BlogCategoryPage = async ({params}:paramProps) => {
                             {/* Blogs */}
                             {
                                 blogs.map(blog=>(
-                                    <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+                                    <div key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                         <div className="flex flex-row sm:block hover-img">
                                         <Link href={`/news/single/${blog.id}`}>
                                             <img className="max-w-full w-full mx-auto" src={blog.image} alt="alt title"/>
