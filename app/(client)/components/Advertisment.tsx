@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 const Ads = () => {
@@ -23,13 +24,13 @@ const Ads = () => {
             >
                 <div className="">
                     <a href="#">
-                        <img className="mx-auto" src="/src/img/ad.jpeg" alt="advertisement area"/>
+                        <Image className="mx-auto" src="/src/img/ad.jpeg" alt="advertisement area"/>
                     </a>
                 </div>
 
                 <div className="">
                     <a href="#">
-                        <img className="mx-auto" src="/src/img/ad2.jpeg" alt="advertisement area"/>
+                        <Image className="mx-auto" src="/src/img/ad2.jpeg" alt="advertisement area"/>
                     </a>
                 </div>
             </Carousel>
