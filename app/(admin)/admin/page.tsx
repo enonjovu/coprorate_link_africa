@@ -1,4 +1,5 @@
 "use client"
+import('preline')
 
 import { useEffect } from "react";
 const Dashboard = () => {
