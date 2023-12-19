@@ -1,3 +1,4 @@
+"use client"
 import SignInForm from "../components/signin";
 
 const SignIn = () => {
