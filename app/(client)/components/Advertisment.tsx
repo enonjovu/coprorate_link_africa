@@ -24,13 +24,13 @@ const Ads = () => {
             >
                 <div className="">
                     <a href="#">
-                        <Image className="mx-auto" src="/src/img/ad.jpeg" alt="advertisement area"/>
+                        <Image width={500} height={500} className="mx-auto" src="/src/img/ad.jpeg" alt="advertisement area"/>
                     </a>
                 </div>
 
                 <div className="">
                     <a href="#">
-                        <Image className="mx-auto" src="/src/img/ad2.jpeg" alt="advertisement area"/>
+                        <Image width={500} height={500} className="mx-auto" src="/src/img/ad2.jpeg" alt="advertisement area"/>
                     </a>
                 </div>
             </Carousel>
