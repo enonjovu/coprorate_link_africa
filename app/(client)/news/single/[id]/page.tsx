@@ -11,6 +11,7 @@ const SingleBlogPage = async ({params}:paramProps) => {
     const id: string = params.id;
     const result = await fetchBlogsById(id);
     const blog = result[0]
+    console.log("Single Blog => ",blog);
     return (
         <main id="content">
             {/* block news */}
@@ -30,7 +31,7 @@ const SingleBlogPage = async ({params}:paramProps) => {
                             {/* Post content */}
                             <div className="leading-relaxed pb-4">
                                 <figure className="text-center mb-6">
-                                    <img className="max-w-full w-full h-auto" src={blog?.image.url} alt="Image description"/>
+                                    <img className="max-w-full w-full h-auto" src={blog?.images[0].url} alt="Image description"/>
                                     <figcaption> Image DEscription</figcaption>
                                 </figure>
 
@@ -39,13 +40,13 @@ const SingleBlogPage = async ({params}:paramProps) => {
                                 </p>
                             
                                 <figure className="lg:float-left text-center lg:text-left ml-0 lg:-ml-4 mr-7 mb-7">
-                                    <img className="max-w-full h-auto mx-auto" src="/src/img/dummy/post2.jpg" alt="Image description"/>
+                                    <img className="max-w-full h-auto mx-auto" src={blog?.images[1]?.url} alt="Image description"/>
                                     <figcaption className="text-black">Align left images</figcaption>
                                 </figure>
-                            <figure className="lg:float-right text-center lg:text-right mr-0 lg:-mr-4 ml-7 mb-7">
-                                <img className="max-w-full h-auto mx-auto" src="/src/img/dummy/post3.jpg" alt="Image description"/>
-                                <figcaption className="text-black">Align right images</figcaption>
-                            </figure>
+                                <figure className="lg:float-right text-center lg:text-right mr-0 lg:-mr-4 ml-7 mb-7">
+                                    <img className="max-w-full h-auto mx-auto" src={blog?.images[2]?.url} alt="Image description"/>
+                                    <figcaption className="text-black">Align right images</figcaption>
+                                </figure>
                             <div className="relative flex flex-row items-center justify-between overflow-hidden bg-gray-100 dark:bg-gray-900 dark:bg-opacity-20 mt-12 mb-2 px-6 py-2">
                                 <div className="my-4 text-sm">
                                 {/*author*/}
