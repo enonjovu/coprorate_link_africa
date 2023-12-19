@@ -19,23 +19,27 @@ const Hero = async () => {
                 {/*Start box news*/}
                 <div className="flex-shrink max-w-full w-full lg:w-1/2">
                     <div className="box-one flex flex-row flex-wrap">
-                        {blogs?.map((blog)=>(
-                            <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
-                                <div className="relative hover-img max-h-48 overflow-hidden">
-                                    <a href="#">
-                                        <Image width={500} height={500} className="max-w-full w-full mx-auto h-auto" src={blog.image.url} alt="Image description"/>
-                                    </a>
-                                    <div className="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
+                        {
+                            blogs.length?(
+                                blogs.map((blog)=>(
+                                <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
+                                    <div className="relative hover-img max-h-48 overflow-hidden">
                                         <a href="#">
-                                            <h2 className="text-lg font-bold capitalize leading-tight text-white mb-1">{blog.title}</h2>
+                                            <Image width={500} height={500} className="max-w-full w-full mx-auto h-auto" src={blog.image.url} alt="Image description"/>
                                         </a>
-                                        <div className="pt-1">
-                                            <div className="text-gray-100"><div className="inline-block h-3 border-l-2 border-red-600 mr-2"></div>{blog.category}</div>
+                                        <div className="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
+                                            <a href="#">
+                                                <h2 className="text-lg font-bold capitalize leading-tight text-white mb-1">{blog.title}</h2>
+                                            </a>
+                                            <div className="pt-1">
+                                                <div className="text-gray-100"><div className="inline-block h-3 border-l-2 border-red-600 mr-2"></div>{blog.category}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
-                        ))}
+                                </article>
+                                ))
+                            ):null
+                    }
                     </div>
                 </div>
                 </div>
