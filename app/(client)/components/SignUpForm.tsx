@@ -1,33 +1,11 @@
 "use client";
 import { useEffect, useState } from 'react';
-// import{auth, googleProvider} from '../firebase';
-// import {
-//   createUserWithEmailAndPassword,
-//   signInWithPopup
-// } from 'firebase/auth';
 
 const SignUpForm = () => {
     useEffect(()=>{import('preline')},[])
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    // const signIn = async (e)=>{
-    //   e.preventDefault();
-
-    //   try{
-    //     await createUserWithEmailAndPassword(auth,email,password);
-    //   }catch(err){
-    //     console.log(err.message)
-    //   }
-    // };
-
-    // const signInWithGoogle = async()=>{
-    //   try{
-    //     await signInWithPopup(auth, googleProvider);
-    //   }catch(err){
-    //     console.log(err.message);
-    //   }
-    // }
 
     return ( 
       <main className="w-full max-w-md mx-auto p-6">
