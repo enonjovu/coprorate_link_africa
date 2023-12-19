@@ -9,6 +9,7 @@ type paramProps = {
 const BlogCategoryPage = async ({params}:paramProps) => {
     const category: string = params.category;
     const blogs = await fetchBlogsByCategory(category);
+    console.log("Blogs byt category => ",blogs)
     return ( 
         <main id="content">
             <div className="bg-gray-50 py-10">
@@ -25,18 +26,19 @@ const BlogCategoryPage = async ({params}:paramProps) => {
                         <div className="flex flex-row flex-wrap -mx-3">
                             {/* Blogs */}
                             {
-                                blogs.map(blog=>(
+                                blogs?.map(blog=>(
                                     <div key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                         <div className="flex flex-row sm:block hover-img">
                                         <Link href={`/news/single/${blog.id}`}>
-                                            <img className="max-w-full w-full mx-auto" src={blog.image} alt="alt title"/>
+                                            <img className="max-w-full w-full mx-auto" src={blog.image.url} alt="alt title"/>
                                         </Link>
                                         <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                             <h3 className="text-lg font-bold text-black leading-tight mb-2">
                                                 <a href="#">{blog.title}</a>
                                             </h3>
                                             <p className="hidden md:block text-gray-800 leading-tight mb-1">{blog.story}</p>
-                                            <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{blog.category.toUpperCase()}</a>
+                                            <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>
+                                            {blog.category.toUpperCase()}</a>
                                         </div>
                                         </div>
                                     </div>

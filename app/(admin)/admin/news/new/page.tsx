@@ -11,16 +11,14 @@ type FormData = {
   title: string;
   category: string;
   story: string;
-  image: string;
-  imageType: string;
+  images:{url: string;key: string;}[]
 };
 
 const initialFormData: FormData = {
   title: "",
   category: "",
   story: "",
-  image: "",
-  imageType: "",
+  images: [{url: "",key: ""}],
 };
 
 const NewPost: React.FC = () => {
@@ -53,6 +51,7 @@ const NewPost: React.FC = () => {
 //   };
 
   const handleSubmit = async () => {
+    formData.images = images;
     console.log("file", formData);
     const response = await postBlog(formData)
     console.log("Response => ",response);
@@ -62,6 +61,13 @@ const NewPost: React.FC = () => {
       setFormData(initialFormData);
     }
   };
+
+  const handleImagesUpload = (res:any)=>{
+    setImages(res)
+    const json = JSON.stringify(res);
+    console.log(json);
+    alert("Upload Completed");
+  }
 
   const title = images.length ?(
     <>
@@ -123,10 +129,7 @@ const NewPost: React.FC = () => {
                                 onClientUploadComplete={(res) => {
                                     if(res){
                                         // Do something with the response
-                                        setImages(res)
-                                        const json = JSON.stringify(res);
-                                        console.log(json);
-                                        alert("Upload Completed");
+                                        handleImagesUpload(res);
                                     }
                                 }}
                                 onUploadError={(error: Error) => {
@@ -168,9 +171,22 @@ const NewPost: React.FC = () => {
                 {/* End Grid */}
 
                 <div className="mt-6 grid">
-                    <button type="button" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    onClick={handleSubmit}
-                    >Post Blog</button>
+                    {
+                        images.length ?(
+                            <button type="button" 
+                                className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                onClick={handleSubmit}>Post Blog
+                            </button>
+                        ):(
+                            <button type="button" 
+                                disabled
+                                className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg 
+                                border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                >Upload Images before Posting!
+                            </button>
+                        )
+                    }
+                    
                 </div>
             </form>
             {/* End Form */}

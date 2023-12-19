@@ -1,7 +1,10 @@
 "use server"
 type blogProps = {
     id:string,
-    image:string,
+    image:{
+      url:string,
+      key:string,
+    },
     story:string,
     title:string,
     category:string

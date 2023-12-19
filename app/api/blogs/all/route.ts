@@ -17,13 +17,9 @@ export async function GET(req:Request ,res:Response)
         .find({})
         .limit(4)
         .toArray();
-        
-        
-        // Create an empty array to store converted blogs
+
+
         const convertedBlogs = [];
-        const convertImage = (image : Buffer, imageType : String) : String => {
-            return `data:${imageType};charset=utf-8;base64,${image.toString('base64')}`;
-        };
 
         const trimStory = async (story: String) => {
             const words = story.split(" ");
@@ -36,15 +32,13 @@ export async function GET(req:Request ,res:Response)
             // Loop through each blog
             for (const blog of results) {
                 // Convert image for each blog
-                const convertedImage = convertImage(blog.image,blog.imageType);
                 const story = await trimStory(blog.story)
                 // Create an object for each blog with converted image
                 const convertedBlog = {
                     id:blog._id,
                     title: blog.title,
                     story: story,
-                    category: blog.category,
-                    image: convertedImage,
+                    image: blog.images[0],
                 };
 
                 // Add the converted blog to the array

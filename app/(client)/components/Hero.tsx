@@ -22,7 +22,7 @@ const Hero = async () => {
                             <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
                                 <div className="relative hover-img max-h-48 overflow-hidden">
                                     <a href="#">
-                                        <Image layout='responsive' width={500} height={500} className="max-w-full w-full mx-auto h-auto" src={blog.image} alt="Image description"/>
+                                        <Image width={500} height={500} className="max-w-full w-full mx-auto h-auto" src={blog.image.url} alt="Image description"/>
                                     </a>
                                     <div className="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
                                         <a href="#">

@@ -22,10 +22,7 @@ export async function GET(req:Request ,res:Response)
         
         
         // Create an empty array to store converted blogs
-        const convertedBlogs = [];
-        const convertImage = (image : Buffer, imageType : String) : String => {
-            return `data:${imageType};charset=utf-8;base64,${image.toString('base64')}`;
-        };
+                const convertedBlogs = [];
 
         const trimStory = async (story: String) => {
             const words = story.split(" ");
@@ -34,26 +31,24 @@ export async function GET(req:Request ,res:Response)
             return(trimmedParagraph);
         }
 
-         if (results.length > 0) {
+        if (results.length > 0) {
             // Loop through each blog
             for (const blog of results) {
                 // Convert image for each blog
-                const convertedImage = convertImage(blog.image,blog.imageType);
                 const story = await trimStory(blog.story)
                 // Create an object for each blog with converted image
                 const convertedBlog = {
                     id:blog._id,
                     title: blog.title,
+                    category:blog.category,
                     story: story,
-                    category: blog.category,
-                    image: convertedImage,
+                    image: blog.images[0],
                 };
 
                 // Add the converted blog to the array
                 convertedBlogs.push(convertedBlog);
             }
         }
-
         
         // Return the result
         return NextResponse.json(convertedBlogs)
