@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 const Hero = async () => {
     const blogs = await fetchLatestBlogs();
+    console.log(blogs);
     return ( 
         <div className="bg-white py-6">
             <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
