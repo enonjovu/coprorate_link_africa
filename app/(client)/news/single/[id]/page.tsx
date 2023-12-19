@@ -30,7 +30,7 @@ const SingleBlogPage = async ({params}:paramProps) => {
                         {/* Post content */}
                         <div className="leading-relaxed pb-4">
                             <figure className="text-center mb-6">
-                                <img className="max-w-full w-full h-auto" src={blog.image} alt="Image description"/>
+                                <img className="max-w-full w-full h-auto" src={blog.image.url} alt="Image description"/>
                                 <figcaption> Image DEscription</figcaption>
                             </figure>
 
