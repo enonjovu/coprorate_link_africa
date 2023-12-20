@@ -3,9 +3,9 @@ import "@uploadthing/react/styles.css";
 import Modal from "@/app/(admin)/components/Modal";
 import { postBlog } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import("preline")
+
 // Initial state with types
 type FormData = {
   title: string;
@@ -27,8 +27,6 @@ const NewPost: React.FC = () => {
   const [formKey, setFormKey] = useState<number>(0);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [images,setImages] = useState<{url: string;key: string;}[]>([])
-
-  useEffect(()=>{import('preline')},[])
 
   const handleSubmit = async () => {
     formData.images = images;

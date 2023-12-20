@@ -1,7 +1,7 @@
 import './globals.css';
 import Sidebar from './components/Sidebar';
 import { Metadata } from 'next';
-
+import PrelineScript from '../components/PrelineScripts';
 export const metadata :Metadata = {
   title: 'Corporate News Africa',
   description: 'Admin Pannel',
@@ -110,6 +110,7 @@ export default function RootLayout({
         <div className="w-full pt-10 px-4 sm:px-6 md:px-8 lg:ps-72">
             {children}
         </div>
+        <PrelineScript/>
       </body>
     </html>
   )
