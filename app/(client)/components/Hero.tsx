@@ -7,7 +7,7 @@ const Hero = async () => {
     const blogs = await fetchLatestBlogs();
     console.log(blogs);
     return ( 
-        <div className="bg-white py-6">
+        <div className="bg-white">
             <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
                 {/* big grid 1 */}
                 <div className="flex flex-row flex-wrap">
@@ -18,15 +18,15 @@ const Hero = async () => {
                 </div>
 
                 {/*Start box news*/}
-                <div className="flex-shrink max-w-full w-full h-full overflow-hidden bg-red-700 lg:w-1/2">
-                    <div className="box-one flex flex-row flex-wrap h-full w-full bg-blue-900">
+                <div className="flex-shrink max-w-full w-full h-full overflow-hidden lg:w-1/2">
+                    <div className="box-one flex flex-row flex-wrap h-full w-full">
                         {
                             blogs.length?(
                                 blogs.map((blog)=>(
-                                    
-                                        <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
+                                    <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
+                                        <Link href={`/news/single/${blog.id}`}>
                                             <div className="relative hover-img max-h-48 overflow-hidden">
-                                                <Link href={`/news/single/${blog.id}`}>
+                                                
                                                     <Image width={500} height={500} className="max-w-full w-full mx-auto h-auto" src={blog.image.url} alt="Image description"/>
                                                     <div className="absolute px-4 pt-7 pb-4 bottom-0 w-full h-full bg-[#00000075] flex flex-col justify-end">
                                                         <h2 className="text-lg font-bold capitalize leading-tight text-white mb-1">{blog.title}</h2>
@@ -37,9 +37,10 @@ const Hero = async () => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </Link>
+                                                
                                             </div>
-                                        </article>
+                                        </Link>
+                                    </article>
                                 ))
                             ):null
                     }

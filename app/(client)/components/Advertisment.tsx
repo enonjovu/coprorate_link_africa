@@ -24,6 +24,16 @@ const Ads = () => {
             >
                 <div className="">
                     <a href="#">
+                        <Image width={500} height={500} className="mx-auto" src="/src/img/chipofya.jpg" alt="advertisement area"/>
+                    </a>
+                </div>
+                <div className="">
+                    <a href="#">
+                        <Image width={500} height={500} className="mx-auto" src="/src/img/mtumbuka.jpg" alt="advertisement area"/>
+                    </a>
+                </div>
+                <div className="">
+                    <a href="#">
                         <Image width={500} height={500} className="mx-auto" src="/src/img/ad.jpeg" alt="advertisement area"/>
                     </a>
                 </div>
