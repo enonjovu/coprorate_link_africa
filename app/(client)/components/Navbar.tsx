@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { BsSearch } from 'react-icons/bs';
 import TopAds from './TopAds';
-
+import("preline")
 const Navbar = () => {
     useEffect(()=>{import('preline')},[])
   return ( 

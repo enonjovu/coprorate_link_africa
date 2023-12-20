@@ -5,7 +5,7 @@ import { postBlog } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
+import("preline")
 // Initial state with types
 type FormData = {
   title: string;
