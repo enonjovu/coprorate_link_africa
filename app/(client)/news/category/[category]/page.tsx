@@ -2,6 +2,7 @@ import TopStories from "@/app/(client)/components/TopStories";
 import { fetchBlogsByCategory} from "@/app/action";
 
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import Image from "next/image";
 import Link from "next/link";
 type paramProps = {
     params:Params
@@ -19,7 +20,7 @@ const BlogCategoryPage = async ({params}:paramProps) => {
                     <div className="flex-shrink max-w-full w-full lg:w-2/3  overflow-hidden">
                         <div className="w-full py-3">
                         <h2 className="text-gray-800 text-2xl font-bold">
-                            <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
+                            <span className="inline-block h-5 border-l-3 border-red-600 border-l-2 mr-2"></span>
                             {category.toUpperCase()} NEWS
                         </h2>
                         </div>
@@ -30,7 +31,7 @@ const BlogCategoryPage = async ({params}:paramProps) => {
                                     <div key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                         <div className="flex flex-row sm:block hover-img">
                                         <Link href={`/news/single/${blog.id}`}>
-                                            <img className="max-w-full w-full mx-auto" src={blog.image.url} alt="alt title"/>
+                                            <Image width={500} height={500} className="max-w-full w-full mx-auto" src={blog.image.url} alt="alt title"/>
                                         </Link>
                                         <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                             <h3 className="text-lg font-bold text-black leading-tight mb-2">

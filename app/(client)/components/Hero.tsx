@@ -1,6 +1,7 @@
 import Slider from "./Slider";
 import { fetchLatestBlogs } from "../../action";
 import Image from 'next/image';
+import Link from "next/link";
 
 const Hero = async () => {
     const blogs = await fetchLatestBlogs();
@@ -22,21 +23,23 @@ const Hero = async () => {
                         {
                             blogs.length?(
                                 blogs.map((blog)=>(
-                                <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
-                                    <div className="relative hover-img max-h-48 overflow-hidden">
-                                        <a href="#">
-                                            <Image width={500} height={500} className="max-w-full w-full mx-auto h-auto" src={blog.image.url} alt="Image description"/>
-                                        </a>
-                                        <div className="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
-                                            <a href="#">
-                                                <h2 className="text-lg font-bold capitalize leading-tight text-white mb-1">{blog.title}</h2>
-                                            </a>
-                                            <div className="pt-1">
-                                                <div className="text-gray-100"><div className="inline-block h-3 border-l-2 border-red-600 mr-2"></div>{blog.category}</div>
+                                    
+                                        <article key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/2">
+                                            <div className="relative hover-img max-h-48 overflow-hidden">
+                                                <Link href={`/news/single/${blog.id}`}>
+                                                    <Image width={500} height={500} className="max-w-full w-full mx-auto h-auto" src={blog.image.url} alt="Image description"/>
+                                                    <div className="absolute px-4 pt-7 pb-4 bottom-0 w-full h-full bg-[#00000075] flex flex-col justify-end">
+                                                        <h2 className="text-lg font-bold capitalize leading-tight text-white mb-1">{blog.title}</h2>
+                                                        <div className="pt-1">
+                                                            <div className="text-gray-100">
+                                                                <div className="inline-block h-3 border-l-2 border-red-600 mr-2 text-gray-100"></div>
+                                                                {blog.category.toUpperCase()}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Link>
                                             </div>
-                                        </div>
-                                    </div>
-                                </article>
+                                        </article>
                                 ))
                             ):null
                     }

@@ -38,6 +38,7 @@ export async function GET(req:Request ,res:Response)
                     id:blog._id,
                     title: blog.title,
                     story: story,
+                    category:blog.category,
                     image: blog.images[0],
                 };
 

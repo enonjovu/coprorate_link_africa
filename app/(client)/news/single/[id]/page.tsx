@@ -35,9 +35,9 @@ const SingleBlogPage = async ({params}:paramProps) => {
                                     <figcaption> Image DEscription</figcaption>
                                 </figure>
 
-                                <p className="mb-5 text-black">
+                                <pre className="mb-5 text-black font-serif">
                                     {blog?.story}
-                                </p>
+                                </pre>
                             
                                 <figure className="lg:float-left text-center lg:text-left ml-0 lg:-ml-4 mr-7 mb-7">
                                     <img className="max-w-full h-auto mx-auto" src={blog?.images[1]?.url} alt="Image description"/>
