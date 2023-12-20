@@ -5,7 +5,6 @@ import { BsSearch } from 'react-icons/bs';
 import TopAds from './TopAds';
 
 const Navbar = () => {
-    useEffect(()=>{import('preline')},[])
   return ( 
     <>
     <TopAds/>

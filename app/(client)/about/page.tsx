@@ -5,7 +5,6 @@ import { BsTwitterX } from "react-icons/bs";
 import { useEffect } from "react";
 
 const About = () => {
-    useEffect(() => {import('preline')}, []);
     return ( 
         <div className="h-full">
             {/* Mission Statement */}
