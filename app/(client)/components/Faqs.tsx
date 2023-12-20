@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 
 const Faqs = () => {
-    useEffect(()=>{import('preline')},[])
     return ( 
         <section className="flex items-center bg-white py-4 dark:bg-[#222] font-poppins">
             <div className="max-w-5xl mt-12 mx-auto">

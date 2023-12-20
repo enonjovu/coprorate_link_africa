@@ -1,9 +1,5 @@
 "use client"
-
-import { useEffect } from 'react'
-
 const SignInForm = () => {
-  useEffect(()=>{import('preline')},[])
     return ( 
     <main className="w-full max-w-md mx-auto p-6">
       <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">

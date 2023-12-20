@@ -1,8 +1,7 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const SignUpForm = () => {
-    useEffect(()=>{import('preline')},[])
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
