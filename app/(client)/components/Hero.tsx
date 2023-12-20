@@ -33,7 +33,7 @@ const Hero = async () => {
                                                         <div className="pt-1">
                                                             <div className="text-gray-100">
                                                                 <div className="inline-block h-3 border-l-2 border-red-600 mr-2 text-gray-100"></div>
-                                                                {blog.category.toUpperCase()}
+                                                                {blog.category?.toUpperCase()}
                                                             </div>
                                                         </div>
                                                     </div>
