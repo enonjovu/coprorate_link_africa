@@ -32,12 +32,12 @@ const SingleBlogPage = async ({params}:paramProps) => {
                             <div className="leading-relaxed pb-4">
                                 <figure className="text-center mb-6">
                                     <img className="max-w-full w-full h-auto" src={blog?.images[0].url} alt="Image description"/>
-                                    <figcaption> Image DEscription</figcaption>
+                                    <figcaption> Image Description</figcaption>
                                 </figure>
 
-                                <pre className="mb-5 text-black font-serif">
+                                <p className="mb-5 text-black font-serif whitespace-pre-wrap ">
                                     {blog?.story}
-                                </pre>
+                                </p>
                             
                                 <figure className="lg:float-left text-center lg:text-left ml-0 lg:-ml-4 mr-7 mb-7">
                                     <img className="max-w-full h-auto mx-auto" src={blog?.images[1]?.url} alt="Image description"/>

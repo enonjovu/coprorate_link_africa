@@ -3,7 +3,10 @@ import Ads from "./Advertisment";
 const TopStories = () => {
     return ( 
         <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-last">
-            <div className="w-full bg-white">
+            <div className="text-sm py-6 sticky">
+                <Ads/>
+            </div>
+            <div className="w-full bg-white hidden md:block">
                 <div className="mb-6">
                     <div className="p-4 bg-gray-100">
                     <h2 className="text-lg font-bold text-black">Most Popular</h2>
@@ -26,10 +29,6 @@ const TopStories = () => {
                     </li>
                     </ul>
                 </div>
-            </div>
-
-            <div className="text-sm py-6 sticky">
-                <Ads/>
             </div>
         </div>
      );

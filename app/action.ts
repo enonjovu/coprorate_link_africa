@@ -23,7 +23,7 @@ type singleBlogProps = {
 const rootLink = process.env.ROOT_LINK
 
 export const fetchLatestBlogs = async () : Promise<blogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/all`,{next:{revalidate:1}});
+  const response = await fetch(`${rootLink}/api/blogs/all`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }

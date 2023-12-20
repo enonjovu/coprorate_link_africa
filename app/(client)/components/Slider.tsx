@@ -20,13 +20,13 @@ function Slider() {
       centerMode={false}
       centerSlidePercentage={100}
       showThumbs={false}
-      className="relative h-full max-h-[50vh] md:max-h-[70vh] overflow-hidden" // Set initial height using Tailwind classes
+      className="relative h-full overflow-hidden" // Set initial height using Tailwind classes
     >
      
-        <div className="relative hover-img max-h-98 overflow-hidden">
-        <a href="#">
-            <img className="max-w-full w-full mx-auto h-auto" src="src/img/dummy/img1.jpg" alt="Image description"/>
-        </a>
+        <div className="relative hover-img max-h-[60vh] overflow-hidden">
+            <a href="#">
+                <img className="max-w-full w-full mx-auto h-auto" src="src/img/dummy/img1.jpg" alt="Image description"/>
+            </a>
         <div className="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-cover">
             <a href="#">
             <h2 className="text-3xl font-bold capitalize text-white mb-3">Slide 1</h2>
@@ -40,7 +40,7 @@ function Slider() {
     
 
 
-        <div className="relative hover-img max-h-98 overflow-hidden">
+        <div className="relative hover-img max-h-[60vh] overflow-hidden">
         <a href="#">
             <img className="max-w-full w-full mx-auto h-auto" src="src/img/dummy/img1.jpg" alt="Image description"/>
         </a>
@@ -55,7 +55,7 @@ function Slider() {
         </div>
         </div>
 
-        <div className="relative hover-img max-h-98 overflow-hidden">
+        <div className="relative hover-img max-h-[60vh] overflow-hidden">
         <a href="#">
             <img className="max-w-full w-full mx-auto h-auto" src="src/img/dummy/img3.jpg" alt="Image description"/>
         </a>

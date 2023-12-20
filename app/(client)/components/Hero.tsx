@@ -13,13 +13,13 @@ const Hero = async () => {
                 <div className="flex flex-row flex-wrap">
 
                 {/*Start left cover*/}
-                <div className="flex-shrink max-w-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
+                <div className="flex-shrink max-w-full h-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
                     <Slider/>
                 </div>
 
                 {/*Start box news*/}
-                <div className="flex-shrink max-w-full w-full lg:w-1/2">
-                    <div className="box-one flex flex-row flex-wrap">
+                <div className="flex-shrink max-w-full w-full h-full overflow-hidden bg-red-700 lg:w-1/2">
+                    <div className="box-one flex flex-row flex-wrap h-full w-full bg-blue-900">
                         {
                             blogs.length?(
                                 blogs.map((blog)=>(
