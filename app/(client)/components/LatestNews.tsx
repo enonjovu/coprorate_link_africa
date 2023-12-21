@@ -3,6 +3,14 @@ import TopStories from "./TopStories";
 const LatestNews = () => {
     return ( 
         <div className="bg-gray-50 py-2">
+            <div className="w-full flex justify-center overflow-hidden">
+                            <div className="flex flex-wrap justify-between mb-4 w-full md:w-1/2 md:mt-4">
+                                <a href="/news/category/agriculture" className="scale-75 md:scale-100 dark:text-white bg-red-700 hover:text-white p-3 rounded-md">Agriculture</a>
+                                <a href="/news/category/business" className="scale-75 md:scale-100 dark:text-white bg-red-700 hover:text-white p-3 rounded-md">Business</a>
+                                <a href="/news/category/tech" className="scale-75 md:scale-100 dark:text-white bg-red-700 hover:text-white p-3 rounded-md">Tech</a>
+                                <a href="/news/category/enviroment" className="scale-75 md:scale-100 dark:text-white bg-red-700 hover:text-white p-3 rounded-md">Enviroment</a>
+                            </div>
+                        </div>
             <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
                 <div className="flex flex-row flex-wrap">
                     {/* post */}

@@ -18,7 +18,17 @@ type singleBlogProps = {
     }[],
     story:string,
     title:string,
-    category:string
+    category:string,
+    related:{
+      id:string,
+      title:string,
+      category:string,
+      story:string,
+      images:{
+        url:string,
+        key:string,
+      }[],
+    }[]
 }[]
 const rootLink = process.env.ROOT_LINK
 

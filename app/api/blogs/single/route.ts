@@ -23,10 +23,29 @@ export async function GET(req:Request ,res:Response)
         // Fetch the data
         const results = await collection
         .find({_id: new ObjectId(id)})
-        .toArray();        
+        .toArray();
+        
+        const result = [];
+
+        if (results){
+            const blog = results[0];
+
+            const relatedArticles = await collection
+            .find({category:blog.category})
+            .toArray();
+
+            result.push({
+                id:blog._id,
+                title:blog.title,
+                category:blog.category,
+                story:blog.story,
+                images:blog.images,
+                related:relatedArticles,
+            })
+        }
         
         // Return the result
-        return NextResponse.json(results)
+        return NextResponse.json(result)
     }catch(e){
         console.log("Failed to fetch Data => ",e);
         return NextResponse.json({ error: 'Failed to fetch data'+e });
