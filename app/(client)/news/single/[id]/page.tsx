@@ -1,7 +1,9 @@
 import Ads from "@/app/(client)/components/Advertisment";
+import PicturesSlider from "@/app/(client)/components/PicturesSlider";
 import TopStories from "@/app/(client)/components/TopStories";
 import { fetchBlogsById } from "@/app/action";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { BsFacebook, BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
 
 type paramProps = {
     params:Params
@@ -32,53 +34,51 @@ const SingleBlogPage = async ({params}:paramProps) => {
                             <div className="max-w-full w-full px-4">
                                 {/* Post content */}
                                 <div className="leading-relaxed pb-4">
-                                    <figure className="text-center mb-6">
-                                        <img className="max-w-full w-full h-auto" src={blog?.images[0].url} alt="Image description"/>
+                                    <figure className="text-center mb-6 w-full h-[50vh] md:h-[90vh]  overflow-hidden">
+                                        <PicturesSlider images={blog.images}/>
                                         <figcaption> Image Description</figcaption>
                                     </figure>
+
+                                    <div className="w-full h-24 flex flex-row justify-around">
+                                        <BsFacebook size={40} className="text-blue-700" />
+                                        <BsLinkedin size={40} className="text-blue-600" />
+                                        <BsInstagram size={40} className="text-red-400" />
+                                        <BsTwitterX size={40} className="text-black" />
+                                    </div>
 
                                     <p className="mb-5 text-black font-serif whitespace-pre-wrap ">
                                         {blog?.story}
                                     </p>
-                                
-                                    <figure className="lg:float-left text-center lg:text-left ml-0 lg:-ml-4 mr-7 mb-7">
-                                        <img className="max-w-full h-auto mx-auto" src={blog?.images[1]?.url} alt="Image description"/>
-                                        <figcaption className="text-black">Align left images</figcaption>
-                                    </figure>
-                                    <figure className="lg:float-right text-center lg:text-right mr-0 lg:-mr-4 ml-7 mb-7">
-                                        <img className="max-w-full h-auto mx-auto" src={blog?.images[2]?.url} alt="Image description"/>
-                                        <figcaption className="text-black">Align right images</figcaption>
-                                    </figure>
                                 </div>
                             </div>
                         </div>
                         <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
-                        <div className="w-full py-3">
-                        <h2 className="text-gray-800 text-2xl font-bold">
-                            <span className="inline-block h-5 border-l-2 border-red-600 mr-2"></span>Related Articles 
-                        </h2>
-                        </div>
-                        <div className="flex flex-row flex-wrap -mx-3">
-                            {
-                                blog.related?.map(related=>(
-                                    <div key={related.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                                        <div className="flex flex-row sm:block hover-img">
-                                        <a href="">
-                                            <img className="max-w-full w-full mx-auto" src={related.images[0].url} alt="alt title"/>
-                                        </a>
-                                        <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                            <h3 className="text-lg font-bold leading-tight mb-2">
-                                            <a href="#" className="text-black">{related.title}</a>
-                                            </h3>
-                                            {/* <p className="hidden md:block text-gray-600 leading-tight mb-1">{related.story}</p> */}
-                                            <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{related.category}</a>
+                            <div className="w-full py-3">
+                            <h2 className="text-gray-800 text-2xl font-bold">
+                                <span className="inline-block h-5 border-l-2 border-red-600 mr-2"></span>Related Articles 
+                            </h2>
+                            </div>
+                            <div className="flex flex-row flex-wrap -mx-3">
+                                {
+                                    blog.related?.map(related=>(
+                                        <div key={related.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+                                            <div className="flex flex-row sm:block hover-img">
+                                            <a href="">
+                                                <img className="max-w-full w-full mx-auto" src={related.images[0].url} alt="alt title"/>
+                                            </a>
+                                            <div className="py-0 sm:py-3 pl-3 sm:pl-0">
+                                                <h3 className="text-lg font-bold leading-tight mb-2">
+                                                <a href="#" className="text-black">{related.title}</a>
+                                                </h3>
+                                                {/* <p className="hidden md:block text-gray-600 leading-tight mb-1">{related.story}</p> */}
+                                                <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{related.category}</a>
+                                            </div>
+                                            </div>
                                         </div>
-                                        </div>
-                                    </div>
-                                ))
-                            }
+                                    ))
+                                }
+                            </div>
                         </div>
-                    </div>
                     </div>
                     {/* right */}
                     <TopStories/>
