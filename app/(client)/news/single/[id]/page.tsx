@@ -61,7 +61,7 @@ const SingleBlogPage = async ({params}:paramProps) => {
                         <div className="flex flex-row flex-wrap -mx-3">
                             {
                                 blog.related?.map(related=>(
-                                    <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+                                    <div key={related.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                         <div className="flex flex-row sm:block hover-img">
                                         <a href="">
                                             <img className="max-w-full w-full mx-auto" src={related.images[0].url} alt="alt title"/>
