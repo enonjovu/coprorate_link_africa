@@ -31,8 +31,8 @@ function PicturesSlider({images}:imagesProps) {
       className="relative h-full w-full" // Set initial height using Tailwind classes
     >
      {
-        images?.map(image =>
-          <img className="w-full h-full object-cover" src={image.url} alt="Image description"/>
+        images?.map((image) =>
+          <img key={image.key} className="w-full h-full object-cover" src={image.url} alt="Image description"/>
         )  
      }
         

@@ -1,10 +1,9 @@
-import Ads from "@/app/(client)/components/Advertisment";
+// import Ads from "@/app/(client)/components/Advertisment";
 import PicturesSlider from "@/app/(client)/components/PicturesSlider";
+import SocialMediaButtons from "@/app/(client)/components/SocialMediaButtons";
 import TopStories from "@/app/(client)/components/TopStories";
 import { fetchBlogsById } from "@/app/action";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { BsFacebook, BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
-
 type paramProps = {
     params:Params
 }
@@ -39,12 +38,7 @@ const SingleBlogPage = async ({params}:paramProps) => {
                                         <figcaption> Image Description</figcaption>
                                     </figure>
 
-                                    <div className="w-full h-24 flex flex-row justify-around">
-                                        <BsFacebook size={40} className="text-blue-700" />
-                                        <BsLinkedin size={40} className="text-blue-600" />
-                                        <BsInstagram size={40} className="text-red-400" />
-                                        <BsTwitterX size={40} className="text-black" />
-                                    </div>
+                                    <SocialMediaButtons/>
 
                                     <p className="mb-5 text-black font-serif whitespace-pre-wrap ">
                                         {blog?.story}
