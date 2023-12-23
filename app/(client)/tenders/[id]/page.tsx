@@ -1,7 +1,7 @@
 import { BsEnvelope, BsGlobeEuropeAfrica, BsPhone } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
-const SingleDirectory = ()=> {
+const SingleTender = ()=> {
     return ( 
         <main id="content">
             <div className="py-10 bg-white">
@@ -66,7 +66,7 @@ const SingleDirectory = ()=> {
                     </div>
 
                     <div className="flex flex-col max-w-full w-full h-full">
-                        <h2 className="text-3xl font-bold text-black">Map Section</h2>
+                        <h2 className="text-3xl font-bold text-black">Job Description</h2>
                         
                         <div className="w-full md:w-11/12 flex flex-col items-center rounded-2xl p-4 shadow-lg space-y-6">
                             <h3 className="text-xl font-bold text-black">
@@ -119,4 +119,4 @@ const SingleDirectory = ()=> {
      );
 }
  
-export default SingleDirectory;
+export default SingleTender;
