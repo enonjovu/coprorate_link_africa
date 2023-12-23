@@ -32,7 +32,9 @@ function PicturesSlider({images}:imagesProps) {
     >
      {
         images?.map((image) =>
-          <img key={image.key} className="w-full h-full object-cover" src={image.url} alt="Image description"/>
+        
+          <img key={image.key} className="w-full h-[90%] object-cover rounded-lg" src={image.url} alt="Image description"/>
+          
         )  
      }
         
