@@ -16,12 +16,12 @@ const EventsPage = () => {
                             <div className="flex-shrink max-w-full w-full px-3 pb-5">
                                 <div className="relative hover-img max-h-[50vh] overflow-hidden">
                                 {/*thumbnail*/}
-                                <a href="#">
+                                <a href="/events/1">
                                     <Image className="max-w-full w-full mx-auto h-auto object-contain" width={1000} height={1000} src="/src/img/dummy/img14.jpg" alt="Image description"/>
                                 </a>
                                 <div className="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-cover">
                                     {/*title*/}
-                                    <a href="#">
+                                    <a href="/events/1">
                                     <h2 className="text-5xl font-bold capitalize text-white mb-3">Latest Events</h2>
                                     </a>
                                     <p className="text-gray-100 hidden sm:inline-block">Know whats going on around town & where to be, we got you covered.</p>
@@ -31,12 +31,12 @@ const EventsPage = () => {
 
                             <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                 <div className="flex flex-row sm:block hover-img">
-                                <a href="">
+                                <a href="/events/1">
                                     <img className="max-w-full w-full mx-auto" src="src/img/dummy/img13.jpg" alt="alt title"/>
                                 </a>
                                 <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                     <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                        <a href="#">5 Tips to Save Money Booking Your Next Hotel Room</a>
+                                        <a href="/events/1">5 Tips to Save Money Booking Your Next Hotel Room</a>
                                     </h3>
                                     <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                                     <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
@@ -45,12 +45,12 @@ const EventsPage = () => {
                             </div>
                         <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                             <div className="flex flex-row sm:block hover-img">
-                            <a href="">
+                            <a href="/events/1">
                                 <img className="max-w-full w-full mx-auto" src="src/img/dummy/img14.jpg" alt="alt title"/>
                             </a>
                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                 <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="#">5 Tips to Save Money Booking Your Next Hotel Room</a>
+                                <a href="/events/1">5 Tips to Save Money Booking Your Next Hotel Room</a>
                                 </h3>
                                 <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                                 <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
@@ -59,12 +59,12 @@ const EventsPage = () => {
                         </div>
                         <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                             <div className="flex flex-row sm:block hover-img">
-                            <a href="">
+                            <a href="/events/1">
                                 <img className="max-w-full w-full mx-auto" src="src/img/dummy/img15.jpg" alt="alt title"/>
                             </a>
                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                 <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="#">5 Tips to Save Money Booking Your Next Hotel Room</a>
+                                <a href="/events/1">5 Tips to Save Money Booking Your Next Hotel Room</a>
                                 </h3>
                                 <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                                 <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
@@ -73,12 +73,12 @@ const EventsPage = () => {
                         </div>
                         <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                             <div className="flex flex-row sm:block hover-img">
-                            <a href="">
+                            <a href="/events/1">
                                 <img className="max-w-full w-full mx-auto" src="src/img/dummy/img16.jpg" alt="alt title"/>
                             </a>
                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                 <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="#">5 Tips to Save Money Booking Your Next Hotel Room</a>
+                                <a href="/events/1">5 Tips to Save Money Booking Your Next Hotel Room</a>
                                 </h3>
                                 <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                                 <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
@@ -87,12 +87,12 @@ const EventsPage = () => {
                         </div>
                         <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                             <div className="flex flex-row sm:block hover-img">
-                            <a href="">
+                            <a href="/events/1">
                                 <img className="max-w-full w-full mx-auto" src="src/img/dummy/img17.jpg" alt="alt title"/>
                             </a>
                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                 <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="#">5 Tips to Save Money Booking Your Next Hotel Room</a>
+                                <a href="/events/1">5 Tips to Save Money Booking Your Next Hotel Room</a>
                                 </h3>
                                 <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                                 <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
@@ -101,12 +101,12 @@ const EventsPage = () => {
                         </div>
                         <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                             <div className="flex flex-row sm:block hover-img">
-                            <a href="">
+                            <a href="/events/1">
                                 <img className="max-w-full w-full mx-auto" src="src/img/dummy/img18.jpg" alt="alt title"/>
                             </a>
                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                 <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="#">5 Tips to Save Money Booking Your Next Hotel Room</a>
+                                <a href="/events/1">5 Tips to Save Money Booking Your Next Hotel Room</a>
                                 </h3>
                                 <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                                 <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
