@@ -1,4 +1,5 @@
 // import Ads from "@/app/(client)/components/Advertisment";
+
 import PicturesSlider from "@/app/(client)/components/PicturesSlider";
 import SocialMediaButtons from "@/app/(client)/components/SocialMediaButtons";
 import TopStories from "@/app/(client)/components/TopStories";
@@ -12,7 +13,6 @@ const SingleBlogPage = async ({params}:paramProps) => {
     const id: string = params.id;
     const result = await fetchBlogsById(id);
     const blog = result[0]
-    console.log("Single Blog => ",blog);
     return (
         <main id="content">
             {/* block news */}
@@ -26,8 +26,8 @@ const SingleBlogPage = async ({params}:paramProps) => {
                                     <span className="inline-block h-5 border-l-2 border-red-600 mr-2"></span> 
                                     {blog?.title}
                                 </h2>
-                                <p className="text-black font-sans">December 20 2023</p>
-                                <span className="text-gray-500">Written by Author Name</span>
+                                <p className="text-black">{blog.date}</p>
+                                <span className="text-gray-500">Written by {blog.author}</span>
                             </div>
                             <div className="flex flex-row flex-wrap -mx-3">
                                 <div className="max-w-full w-full px-4">
@@ -35,9 +35,10 @@ const SingleBlogPage = async ({params}:paramProps) => {
                                     <div className="leading-relaxed pb-4">
                                         <figure className="text-center mb-6 w-full h-full max-h-[60vh] overflow-hidden">
                                             <PicturesSlider images={blog.images}/>
+                                            <figcaption className='text-black'> Image Description</figcaption>
                                         </figure>
-                                        <figcaption className='text-black'> Image Description</figcaption>
-                                        <p className="mb-5 text-black font-serif whitespace-pre-wrap ">
+                                        
+                                        <p className="mb-5 text-black whitespace-pre-wrap ">
                                             {blog?.story}
                                         </p>
                                     </div>

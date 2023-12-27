@@ -12,6 +12,8 @@ type blogProps = {
 
 type singleBlogProps = {
     id:string,
+    author:string,
+    date:string,
     images:{
       url:string,
       key:string,

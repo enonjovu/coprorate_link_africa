@@ -11,6 +11,7 @@ type FormData = {
   title: string;
   category: string;
   story: string;
+  author:string;
   images:{url: string;key: string;}[]
 };
 
@@ -18,6 +19,7 @@ const initialFormData: FormData = {
   title: "",
   category: "",
   story: "",
+  author:"",
   images: [{url: "",key: ""}],
 };
 
@@ -86,7 +88,19 @@ const NewPost: React.FC = () => {
             <form key={formKey}>
                 <div className="grid gap-4 lg:gap-6">
                     <div>
-                        <label htmlFor="title" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Blog Title</label>
+                        <label htmlFor="author" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Author Name</label>
+                        <input type="text" name="author" id="author" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                            onChange={(e)=>{
+                                setFormData({
+                                    ...formData,
+                                    author:e.target.value
+                                })
+                            }}
+                            value={formData.author}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="title" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Article Title</label>
                         <input type="text" name="title" id="title" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                             onChange={(e)=>{
                                 setFormData({
@@ -101,7 +115,7 @@ const NewPost: React.FC = () => {
                     {/* Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                         <div>
-                            <label htmlFor="blog-image" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Blog Image</label>
+                            <label htmlFor="blog-image" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Article Image</label>
                             <UploadButton
                                 endpoint="imageUploader"
                                 onClientUploadComplete={(res) => {
@@ -118,7 +132,7 @@ const NewPost: React.FC = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="category" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Blog Category</label>
+                            <label htmlFor="category" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Article Category</label>
                             <input type="text" name="category" id="category" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                                 onChange={(e)=>{
                                 setFormData({
@@ -153,7 +167,7 @@ const NewPost: React.FC = () => {
                         images.length ?(
                             <button type="button" 
                                 className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                onClick={handleSubmit}>Post Blog
+                                onClick={handleSubmit}>Post Article
                             </button>
                         ):(
                             <button type="button" 
@@ -168,7 +182,7 @@ const NewPost: React.FC = () => {
                 </div>
             </form>
             {/* End Form */}
-            <Modal isOpen={isModalOpen} message="Blog created successfully" onClose={() => setIsModalOpen(false)} />
+            <Modal isOpen={isModalOpen} message="Article created successfully" onClose={() => setIsModalOpen(false)} />
             </div>
         </div>
         </div>

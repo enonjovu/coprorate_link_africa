@@ -26,6 +26,14 @@ export async function GET(req:Request ,res:Response)
         .toArray();
         
         const result = [];
+        const formatdDate = async (date:Date)=>{
+            const newDate = new Date(date).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            return newDate;
+        }
 
         if (results){
             const blog = results[0];
@@ -40,6 +48,8 @@ export async function GET(req:Request ,res:Response)
                 category:blog.category,
                 story:blog.story,
                 images:blog.images,
+                date: await formatdDate(blog.date),
+                author:blog.author,
                 related:relatedArticles,
             })
         }
