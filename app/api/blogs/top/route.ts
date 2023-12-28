@@ -15,7 +15,7 @@ export async function GET(req:Request ,res:Response)
         // Fetch the data
         const results = await collection
         .find({})
-        .limit(12)
+        .limit(4)
         .toArray();
 
 

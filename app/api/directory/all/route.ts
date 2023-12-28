@@ -10,12 +10,11 @@ export async function GET(req:Request ,res:Response)
         const db = mongoClient.db("coporate");
 
         // Table
-        const collection = db.collection("blogs");
+        const collection = db.collection("directory");
 
         // Fetch the data
         const results = await collection
         .find({})
-        .limit(12)
         .toArray();
 
 

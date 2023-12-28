@@ -40,16 +40,21 @@ export const fetchLatestBlogs = async () : Promise<blogProps> =>{
   return await response.json();
 }
 
+export const fetchTopBlogs = async () : Promise<blogProps> =>{
+  const response = await fetch(`${rootLink}/api/blogs/top`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
   
 export const fetchBlogsByCategory = async (category:string) : Promise<blogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/category/?category=${category}`,{next:{revalidate:1}});
+  const response = await fetch(`${rootLink}/api/blogs/category/?category=${category}`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
 
 
 export const fetchBlogsById = async (id:string) : Promise<singleBlogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/single/?id=${id}`,{next:{revalidate:1}});
+  const response = await fetch(`${rootLink}/api/blogs/single/?id=${id}`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
