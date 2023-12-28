@@ -26,7 +26,7 @@ const LatestNews = async () => {
                         </div>
                         <div className="flex flex-row flex-wrap -mx-3">
                             {blogs?.map(blog=>(
-                                <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+                                <div key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                     <div className="flex flex-row sm:block hover-img">
                                         <a href="">
                                             <Image width={1000} height={1000} className="max-w-full w-full object-cover mx-auto" src={blog.image.url} alt="alt title"/>
