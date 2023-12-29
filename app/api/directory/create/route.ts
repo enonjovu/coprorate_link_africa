@@ -33,7 +33,8 @@ export async function POST (req:Request){
                 website,
                 lat,
                 lon,
-                logo
+                logo,
+                date:date
             }
         );
 

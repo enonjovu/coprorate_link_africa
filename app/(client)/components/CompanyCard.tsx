@@ -1,18 +1,34 @@
 import Image from "next/image";
 import { BsEnvelope, BsGlobeEuropeAfrica, BsPhone } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
-const CompanyCard = () => {
+
+type companyProps = {
+    company:{
+        _id:string;
+        name: string;
+        phone: string;
+        email: string;
+        website: string;
+        address: string;
+        lat: number;
+        lon: number;
+        description:string;
+        logo:{url: string;key: string;}[]
+    }
+}
+
+const CompanyCard = ({company}:companyProps) => {
     return ( 
         <div className="flex flex-col md:flex-row flex-wrap max-w-full w-full">
             {/* Compoany Description */}
             <div className="w-full md:w-3/5 flex flex-col items-center rounded-2xl p-4 shadow-lg space-y-4">
                 <div className="w-40 h-40">
-                    <Image src={"/src/img/logo.png"} className="w-full h-full object-cover" width={200} height={200} alt="Company Logo" />
+                    <Image src={company.logo[0].url} className="w-full h-full object-cover" width={200} height={200} alt="Company Logo" />
                 </div>
-                <h1 className="text-3xl font-bold text-black">Company Name</h1>
-                <p className="text-gray-900 w-11/12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laudantium fuga non error exercitationem maxime! Ea expedita vero, quasi magni earum eaque quaerat aperiam quas, dolore qui repellendus numquam incidunt corporis voluptatibus commodi omnis accusantium saepe modi similique odit! Ipsam.</p>
-                <p className="text-gray-900 w-11/12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laudantium fuga non error exercitationem maxime! Ea expedita vero, quasi magni earum eaque quaerat aperiam quas, dolore qui repellendus numquam incidunt corporis voluptatibus commodi omnis accusantium saepe modi similique odit! Ipsam.</p>
-                <p className="text-gray-900 w-11/12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque laudantium fuga non error exercitationem maxime! Ea expedita vero, quasi magni earum eaque quaerat aperiam quas, dolore qui repellendus numquam incidunt corporis voluptatibus commodi omnis accusantium saepe modi similique odit! Ipsam.</p>
+                <h1 className="text-3xl font-bold text-black">{company.name}</h1>
+                <p className="text-gray-900 w-11/12">
+                    {company.description}    
+                </p>
             </div>
             <div className="2-full md:w-1/3 flex flex-col items-center rounded-2xl p-4 shadow-lg space-y-4">
                 <h2 className="text-3xl font-bold text-black">
@@ -26,7 +42,7 @@ const CompanyCard = () => {
                         </div>
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Phone</p>
-                            <span className="text-gray-500">088 600 74 74</span>
+                            <span className="text-gray-500">{company.phone}</span>
                         </div>
                     </li>
 
@@ -36,7 +52,7 @@ const CompanyCard = () => {
                         </div>
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Email</p>
-                            <span className="text-gray-500">mphatsomtogolo30@gmail.com</span>
+                            <span className="text-gray-500">{company.email}</span>
                         </div>
                     </li>
 
@@ -46,8 +62,8 @@ const CompanyCard = () => {
                         </div>
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Website</p>
-                            <a href="https://www.corporate-link-africa.vercel.app" className="text-gray-500">
-                                www.ourwebsite.com
+                            <a href={company.website} target="_blank" className="text-gray-500">
+                                {company.website}
                             </a>
                         </div>
                     </li>
@@ -58,7 +74,7 @@ const CompanyCard = () => {
                         </div>
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Address</p>
-                            <span className="text-gray-500">Mzuzu, Mzimba 3030</span>
+                            <span className="text-gray-500">{company.address}</span>
                         </div>
                     </li>
                 </ul>

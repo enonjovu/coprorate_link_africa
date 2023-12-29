@@ -1,6 +1,9 @@
+import { fetchCompanies } from "@/app/action";
 import Image from "next/image";
 
-const DirectoryPage = () => {
+const DirectoryPage = async () => {
+    const companies = await fetchCompanies();
+
     return ( 
         
         <div className="bg-gray-50 py-6">
@@ -29,91 +32,22 @@ const DirectoryPage = () => {
                                 </div>
                                 </div>
                             </div>
-                            
-                            <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                                <div className="flex flex-row sm:block hover-img">
-                                <a href="/directory/123">
-                                    <img className="max-w-full w-full mx-auto" src="src/img/dummy/img13.jpg" alt="alt title"/>
-                                </a>
-                                <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                    <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                        <a href="/directory/123">5 Tips to Save Money Booking Your Next Hotel Room</a>
-                                    </h3>
-                                    <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                    <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
+                            {
+                            companies.map(company=>(
+                                <div key={company._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+                                    <div className="flex flex-row sm:block hover-img">
+                                    <a href={`/directory/${company._id}`}>
+                                        <img className="max-w-full w-full mx-auto" src={company.logo[0].url} alt="alt title"/>
+                                    </a>
+                                    <div className="py-0 sm:py-3 pl-3 sm:pl-0">
+                                        <h3 className="text-2xl text-black font-bold leading-tight mb-2">
+                                            <a href={`/directory/${company._id}`}>{company.name}</a>
+                                        </h3>
+                                    </div>
+                                    </div>
                                 </div>
-                                </div>
-                            </div>
-                        <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                            <div className="flex flex-row sm:block hover-img">
-                            <a href="/directory/123">
-                                <img className="max-w-full w-full mx-auto" src="src/img/dummy/img14.jpg" alt="alt title"/>
-                            </a>
-                            <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="/directory/123">5 Tips to Save Money Booking Your Next Hotel Room</a>
-                                </h3>
-                                <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
-                            </div>
-                            </div>
-                        </div>
-                        <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                            <div className="flex flex-row sm:block hover-img">
-                            <a href="/directory/123">
-                                <img className="max-w-full w-full mx-auto" src="src/img/dummy/img15.jpg" alt="alt title"/>
-                            </a>
-                            <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="/directory/123">5 Tips to Save Money Booking Your Next Hotel Room</a>
-                                </h3>
-                                <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
-                            </div>
-                            </div>
-                        </div>
-                        <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                            <div className="flex flex-row sm:block hover-img">
-                            <a href="/directory/123">
-                                <img className="max-w-full w-full mx-auto" src="src/img/dummy/img16.jpg" alt="alt title"/>
-                            </a>
-                            <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="/directory/123">5 Tips to Save Money Booking Your Next Hotel Room</a>
-                                </h3>
-                                <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
-                            </div>
-                            </div>
-                        </div>
-                        <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                            <div className="flex flex-row sm:block hover-img">
-                            <a href="/directory/123">
-                                <img className="max-w-full w-full mx-auto" src="src/img/dummy/img17.jpg" alt="alt title"/>
-                            </a>
-                            <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="/directory/123">5 Tips to Save Money Booking Your Next Hotel Room</a>
-                                </h3>
-                                <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
-                            </div>
-                            </div>
-                        </div>
-                        <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                            <div className="flex flex-row sm:block hover-img">
-                            <a href="/directory/123">
-                                <img className="max-w-full w-full mx-auto" src="src/img/dummy/img18.jpg" alt="alt title"/>
-                            </a>
-                            <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                <h3 className="text-lg text-black font-bold leading-tight mb-2">
-                                <a href="/directory/123">5 Tips to Save Money Booking Your Next Hotel Room</a>
-                                </h3>
-                                <p className="hidden md:block text-gray-600 leading-tight mb-1">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <a className="text-gray-500" href="#"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>Europe</a>
-                            </div>
-                            </div>
-                        </div>
+                            ))
+                            }
                         </div>
                     </div>
                 </div>

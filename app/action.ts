@@ -1,4 +1,19 @@
 "use server"
+
+// Directory Props
+type directoryProps ={
+  _id:string;
+  name: string;
+  phone: string;
+  email: string;
+  website: string;
+  address: string;
+  lat: number;
+  lon: number;
+  description:string;
+  logo:{url: string;key: string;}[]
+}[]
+// Blog Props
 type blogProps = {
     id:string,
     image:{
@@ -34,6 +49,8 @@ type singleBlogProps = {
 }[]
 const rootLink = process.env.ROOT_LINK
 
+
+// Blog Actions
 export const fetchLatestBlogs = async () : Promise<blogProps> =>{
   const response = await fetch(`${rootLink}/api/blogs/all`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
@@ -71,6 +88,13 @@ export const postBlog = async (formData:{}) : Promise<{status:string,message:str
   return await response.json();
 }
 
+// Company Actions
+export const fetchCompanies = async () : Promise<directoryProps> =>{
+  const response = await fetch(`${rootLink}/api/directory/all`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
+
 export const postCompany = async (formData:{}) : Promise<{status:string,message:string}> =>{
   const response = await fetch(`${rootLink}/api/directory/create`, {
       method: "POST",
@@ -79,5 +103,11 @@ export const postCompany = async (formData:{}) : Promise<{status:string,message:
       body: JSON.stringify(formData),
   });
   if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}
+
+export const fetchCompanyById = async (id:string) : Promise<directoryProps> =>{
+  const response = await fetch(`${rootLink}/api/directory/single/?id=${id}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }

@@ -16,6 +16,7 @@ export async function GET(req:Request ,res:Response)
         const results = await collection
         .find({})
         .limit(4)
+        .sort({ date: -1 }) 
         .toArray();
 
 
