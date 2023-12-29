@@ -1,10 +1,10 @@
 import Slider from "./Slider";
-import { fetchLatestBlogs } from "../../action";
+import { fetchTopBlogs } from "../../action";
 import Image from 'next/image';
 import Link from "next/link";
 
 const Hero = async () => {
-    const blogs = await fetchLatestBlogs();
+    const blogs = await fetchTopBlogs();
     console.log(blogs);
     return ( 
         <div className="bg-white">
