@@ -70,3 +70,14 @@ export const postBlog = async (formData:{}) : Promise<{status:string,message:str
   if(!response.ok){throw new Error("Error Posting Data")}
   return await response.json();
 }
+
+export const postCompany = async (formData:{}) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/directory/create`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify(formData),
+  });
+  if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}
