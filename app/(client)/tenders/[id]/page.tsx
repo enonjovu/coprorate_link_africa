@@ -1,11 +1,20 @@
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import CompanyCard from "../../components/CompanyCard";
+import { fetchCompanyById } from "@/app/action";
 
-const SingleTender = ()=> {
+type paramProps = {
+    params:Params
+}
+
+const SingleTender = async ({params}:paramProps)=> {
+    const id: string = params.id;
+    const result = await fetchCompanyById(id)
+    const company = result[0];
     return ( 
         <main id="content">
             <div className="py-10 bg-white">
                 <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 space-y-10">
-                    <CompanyCard/>
+                    <CompanyCard company={company}/>
 
                     <div className="flex flex-col max-w-full w-full h-full">
                         <h2 className="text-3xl font-bold text-black">Job Description</h2>
