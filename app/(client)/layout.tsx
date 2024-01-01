@@ -7,7 +7,7 @@ import PrelineScript from '../components/PrelineScripts'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Coporate News Africa',
+  title: 'Corporate News Africa',
   description: 'Africas Business Directives',
 }
 

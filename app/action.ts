@@ -13,6 +13,7 @@ type directoryProps ={
   description:string;
   logo:{url: string;key: string;}[]
 }[]
+
 // Blog Props
 type blogProps = {
     id:string,
@@ -46,6 +47,14 @@ type singleBlogProps = {
         key:string,
       }[],
     }[]
+}[]
+
+// Tender Props
+type tenderProps = {
+  _id:string,
+  title:string,
+  description:string,
+  requirements:string[]
 }[]
 const rootLink = process.env.ROOT_LINK
 
@@ -85,6 +94,29 @@ export const postBlog = async (formData:{}) : Promise<{status:string,message:str
       body: JSON.stringify(formData),
   });
   if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}
+
+// Tender Actions
+export const postTender = async (formData:{}) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/tenders/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify(formData),
+  });
+  if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}
+
+export const fetchAllTenders = async () : Promise<tenderProps> =>{
+  const response = await fetch(`${rootLink}/api/tenders/all`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
+export const getTenderByID = async (id:string) : Promise<tenderProps> =>{
+  const response = await fetch(`${rootLink}/api/tenders/single/?id=${id}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
 

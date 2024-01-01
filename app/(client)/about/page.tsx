@@ -18,14 +18,6 @@ const About = () => {
                         <p className="mt-1 text-gray-600 dark:text-gray-400">
                             Get to know us, take a look at we do.
                         </p>
-                        {/* <div className="flex w-32 mt-1 mb-6 overflow-hidden rounded md:mx-auto md:mb-14">
-                            <div className="flex-1 h-2 bg-red-700">
-                            </div>
-                            <div className="flex-1 h-2 bg-red-600">
-                            </div>
-                            <div className="flex-1 h-2 bg-red-700">
-                            </div>
-                        </div> */}
                     </div>
                     
                     <div className="flex flex-col md:flex-row flex-wrap ">
@@ -52,7 +44,7 @@ const About = () => {
                     
                     <div className="flex flex-wrap ">
                         <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
-                            <Image width={500} height={500} src="/bg.jpg" alt="ads" className="relative z-40 object-cover w-full h-96 rounded-lg"/>
+                            <Image width={500} height={500} src="/src/img/bg.jpg" alt="ads" className="relative z-40 object-cover w-full h-96 rounded-lg"/>
                         </div>
                         <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0 ">
                             <h2
@@ -76,7 +68,7 @@ const About = () => {
                             </p>
                         </div>
                         <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
-                            <Image alt="image" width={500} height={500} src="/bg.jpg" className="relative z-40 object-cover w-full h-96 rounded-lg"/>
+                            <Image alt="image" width={500} height={500} src="/src/img/bg.jpg" className="relative z-40 object-cover w-full h-96 rounded-lg"/>
                         </div>
                     </div>
                     
