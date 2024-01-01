@@ -1,4 +1,5 @@
 import Ads from "./Advertisment";
+import EveTend from "./EveTend";
 
 const TopStories = () => {
     return ( 
@@ -6,6 +7,7 @@ const TopStories = () => {
             <div className="text-sm py-6 sticky">
                 <Ads/>
             </div>
+            <EveTend/>
         </div>
      );
 }

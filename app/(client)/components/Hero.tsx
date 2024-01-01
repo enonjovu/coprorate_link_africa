@@ -2,6 +2,7 @@ import Slider from "./Slider";
 import { fetchTopBlogs } from "../../action";
 import Image from 'next/image';
 import Link from "next/link";
+import Ads from "./Advertisment";
 
 const Hero = async () => {
     const blogs = await fetchTopBlogs();
@@ -14,7 +15,7 @@ const Hero = async () => {
 
                 {/*Start left cover*/}
                 <div className="flex-shrink max-w-full h-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
-                    <Slider/>
+                    <Ads/>
                 </div>
 
                 {/*Start box news*/}

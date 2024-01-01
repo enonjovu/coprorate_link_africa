@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 const LatestNews = async () => {
     const blogs = await fetchLatestBlogs();
+    
     return ( 
         <div className="bg-gray-50 py-2">
             <div className="w-full flex justify-center overflow-hidden">
