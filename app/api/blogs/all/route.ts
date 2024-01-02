@@ -22,7 +22,7 @@ export async function GET(req:Request ,res:Response)
         .skip(6 * (page-1))
         .limit(6)
         .toArray();
-        const itemsCount = await collection.countDocuments({});
+
 
         const convertedBlogs = [];
 
@@ -51,7 +51,6 @@ export async function GET(req:Request ,res:Response)
                 convertedBlogs.push(convertedBlog);
             }
         }
-        convertedBlogs.push({itemsCount})
 
         
         // Return the result

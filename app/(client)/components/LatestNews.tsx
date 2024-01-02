@@ -1,12 +1,13 @@
 import TopStories from "./TopStories";
-import { fetchLatestBlogs } from "../../action";
+import { fetchLatestBlogs, getItemsCount } from "../../action";
 import Image from 'next/image';
 import Link from "next/link";
 
 const LatestNews = async ({page}:{page: string}) => {
     const blogs = await fetchLatestBlogs(page);
-    const lastBlog = blogs.pop();
-    const totalPages = lastBlog?.itemsCount ? Math.ceil(lastBlog.itemsCount / 6) : 0;
+    const itemsCount = await getItemsCount();
+    const totalPages =  Math.ceil(itemsCount/6);
+
     const currentPage = parseInt(page);
     const prevPage = currentPage - 1 > 0 ? currentPage - 1 : 1;
     const nextPage = currentPage + 1;
