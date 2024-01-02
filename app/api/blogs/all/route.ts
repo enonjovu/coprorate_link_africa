@@ -5,6 +5,9 @@ export const dynamic = "force-dynamic";
 export async function GET(req:Request ,res:Response)
 {
     try{
+        const {searchParams} = new URL(req.url);
+        const pageNo = searchParams.get('page');
+        const page = pageNo? parseInt(pageNo) : 1;
         const mongoClient = await clientPromise;
         // Databse Name
         const db = mongoClient.db("coporate");
@@ -16,9 +19,10 @@ export async function GET(req:Request ,res:Response)
         const results = await collection
         .find({})
         .sort({ date: -1 }) 
-        .limit(12)
+        .skip(6 * (page-1))
+        .limit(6)
         .toArray();
-
+        const itemsCount = await collection.countDocuments({});
 
         const convertedBlogs = [];
 
@@ -47,6 +51,7 @@ export async function GET(req:Request ,res:Response)
                 convertedBlogs.push(convertedBlog);
             }
         }
+        convertedBlogs.push({itemsCount})
 
         
         // Return the result

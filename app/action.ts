@@ -24,6 +24,9 @@ type blogProps = {
     story:string,
     title:string,
     category:string
+    itemsCount:{
+      itemsCount:number
+    }
 }[]
 
 type singleBlogProps = {
@@ -60,8 +63,8 @@ const rootLink = process.env.ROOT_LINK
 
 
 // Blog Actions
-export const fetchLatestBlogs = async () : Promise<blogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/all`,{next:{revalidate:0}});
+export const fetchLatestBlogs = async (page:string) : Promise<blogProps> =>{
+  const response = await fetch(`${rootLink}/api/blogs/all?page=${page}`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }

@@ -1,11 +1,17 @@
 import TopStories from "./TopStories";
 import { fetchLatestBlogs } from "../../action";
 import Image from 'next/image';
+import Link from "next/link";
 
-const LatestNews = async () => {
-    const blogs = await fetchLatestBlogs();
+const LatestNews = async ({page}:{page: string}) => {
+    const blogs = await fetchLatestBlogs(page);
+    const lastBlog = blogs.pop();
+    const totalPages = lastBlog?.itemsCount ? Math.ceil(lastBlog.itemsCount / 6) : 0;
+    const currentPage = parseInt(page);
+    const prevPage = currentPage - 1 > 0 ? currentPage - 1 : 1;
+    const nextPage = currentPage + 1;
     
-    return ( 
+    return (
         <div className="bg-gray-50 py-2">
             <div className="w-full flex justify-center overflow-hidden">
                 <div className="flex flex-wrap justify-between mb-4 w-full md:w-1/2 md:mt-4">
@@ -21,9 +27,9 @@ const LatestNews = async () => {
                     {/* post */}
                     <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
                         <div className="w-full py-3">
-                        <h2 className="text-gray-800 text-2xl font-bold">
-                            <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>Latest news
-                        </h2>
+                            <h2 className="text-gray-800 text-2xl font-bold">
+                                <span className="inline-block h-5 border-l-2 border-red-600 mr-2"></span>Latest news
+                            </h2>
                         </div>
                         <div className="flex flex-row flex-wrap -mx-3">
                             {blogs?.map(blog=>(
@@ -43,6 +49,34 @@ const LatestNews = async () => {
                                 </div>
                             ))}
                         </div>
+                        
+            <div className="text-center mt-4">
+              <nav aria-label="Page navigation">
+                <ul className="flex justify-center items-center space-x-0">
+                  <li>
+                    {
+                        currentPage === 1 ?(null)
+                        :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${prevPage}`} aria-label="Previous">
+                            <span aria-hidden="true">«</span>
+                        </Link>
+                    }
+                  </li>
+
+                  <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=1">1</a></li>
+                  <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=2">2</a></li>
+                  <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=3">3</a></li>
+
+                  <li>
+                    {
+                        currentPage === totalPages ? (null)
+                        :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${nextPage}`} aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                        </Link>
+                    }
+                  </li>
+                </ul>
+              </nav>
+            </div>
                     </div>
                     {/* sidebar */}
                     <TopStories/>

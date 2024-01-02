@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 const Ads = () => {
     return ( 
-        <div className="w-full text-center">
+        <div className="w-full h-full text-center">
             <Carousel
                 showArrows={true}
                 showStatus={false}
