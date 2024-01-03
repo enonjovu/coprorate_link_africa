@@ -1,5 +1,5 @@
 "use client"
-import MapComponent from "./MapComponent";
+// import MapComponent from "./MapComponent";
 
 const ContactForm = () => {
     return ( 
@@ -132,7 +132,7 @@ const ContactForm = () => {
               </div>
             </div>
           </div>
-          <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={13} />
+          {/* <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={16} /> */}
         </div>
      );
 }
