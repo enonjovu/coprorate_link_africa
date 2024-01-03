@@ -1,6 +1,4 @@
-"use client"
 import Image from "next/image";
-import { useEffect } from "react";
 import { BsSearch } from 'react-icons/bs';
 import TopAds from './TopAds';
 
@@ -35,6 +33,7 @@ const Navbar = () => {
             <a className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400" href="/directory">Directory</a>
             <a className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400" href="/tenders">Tenders</a>
             <a className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400" href="/events">Events</a>
+            <a className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400" href="/services">Services</a>
             
             {/* <div className="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] sm:py-4">
               <button type="button" className="flex items-center w-full text-gray-800 hover:text-gray-500 font-medium dark:text-red-500 dark:hover:text-gray-400">

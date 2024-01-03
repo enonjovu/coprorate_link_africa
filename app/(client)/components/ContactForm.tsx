@@ -1,3 +1,5 @@
+import MapComponent from "./MapComponent";
+
 const ContactForm = () => {
     return ( 
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -129,6 +131,7 @@ const ContactForm = () => {
               </div>
             </div>
           </div>
+          <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={13} />
         </div>
      );
 }

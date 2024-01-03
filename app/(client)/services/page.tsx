@@ -1,4 +1,5 @@
-import { BsNewspaper } from "react-icons/bs";
+import { BsCameraVideo, BsMegaphone, BsMic, BsNewspaper, BsSearch } from "react-icons/bs";
+import { FaChartPie } from "react-icons/fa";
 
 
 const ServicesPage = () => {
@@ -23,10 +24,59 @@ const ServicesPage = () => {
                 <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
                     <BsNewspaper size={50} className='text-black dark:text-white'/>
                 </div>
-                <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">News Coverage</h4>
-                <p className="text-body-color dark:text-dark-6">We provide up-to-the-minute coverage of corporate developments, mining, energy, financial markets, technological innovations, and industry trends, offering a comprehensive overview of the African business landscape.</p>
+                <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">Corporate News Coverage</h4>
+                <p className="text-body-color dark:text-dark-6"> We specialize in providing real-time, insightful news coverage that goes beyond the surface, unraveling the intricate dynamics of the corporate landscape across Africa.</p>
             </div>
-        </div>
+          </div>
+
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
+            <div className="text-black dark:text-white mb-9 rounded-[20px] bg-white  p-10 shadow-2 hover:shadow-lg dark:bg-[#1d1d1d] md:px-7 xl:px-10">
+                <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
+                    <BsMegaphone size={50} className='text-black dark:text-white'/>
+                </div>
+                <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">Advertising</h4>
+                <p className="text-body-color dark:text-dark-6">Our advertising services are designed to cut through the noise and deliver your message to the right audience. From creative concept development to strategic placement, we ensure your brand stands out in the crowded media landscape.</p>
+            </div>
+          </div>
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
+            <div className="text-black dark:text-white mb-9 rounded-[20px] bg-white  p-10 shadow-2 hover:shadow-lg dark:bg-[#1d1d1d] md:px-7 xl:px-10">
+                <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
+                    <BsSearch size={50} className='text-black dark:text-white'/>
+                </div>
+                <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">In-Depth Analysis</h4>
+                <p className="text-body-color dark:text-dark-6">Our team of seasoned analysts delves deep into industry trends, offering in-depth analysis and thought leadership that guides businesses in navigating the complexities of the African business terrain.</p>
+            </div>
+          </div>
+
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
+            <div className="text-black dark:text-white mb-9 rounded-[20px] bg-white  p-10 shadow-2 hover:shadow-lg dark:bg-[#1d1d1d] md:px-7 xl:px-10">
+                <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
+                    <FaChartPie size={50} className='text-black dark:text-white'/>
+                </div>
+                <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">Sector-Specific Reports</h4>
+                <p className="text-body-color dark:text-dark-6">We provide specialized reports offering granular insights into various industries, helping businesses stay ahead in a rapidly evolving market.</p>
+            </div>
+          </div>
+          
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
+            <div className="text-black dark:text-white mb-9 rounded-[20px] bg-white  p-10 shadow-2 hover:shadow-lg dark:bg-[#1d1d1d] md:px-7 xl:px-10">
+                <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
+                    <BsMic size={50} className='text-black dark:text-white'/>
+                </div>
+                <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">Public Relations (PR)</h4>
+                <p className="text-body-color dark:text-dark-6">Our PR services are tailored to enhance your corporate image, manage reputations, and build meaningful relationships with stakeholders. From strategic communication plans to crisis management, we are your trusted partner in shaping and safeguarding your public image.</p>
+            </div>
+          </div>
+          
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
+            <div className="text-black dark:text-white mb-9 rounded-[20px] bg-white  p-10 shadow-2 hover:shadow-lg dark:bg-[#1d1d1d] md:px-7 xl:px-10">
+                <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
+                    <BsCameraVideo size={50} className='text-black dark:text-white'/>
+                </div>
+                <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">Media Solutions:</h4>
+                <p className="text-body-color dark:text-dark-6">As a comprehensive media company, we go beyond news reporting. Our suite of services includes Public Relations (PR), Advertising, Content Development and Creation, Documentaries, and more. We are your strategic partner in crafting and disseminating compelling corporate narratives.</p>
+            </div>
+          </div>
         </div>
       </div>
      );

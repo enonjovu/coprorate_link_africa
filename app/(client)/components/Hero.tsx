@@ -25,7 +25,7 @@ const Hero = async () => {
                             {
                                 blogs.length?(
                                     blogs.map((blog)=>(
-                                        <article key={blog.id} className="flex-shrink max-w-full w-full h-auto sm:w-1/2">
+                                        <article key={blog.id} className="flex-shrink max-w-full w-full h-auto lg:max-h-[65vh] overflow-y-hidden sm:w-1/2">
                                             <Link href={`/news/single/${blog.id}`}>
                                                 <div className="relative hover-img w-full h-full">
                                                         <img className="w-full h-full object-cover" src={blog.image.url} alt="Image description"/>
