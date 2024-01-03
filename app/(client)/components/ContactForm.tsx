@@ -1,3 +1,4 @@
+"use client"
 import MapComponent from "./MapComponent";
 
 const ContactForm = () => {
