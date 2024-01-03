@@ -121,7 +121,7 @@ const ContactForm = () => {
                     <h3 className="font-semibold text-gray-800 dark:text-gray-200">Contact us by email</h3>
                     <p className="mt-1 text-sm text-gray-500">If you wish to write us an email instead please use</p>
                     <a className="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-                      customersupport@cna.com
+                      info@clafrica.online
                     </a>
                   </div>
                 </div>
