@@ -6,7 +6,7 @@ import Link from "next/link";
 const LatestNews = async ({page}:{page: string}) => {
     const blogs = await fetchLatestBlogs(page);
     const itemsCount = await getItemsCount();
-    const totalPages =  Math.ceil(itemsCount/6);
+    const totalPages =  Math.ceil(itemsCount/12);
 
     const currentPage = parseInt(page);
     const prevPage = currentPage - 1 > 0 ? currentPage - 1 : 1;
@@ -32,6 +32,7 @@ const LatestNews = async ({page}:{page: string}) => {
                                 <span className="inline-block h-5 border-l-2 border-red-600 mr-2"></span>Latest news
                             </h2>
                         </div>
+                        
                         <div className="flex flex-row flex-wrap -mx-3">
                             {blogs?.map(blog=>(
                                 <div key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
@@ -51,33 +52,33 @@ const LatestNews = async ({page}:{page: string}) => {
                             ))}
                         </div>
                         
-            <div className="text-center mt-4">
-              <nav aria-label="Page navigation">
-                <ul className="flex justify-center items-center space-x-0">
-                  <li>
-                    {
-                        currentPage === 1 ?(null)
-                        :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${prevPage}`} aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                        </Link>
-                    }
-                  </li>
+                        <div className="text-center mt-4">
+                        <nav aria-label="Page navigation">
+                            <ul className="flex justify-center items-center space-x-0">
+                            <li>
+                                {
+                                    currentPage === 1 ?(null)
+                                    :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${prevPage}`} aria-label="Previous">
+                                        <span aria-hidden="true">«</span>
+                                    </Link>
+                                }
+                            </li>
 
-                  <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=1">1</a></li>
-                  <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=2">2</a></li>
-                  <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=3">3</a></li>
+                            <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=1">1</a></li>
+                            <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=2">2</a></li>
+                            <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=3">3</a></li>
 
-                  <li>
-                    {
-                        currentPage === totalPages ? (null)
-                        :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${nextPage}`} aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                        </Link>
-                    }
-                  </li>
-                </ul>
-              </nav>
-            </div>
+                            <li>
+                                {
+                                    currentPage === totalPages ? (null)
+                                    :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${nextPage}`} aria-label="Next">
+                                    <span aria-hidden="true">»</span>
+                                    </Link>
+                                }
+                            </li>
+                            </ul>
+                        </nav>
+                        </div>
                     </div>
                     {/* sidebar */}
                     <TopStories/>

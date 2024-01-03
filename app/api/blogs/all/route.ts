@@ -19,8 +19,8 @@ export async function GET(req:Request ,res:Response)
         const results = await collection
         .find({})
         .sort({ date: -1 }) 
-        .skip(6 * (page-1))
-        .limit(6)
+        .skip(12 * (page-1))
+        .limit(12)
         .toArray();
 
 

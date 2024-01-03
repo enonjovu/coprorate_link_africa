@@ -45,7 +45,7 @@ const SingleBlogPage = async ({params}:paramProps) => {
                                 </div>
                             </div>
                             <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
-                                <SocialMediaButtons url={`https://coprorate-link-africa.vercel.app/news/single/${blog.id}`}/>
+                                <SocialMediaButtons url={`https://clafrica.online/news/single/${blog.id}`}/>
                             </div>
                             <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
                                 <div className="w-full py-3">
