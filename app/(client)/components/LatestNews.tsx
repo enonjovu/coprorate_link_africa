@@ -7,6 +7,18 @@ const LatestNews = async ({page}:{page: string}) => {
     const blogs = await fetchLatestBlogs(page);
     const itemsCount = await getItemsCount();
     const totalPages =  Math.ceil(itemsCount/12);
+    const pageNumber = parseInt(page);
+
+    const pageNumbers = [];
+    const offsetNumer = 3;
+
+    for (let index = pageNumber - offsetNumer; index <= pageNumber + offsetNumer; index++) {
+        if(index >=1 && index <= totalPages)
+        {
+            pageNumbers.push(index);
+        }
+        
+    }
 
     const currentPage = parseInt(page);
     const prevPage = currentPage - 1 > 0 ? currentPage - 1 : 1;
@@ -64,9 +76,16 @@ const LatestNews = async ({page}:{page: string}) => {
                                 }
                             </li>
 
-                            <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=1">1</a></li>
-                            <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=2">2</a></li>
-                            <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=3">3</a></li>
+                            {
+                                pageNumbers.map((pageNo,index)=>(
+                                    <li key={index}>
+                                        <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href={`/?page=${pageNo}`}>
+                                            {pageNo}
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                            
                             <li>
                                 {
                                     currentPage === totalPages ? (null)
