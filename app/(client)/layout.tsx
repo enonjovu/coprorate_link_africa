@@ -7,9 +7,10 @@ import PrelineScript from '../components/PrelineScripts'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Corporate News Africa',
-  description: 'Africas Business Directives',
+  title: 'Corporate Link Africa',
+  description: 'Simplified Business Narratives',
 }
+
 
 export default function RootLayout({
   children,

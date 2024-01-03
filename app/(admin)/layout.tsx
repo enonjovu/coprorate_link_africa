@@ -3,8 +3,8 @@ import Sidebar from './components/Sidebar';
 import { Metadata } from 'next';
 import PrelineScript from '../components/PrelineScripts';
 export const metadata :Metadata = {
-  title: 'Corporate News Africa',
-  description: 'Admin Pannel',
+  title: 'Corporate Link Africa',
+  description: 'Simplified Business Narratives',
 }
 
 export default function RootLayout({
