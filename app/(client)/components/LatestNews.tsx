@@ -67,7 +67,6 @@ const LatestNews = async ({page}:{page: string}) => {
                             <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=1">1</a></li>
                             <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=2">2</a></li>
                             <li><a className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href="/?page=3">3</a></li>
-
                             <li>
                                 {
                                     currentPage === totalPages ? (null)
