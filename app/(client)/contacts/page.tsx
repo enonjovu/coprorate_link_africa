@@ -140,7 +140,7 @@ const Contacts = () => {
               </div>
             </div>
           </div>
-          <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={14} />
+          {/* <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={14} /> */}
         </div>
   );
 }
