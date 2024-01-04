@@ -135,5 +135,4 @@ const Contacts = () => {
         </div>
   );
 }
- 
 export default Contacts;
