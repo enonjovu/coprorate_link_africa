@@ -20,27 +20,17 @@ const Ads = () => {
                 centerMode={false}
                 centerSlidePercentage={100}
                 showThumbs={false}
-                className="relative h-full max-h-[50vh] md:max-h-[70vh] overflow-hidden" // Set initial height using Tailwind classes
+                className="relative w-full h-full" // Set initial height using Tailwind classes
             >
                 <div className="">
                     <a href="#">
-                        <Image width={500} height={500} className="mx-auto" src="/src/img/chipofya.jpg" alt="advertisement area"/>
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#">
-                        <Image width={500} height={500} className="mx-auto" src="/src/img/mtumbuka.jpg" alt="advertisement area"/>
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#">
-                        <Image width={500} height={500} className="mx-auto" src="/src/img/ad.jpeg" alt="advertisement area"/>
+                        <Image width={635} height={450} className="mx-auto" src="/src/img/advertise.jpg" alt="advertisement area"/>
                     </a>
                 </div>
 
                 <div className="">
                     <a href="#">
-                        <Image width={500} height={500} className="mx-auto" src="/src/img/ad2.jpeg" alt="advertisement area"/>
+                        <Image width={635} height={450} className="mx-auto" src="/src/img/advertise.jpg" alt="advertisement area"/>
                     </a>
                 </div>
             </Carousel>

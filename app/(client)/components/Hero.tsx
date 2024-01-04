@@ -14,7 +14,7 @@ const Hero = async () => {
                 <div className="flex flex-row flex-wrap">
                     {/*Start left cover*/}
                     <div className="flex-shrink max-w-full h-auto overflow-hidden w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
-                        <div className="relative hover-img max-h-98 overflow-hidden">
+                        <div className="relative hover-img w-full h-full max-h-[450px] overflow-hidden">
                             <Ads/>
                         </div>
                     </div>

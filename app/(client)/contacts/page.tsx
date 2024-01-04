@@ -1,8 +1,11 @@
 "use client"
 
 import { useEffect } from "react";
-import MapComponent from "../components/MapComponent";
+import dynamic from 'next/dynamic';
 
+const DynamicMap = dynamic(() => import('../components/MapComponent'), {
+  ssr: false,
+});
 const Contacts = () => {
    useEffect(() => {
     // Access Leaflet methods on client-side if needed
@@ -139,7 +142,7 @@ const Contacts = () => {
               </div>
             </div>
           </div>
-          <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={14} />
+          <DynamicMap center={[-15.819955370308351, 35.058784245409115]} zoom={14} />
         </div>
   );
 }
