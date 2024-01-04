@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { BsTwitterX } from "react-icons/bs";
+import { FaFacebook, FaInstagram, FaLinkedin, FaMapMarkedAlt } from "react-icons/fa";
+import { BsEnvelope, BsPhoneFlip, BsTwitterX } from "react-icons/bs";
 
 const About = () => {
     return ( 
@@ -137,14 +137,25 @@ const About = () => {
                                          From news reporting to in-depth analysis and sector-specific reports, we provide a comprehensive view of the African business landscape, empowering businesses with the insights they need to succeed.
                                     </p>
                                 </div>
+                                <div className="flex-col">
+                                    <h4 className="text-black dark:text-white text-xl">Strategic Partnerships</h4>
+                                    <p className="mb-4 text-base leading-7 text-gray-500 dark:text-gray-400">
+                                         We go beyond being a service provider; we are your strategic partner in navigating the complexities of the African corporate landscape, offering insights, expertise, and tailored solutions to support your business goals.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="w-full flex flex-col items-center px-4 lg:mb-0 space-y-4">
                         <p className="w-full mb-4 text-base leading-7 text-gray-500 dark:text-gray-400">
-                            Choose Corporate News Africa for a reliable, insightful, and transformative perspective on the corporate dynamics shaping the future of Africa, supported by a comprehensive suite of media-related services.
+                            Choose Corporate Link Africa for a holistic media experience that seamlessly integrates news reporting with strategic communication solutions, connecting your business to the heart of corporate Africa.
                         </p>
+                        <div className="flex justify-around w-full">
+                            <li className="flex space-x-4"><BsPhoneFlip size={20} color={"#000"}/><p>+265 (0) 885631138 / 997572483</p> </li>
+                            <li className="flex space-x-4"><BsEnvelope size={20} color={"#000"}/><p>corporatelinkafrica@gmail.com</p> </li>
+                            <li className="flex space-x-4"><FaMapMarkedAlt size={20} color={"#000"}/><p>Feeamanilah Building, Room 19, Limbe Blantyre</p> </li>
+                        </div>
                         <div className="flex justify-around w-1/2">
                             <a href="https://www.linkedin.com/company/82323263/admin/feed/posts/"><FaLinkedin size={20} color="#000"/></a>
                             <a href="https://www.facebook.com/profile.php?id=61554654021876"><FaFacebook size={20} color="#000"/></a>
