@@ -7,7 +7,6 @@ const Contacts = () => {
    useEffect(() => {
     // Access Leaflet methods on client-side if needed
     if (typeof window !== 'undefined') {
-      alert("Cant load map")
     }
   }, []);
   return ( 
@@ -140,7 +139,7 @@ const Contacts = () => {
               </div>
             </div>
           </div>
-          {/* <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={14} /> */}
+          <MapComponent center={[-15.819955370308351, 35.058784245409115]} zoom={14} />
         </div>
   );
 }

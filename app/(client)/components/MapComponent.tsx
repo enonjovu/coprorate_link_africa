@@ -12,7 +12,6 @@ const MapComponent: React.FC<MapProps> = ({ center, zoom }) => {
   useEffect(() => {
     // Access Leaflet methods on client-side if needed
     if (typeof window !== 'undefined') {
-      alert("Cant load map")
     }
   }, []);
 
