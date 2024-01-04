@@ -52,7 +52,7 @@ const Footer = () => {
                                 <div className="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
                                     <h4 className="text-base leading-normal mb-3 uppercase text-gray-100">Services</h4>
                                     <ul>
-                                    <li className="py-1 hover:text-white"><a href="/services">Advertisment</a></li>
+                                    <li className="py-1 hover:text-white"><a href="/services">Advertising</a></li>
                                     <li className="py-1 hover:text-white"><a href="/services">Corporate News Coverage</a></li>
                                     <li className="py-1 hover:text-white"><a href="/services">Content Development</a></li>
                                     <li className="py-1 hover:text-white"><a href="/services">Graphics Design</a></li>

@@ -37,7 +37,7 @@ const DirectoryPage = async () => {
                                 <div key={company._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                     <div className="flex flex-row sm:block hover-img">
                                     <a href={`/directory/${company._id}`}>
-                                        <img className="max-w-full w-full mx-auto" src={company.logo[0].url} alt="alt title"/>
+                                        <img className="max-w-20 w-20 h-20 object-cover mx-auto" src={company.logo[0].url} alt="alt title"/>
                                     </a>
                                     <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                         <h3 className="text-2xl text-black font-bold leading-tight mb-2">

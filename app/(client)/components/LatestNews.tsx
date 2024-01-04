@@ -65,37 +65,37 @@ const LatestNews = async ({page}:{page: string}) => {
                         </div>
                         
                         <div className="text-center mt-4">
-                        <nav aria-label="Page navigation">
-                            <ul className="flex justify-center items-center space-x-0">
-                            <li>
-                                {
-                                    currentPage === 1 ?(null)
-                                    :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${prevPage}`} aria-label="Previous">
-                                        <span aria-hidden="true">«</span>
-                                    </Link>
-                                }
-                            </li>
-
-                            {
-                                pageNumbers.map((pageNo,index)=>(
-                                    <li key={index}>
-                                        <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href={`/?page=${pageNo}`}>
-                                            {pageNo}
+                            <nav aria-label="Page navigation">
+                                <ul className="flex justify-center items-center space-x-0">
+                                <li>
+                                    {
+                                        currentPage === 1 ?(null)
+                                        :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${prevPage}`} aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
                                         </Link>
-                                    </li>
-                                ))
-                            }
-                            
-                            <li>
+                                    }
+                                </li>
+
                                 {
-                                    currentPage === totalPages ? (null)
-                                    :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${nextPage}`} aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                    </Link>
+                                    pageNumbers.map((pageNo,index)=>(
+                                        <li key={index}>
+                                            <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href={`/?page=${pageNo}`}>
+                                                {pageNo}
+                                            </Link>
+                                        </li>
+                                    ))
                                 }
-                            </li>
-                            </ul>
-                        </nav>
+                                
+                                <li>
+                                    {
+                                        currentPage === totalPages ? (null)
+                                        :<Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${nextPage}`} aria-label="Next">
+                                        <span aria-hidden="true">»</span>
+                                        </Link>
+                                    }
+                                </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                     {/* sidebar */}

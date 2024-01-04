@@ -8,7 +8,6 @@ const About = () => {
             {/* Mission Statement */}
             <section className="flex items-center bg-stone-100 h-full font-poppins dark:bg-[#111]">
                 <div className="justify-center flex-1 max-w-6xl py-4 mx-auto h-full space-y-8 lg:py-6 md:px-6">
-
                     <div className="px-4 mb-10 md:text-center md:mb-20">
                         <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
                             About us
@@ -16,6 +15,19 @@ const About = () => {
                         <p className="mt-1 text-gray-600 dark:text-gray-400">
                             Get to know us, take a look at we do.
                         </p>
+                    </div>
+
+                    <div className="w-full px-4 mb-10 lg:mb-0 ">
+                            <h2
+                                className="py-3 pl-2 mb-4 text-2xl font-bold text-gray-700 border-l-4 border-red-500 dark:border-red-700 dark:text-gray-300">
+                                Who we are
+                            </h2>
+                            <p className="mb-4 text-base leading-7 text-gray-500 dark:text-gray-400">        
+                                Corporate Link Africa is a dynamic and forward-thinking media company at the forefront of connecting 
+                                businesses to the heart of the African corporate landscape. As a trusted source of information and a 
+                                strategic partner for corporations, we go beyond traditional news reporting, offering a 
+                                comprehensive suite of media services to meet the diverse needs of businesses operating in Africa.
+                            </p>
                     </div>
                     
                     <div className="flex flex-col md:flex-row flex-wrap ">
