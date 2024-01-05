@@ -140,3 +140,11 @@ export const fetchCompanyById = async (id:string) : Promise<directoryProps> =>{
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
+
+
+// Search Engiene
+export const searchStories = async (searchQuery:string) : Promise<blogProps> =>{
+  const response = await fetch(`${rootLink}/api/blogs/search?searchQuery=${searchQuery}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { BsSearch } from 'react-icons/bs';
 import TopAds from './TopAds';
+import SearchForm from "./SearchForm";
 
 const Navbar = () => {
   return ( 
@@ -86,10 +86,7 @@ const Navbar = () => {
             {/* About US */}
             <a className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400" href="/about">About</a>
 
-            <a className="flex items-center gap-x-2 font-semibold text-gray-500 h-full hover:text-red-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500">
-              <input type="text" placeholder='Search' className='h-full border-red-500 border-2 rounded-lg p-1 text-black' />
-              <BsSearch size={15} className='text-red-500'/>
-            </a>
+              <SearchForm/>
 
             
               {/* <a className="flex items-center gap-x-2 font-semibold text-gray-500 hover:text-red-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500" >
