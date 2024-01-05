@@ -18,6 +18,7 @@ export async function GET(req:Request ,res:Response)
         // Fetch the data
         const results = await collection
         .find({category:category})
+        .sort({ date: -1 }) 
         .toArray();
         
         
