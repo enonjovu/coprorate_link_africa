@@ -38,8 +38,8 @@ const SingleTender = async ({ params }: paramProps) => {
                                 <p className="font-bold text-black text-lg"> Requirements</p>
                                 <ul className="pl-4">
                                     {
-                                        tender.requirements.map(requirement => (
-                                            <li className="text-black list-disc list-item">
+                                        tender.requirements.map((requirement, index) => (
+                                            <li key={index} className="text-black list-disc list-item">
                                                 {requirement}
                                             </li>
                                         ))
