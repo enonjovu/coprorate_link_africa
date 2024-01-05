@@ -1,24 +1,25 @@
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import CompanyCard from "../../components/CompanyCard";
-import { fetchCompanyById } from "@/app/action";
+import { fetchCompanyById, getTenderByID } from "@/app/action";
 
 type paramProps = {
-    params:Params
+    params: Params
 }
 
-const SingleTender = async ({params}:paramProps)=> {
+const SingleTender = async ({ params }: paramProps) => {
     const id: string = params.id;
-    const result = await fetchCompanyById(id)
-    const company = result[0];
-    return ( 
+    const result = await getTenderByID(id)
+    const companyQuery = await fetchCompanyById(result[0].company)
+    const company = companyQuery[0];
+    return (
         <main id="content">
             <div className="py-10 bg-white">
                 <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 space-y-10">
-                    <CompanyCard company={company}/>
+                    <CompanyCard company={company} />
 
                     <div className="flex flex-col max-w-full w-full h-full">
                         <h2 className="text-3xl font-bold text-black">Job Description</h2>
-                        
+
                         <div className="w-full md:w-11/12 flex flex-col items-center rounded-2xl p-4 shadow-lg space-y-6">
                             <h3 className="text-xl font-bold text-black">
                                 Postition:  Senior Legal Counsel (Africa)
@@ -31,7 +32,7 @@ const SingleTender = async ({params}:paramProps)=> {
 
                                     The role offers the perfect opportunity for professional and personal development in a dynamic, fast-paced environment. As a rock band, teamwork and collaboration are at the center of what we do. But in order to be in a band, you also have to have your own unique groove.
 
-                                    Your Mission: You’ll be in charge of creating innovative solutions for commercial transactions, compliance programs, and staff training. 
+                                    Your Mission: You’ll be in charge of creating innovative solutions for commercial transactions, compliance programs, and staff training.
 
                                     Your Goals/Activities
                                 </p>
@@ -67,7 +68,7 @@ const SingleTender = async ({params}:paramProps)=> {
                 </div>
             </div>
         </main>
-     );
+    );
 }
- 
+
 export default SingleTender;

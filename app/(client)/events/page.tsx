@@ -14,18 +14,12 @@ const EventsPage = () => {
                         </div>
                         <div className="flex flex-row flex-wrap -mx-3">
                             <div className="flex-shrink max-w-full w-full px-3 pb-5">
-                                <div className="relative hover-img max-h-[50vh] overflow-hidden">
-                                {/*thumbnail*/}
-                                <a href="/events/1">
-                                    <Image className="max-w-full w-full mx-auto h-auto object-contain" width={1000} height={1000} src="/src/img/dummy/img14.jpg" alt="Image description"/>
-                                </a>
-                                <div className="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-cover">
-                                    {/*title*/}
+                                <div className="relative hover-img max-h-[395px] overflow-hidden">
+                                    {/*thumbnail*/}
                                     <a href="/events/1">
-                                    <h2 className="text-5xl font-bold capitalize text-white mb-3">Latest Events</h2>
+                                        <Image className="max-w-full w-full mx-auto h-auto object-contain" 
+                                        width={1265} height={394} src="/src/img/events.jpg" alt="Image description"/>
                                     </a>
-                                    <p className="text-gray-100 hidden sm:inline-block">Know whats going on around town & where to be, we got you covered.</p>
-                                </div>
                                 </div>
                             </div>
 

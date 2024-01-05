@@ -6,19 +6,20 @@ export async function POST (req:Request){
     const date = Date.now();
     const {
         title,
+        company,
         description,
         requirements,
     } = await req.json();
     try{
         const mongoClient = await clientPromise;
         // Databse Name
-        const db = mongoClient.db("pets");
+        const db = mongoClient.db("coporate");
 
         // Table
         const collection = db.collection("tenders")
 
         const newDirectory = await collection.insertOne(
-            {title,description,requirements,date}
+            {title,company,description,requirements,date}
         );
 
         if(newDirectory){

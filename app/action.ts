@@ -1,5 +1,7 @@
 "use server"
 
+import { ObjectId } from "mongodb";
+
 // Directory Props
 type directoryProps ={
   _id:string;
@@ -54,7 +56,15 @@ type tenderProps = {
   _id:string,
   title:string,
   description:string,
-  requirements:string[]
+  requirements:string[],
+  company:string
+}[]
+
+type tender = {
+    _id:string,title:string,description:string,
+    company:{
+      logo:{url: string;key: string;}[]
+    }[]
 }[]
 const rootLink = process.env.ROOT_LINK
 
@@ -108,7 +118,7 @@ export const postTender = async (formData:{}) : Promise<{status:string,message:s
   if(!response.ok){throw new Error("Error Posting Data")}
   return await response.json();
 }
-export const fetchAllTenders = async () : Promise<tenderProps> =>{
+export const fetchAllTenders = async () : Promise<tender> =>{
   const response = await fetch(`${rootLink}/api/tenders/all`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();

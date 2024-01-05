@@ -11,10 +11,12 @@ export async function GET(req:Request ,res:Response)
 
         const mongoClient = await clientPromise;
         // Databse Name
-        const db = mongoClient.db("pets");
+        const db = mongoClient.db("coporate");
 
         // Table
         const collection = db.collection("tenders");
+        const companyCollection = db.collection("directories");
+
         if (!id) {
             // Handle the case where id is missing or null
             return NextResponse.json({ error: 'Missing company ID' });
@@ -24,6 +26,9 @@ export async function GET(req:Request ,res:Response)
         const results = await collection
         .find({_id: new ObjectId(id)})
         .toArray();
+
+        if (!results){return NextResponse.json({ error: 'Missing Tender ID' });}
+       
 
         // Return the result
         return NextResponse.json(results)
