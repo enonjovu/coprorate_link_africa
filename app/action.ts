@@ -40,7 +40,7 @@ type singleBlogProps = {
     title:string,
     category:string,
     related:{
-      id:string,
+      _id:string,
       title:string,
       category:string,
       story:string,

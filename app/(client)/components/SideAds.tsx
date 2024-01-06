@@ -24,6 +24,21 @@ const SideAds = () => {
             >
                 <div className="">
                     <a href="#">
+                        <Image width={1000} height={1000} className="mx-auto" src="/src/img/ad13.jpeg" alt="advertisement area" />
+                    </a>
+                </div>
+                <div className="">
+                    <a href="#">
+                        <Image width={1000} height={1000} className="mx-auto" src="/src/img/ad14.jpeg" alt="advertisement area" />
+                    </a>
+                </div>
+                <div className="">
+                    <a href="#">
+                        <Image width={1000} height={1000} className="mx-auto" src="/src/img/ad15.jpeg" alt="advertisement area" />
+                    </a>
+                </div>
+                <div className="">
+                    <a href="#">
                         <Image width={1000} height={1000} className="mx-auto" src="/src/img/ad.jpeg" alt="advertisement area" />
                     </a>
                 </div>
