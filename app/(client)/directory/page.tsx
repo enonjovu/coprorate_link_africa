@@ -33,7 +33,7 @@ const DirectoryPage = async () => {
                                                 <img className="max-w-20 w-20 h-20 object-cover mx-auto" src={company.logo[0].url} alt="alt title" />
                                             </a>
                                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                                <h3 className="text-2xl text-black font-bold leading-tight mb-2">
+                                                <h3 className="text-2xl text-center text-black font-bold leading-tight mb-2">
                                                     <a href={`/directory/${company._id}`}>{company.name}</a>
                                                 </h3>
                                             </div>
