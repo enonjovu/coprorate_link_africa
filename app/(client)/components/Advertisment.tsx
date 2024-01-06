@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 const Ads = () => {
-    return ( 
+    return (
         <div className="w-full h-full text-center">
             <Carousel
                 showArrows={true}
@@ -24,29 +24,35 @@ const Ads = () => {
             >
                 <div className="">
                     <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/ad.jpg" alt="advertisement area"/>
+                        <Image width={635} height={450} className="mx-auto" src="/src/img/billboard.jpg" alt="advertisement area" />
                     </a>
                 </div>
 
                 <div className="">
                     <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/ads2.jpg" alt="advertisement area"/>
+                        <Image width={635} height={450} className="mx-auto" src="/src/img/ad.jpg" alt="advertisement area" />
                     </a>
                 </div>
 
                 <div className="">
                     <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/ads.jpg" alt="advertisement area"/>
+                        <Image width={635} height={450} className="mx-auto" src="/src/img/ads2.jpg" alt="advertisement area" />
+                    </a>
+                </div>
+
+                <div className="">
+                    <a href="#">
+                        <Image width={635} height={450} className="mx-auto" src="/src/img/ads.jpg" alt="advertisement area" />
                     </a>
                 </div>
                 <div className="">
                     <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/advertise.jpg" alt="advertisement area"/>
+                        <Image width={635} height={450} className="mx-auto" src="/src/img/advertise.jpg" alt="advertisement area" />
                     </a>
                 </div>
             </Carousel>
         </div>
-     );
+    );
 }
- 
+
 export default Ads;

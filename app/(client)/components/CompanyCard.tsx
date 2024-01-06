@@ -42,7 +42,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         </div>
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Phone</p>
-                            <span className="text-gray-500">{company.phone}</span>
+                            <span className="text-gray-500">{company.phone ? company.phone : "Not Available"}</span>
                         </div>
                     </li>
 
@@ -52,7 +52,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         </div>
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Email</p>
-                            <span className="text-gray-500">{company.email}</span>
+                            <span className="text-gray-500">{company.email ? company.email : "Not Available"}</span>
                         </div>
                     </li>
 
@@ -63,7 +63,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Website</p>
                             <a href={company.website} target="_blank" className="text-gray-500">
-                                {company.website}
+                                {company.website ? company.website : "Not available"}
                             </a>
                         </div>
                     </li>
@@ -74,7 +74,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         </div>
                         <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Address</p>
-                            <span className="text-gray-500">{company.address}</span>
+                            <span className="text-gray-500">{company.address ? company.address : "Not availabe"}</span>
                         </div>
                     </li>
                 </ul>
