@@ -87,7 +87,7 @@ export const fetchTopBlogs = async () : Promise<blogProps> =>{
   return await response.json();
 }  
 export const fetchBlogsByCategory = async (category:string) : Promise<blogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/category/?category=${category}`,{next:{revalidate:30}});
+  const response = await fetch(`${rootLink}/api/blogs/category/?category=${category}`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
