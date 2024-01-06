@@ -35,8 +35,8 @@ const CompanyCard = ({ company }: companyProps) => {
                     Contact Details
                 </h2>
 
-                <ul className="min-w-full flex flex-col">
-                    <li className="rounded-md text-black h-20 w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8">
+                <ul className="min-w-full flex flex-col space-y-4">
+                    <li className="rounded-md text-black h-full w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8 p-2">
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <BsPhone size={20} />
                         </div>
@@ -46,7 +46,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         </div>
                     </li>
 
-                    <li className="rounded-md text-black h-20 w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8">
+                    <li className="rounded-md text-black h-full w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8 p-2">
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <BsEnvelope size={20} />
                         </div>
@@ -56,7 +56,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         </div>
                     </li>
 
-                    <li className="rounded-md text-black h-20 w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8">
+                    <li className="rounded-md text-black h-full w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8 p-2">
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <BsGlobeEuropeAfrica size={20} />
                         </div>
@@ -68,7 +68,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         </div>
                     </li>
 
-                    <li className="rounded-md text-black h-20 w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8">
+                    <li className="rounded-md text-black h-full w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8 p-2">
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <FaMapMarkerAlt size={20} />
                         </div>
