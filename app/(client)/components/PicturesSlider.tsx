@@ -5,14 +5,14 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 
 type imagesProps = {
-  images:{
+  images: {
     url: string;
     key: string;
   }[]
 }
 
 // Your Next.js component
-function PicturesSlider({images}:imagesProps) {
+function PicturesSlider({ images }: imagesProps) {
   return (
     <Carousel
       showArrows={true}
@@ -30,14 +30,14 @@ function PicturesSlider({images}:imagesProps) {
       showThumbs={false}
       className="relative h-full w-full" // Set initial height using Tailwind classes
     >
-     {
-        images?.map((image,index) =>
-        
-          <img key={image.key} className="w-full h-[90%] object-cover rounded-lg" src={image.url} alt="Image description"/>
-          
-        )  
-     }
-        
+      {
+        images?.map((image, index) =>
+
+          <Image width={1000} height={800} key={image.key} className="w-full h-[90%] object-cover rounded-lg" src={image.url} alt="Image description" />
+
+        )
+      }
+
     </Carousel>
   );
 }

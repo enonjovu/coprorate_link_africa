@@ -40,6 +40,8 @@ export async function GET(req:Request ,res:Response)
 
             const relatedArticles = await collection
             .find({category:blog.category})
+            .sort({date:-1})
+            .limit(3)
             .toArray();
 
             result.push({
