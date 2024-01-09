@@ -35,12 +35,12 @@ const CompanyCard = ({ company }: companyProps) => {
                     Contact Details
                 </h2>
 
-                <ul className="min-w-full flex flex-col space-y-4">
+                <ul className="min-w-full h-full flex flex-col space-y-4 justify-center items-center">
                     <li className="rounded-md text-black h-full w-full md:w-10/12 shadow-lg flex flex-row items-start justify-center pl-8 p-2">
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <BsPhone size={20} />
                         </div>
-                        <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
+                        <div className="flex-wrap w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Phone</p>
                             <span className="text-gray-500">{company.phone ? company.phone : "Not Available"}</span>
                         </div>
@@ -50,7 +50,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <BsEnvelope size={20} />
                         </div>
-                        <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
+                        <div className="flex-wrap w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Email</p>
                             <span className="text-gray-500">{company.email ? company.email : "Not Available"}</span>
                         </div>
@@ -60,10 +60,10 @@ const CompanyCard = ({ company }: companyProps) => {
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <BsGlobeEuropeAfrica size={20} />
                         </div>
-                        <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
+                        <div className="flex-wrap w-[80%] max-w-[80%] md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Website</p>
                             <a href={company.website} target="_blank" className="text-gray-500">
-                                {company.website ? company.website : "Not available"}
+                                <p className="whitespace-pre-wrap">{company.website ? company.name : "Not available"}</p>
                             </a>
                         </div>
                     </li>
@@ -72,7 +72,7 @@ const CompanyCard = ({ company }: companyProps) => {
                         <div className="icon w-1/6 h-full flex justify-start items-center">
                             <FaMapMarkerAlt size={20} />
                         </div>
-                        <div className="w-full md:w-3/4 flex flex-col h-full items-start justify-center">
+                        <div className="flex-wrap w-full md:w-3/4 flex flex-col h-full items-start justify-center">
                             <p className="font-semibold">Address</p>
                             <span className="text-gray-500">{company.address ? company.address : "Not availabe"}</span>
                         </div>
