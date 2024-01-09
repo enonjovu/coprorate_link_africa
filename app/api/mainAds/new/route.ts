@@ -4,16 +4,16 @@ import { NextResponse } from "next/server";
 
 export async function POST (req:Request){
     const date = Date.now();
-    const {images,} = await req.json();
+    const {image,} = await req.json();
     try{
         const mongoClient = await clientPromise;
         // Databse Name
         const db = mongoClient.db("coporate");
 
         // Table
-        const collection = db.collection("blogs")
+        const collection = db.collection("adverts")
 
-        const newAd = await collection.insertOne({images});
+        const newAd = await collection.insertOne({image,date});
 
         if(newAd){
             return NextResponse.json({
