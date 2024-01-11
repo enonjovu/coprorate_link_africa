@@ -30,7 +30,7 @@ const LatestNews = async ({ page }: { page: string }) => {
                     <a href="/news/category/agriculture" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Agriculture</a>
                     <a href="/news/category/business" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Business</a>
                     <a href="/news/category/tech" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Tech</a>
-                    <a href="/news/category/enviroment" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Enviroment</a>
+                    <a href="/news/category/environment" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Environment</a>
                 </div>
             </div>
 
