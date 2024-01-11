@@ -1,9 +1,8 @@
-import ListingComponent from "../../components/ListingComponents";
 
 const AllAds = () => {
-    return ( 
-        <ListingComponent/>
-     );
+    return (
+        <h1>All Ads</h1>
+    );
 }
- 
+
 export default AllAds;
