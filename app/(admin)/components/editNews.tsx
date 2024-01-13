@@ -1,12 +1,13 @@
 "use client"
 import "@uploadthing/react/styles.css";
 import Modal from "@/app/(admin)/components/Modal";
-import { postBlog } from "@/app/action";
+import { deleteImage, postBlog } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsTrash } from "react-icons/bs";
+import { UTApi } from "uploadthing/server";
 
 
 type blogProps = {
@@ -24,6 +25,7 @@ type blogProps = {
 
 // Initial state with types
 type FormData = {
+    id: string,
     title: string;
     category: string;
     story: string;
@@ -32,6 +34,7 @@ type FormData = {
 };
 
 const initialFormData: FormData = {
+    id: "",
     title: "",
     category: "",
     story: "",
@@ -54,16 +57,17 @@ const EditPostComponent = ({ blog }: { blog: blogProps }) => {
     }, [])
 
     const handleSubmit = async () => {
-        formData.images = images;
+        if (images.length) { formData.images = images; }
         console.log("file", formData);
-        const response = await postBlog(formData)
-        console.log("Response => ", response);
-        if (response.status === "true") {
-            setIsModalOpen(true); // Open the modal
-            setFormKey((prevKey) => prevKey + 1);
-            setFormData(initialFormData);
-        }
+        alert("Blog updated")
     };
+
+    const handleDelete = async (key: string, id: string) => {
+        const res = await deleteImage(key, id);
+        if (res) {
+            alert(res);
+        }
+    }
 
     const handleImagesUpload = (res: any) => {
         setImages(res)
@@ -112,9 +116,12 @@ const EditPostComponent = ({ blog }: { blog: blogProps }) => {
                             <div key={image.key} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                 <div className="flex flex-row sm:block hover-img relative">
                                     <div className="w-full flex justify-end absolute h-7">
-                                        <div className="w-1/5 flex justify-center items-center bg-red-700 rounded-sm">
+                                        <button
+                                            className="w-1/5 flex justify-center items-center bg-red-700 rounded-sm"
+                                            onClick={() => handleDelete(image.key, formData.id)}
+                                        >
                                             <BsTrash color={"#fff"} size={20} />
-                                        </div>
+                                        </button>
                                     </div>
                                     <Image width={900} height={800}
                                         className="max-w-full w-full h-40 min-h-40 max-h-40 overflow-hidden object-cover mx-auto"

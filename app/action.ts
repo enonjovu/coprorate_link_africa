@@ -111,6 +111,11 @@ export const deleteBlog = async (id:string) : Promise<{status:string,message:str
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
+export const deleteImage = async (key:string,id:string) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/blogs/deleteImages/?key=${key}&id=${id}`,{method:"GET"});
+  if(!response.ok){throw new Error("Error Deleting Images")}
+  return await response.json();
+}
 
 // Tender Actions
 export const postTender = async (formData:{}) : Promise<{status:string,message:string}> =>{
