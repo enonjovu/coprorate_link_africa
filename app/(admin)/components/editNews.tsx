@@ -117,13 +117,13 @@ const EditPostComponent = ({ blog }: { blog: blogProps }) => {
                                 <div className="flex flex-row sm:block hover-img relative">
                                     <div className="w-full flex justify-end absolute h-7">
                                         <button
-                                            className="w-1/5 flex justify-center items-center bg-red-700 rounded-sm"
+                                            className="w-1/5 flex justify-center items-center bg-red-700 rounded-sm cursor-pointer"
                                             onClick={() => handleDelete(image.key, formData.id)}
                                         >
                                             <BsTrash color={"#fff"} size={20} />
                                         </button>
                                     </div>
-                                    <Image width={900} height={800}
+                                    <Image width={900} height={800} priority
                                         className="max-w-full w-full h-40 min-h-40 max-h-40 overflow-hidden object-cover mx-auto"
                                         src={image.url} alt="alt title"
                                     />
