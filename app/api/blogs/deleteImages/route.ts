@@ -2,8 +2,8 @@ import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
-import { UTApi } from "uploadthing/server";
-export const utapi = new UTApi();
+// import { UTApi } from "uploadthing/server";
+// export const utapi = new UTApi();
 
 export async function GET(req: Request, res: Response) {
   try {
