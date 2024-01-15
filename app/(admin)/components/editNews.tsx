@@ -1,13 +1,13 @@
 "use client"
 import "@uploadthing/react/styles.css";
+import { BsTrash } from "react-icons/bs";
 import Modal from "@/app/(admin)/components/Modal";
-import { deleteImage, postBlog } from "@/app/action";
+import { deleteImage, postBlog, updateBlog } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { BsTrash } from "react-icons/bs";
-import { UTApi } from "uploadthing/server";
+import { useRouter } from "next/navigation";
 
 
 type blogProps = {
@@ -48,6 +48,9 @@ const EditPostComponent = ({ blog }: { blog: blogProps }) => {
     const [formKey, setFormKey] = useState<number>(0);
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [images, setImages] = useState<{ url: string; key: string; }[]>([])
+    const [loading, setLoading] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
         if (blog) {
@@ -57,47 +60,37 @@ const EditPostComponent = ({ blog }: { blog: blogProps }) => {
     }, [])
 
     const handleSubmit = async () => {
-        if (images.length) { formData.images = images; }
+        if (images) {
+            images.map(image => (
+                formData.images.push(image)
+            ));
+        }
+        const res = await updateBlog(formData, formData.id);
+        setModalMessage(res.message)
+        setIsModalOpen(true);
         console.log("file", formData);
-        alert("Blog updated")
     };
 
     const handleDelete = async (key: string, id: string) => {
+        setLoading(true);
         const res = await deleteImage(key, id);
         if (res) {
-            alert(res);
+            // Remove the deleted image from formData
+            setFormData(prevState => ({
+                ...prevState,
+                images: prevState.images.filter(image => image.key !== key)
+            }));
+            setLoading(false);
+            setModalMessage("Image Deleted successfully")
+            setIsModalOpen(true);
         }
-    }
+        router.push(`/admin/news/edit/${formData.id}`);
+    };
 
     const handleImagesUpload = (res: any) => {
         setImages(res)
-        const json = JSON.stringify(res);
-        console.log(json);
         alert("Upload Completed");
     }
-
-    const title = images.length ? (
-        <>
-            <h1 className="my-5 text-xl">Upload Complete</h1>
-            <p>Uploaded {images.length} files</p>
-        </>) : null;
-
-    const imageList = (
-        <>
-            {title}
-            <ul>
-                {
-                    images.map(image => (
-                        <li key={image.key}>
-                            <Link href={image.url} target="_blank">{image.url}</Link>
-                        </li>
-                    ))
-                }
-            </ul>
-        </>
-    )
-
-
 
     return (
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -107,21 +100,28 @@ const EditPostComponent = ({ blog }: { blog: blogProps }) => {
                         Edit Article
                     </h1>
                 </div>
-
-                {imageList}
-
+                <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setIsModalOpen(false)} />
                 <div className="mt-12 sapce-x-6">
                     <div className="flex flex-row flex-wrap -mx-3">
                         {formData.images?.map(image => (
                             <div key={image.key} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                 <div className="flex flex-row sm:block hover-img relative">
                                     <div className="w-full flex justify-end absolute h-7">
-                                        <button
-                                            className="w-1/5 flex justify-center items-center bg-red-700 rounded-sm cursor-pointer"
-                                            onClick={() => handleDelete(image.key, formData.id)}
-                                        >
-                                            <BsTrash color={"#fff"} size={20} />
-                                        </button>
+                                        {
+                                            loading ?
+                                                <button
+                                                    className="w-2/5 text-white flex justify-center items-center bg-red-700 rounded-sm cursor-pointer"
+                                                >
+                                                    Deleting...
+                                                </button>
+                                                :
+                                                <button
+                                                    className="w-1/5 flex justify-center items-center bg-red-700 rounded-sm cursor-pointer"
+                                                    onClick={() => handleDelete(image.key, formData.id)}
+                                                >
+                                                    <BsTrash color={"#fff"} size={20} />
+                                                </button>
+                                        }
                                     </div>
                                     <Image width={900} height={800} priority
                                         className="max-w-full w-full h-40 min-h-40 max-h-40 overflow-hidden object-cover mx-auto"
@@ -217,7 +217,7 @@ const EditPostComponent = ({ blog }: { blog: blogProps }) => {
                         </div>
                     </form>
                     {/* End Form */}
-                    <Modal isOpen={isModalOpen} message="Article created successfully" onClose={() => setIsModalOpen(false)} />
+                    {/* <Modal isOpen={isModalOpen} message="Article created successfully" onClose={() => setIsModalOpen(false)} /> */}
                 </div>
             </div>
         </div>

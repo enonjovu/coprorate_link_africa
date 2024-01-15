@@ -72,17 +72,17 @@ const rootLink = process.env.ROOT_LINK
 
 // Blog Actions
 export const getItemsCount = async () : Promise<number> =>{
-   const response = await fetch(`${rootLink}/api/blogs/count`,{next:{revalidate:30}});
+   const response = await fetch(`${rootLink}/api/blogs/count`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
 export const fetchLatestBlogs = async (page:string) : Promise<blogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/all?page=${page}`,{next:{revalidate:30}});
+  const response = await fetch(`${rootLink}/api/blogs/all?page=${page}`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
 export const fetchTopBlogs = async () : Promise<blogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/top`,{next:{revalidate:30}});
+  const response = await fetch(`${rootLink}/api/blogs/top`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }  
@@ -91,8 +91,13 @@ export const fetchBlogsByCategory = async (category:string) : Promise<blogProps>
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
+export const fetchSingleBlogById = async (id:string) : Promise<singleBlogProps> =>{
+  const response = await fetch(`${rootLink}/api/blogs/singleOnly/?id=${id}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
 export const fetchBlogsById = async (id:string) : Promise<singleBlogProps> =>{
-  const response = await fetch(`${rootLink}/api/blogs/single/?id=${id}`,{next:{revalidate:60}});
+  const response = await fetch(`${rootLink}/api/blogs/single/?id=${id}`,{next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
@@ -106,13 +111,23 @@ export const postBlog = async (formData:{}) : Promise<{status:string,message:str
   if(!response.ok){throw new Error("Error Posting Data")}
   return await response.json();
 }
+export const updateBlog = async (formData:{},id:string) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/blogs/update`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify(formData),
+  });
+  if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}
 export const deleteBlog = async (id:string) : Promise<{status:string,message:string}> =>{
   const response = await fetch(`${rootLink}/api/blogs/delete/?id=${id}`,{method:"DELETE"});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
 export const deleteImage = async (key:string,id:string) : Promise<{status:string}> =>{
-  const response = await fetch(`${rootLink}/api/blogs/deleteImages/?key=${key}&id=${id}`,{method:"GET"});
+  const response = await fetch(`${rootLink}/api/blogs/deleteImages/?key=${key}&id=${id}`,{method:"PATCH"});
   if(!response.ok){throw new Error("Error Deleting Images")}
   return await response.json();
 }

@@ -1,11 +1,11 @@
 import clientPromise from "@/lib/mongodb";
+import { utapi } from "@/utils/utapicomponent";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
-// import { UTApi } from "uploadthing/server";
-// export const utapi = new UTApi();
 
-export async function GET(req: Request, res: Response) {
+
+export async function PATCH(req: Request, res: Response) {
   try {
     const { searchParams } = new URL(req.url);
     const key = searchParams.get("key") ?? "";
@@ -17,7 +17,7 @@ export async function GET(req: Request, res: Response) {
     }
 
     // Delete the image from UploadThing (uncomment when ready)
-    // const deleteResult = await utapi.deleteFiles(key);
+    const deleteResult = await utapi.deleteFiles(key);
 
     // Connect to MongoDB
     const mongoClient = await clientPromise;
@@ -27,8 +27,9 @@ export async function GET(req: Request, res: Response) {
     // Update the document in MongoDB
     const result = await collection.updateOne(
       { _id: new ObjectId(id) },
-      { $pull: { images: [{ key:key}] } }
+      { $pull: { "images": { "key": key } } }
     );
+
     
 
     // Log the update result for debugging

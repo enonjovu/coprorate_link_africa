@@ -3,26 +3,35 @@ import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
-export async function GET(req: Request, res: Response) {
-    const { title, story, category, images, author } = await req.json();
+export async function PATCH(req: Request, res: Response) {
+    const { id, title, story, category, images, author } = await req.json();
     try {
-        const { searchParams } = new URL(req.url);
-        const id = searchParams.get('id') ?? "";
-
         const mongoClient = await clientPromise;
-        // Databse Name
         const db = mongoClient.db("coporate");
-        // Table
         const collection = db.collection("blogs");
 
-        const filter = { _id: new ObjectId(id) };
-        const updateData = { $set: { title, story, category, images, author } };
+        const updateData = {
+            $set: {
+                title: title,
+                story: story,
+                category: category,
+                images: images,
+                author: author
+            }
+        };
 
-        const result = await collection.updateOne(filter, updateData);
+        const result = await collection.updateOne({ _id: new ObjectId(id) }, updateData);
 
-        if (result) {
-            // Return the result
-            return NextResponse.json({ message: "Upadte successfull" })
+        console.log('Matched count:', result.matchedCount);
+        console.log('Modified count:', result.modifiedCount);
+
+        // console.log("Body =>  ",{ id, title, story, category, images, author })
+        console.log("Result =>  ",result)
+
+        if (result.modifiedCount > 0) {
+            return NextResponse.json({ message: "Update successful" });
+        } else {
+            return NextResponse.json({ message: "No documents were updated" });
         }
     } catch (e) {
         console.log("Failed to fetch Data => ", e);
