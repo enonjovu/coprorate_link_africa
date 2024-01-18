@@ -4,7 +4,6 @@ import Modal from "@/app/(admin)/components/Modal";
 import { postCompany } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
-import Link from "next/link";
 
 // Initial state with types
 type FormData = {

@@ -23,7 +23,7 @@ export async function GET(req:Request ,res:Response)
         
         
         // Create an empty array to store converted blogs
-                const convertedBlogs = [];
+        const convertedBlogs = [];
 
         const trimStory = async (story: String) => {
             const words = story.split(" ");
@@ -50,6 +50,8 @@ export async function GET(req:Request ,res:Response)
                 convertedBlogs.push(convertedBlog);
             }
         }
+
+        console.log("Category => ",category)
         
         // Return the result
         return NextResponse.json(convertedBlogs)

@@ -9,7 +9,7 @@ type paramProps = {
 }
 const BlogCategoryPage = async ({ params }: paramProps) => {
     const category: string = params.category;
-    const blogs = await fetchBlogsByCategory(category);
+    const blogs = await fetchBlogsByCategory(category.toLocaleLowerCase());
     console.log("Blogs byt category => ", blogs)
     return (
         <main id="content">

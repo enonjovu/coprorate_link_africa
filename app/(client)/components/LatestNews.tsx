@@ -5,6 +5,7 @@ import Link from "next/link";
 
 const LatestNews = async ({ page }: { page: string }) => {
     const blogs = await fetchLatestBlogs(page);
+    console.log("Blogs => ", blogs)
     const itemsCount = await getItemsCount();
     const totalPages = Math.ceil(itemsCount / 12);
     const pageNumber = parseInt(page);

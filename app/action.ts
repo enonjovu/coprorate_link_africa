@@ -66,6 +66,26 @@ type tender = {
       logo:{url: string;key: string;}[]
     }[]
 }[]
+
+type eventProps ={
+  events:{
+    _id:string,
+    title:string,
+    description:string,
+    images:{key:string,url:string}[],
+    date:string
+  }[],
+  itemsCount:number
+}
+
+type singleEventProps ={
+    _id:string,
+    title:string,
+    description:string,
+    images:{key:string,url:string}[],
+    date:string
+}[]
+
 const rootLink = process.env.ROOT_LINK
 
 
@@ -150,6 +170,33 @@ export const fetchAllTenders = async () : Promise<tender> =>{
 }
 export const getTenderByID = async (id:string) : Promise<tenderProps> =>{
   const response = await fetch(`${rootLink}/api/tenders/single/?id=${id}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
+
+// Events
+export const fetchEvents = async (page:string) : Promise<eventProps> =>{
+  const response = await fetch(`${rootLink}/api/events/all?page=${page}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
+export const fetchEventById = async (id:string) : Promise<singleEventProps> =>{
+  const response = await fetch(`${rootLink}/api/events/single/?id=${id}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}  
+export const postEvent = async (formData:{}) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/events/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify(formData),
+  });
+  if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}
+export const deleteEvent = async (id:string) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/events/delete/?id=${id}`,{method:"DELETE"});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
