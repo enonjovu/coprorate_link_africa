@@ -79,7 +79,7 @@ type eventProps ={
 }
 
 type singleEventProps ={
-    _id:string,
+    id:string,
     title:string,
     description:string,
     images:{key:string,url:string}[],

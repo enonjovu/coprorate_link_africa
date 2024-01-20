@@ -21,7 +21,7 @@ const EventsListing = async ({ events }: eventProps) => {
                                 <div className="relative hover-img max-h-[50vh] overflow-hidden">
                                     {/*thumbnail*/}
                                     <a href="#">
-                                        <Image className="max-w-full w-full mx-auto h-auto object-cover" width={1300} height={400} src="/src/img/directory.jpg" alt="Image description" />
+                                        <Image className="max-w-full w-full mx-auto h-auto object-cover" width={1300} height={400} src="/src/img/events.jpg" alt="Image description" />
                                     </a>
                                 </div>
                             </div>
@@ -29,12 +29,12 @@ const EventsListing = async ({ events }: eventProps) => {
                                 events.map(event => (
                                     <div key={event._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                         <div className="flex flex-row sm:block hover-img">
-                                            <a href={`/directory/${event._id}`}>
+                                            <a href={`/events/${event._id}`}>
                                                 <img className="max-w-[15rem] w-[15rem] h-[15rem] object-cover mx-auto" src={event.images[0].url} alt="alt title" />
                                             </a>
                                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                                 <h3 className="text-2xl text-center text-black font-bold leading-tight mb-2">
-                                                    <a href={`/directory/${event._id}`}>{event.title}</a>
+                                                    <a href={`/events/${event._id}`}>{event.title}</a>
                                                 </h3>
                                             </div>
                                         </div>
