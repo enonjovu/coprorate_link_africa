@@ -3,7 +3,11 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Image from "next/image";
 import { BsClock, BsHouse, BsTicket } from "react-icons/bs";
 
-const EventSingle = async ({ params }: Params) => {
+type paramProps = {
+  params: Params
+}
+
+const EventSingle = async ({ params }: paramProps) => {
   const id = params.id;
   const res = await fetchEventById(id);
   const event = res[0];
