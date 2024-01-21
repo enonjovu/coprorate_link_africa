@@ -199,7 +199,7 @@ export const postEvent = async (formData:{}) : Promise<{status:string,message:st
   return await response.json();
 }
 export const updateEvent = async (formData:{},id:string) : Promise<{status:string,message:string}> =>{
-  const response = await fetch(`${rootLink}/api/events/edit/`, {
+  const response = await fetch(`${rootLink}/api/events/edit`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
