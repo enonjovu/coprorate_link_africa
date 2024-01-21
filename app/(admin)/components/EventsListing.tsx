@@ -3,6 +3,7 @@
 import { deleteEvent } from "@/app/action";
 import { BsPencil, BsTrash } from "react-icons/bs";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type eventProps = {
     _id: string,
@@ -13,12 +14,14 @@ type eventProps = {
 }[]
 
 const EventsListing = ({ events }: { events: eventProps }) => {
+    const route = useRouter()
 
     const handleDeleteEvent = async (id: string) => {
         const request = await deleteEvent(id);
 
         if (request) {
-            alert("Blog deleted!")
+            alert("Event deleted!")
+            route.refresh()
         }
     }
 

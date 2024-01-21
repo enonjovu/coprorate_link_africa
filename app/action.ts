@@ -196,7 +196,7 @@ export const postEvent = async (formData:{}) : Promise<{status:string,message:st
   return await response.json();
 }
 export const deleteEvent = async (id:string) : Promise<{status:string,message:string}> =>{
-  const response = await fetch(`${rootLink}/api/events/delete/?id=${id}`,{method:"DELETE"});
+  const response = await fetch(`${rootLink}/api/events/delete/?id=${id}`,{method:"GET",next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }
