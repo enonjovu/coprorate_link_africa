@@ -1,7 +1,7 @@
 import { fetchEventById } from "@/app/action";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Image from "next/image";
-import { BsClock, BsHouse, BsTicket } from "react-icons/bs";
+import { BsCalendar, BsClock, BsHouse, BsTicket } from "react-icons/bs";
 
 type paramProps = {
   params: Params
@@ -26,17 +26,17 @@ const EventSingle = async ({ params }: paramProps) => {
               <div className="flex flex-col md:flex-row items-center justify-center w-full h-full space-y-6 md:space-y-0 md:space-x-16">
                 <p className="flex space-x-4 justify-start md:justify-center w-2/3 md:w-1/3">
                   <BsClock size={20} color={"#000000"} />
-                  <span className="font-bold text-black">2 PM</span>
+                  <span className="font-bold text-black">{event.time}</span>
                 </p>
 
                 <p className="flex space-x-4 justify-start md:justify-center w-2/3 md:w-1/3">
                   <BsHouse size={20} color={"#000000"} />
-                  <span className="font-bold text-black">Commerce Hall</span>
+                  <span className="font-bold text-black">{event.venue}</span>
                 </p>
 
                 <p className="flex space-x-4 justify-start md:justify-center w-2/3 md:w-1/3">
-                  <BsTicket size={20} color={"#000000"} />
-                  <span className="font-bold text-black">K 5000</span>
+                  <BsCalendar size={20} color={"#000000"} />
+                  <span className="font-bold text-black">{event.eventDate}</span>
                 </p>
               </div>
               <p className="text-gray-900 w-11/12">

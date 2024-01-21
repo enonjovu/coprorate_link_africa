@@ -43,6 +43,9 @@ export async function GET(req:Request ,res:Response)
                 title:event.title,
                 description:event.description,
                 images:event.images,
+                eventDate:event.eventDate,
+                time:event.time,
+                venue:event.venue,
                 date: await formatdDate(event.date)
             })
         }

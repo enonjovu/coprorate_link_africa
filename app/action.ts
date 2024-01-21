@@ -81,6 +81,9 @@ type eventProps ={
 type singleEventProps ={
     id:string,
     title:string,
+    eventDate:string,
+    time:string,
+    venue:string,
     description:string,
     images:{key:string,url:string}[],
     date:string
