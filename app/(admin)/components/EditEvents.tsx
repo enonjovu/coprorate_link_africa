@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 
 type singleEventProps = {
-    _id: string,
+    id: string,
     title: string,
     description: string,
     images: { key: string, url: string }[],
@@ -20,14 +20,14 @@ type singleEventProps = {
 
 // Initial state with types
 type FormData = {
-    _id: string,
+    id: string,
     title: string,
     description: string,
     images: { key: string, url: string }[],
 };
 
 const initialFormData: FormData = {
-    _id: "",
+    id: "",
     title: "",
     description: "",
     images: [{ url: "", key: "" }],
@@ -56,7 +56,7 @@ const EditEventComponent = ({ event }: { event: singleEventProps }) => {
                 formData.images.push(image)
             ));
         }
-        const res = await updateBlog(formData, formData._id);
+        const res = await updateBlog(formData, formData.id);
         setModalMessage(res.message)
         setIsModalOpen(true);
         console.log("file", formData);
@@ -75,7 +75,7 @@ const EditEventComponent = ({ event }: { event: singleEventProps }) => {
             setModalMessage("Image Deleted successfully")
             setIsModalOpen(true);
         }
-        router.push(`/admin/news/edit/${formData._id}`);
+        router.push(`/admin/news/edit/${formData.id}`);
     };
 
     const handleImagesUpload = (res: any) => {
@@ -108,7 +108,7 @@ const EditEventComponent = ({ event }: { event: singleEventProps }) => {
                                                 :
                                                 <button
                                                     className="w-1/5 flex justify-center items-center bg-red-700 rounded-sm cursor-pointer"
-                                                    onClick={() => handleDelete(image.key, formData._id)}
+                                                    onClick={() => handleDelete(image.key, formData.id)}
                                                 >
                                                     <BsTrash color={"#fff"} size={20} />
                                                 </button>
