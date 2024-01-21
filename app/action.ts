@@ -139,7 +139,7 @@ export const updateBlog = async (formData:{},id:string) : Promise<{status:string
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formData)
   });
   if(!response.ok){throw new Error("Error Posting Data")}
   return await response.json();
@@ -203,7 +203,7 @@ export const updateEvent = async (formData:{},id:string) : Promise<{status:strin
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formData)
   });
   if(!response.ok){throw new Error("Error Posting Data")}
   return await response.json();
