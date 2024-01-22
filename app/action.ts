@@ -85,7 +85,7 @@ type adsProps ={
     date:string
   }[],
   itemsCount:number
-}[]
+}
 
 type singleEventProps ={
     id:string,

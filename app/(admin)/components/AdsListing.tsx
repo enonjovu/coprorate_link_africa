@@ -6,8 +6,8 @@ import { BsPencil, BsTrash } from "react-icons/bs";
 
 const AdsListingComponent = async ({ page }: { page: string }) => {
     const result = await fetchAds(page);
-    const ads = result[0].ads;
-    const itemsCount = result[0].itemsCount;
+    const ads = result.ads;
+    const itemsCount = result.itemsCount;
     const totalPages = Math.ceil(itemsCount / 12);
     const pageNumber = parseInt(page);
 
@@ -46,12 +46,8 @@ const AdsListingComponent = async ({ page }: { page: string }) => {
                                     <div key={advert._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                         <div className="flex flex-row sm:block hover-img">
                                             <Image width={900} height={800} className="max-w-full w-full h-40 min-h-40 max-h-40 overflow-hidden object-cover mx-auto" src={advert.images[0].url} alt="alt title" />
-                                            <div className="w-full h-16 bg-red-700 roundeg-lg flex items-center justify-center space-x-16">
-                                                <a href={`/admin/news/edit/${advert._id}`} className="rounded-lg border-[1px] border-white p-2">
-                                                    <BsPencil size={20} color={"#fff"} />
-                                                </a>
-
-                                                <div onClick={() => (deleteAd(advert._id))} className="cursor-pointer rounded-lg border-[1px] border-white p-2">
+                                            <div className="w-full h-16 bg-red-700 roundeg-lg flex items-center justify-center">
+                                                <div className="cursor-pointer rounded-lg border-[1px] border-white p-2">
                                                     <BsTrash size={20} color={"#fff"} />
                                                 </div>
                                             </div>

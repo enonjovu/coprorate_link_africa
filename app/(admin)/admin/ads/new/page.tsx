@@ -86,7 +86,7 @@ const NewDirectory: React.FC = () => {
                                 <div>
                                     <label htmlFor="blog-image" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Advert Image(s)</label>
                                     <UploadButton
-                                        endpoint="imageUploader"
+                                        endpoint="singleImage"
                                         onClientUploadComplete={(res) => {
                                             if (res) {
                                                 // Do something with the response
