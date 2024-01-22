@@ -78,6 +78,15 @@ type eventProps ={
   itemsCount:number
 }
 
+type adsProps ={
+  ads:{
+    _id:string,
+    images:{key:string,url:string}[],
+    date:string
+  }[],
+  itemsCount:number
+}[]
+
 type singleEventProps ={
     id:string,
     title:string,
@@ -210,6 +219,28 @@ export const updateEvent = async (formData:{},id:string) : Promise<{status:strin
 }
 export const deleteEvent = async (id:string) : Promise<{status:string,message:string}> =>{
   const response = await fetch(`${rootLink}/api/events/delete/?id=${id}`,{method:"GET",next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
+
+// Adverts
+export const fetchAds = async (page:string) : Promise<adsProps> =>{
+  const response = await fetch(`${rootLink}/api/adverts/all?page=${page}`,{next:{revalidate:0}});
+  if(!response.ok){throw new Error("Error Fetching Data")}
+  return await response.json();
+}
+export const postAds = async (formData:{}) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/adverts/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify(formData),
+  });
+  if(!response.ok){throw new Error("Error Posting Data")}
+  return await response.json();
+}
+export const deleteAds = async (id:string) : Promise<{status:string,message:string}> =>{
+  const response = await fetch(`${rootLink}/api/adverts/delete/?id=${id}`,{method:"GET",next:{revalidate:0}});
   if(!response.ok){throw new Error("Error Fetching Data")}
   return await response.json();
 }

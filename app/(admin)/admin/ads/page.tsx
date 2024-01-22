@@ -1,7 +1,10 @@
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import AdsListingComponent from "../../components/AdsListing";
 
-const AllAds = () => {
+const AllAds = ({ searchParams, }: { searchParams: Params }) => {
+    let page = searchParams['page'] ?? "1";
     return (
-        <h1>All Ads</h1>
+        <AdsListingComponent page={page} />
     );
 }
 
