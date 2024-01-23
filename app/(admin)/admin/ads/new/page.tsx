@@ -1,7 +1,7 @@
 "use client"
 import "@uploadthing/react/styles.css";
 import Modal from "@/app/(admin)/components/Modal";
-import { postAds, postBlog } from "@/app/action";
+import { postAds } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
 import Link from "next/link";
@@ -110,7 +110,7 @@ const NewDirectory: React.FC = () => {
                                 images.length ? (
                                     <button type="button"
                                         className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                        onClick={handleSubmit}>Post Blog
+                                        onClick={handleSubmit}>Post Advert
                                     </button>
                                 ) : (
                                     <button type="button"

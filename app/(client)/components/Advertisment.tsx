@@ -3,7 +3,14 @@
 import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
-const Ads = () => {
+
+type adsProps = {
+    _id: string;
+    images: { key: string; url: string }[];
+    date: string;
+}[];
+
+const Ads = ({ ads }: { ads: adsProps }) => {
     return (
         <div className="w-full h-full text-center">
             <Carousel
@@ -22,34 +29,15 @@ const Ads = () => {
                 showThumbs={false}
                 className="relative w-full h-full" // Set initial height using Tailwind classes
             >
-                <div className="">
-                    <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/billboard.jpg" alt="advertisement area" />
-                    </a>
-                </div>
-
-                <div className="">
-                    <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/ad.jpg" alt="advertisement area" />
-                    </a>
-                </div>
-
-                <div className="">
-                    <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/ads2.jpg" alt="advertisement area" />
-                    </a>
-                </div>
-
-                <div className="">
-                    <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/ads.jpg" alt="advertisement area" />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#">
-                        <Image width={635} height={450} className="mx-auto" src="/src/img/advertise.jpg" alt="advertisement area" />
-                    </a>
-                </div>
+                {
+                    ads.map(ad => (
+                        <div className="">
+                            <a href="#">
+                                <Image width={635} height={450} className="mx-auto" src={ad.images[0].url} alt="advertisement area" />
+                            </a>
+                        </div>)
+                    )
+                }
             </Carousel>
         </div>
     );

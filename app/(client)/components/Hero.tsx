@@ -1,5 +1,5 @@
 import Slider from "./Slider";
-import { fetchTopBlogs } from "../../action";
+import { fetchAds, fetchAllAds, fetchTopBlogs } from "../../action";
 import Image from 'next/image';
 import Link from "next/link";
 import Ads from "./Advertisment";
@@ -7,6 +7,7 @@ import Ads from "./Advertisment";
 const Hero = async () => {
     const blogs = await fetchTopBlogs();
     console.log(blogs);
+    const adverts = await fetchAllAds();
     return (
         <div className="bg-white py-6">
             <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
@@ -15,7 +16,7 @@ const Hero = async () => {
                     {/*Start left cover*/}
                     <div className="flex-shrink max-w-full h-auto overflow-hidden w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
                         <div className="relative hover-img w-full h-full max-h-[450px] overflow-hidden">
-                            <Ads />
+                            <Ads ads={adverts} />
                         </div>
                     </div>
 
