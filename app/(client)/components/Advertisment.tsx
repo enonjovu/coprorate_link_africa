@@ -31,7 +31,7 @@ const Ads = ({ ads }: { ads: adsProps }) => {
             >
                 {
                     ads.map(ad => (
-                        <div className="">
+                        <div className="" key={ad.images[0].key}>
                             <a href="#">
                                 <Image width={635} height={450} className="mx-auto" src={ad.images[0].url} alt="advertisement area" />
                             </a>
