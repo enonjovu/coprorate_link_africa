@@ -39,7 +39,7 @@ const EventSingle = async ({ params }: paramProps) => {
                   <span className="font-bold text-black">{event.eventDate}</span>
                 </p>
               </div>
-              <p className="text-gray-900 w-11/12">
+              <p className="w-11/12 mb-5 text-black whitespace-pre-wrap ">
                 {event.description}
               </p>
 

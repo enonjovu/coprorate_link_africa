@@ -320,7 +320,7 @@ export const deleteEvent = async (
   return await response.json();
 };
 
-// Adverts
+// Main Adverts
 export const fetchAds = async (page: string): Promise<adsProps> => {
   const response = await fetch(`${rootLink}/api/adverts/all?page=${page}`, {
     next: { revalidate: 0 },
@@ -330,7 +330,6 @@ export const fetchAds = async (page: string): Promise<adsProps> => {
   }
   return await response.json();
 };
-// Adverts
 export const fetchAllAds = async (): Promise<allAdsProps> => {
   const response = await fetch(`${rootLink}/api/adverts/allAds`, {
     next: { revalidate: 0 },
@@ -367,6 +366,103 @@ export const deleteAds = async (
   }
   return await response.json();
 };
+//Main Adverts
+
+// Top Adverts
+export const fetchTopAds = async (page: string): Promise<adsProps> => {
+  const response = await fetch(`${rootLink}/api/topAds/all?page=${page}`, {
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+export const fetchAllTopAds = async (): Promise<allAdsProps> => {
+  const response = await fetch(`${rootLink}/api/topAds/allAds`, {
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+export const postTopAds = async (formData: {}): Promise<{
+  status: string;
+  message: string;
+}> => {
+  const response = await fetch(`${rootLink}/api/topAds/new`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store",
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error("Error Posting Data");
+  }
+  return await response.json();
+};
+export const deleteTopAds = async (
+  id: string
+): Promise<{ status: string; message: string }> => {
+  const response = await fetch(`${rootLink}/api/topAds/delete/?id=${id}`, {
+    method: "DELETE",
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+//Top Adverts
+
+// Side Adverts
+export const fetchSideAds = async (page: string): Promise<adsProps> => {
+  const response = await fetch(`${rootLink}/api/sideAds/all?page=${page}`, {
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+export const fetchAllSideAds = async (): Promise<allAdsProps> => {
+  const response = await fetch(`${rootLink}/api/sideAds/allAds`, {
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+export const postSideAds = async (formData: {}): Promise<{
+  status: string;
+  message: string;
+}> => {
+  const response = await fetch(`${rootLink}/api/sideAds/new`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store",
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error("Error Posting Data");
+  }
+  return await response.json();
+};
+export const deleteSideAds = async (
+  id: string
+): Promise<{ status: string; message: string }> => {
+  const response = await fetch(`${rootLink}/api/sideAds/delete/?id=${id}`, {
+    method: "DELETE",
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+//Side Adverts
 
 // Company Actions
 export const fetchCompanies = async (): Promise<directoryProps> => {
