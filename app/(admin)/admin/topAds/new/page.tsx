@@ -1,7 +1,7 @@
 "use client"
 import "@uploadthing/react/styles.css";
 import Modal from "@/app/(admin)/components/Modal";
-import { postAds } from "@/app/action";
+import { postTopAds } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
 import Link from "next/link";
@@ -28,7 +28,7 @@ const NewTopAd: React.FC = () => {
         }
         formData.images = images;
         console.log("file", formData);
-        const response = await postAds(formData)
+        const response = await postTopAds(formData)
         if (response.status === "true") {
             setIsModalOpen(true); // Open the modal
             setFormKey((prevKey) => prevKey + 1);
@@ -45,8 +45,8 @@ const NewTopAd: React.FC = () => {
 
     const title = images.length ? (
         <>
-            <h1 className="my-5 text-xl">Upload Complete</h1>
-            <p>Uploaded {images.length} files</p>
+            <h1 className="my-5 text-xl">Image Upload Complete</h1>
+            <p>Uploaded {images.length} files. Below are the files:</p>
         </>) : null;
 
     const imageList = (
@@ -56,7 +56,7 @@ const NewTopAd: React.FC = () => {
                 {
                     images.map(image => (
                         <li key={image.key}>
-                            <Link href={image.url} target="_blank">{image.url}</Link>
+                            <Link href={image.url} className="my-2 cursor-pointer" target="_blank">{image.url}</Link>
                         </li>
                     ))
                 }
