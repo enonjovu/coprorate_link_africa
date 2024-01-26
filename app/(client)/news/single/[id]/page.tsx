@@ -21,7 +21,7 @@ const SingleBlogPage = async ({ params }: paramProps) => {
                     <meta property="og:title" content={blog.title} />
                     <meta property="og:description" content={blog.story} />
                     <meta property="og:image" content={blog.images[0].url} />
-                    <meta property="og:url" content="URL of your website" />
+                    <meta property="og:url" content={`https://www.clafrica.online/news/single/${id}`} />
                 </head>
 
                 {/* block news */}

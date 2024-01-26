@@ -1,6 +1,5 @@
 import { fetchEventById } from "@/app/action";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import Head from "next/head";
 import Image from "next/image";
 import { BsCalendar, BsClock, BsHouse, BsTicket } from "react-icons/bs";
 
@@ -16,16 +15,12 @@ const EventSingle = async ({ params }: paramProps) => {
   return (
     <main id="content">
       <>
-        <Head>
-          <title>Events</title>
-          <meta property="og:type" content="article" />
-          <meta property="og:url" content={`https://www.clafrica.online/event/${id}`} />
+        <head>
           <meta property="og:title" content={event.title} />
           <meta property="og:description" content={event.description} />
           <meta property="og:image" content={event.images[0].url} />
-          <meta property='og:image:width' content='1200' />
-          <meta property='og:image:height' content='627' />
-        </Head>
+          <meta property="og:url" content={`https://www.clafrica.online/news/single/${id}`} />
+        </head>
         <div className="py-10 bg-white">
           <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 space-y-10">
             <div className="flex flex-col md:flex-row flex-wrap max-w-full w-full">
