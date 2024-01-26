@@ -5,7 +5,7 @@ import SocialMediaButtons from "@/app/(client)/components/SocialMediaButtons";
 import TopStories from "@/app/(client)/components/TopStories";
 import { fetchBlogsById } from "@/app/action";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import Head from "next/head";
+
 type paramProps = {
     params: Params
 }
@@ -17,16 +17,13 @@ const SingleBlogPage = async ({ params }: paramProps) => {
     return (
         <main id="content">
             <>
-                <Head>
-                    <title>News</title>
-                    <meta property="og:type" content="article" />
-                    <meta property="og:url" content={`https://www.clafrica.online/event/${id}`} />
+                <head>
                     <meta property="og:title" content={blog.title} />
                     <meta property="og:description" content={blog.story} />
                     <meta property="og:image" content={blog.images[0].url} />
-                    <meta property='og:image:width' content='1200' />
-                    <meta property='og:image:height' content='627' />
-                </Head>
+                    <meta property="og:url" content="URL of your website" />
+                </head>
+
                 {/* block news */}
                 <div className="bg-gray-50 py-10">
                     <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
