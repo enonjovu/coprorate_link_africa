@@ -57,22 +57,24 @@ const SideAdsListingComponent = async ({ page }: { page: string }) => {
                     </div>
                     <div className="flex flex-row flex-wrap -mx-3">
                         {
-                            ads.length > 0 ?
-                                ads.map(advert => (
-                                    <div key={advert._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                                        <div className="flex flex-row sm:block hover-img">
-                                            <Image width={900} height={800} className="max-w-full w-full h-40 min-h-40 max-h-40 overflow-hidden object-cover mx-auto" src={advert.images[0].url} alt="alt title" />
-                                            <div className="w-full h-16 bg-red-700 roundeg-lg flex items-center justify-center">
-                                                <form action={handleDelete}>
-                                                    <input name="itemId" className="hidden" value={advert._id} />
-                                                    <button type="submit" className="cursor-pointer rounded-lg border-[1px] border-white p-2">
-                                                        <BsTrash size={20} color={"#fff"} />
-                                                    </button>
-                                                </form>
+                            ads?.length ?
+                                (
+                                    ads.map(advert => (
+                                        <div key={advert._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+                                            <div className="flex flex-row sm:block hover-img">
+                                                <Image width={900} height={800} className="max-w-full w-full h-40 min-h-40 max-h-40 overflow-hidden object-cover mx-auto" src={advert.images[0].url} alt="alt title" />
+                                                <div className="w-full h-16 bg-red-700 roundeg-lg flex items-center justify-center">
+                                                    <form action={handleDelete}>
+                                                        <input name="itemId" className="hidden" value={advert._id} />
+                                                        <button type="submit" className="cursor-pointer rounded-lg border-[1px] border-white p-2">
+                                                            <BsTrash size={20} color={"#fff"} />
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )) :
+                                    ))
+                                ) :
                                 <h1 className="text-2xl font-bold text-center w-full">No Ads Found</h1>
                         }
                     </div>

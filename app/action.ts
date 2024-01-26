@@ -371,6 +371,7 @@ export const deleteAds = async (
 // Top Adverts
 export const fetchTopAds = async (page: string): Promise<adsProps> => {
   const response = await fetch(`${rootLink}/api/topAds/all?page=${page}`, {
+    method: "GET",
     next: { revalidate: 0 },
   });
   if (!response.ok) {
@@ -419,6 +420,7 @@ export const deleteTopAds = async (
 // Side Adverts
 export const fetchSideAds = async (page: string): Promise<adsProps> => {
   const response = await fetch(`${rootLink}/api/sideAds/all?page=${page}`, {
+    method: "GET",
     next: { revalidate: 0 },
   });
   if (!response.ok) {
@@ -428,6 +430,7 @@ export const fetchSideAds = async (page: string): Promise<adsProps> => {
 };
 export const fetchAllSideAds = async (): Promise<allAdsProps> => {
   const response = await fetch(`${rootLink}/api/sideAds/allAds`, {
+    method: "GET",
     next: { revalidate: 0 },
   });
   if (!response.ok) {
