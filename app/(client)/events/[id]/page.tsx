@@ -23,6 +23,8 @@ const EventSingle = async ({ params }: paramProps) => {
           <meta property="og:title" content={event.title} />
           <meta property="og:description" content={event.description} />
           <meta property="og:image" content={event.images[0].url} />
+          <meta property='og:image:width' content='1200' />
+          <meta property='og:image:height' content='627' />
         </Head>
         <div className="py-10 bg-white">
           <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 space-y-10">
