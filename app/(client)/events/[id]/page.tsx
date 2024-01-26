@@ -18,7 +18,7 @@ const EventSingle = async ({ params }: paramProps) => {
         <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 space-y-10">
           <div className="flex flex-col md:flex-row flex-wrap max-w-full w-full">
             <div className="w-full h-full flex flex-col items-center rounded-2xl p-4 shadow-lg space-y-6">
-              <div className="w-full h-[30vh] md:h-[50vh]">
+              <div className="w-[25rem] h-[25rem]">
                 <Image src={event.images[0].url} className="w-full h-full object-cover" width={640} height={424} alt="Company Logo" />
               </div>
               <h1 className="text-3xl font-bold text-black">{event.title}</h1>
