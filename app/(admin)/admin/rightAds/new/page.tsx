@@ -1,7 +1,7 @@
 "use client"
 import "@uploadthing/react/styles.css";
 import Modal from "@/app/(admin)/components/Modal";
-import { postAds } from "@/app/action";
+import { postAds, postSideAds } from "@/app/action";
 import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
 import Link from "next/link";
@@ -28,7 +28,7 @@ const NewTopAd: React.FC = () => {
         }
         formData.images = images;
         console.log("file", formData);
-        const response = await postAds(formData)
+        const response = await postSideAds(formData)
         if (response.status === "true") {
             setIsModalOpen(true); // Open the modal
             setFormKey((prevKey) => prevKey + 1);
