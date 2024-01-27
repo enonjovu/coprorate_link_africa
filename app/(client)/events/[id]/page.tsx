@@ -21,6 +21,9 @@ const EventSingle = async ({ params }: paramProps) => {
           <meta property="og:description" content={event.description} />
           <meta property="og:image" content={event.images[0].url} />
           <meta property="og:url" content={`https://www.clafrica.online/events/${id}`} />
+          <meta property="fb:app_id" content={``} />
+          <meta property="og:type" content={`event`} />
+
         </head>
         <div className="py-10 bg-white">
           <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 space-y-10">
