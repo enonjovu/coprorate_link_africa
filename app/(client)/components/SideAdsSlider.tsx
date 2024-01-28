@@ -31,7 +31,7 @@ const SideAdsSlider = ({ ads }: { ads: adsProps }) => {
             >
                 {
                     ads?.map(advert => (
-                        <div className="">
+                        <div className="" key={advert.images[0].key}>
                             <a href="#">
                                 <Image width={1000} height={1000} className="mx-auto" src={advert.images[0].url} alt="advertisement area" />
                             </a>

@@ -29,7 +29,7 @@ const TopAdsSlider = ({ topAds }: { topAds: adsProps }) => {
             >
                 {
                     topAds.map(advert => (
-                        <div className="w-full h-full flex items-center justify-center text-white">
+                        <div className="w-full h-full flex items-center justify-center text-white" key={advert.images[0].key}>
                             <img src={advert.images[0].url} className='h-full w-full object-cover' alt="" />
                         </div>
                     ))
