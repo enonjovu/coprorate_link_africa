@@ -7,8 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const HeaderComponent = () => {
     const router = useRouter();
     const [user] = useAuthState(auth);
-    const userSession = sessionStorage.getItem('user');
-    if (!userSession || !user) {
+    if (!user) {
         router.push('/signin')
     } else {
         return (

@@ -8,9 +8,6 @@ import { useRouter } from "next/navigation";
 const AuthButtons = () => {
     const router = useRouter();
     const [user] = useAuthState(auth);
-    const userSession = sessionStorage.getItem('user');
-    console.log("User => ", user)
-    console.log("User Session => ", userSession)
 
     const handleSignOut = async () => {
         await signOut(auth);
