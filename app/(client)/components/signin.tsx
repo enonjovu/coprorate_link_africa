@@ -14,7 +14,6 @@ const SignInForm = () => {
 
   const handleSignInWithGoogle = async () => {
     const res = await signInWithGoogle()
-    console.log(res)
     setEmail('')
     setPassword('')
     router.push('/')
