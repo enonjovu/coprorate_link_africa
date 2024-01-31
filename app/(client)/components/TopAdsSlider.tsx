@@ -28,7 +28,7 @@ const TopAdsSlider = ({ topAds }: { topAds: adsProps }) => {
                 className="relative max-h-[339px] md:h-full overflow-hidden m-0" // Set initial height using Tailwind classes
             >
                 {
-                    topAds.map(advert => (
+                    topAds?.map(advert => (
                         <div className="w-full h-full flex items-center justify-center text-white" key={advert.images[0].key}>
                             <img src={advert.images[0].url} className='h-full w-full object-cover' alt="" />
                         </div>
