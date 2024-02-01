@@ -13,7 +13,12 @@ const SignInForm = () => {
   const router = useRouter();
 
   const handleSignInWithGoogle = async () => {
-    const res = signInWithGoogle()
+    const res = await signInWithGoogle()
+    if (res) {
+      setEmail('')
+      setPassword('')
+      router.push('/')
+    }
   }
 
   const handleSignIn = async () => {
