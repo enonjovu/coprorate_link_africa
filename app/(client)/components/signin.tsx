@@ -14,18 +14,21 @@ const SignInForm = () => {
 
   const handleSignInWithGoogle = async () => {
     const res = await signInWithGoogle()
-    setEmail('')
-    setPassword('')
-    router.push('/')
+    if (res) {
+      setEmail('')
+      setPassword('')
+      router.push('/')
+    }
   }
 
   const handleSignIn = async () => {
     try {
       const res = await signInWithEmailAndPassword(email, password);
-      console.log("Res => ", res)
-      setEmail('')
-      setPassword('')
-      router.push('/')
+      if (res) {
+        setEmail('')
+        setPassword('')
+        router.push('/')
+      }
     }
     catch (e) {
       console.error(e)
