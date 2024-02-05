@@ -1,9 +1,10 @@
-import ListingComponent from "../../components/ListingComponents";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import DirectoryListingComponent from "../../components/DirectoryListing";
 
-const AllDirectories = () => {
+const AllDirectories = ({ searchParams, }: { searchParams: Params }) => {
+    let page = searchParams['page'] ?? "1";
     return (
-        // <ListingComponent/>
-        <h1>All Directories</h1>
+        <DirectoryListingComponent page={page} />
     );
 }
 

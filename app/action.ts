@@ -16,6 +16,11 @@ type directoryProps = {
   logo: { url: string; key: string }[];
 }[];
 
+type allDirectoryProps = {
+  companies: directoryProps;
+  itemsCount: number;
+};
+
 // Blog Props
 type blogProps = {
   id: string;
@@ -68,6 +73,18 @@ type tender = {
     logo: { url: string; key: string }[];
   }[];
 }[];
+
+type allTenders = {
+  tenders: {
+    _id: string;
+    title: string;
+    description: string;
+    company: {
+      logo: { url: string; key: string }[];
+    };
+  }[];
+  itemsCount: number;
+};
 
 type eventProps = {
   events: {
@@ -248,6 +265,18 @@ export const fetchAllTenders = async (): Promise<tender> => {
   }
   return await response.json();
 };
+export const fetchTenders = async (page: string): Promise<allTenders> => {
+  const response = await fetch(
+    `${rootLink}/api/tenders/allTenders?page=${page}`,
+    {
+      next: { revalidate: 0 },
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
 export const getTenderByID = async (id: string): Promise<tenderProps> => {
   const response = await fetch(`${rootLink}/api/tenders/single/?id=${id}`, {
     next: { revalidate: 0 },
@@ -257,6 +286,34 @@ export const getTenderByID = async (id: string): Promise<tenderProps> => {
   }
   return await response.json();
 };
+export const updateTender = async (
+  formData: {},
+  id: string
+): Promise<{ status: string; message: string }> => {
+  const response = await fetch(`${rootLink}/api/tenders/edit`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store",
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error("Error Posting Data");
+  }
+  return await response.json();
+};
+export const deleteTender = async (
+  id: string
+): Promise<{ status: string; message: string }> => {
+  const response = await fetch(`${rootLink}/api/tenders/delete/?id=${id}`, {
+    method: "DELETE",
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+// Tenders
 
 // Events
 export const fetchEvents = async (page: string): Promise<eventProps> => {
@@ -477,6 +534,20 @@ export const fetchCompanies = async (): Promise<directoryProps> => {
   }
   return await response.json();
 };
+export const fetchAllCompanies = async (
+  page: string
+): Promise<allDirectoryProps> => {
+  const response = await fetch(
+    `${rootLink}/api/directory/allDirectories?page=${page}`,
+    {
+      next: { revalidate: 0 },
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
 export const postCompany = async (formData: {}): Promise<{
   status: string;
   message: string;
@@ -495,6 +566,17 @@ export const postCompany = async (formData: {}): Promise<{
 export const fetchCompanyById = async (id: string): Promise<directoryProps> => {
   const response = await fetch(`${rootLink}/api/directory/single/?id=${id}`, {
     next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Error Fetching Data");
+  }
+  return await response.json();
+};
+export const deleteCompany = async (
+  id: string
+): Promise<{ status: string; message: string }> => {
+  const response = await fetch(`${rootLink}/api/directory/delete/?id=${id}`, {
+    method: "DELETE",
   });
   if (!response.ok) {
     throw new Error("Error Fetching Data");

@@ -20,6 +20,7 @@
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "mongodb": "^6.3.0",
     "next": "14.0.4",
+    "next-auth": "^4.24.5",
     "preline": "^2.0.2",
     "react": "^18",
     "react-dom": "^18",
