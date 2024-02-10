@@ -2,21 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import Modal from "@/app/(admin)/components/Modal";
 import { BsPlusCircle } from 'react-icons/bs';
-import { fetchCompanies, postTender } from '@/app/action';
-
-
-type directoryProps = {
-    _id: string;
-    name: string;
-    phone: string;
-    email: string;
-    website: string;
-    address: string;
-    lat: number;
-    lon: number;
-    description: string;
-    logo: { url: string; key: string; }[]
-}[]
+import { postTender } from '@/app/action';
+import { UploadButton } from '@/utils/uploadthing';
 
 // Initial state with types
 type FormData = {
@@ -46,19 +33,7 @@ const NewTender = () => {
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [requirements, setRequirements] = useState<string[]>([]);
     const [newRequirement, setNewRequirement] = useState('');
-    const [companies, setCompanies] = useState<directoryProps>([]);
-    const [selectedCompany, setSelectedCompany] = useState('');
-
-    useEffect(() => {
-        async function fetchData() {
-            const companieList = await fetchCompanies();
-            setCompanies(companieList);
-            console.log("Companies => ", companies)
-        }
-        fetchData();
-    }, []);
-
-
+    const [images, setImages] = useState<{ url: string; key: string; }[]>([])
 
     const addRequirement = () => {
         setRequirements((prevRequirements) => [...prevRequirements, newRequirement]);
@@ -67,7 +42,6 @@ const NewTender = () => {
 
     const handleSubmit = async () => {
         formData.requirements = requirements;
-        formData.company = selectedCompany;
         console.log("file", formData);
         const response = await postTender(formData)
         console.log("Response => ", response);
@@ -77,6 +51,13 @@ const NewTender = () => {
             setFormData(initialFormData);
         }
     };
+
+    const handleImagesUpload = (res: any) => {
+        setImages(res)
+        const json = JSON.stringify(res);
+        console.log(json);
+        alert("Upload Completed");
+    }
 
     return (
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -93,16 +74,33 @@ const NewTender = () => {
                         <div className="grid gap-4 lg:gap-6">
 
                             <div>
-                                <label htmlFor="company" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Company</label>
-                                <select id="company" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                    value={selectedCompany}
-                                    onChange={(e) => setSelectedCompany(e.target.value)}>
-                                    {companies.map((company) => (
-                                        <option className='bg-white text-black font-bold' key={company._id} value={company._id}>
-                                            {company.name}
-                                        </option>
-                                    ))}
-                                </select>
+                                <label htmlFor="company" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Company Name</label>
+                                <input type="text" name="title" id="title" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            title: e.target.value
+                                        })
+                                    }}
+                                    value={formData.title}
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="blog-image" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Article Image</label>
+                                <UploadButton
+                                    endpoint="imageUploader"
+                                    onClientUploadComplete={(res) => {
+                                        if (res) {
+                                            // Do something with the response
+                                            handleImagesUpload(res);
+                                        }
+                                    }}
+                                    onUploadError={(error: Error) => {
+                                        // Do something with the error.
+                                        alert(`ERROR! ${error.message}`);
+                                    }}
+                                />
                             </div>
 
                             <div>

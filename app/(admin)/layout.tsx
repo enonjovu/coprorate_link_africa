@@ -2,7 +2,7 @@ import './globals.css';
 import Sidebar from './components/Sidebar';
 import { Metadata } from 'next';
 import PrelineScript from '../components/PrelineScripts';
-// import HeaderComponent from './components/HeaderComponent';
+import HeaderComponent from './components/HeaderComponent';
 export const metadata: Metadata = {
     title: 'Corporate Link Africa',
     description: 'Simplified Business Narratives',
@@ -16,7 +16,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                {/* <HeaderComponent /> */}
+                <HeaderComponent />
                 <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 md:px-8 lg:hidden dark:bg-gray-800 dark:border-gray-700">
                     <div className="flex items-center py-4">
                         <button type="button" className="text-gray-500 hover:text-gray-600" data-hs-overlay="#application-sidebar" aria-controls="application-sidebar" aria-label="Toggle navigation">
