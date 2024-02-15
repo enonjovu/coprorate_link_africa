@@ -13,19 +13,19 @@ const SingleLeader = () => {
         }
     ]
     return (
-        <div className="bg-gray-100 p-4">
+        <div className="bg-white">
 
-            <div className="border-1 shadow-lg shadow-gray-700 rounded-lg space-y-8">
+            <div className="space-y-8 flex flex-col md:flex-row md:justify-center md:items-start md:space-x-4">
 
                 {/* top content */}
-                <div className="flex rounded-t-lg sm:px-2 w-full">
-                    <div className="h-[25rem] w-[25rem] overflow-hidden sm:rounded-full sm:relative sm:p-0 top-10 left-5 p-3">
-                        <img src="https://media.licdn.com/dms/image/C4D03AQH8qidO0nb_Ng/profile-displayphoto-shrink_800_800/0/1615696897070?e=2147483647&v=beta&t=ia3wfE2J7kVLdBy9ttkgUDAA_ul29fymykhQo0lABDo" />
+                <div className="flex flex-col rounded-t-lg sm:px-2 w-full md:w-2/5">
+                    <div className="md:h-[70vh] md:w-full overflow-hidden sm:relative sm:p-0 top-10 left-5 p-3">
+                        <img className="h-full w-full object-cover" src="../src/img/dummy/img1.jpg" />
                     </div>
 
-                    <div className="w-2/3 sm:text-center pl-5 mt-10 text-start flex flex-col items-center justify-center">
+                    <div className="w-full sm:text-center pl-5 mt-10 text-start flex flex-col items-center justify-center">
                         <p className="font-poppins text-black font-bold text-heading sm:text-4xl text-2xl">
-                            Amit Pachange
+                            Mphatso
                         </p>
                         <p className="text-gray-700">Software Engineer</p>
                     </div>
@@ -33,7 +33,7 @@ const SingleLeader = () => {
                 </div>
 
                 {/* main content */}
-                <div className="p-5">
+                <div className="px-5 w-full md:w-3/5">
 
                     <div className="flex flex-col sm:flex-row sm:mt-10">
 
@@ -65,11 +65,13 @@ const SingleLeader = () => {
                                 </p>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
 
             </div>
+            <SocialMediaButtons url={"/leaders/2"} />
 
         </div>
     )
