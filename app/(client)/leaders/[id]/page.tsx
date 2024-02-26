@@ -15,11 +15,11 @@ const SingleLeader = () => {
     return (
         <div className="bg-white">
 
-            <div className="space-y-8 flex flex-col md:flex-row md:justify-center md:items-start md:space-x-4">
+            <div className="space-y-8 flex flex-col items-center">
 
                 {/* top content */}
-                <div className="flex flex-col rounded-t-lg sm:px-2 w-full md:w-2/5">
-                    <div className="md:h-[70vh] md:w-full overflow-hidden sm:relative sm:p-0 top-10 left-5 p-3">
+                <div className="flex flex-col rounded-t-lg sm:px-2 w-full md:w-4/5">
+                    <div className="md:h-[80vh] md:w-full overflow-hidden sm:relative sm:p-0 top-10 left-5 p-3">
                         <img className="h-full w-full object-cover" src="../src/img/dummy/img1.jpg" />
                     </div>
 
@@ -33,7 +33,7 @@ const SingleLeader = () => {
                 </div>
 
                 {/* main content */}
-                <div className="px-5 w-full md:w-3/5">
+                <div className="px-5 w-full md:w-11/12">
 
                     <div className="flex flex-col sm:flex-row sm:mt-10">
 
