@@ -4,26 +4,31 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 const SingleLeader = () => {
     const images = [
         {
-            url: "/src/img/ad.jpeg",
+            url: "/src/img/dummy/img8.jpg",
             key: "1"
         },
         {
-            url: "/src/img/ad.jpeg",
+            url: "/src/img/dummy/img22.jpg",
+            key: "1"
+        },
+        {
+            url: "/src/img/dummy/img5.jpg",
             key: "1"
         }
     ]
     return (
         <div className="bg-white">
 
-            <div className="space-y-8 flex flex-col items-center">
-
+            <div className="flex flex-col items-center">
                 {/* top content */}
                 <div className="flex flex-col rounded-t-lg sm:px-2 w-full md:w-4/5">
-                    <div className="md:h-[80vh] md:w-full overflow-hidden sm:relative sm:p-0 top-10 left-5 p-3">
-                        <img className="h-full w-full object-cover" src="../src/img/dummy/img1.jpg" />
+                    <div className="w-full flex justify-center">
+                        <div className="md:h-[510px] w-[1000px] overflow-hidden">
+                            <PicturesSlider images={images} />
+                        </div>
                     </div>
 
-                    <div className="w-full sm:text-center pl-5 mt-10 text-start flex flex-col items-center justify-center">
+                    <div className="w-full sm:text-center pl-5 mt-5 text-start flex flex-col items-center justify-center">
                         <p className="font-poppins text-black font-bold text-heading sm:text-4xl text-2xl">
                             Mphatso
                         </p>

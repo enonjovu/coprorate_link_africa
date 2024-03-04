@@ -32,8 +32,19 @@ function PicturesSlider({ images }: imagesProps) {
     >
       {
         images?.map((image, index) =>
-          <div key={image.key} className="w-full max-h-[60vh] h-full overflow-hidden">
-            <Image width={474} height={510} quality={100} layout='responsive' className="w-full h-full object-cover rounded-lg" src={image.url} alt="Image description" />
+          <div key={image.key} className="relative w-full h-full overflow-hidden">
+            <div className="inset-0 w-full h-full flex items-center justify-center">
+              <Image
+                width={1500} // You can remove fixed width for full responsiveness
+                height={510} // You can remove fixed height for full responsiveness
+                quality={100}
+                layout="responsive"
+                objectFit="cover" // Ensure aspect ratio is maintained
+                className="rounded-lg"
+                src={image.url}
+                alt="Image description"
+              />
+            </div>
           </div>
 
         )
