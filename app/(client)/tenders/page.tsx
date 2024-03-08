@@ -3,6 +3,7 @@ import Image from "next/image";
 
 const TendersPage = async () => {
     const tenders = await fetchAllTenders();
+    console.log("Tenders => ", tenders)
 
     return (
         <div className="bg-gray-50 py-6">
@@ -30,9 +31,9 @@ const TendersPage = async () => {
                                 tenders?.map(tender => (
                                     <div key={tender._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                         <div className="flex flex-row sm:block hover-img">
-                                            <a href={`/tenders/${tender._id}`}>
+                                            {/* <a href={`/tenders/${tender._id}`}>
                                                 <img className="max-w-full w-full mx-auto" src={tender.company[0].logo[0].url} alt="alt title" />
-                                            </a>
+                                            </a> */}
                                             <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                                 <h3 className="text-lg text-black font-bold leading-tight text-center mb-2">
                                                     <a href={`/tenders/${tender._id}`}>{tender.title}</a>
