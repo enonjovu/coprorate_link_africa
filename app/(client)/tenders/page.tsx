@@ -39,7 +39,7 @@ const TendersPage = async () => {
                                             <div className="grid w-full sm:grid-cols-2 xl:grid-cols-4 gap-6">
                                                 {
                                                     tenders.map(tender => (
-                                                        <div className="relative flex flex-col shadow-lg rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 max-w-sm">
+                                                        <div key={tender._id} className="relative flex flex-col shadow-lg rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 max-w-sm">
                                                             <Link href={`tenders/${tender._id}`} className="z-20 absolute h-full w-full top-0 left-0 ">&nbsp;</Link>
                                                             <div className="h-auto overflow-hidden">
                                                                 <div className="h-44 overflow-hidden relative">
