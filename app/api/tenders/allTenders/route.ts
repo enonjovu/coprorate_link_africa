@@ -25,22 +25,6 @@ export async function GET(req: Request, res: Response) {
       .toArray();
     const itemsCount = await collection.countDocuments({});
 
-    const getCompanyDetails = async (id: string) => {
-      const company = await companyCollection
-        .find({ _id: new ObjectId(id) })
-        .project({
-          lon: 0,
-          lat: 0,
-          website: 0,
-          phone: 0,
-          address: 0,
-          description: 0,
-          email: 0,
-        })
-        .toArray();
-      return company[0];
-    };
-
     const tenders: any = [];
 
     if (results) {
@@ -49,7 +33,6 @@ export async function GET(req: Request, res: Response) {
           _id: r._id,
           title: r.title,
           description: r.description,
-          company: await getCompanyDetails(r.company),
         });
       }
     }
