@@ -1,5 +1,6 @@
 import { fetchAllTenders } from "@/app/action";
 import Image from "next/image";
+import Link from "next/link";
 
 type tender = {
     _id: string;
@@ -27,32 +28,33 @@ const TendersPage = async () => {
                                     Tenders
                                 </h2>
                             </div>
-                            <div className="flex flex-row flex-wrap -mx-3">
-                                <div className="flex-shrink max-w-full w-full px-3 pb-5">
-                                    <div className="relative hover-img max-h-[395px] overflow-hidden">
-                                        {/*thumbnail*/}
-                                        <a href="/events/1">
-                                            <Image className="max-w-full w-full mx-auto h-auto object-contain"
-                                                width={1265} height={394} src="/src/img/tenders.jpg" alt="Image description" />
-                                        </a>
-                                    </div>
-                                </div>
 
+                            <div className="relative flex flex-col space-y-6 min-h-screen  justify-center overflow-hidden sm:py-12">
+                                <div className="relative hover-img max-h-[395px] overflow-hidden">
+                                    <Image className="max-w-full w-full mx-auto h-auto object-contain" width={1265} height={394} src="/src/img/tenders.jpg" alt="Image description" />
+                                </div>
                                 {
-                                    tenders?.map(tender => (
-                                        <div key={tender._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                                            <div className="flex flex-row sm:block hover-img">
-                                                {/* <a href={`/tenders/${tender._id}`}>
-                                                <img className="max-w-full w-full mx-auto" src={tender.company[0].logo[0].url} alt="alt title" />
-                                            </a> */}
-                                                <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                                    <h3 className="text-lg text-black font-bold leading-tight text-center mb-2">
-                                                        <a href={`/tenders/${tender._id}`}>{tender.title}</a>
-                                                    </h3>
-                                                </div>
+                                    tenders.length ?
+                                        <div className="mx-auto max-w-screen-xl px-4 w-full">
+                                            <div className="grid w-full sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                                                {
+                                                    tenders.map(tender => (
+                                                        <div className="relative flex flex-col shadow-lg rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 max-w-sm">
+                                                            <Link href={`tenders/${tender._id}`} className="z-20 absolute h-full w-full top-0 left-0 ">&nbsp;</Link>
+                                                            <div className="h-auto overflow-hidden">
+                                                                <div className="h-44 overflow-hidden relative">
+                                                                    <img src="/src/img/logo.png" className="w-full h-full object-cover" alt="" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="bg-white py-4 px-3">
+                                                                <h3 className="font-bold mb-2 text-center text-black">{tender.title}</h3>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
                                             </div>
                                         </div>
-                                    ))
+                                        : <h1 className="bg-red-700 text-white font-bold text-lg">No tenders found.</h1>
                                 }
                             </div>
                         </div>
