@@ -256,14 +256,18 @@ export const postTender = async (formData: {}): Promise<{
   }
   return await response.json();
 };
-export const fetchAllTenders = async (): Promise<tender> => {
-  const response = await fetch(`${rootLink}/api/tenders/all`, {
-    next: { revalidate: 0 },
-  });
-  if (!response.ok) {
-    throw new Error("Error Fetching Data");
+export const fetchAllTenders = async (): Promise<any | tender> => {
+  try {
+    const response = await fetch(`${rootLink}/api/tenders/all`, {
+      next: { revalidate: 0 },
+    });
+    if (!response.ok) {
+      throw new Error("Error Fetching Data");
+    }
+    return await response.json();
+  } catch (e) {
+    console.log(e);
   }
-  return await response.json();
 };
 export const fetchTenders = async (page: string): Promise<allTenders> => {
   const response = await fetch(

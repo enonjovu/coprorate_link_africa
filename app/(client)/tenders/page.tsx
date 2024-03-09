@@ -1,8 +1,18 @@
 import { fetchAllTenders } from "@/app/action";
 import Image from "next/image";
 
+type tender = {
+    _id: string;
+    title: string;
+    description: string;
+    company: {
+        logo: { url: string; key: string }[];
+    }[];
+}[]
+
 const TendersPage = async () => {
-    const tenders = await fetchAllTenders();
+    const res = await fetchAllTenders();
+    const tenders = res as tender;
     console.log("Tenders => ", tenders)
 
     return (
