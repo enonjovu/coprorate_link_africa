@@ -25,6 +25,30 @@ export async function GET(req: Request, res: Response) {
       .toArray();
     const itemsCount = await collection.countDocuments({});
 
+    const getCompanyDetails = async (id: string) => {
+      try {
+        const company = await companyCollection
+          .find({ _id: new ObjectId(id) })
+          .project({
+            lon: 0,
+            lat: 0,
+            website: 0,
+            phone: 0,
+            address: 0,
+            description: 0,
+            email: 0,
+          })
+          .toArray();
+        if (company) {
+          return company[0];
+        } else {
+          return null;
+        }
+      } catch (e) {
+        return null;
+      }
+    };
+
     const tenders: any = [];
 
     if (results) {
@@ -33,6 +57,7 @@ export async function GET(req: Request, res: Response) {
           _id: r._id,
           title: r.title,
           description: r.description,
+          company: await getCompanyDetails(r.company),
         });
       }
     }
