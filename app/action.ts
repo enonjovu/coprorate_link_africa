@@ -13,7 +13,6 @@ type directoryProps = {
   description: string;
   logo: { url: string; key: string }[];
 }[];
-
 type allDirectoryProps = {
   companies: directoryProps;
   itemsCount: number;
