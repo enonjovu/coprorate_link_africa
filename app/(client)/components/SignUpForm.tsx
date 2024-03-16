@@ -11,12 +11,10 @@ const SignUpForm = () => {
 
   const handleSignUp = async () => {
     try {
-      // const res = await signUp({ email, password });
-      // console.log({ res })
+      const res = await signUp({ email, password });
       setEmail('');
       setPassword('');
-      console.log(email, password)
-      router.push('/signin');
+      if (res) { router.push('/signin'); }
     } catch (e) {
       console.error(e);
     }

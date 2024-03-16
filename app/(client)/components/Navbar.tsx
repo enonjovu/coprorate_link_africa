@@ -3,6 +3,7 @@ import TopAds from './TopAds';
 import SearchForm from "./SearchForm";
 import AuthButtons from "./AuthButons";
 
+
 const Navbar = () => {
   return (
     <>

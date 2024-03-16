@@ -24,7 +24,6 @@ const SingleTender = async ({ params }: paramProps) => {
                             </h3>
                             {/* About The Role */}
                             <div className="w-full flex-col space-y-4">
-                                <p className="font-bold text-black text-lg">ABOUT THE ROLE</p>
                                 <p className="text-black w-full md:w-10/12 whitespace-pre-wrap">
                                     {tender.description}
                                 </p>

@@ -8,7 +8,6 @@ const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-
   // const handleSignInWithGoogle = async () => {
   //   const res = await signInWithGoogle()
   //   if (res) {

@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/db";
-import Blog from "@/models/Blog";
+import Advert from "@/models/Advert";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
@@ -8,7 +8,7 @@ export async function GET(req: Request, res: Response) {
     await dbConnect();
 
     // Fetch the data
-    const results = await Blog.find({}).sort({ date: -1 });
+    const results = await Advert.find({}).sort({ date: -1 });
     // Return the result
     return NextResponse.json(results);
   } catch (e) {

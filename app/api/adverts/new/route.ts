@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/db";
-import Blog from "@/models/Blog";
+import Advert from "@/models/Advert";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const { images } = await req.json();
   try {
     await dbConnect();
-    const newAd = await Blog.create({ images, date });
+    const newAd = await Advert.create({ images, date });
 
     if (newAd) {
       return NextResponse.json({
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       });
     }
   } catch (err) {
-    console.log(`Failed to post Blog ${err}`);
+    console.log(`Failed to post Advert ${err}`);
     return NextResponse.json({
       status: "error",
       message: "Something went wrong",
