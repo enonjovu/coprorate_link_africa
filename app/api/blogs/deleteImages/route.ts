@@ -1,11 +1,12 @@
-import clientPromise from "@/lib/db";
+import dbConnect from "@/lib/db";
+import Blog from "@/models/Blog";
 import { utapi } from "@/utils/utapicomponent";
-import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 export async function PATCH(req: Request, res: Response) {
   try {
+    await dbConnect();
     const { searchParams } = new URL(req.url);
     const key = searchParams.get("key") ?? "";
     const id = searchParams.get("id") ?? "";
@@ -18,14 +19,9 @@ export async function PATCH(req: Request, res: Response) {
     // Delete the image from UploadThing (uncomment when ready)
     const deleteResult = await utapi.deleteFiles(key);
 
-    // Connect to MongoDB
-    const mongoClient = await clientPromise;
-    const db = mongoClient.db("coporate"); // Correct database name?
-    const collection = db.collection("blogs");
-
     // Update the document in MongoDB
-    const result = await collection.updateOne(
-      { _id: new ObjectId(id) },
+    const result = await Blog.updateOne(
+      { _id: id },
       { $pull: { images: { key: key } } }
     );
 
