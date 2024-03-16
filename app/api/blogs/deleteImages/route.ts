@@ -1,9 +1,8 @@
-import clientPromise from "@/lib/mongodb";
+import clientPromise from "@/lib/db";
 import { utapi } from "@/utils/utapicomponent";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
-
 
 export async function PATCH(req: Request, res: Response) {
   try {
@@ -27,10 +26,8 @@ export async function PATCH(req: Request, res: Response) {
     // Update the document in MongoDB
     const result = await collection.updateOne(
       { _id: new ObjectId(id) },
-      { $pull: { "images": { "key": key } } }
+      { $pull: { images: { key: key } } }
     );
-
-    
 
     // Log the update result for debugging
     console.log("MongoDB update result:", result);
@@ -41,7 +38,6 @@ export async function PATCH(req: Request, res: Response) {
     } else {
       return NextResponse.json({ error: "Image not found or already deleted" });
     }
-
   } catch (e) {
     console.error("Error deleting image:", e);
     return NextResponse.json({ error: "Failed to delete image" });

@@ -1,37 +1,35 @@
 "use client";
 
-import { auth } from '@/app/firebase';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signUp } from '@/app/action';
 
 const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
   const router = useRouter();
 
   const handleSignUp = async () => {
     try {
-      const res = await createUserWithEmailAndPassword(email, password);
-      console.log({ res })
+      // const res = await signUp({ email, password });
+      // console.log({ res })
       setEmail('');
       setPassword('');
-      router.push('/');
+      console.log(email, password)
+      router.push('/signin');
     } catch (e) {
       console.error(e);
     }
   }
 
-  const handleSignInWithGoogle = async () => {
-    const res = await signInWithGoogle()
-    console.log(res)
-    setEmail('')
-    setPassword('')
-    router.push('/')
+  // const handleSignInWithGoogle = async () => {
+  //   const res = await signInWithGoogle()
+  //   console.log(res)
+  //   setEmail('')
+  //   setPassword('')
+  //   router.push('/')
 
-  }
+  // }
 
 
   return (
@@ -49,7 +47,7 @@ const SignUpForm = () => {
           </div>
 
           <div className="mt-5">
-            <button onClick={handleSignInWithGoogle} type="button" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+            <button type="button" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
               <svg className="w-4 h-auto" width="46" height="47" viewBox="0 0 46 47" fill="none">
                 <path d="M46 24.0287C46 22.09 45.8533 20.68 45.5013 19.2112H23.4694V27.9356H36.4069C36.1429 30.1094 34.7347 33.37 31.5957 35.5731L31.5663 35.8669L38.5191 41.2719L38.9885 41.3306C43.4477 37.2181 46 31.1669 46 24.0287Z" fill="#4285F4" />
                 <path d="M23.4694 47C29.8061 47 35.1161 44.9144 39.0179 41.3012L31.625 35.5437C29.6301 36.9244 26.9898 37.8937 23.4987 37.8937C17.2793 37.8937 12.0281 33.7812 10.1505 28.1412L9.88649 28.1706L2.61097 33.7812L2.52296 34.0456C6.36608 41.7125 14.287 47 23.4694 47Z" fill="#34A853" />
@@ -104,7 +102,7 @@ const SignUpForm = () => {
                 {/* End Form Group */}
 
 
-                <button type="button" onClick={handleSignUp} className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign Up</button>
+                <button type="button" onClick={() => { handleSignUp() }} className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign Up</button>
               </div>
             </form>
             {/* End Form */}

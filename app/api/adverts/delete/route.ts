@@ -1,32 +1,27 @@
-import clientPromise from "@/lib/mongodb";
+import dbConnect from "@/lib/db";
+import Blog from "@/models/Blog";
 import { utapi } from "@/utils/utapicomponent";
-import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 export async function DELETE(req: Request, res: Response) {
   try {
+    await dbConnect();
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
 
-    const mongoClient = await clientPromise;
-    // Databse Name
-    const db = mongoClient.db("coporate");
-
-    // Table
-    const collection = db.collection("adverts");
     if (!id) {
       // Handle the case where id is missing or null
       return NextResponse.json({ error: "Missing blog ID" });
     }
-    const results = await collection.find({ _id: new ObjectId(id) }).toArray();
+    const results = await Blog.find({ _id: id });
     if (results[0]) {
       const advert = results[0];
       for (let i = 0; i < advert.images.length; i++) {
         const image = advert.images[i].key;
         await utapi.deleteFiles(image);
       }
-      await collection.findOneAndDelete({ _id: new ObjectId(id) });
+      await Blog.findOneAndDelete({ _id: id });
     }
     // Return the result
     if (results) {

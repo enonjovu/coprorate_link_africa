@@ -26,20 +26,23 @@ const EventsListing = async ({ events }: eventProps) => {
                                 </div>
                             </div>
                             {
-                                events.map(event => (
-                                    <div key={event._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                                        <div className="flex flex-row sm:block hover-img">
-                                            <a href={`/events/${event._id}`}>
-                                                <img className="max-w-[15rem] w-[15rem] h-[15rem] object-cover mx-auto" src={event.images[0].url} alt="alt title" />
-                                            </a>
-                                            <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                                <h3 className="text-2xl text-center text-black font-bold leading-tight mb-2">
-                                                    <a href={`/events/${event._id}`}>{event.title}</a>
-                                                </h3>
+                                events.length ?
+                                    (
+                                        events.map(event => (
+                                            <div key={event._id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+                                                <div className="flex flex-col sm:block hover-img">
+                                                    <a href={`/events/${event._id}`}>
+                                                        <img className="max-w-[15rem] w-[15rem] h-[15rem] object-cover mx-auto" src={event.images[0].url} alt="alt title" />
+                                                    </a>
+                                                    <div className="py-0 sm:py-3 pl-3 sm:pl-0">
+                                                        <h3 className="text-lg lg:text-2xl text-center text-black font-bold leading-tight mb-2">
+                                                            <a href={`/events/${event._id}`}>{event.title}</a>
+                                                        </h3>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                ))
+                                        ))
+                                    ) : <></>
                             }
                         </div>
                     </div>

@@ -1,39 +1,31 @@
-import clientPromise from "@/lib/mongodb";
+import dbConnect from "@/lib/db";
+import Tender from "@/models/Tender";
 import { NextResponse } from "next/server";
 
+export async function POST(req: Request) {
+  const date = Date.now();
+  const { title, company, description, requirements } = await req.json();
+  try {
+    await dbConnect();
+    const newDirectory = await Tender.create({
+      title,
+      company,
+      description,
+      requirements,
+      date,
+    });
 
-export async function POST (req:Request){
-    const date = Date.now();
-    const {
-        title,
-        company,
-        description,
-        requirements,
-    } = await req.json();
-    try{
-        const mongoClient = await clientPromise;
-        // Databse Name
-        const db = mongoClient.db("coporate");
-
-        // Table
-        const collection = db.collection("tenders")
-
-        const newDirectory = await collection.insertOne(
-            {title,company,description,requirements,date}
-        );
-
-        if(newDirectory){
-            return NextResponse.json({
-                status:"true",
-                message:"Blog created successfully"
-            });
-        }
+    if (newDirectory) {
+      return NextResponse.json({
+        status: "true",
+        message: "Tender created successfully",
+      });
     }
-    catch(err){
-        console.log(`Failed to post Blog ${err}`);
-        return NextResponse.json({
-            status:"error",
-            message:"Something went wrong"
-        })
-    }
+  } catch (err) {
+    console.log(`Failed to post Tender ${err}`);
+    return NextResponse.json({
+      status: "error",
+      message: "Something went wrong",
+    });
+  }
 }

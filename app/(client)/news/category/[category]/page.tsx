@@ -32,7 +32,7 @@ const BlogCategoryPage = async ({ params }: paramProps) => {
                                             <div key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
                                                 <div className="flex flex-row sm:block hover-img">
                                                     <Link href={`/news/single/${blog.id}`} className="">
-                                                        <Image width={1200} height={800} className="max-w-full w-full mx-auto h-52 min-h-52 max-h-52 overflow-hidden" src={blog.image.url} alt="alt title" />
+                                                        <Image width={1200} height={800} className="max-w-full w-full mx-auto h-44 min-h-44 max-h-52 overflow-hidden object-cover" src={blog.image.url} alt="alt title" />
                                                     </Link>
                                                     <div className="py-0 sm:py-3 pl-3 sm:pl-0">
                                                         <h3 className="text-lg font-bold text-black leading-tight mb-2">

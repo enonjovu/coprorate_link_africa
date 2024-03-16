@@ -6,7 +6,7 @@ import AuthButtons from "./AuthButons";
 const Navbar = () => {
   return (
     <>
-      <TopAds />
+      {/* <TopAds /> */}
       <header className="flex flex-wrap sm:justify-start sm:flex-col z-50 w-full bg-white border-b border-gray-200 text-sm pb-2 sm:pb-0 dark:border-red-700 dark:bg-gray-100">
         <nav className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-12 lg:px-16" aria-label="Global">
           <div className="flex items-center justify-between h-16">

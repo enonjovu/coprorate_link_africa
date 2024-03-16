@@ -31,7 +31,7 @@ const SingleTender = async ({ params }: paramProps) => {
                             </div>
 
                             {
-                                tender.requirements.length ?
+                                tender.requirements?.length ?
                                     <div className="w-full flex-col space-y-4">
                                         <p className="font-bold text-black text-lg"> Requirements</p>
                                         <ul className="pl-4">
@@ -45,8 +45,6 @@ const SingleTender = async ({ params }: paramProps) => {
                                         </ul>
                                     </div> : null
                             }
-
-                            <button className="bg-red-700 text-white font-bold text-center w-11/12 md:w-1/3 h-16 rounded-lg">Apply Now</button>
                         </div>
                     </div>
                 </div>

@@ -24,14 +24,14 @@ const EventSingle = async ({ params }: paramProps) => {
           <meta property="fb:app_id" content={``} />
           <meta property="og:type" content={`event`} />
         </head>
-        <div className="py-10 bg-white">
+        <div className="py-10 bg-white w-full">
           <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 space-y-10">
             <div className="flex flex-col md:flex-row flex-wrap max-w-full w-full">
               <div className="w-full h-full flex flex-col md:flex-row justify-between rounded-2xl p-4 shadow-lg space-y-6">
-                <Link href={event.images[0].url} target="_blank" className="w-full max-w-[40%] h-full">
+                <Link href={event.images[0].url} target="_blank" className="w-full md:max-w-[40%] h-full">
                   <Image src={event.images[0].url} className="w-full h-full object-cover" width={1000} height={1000} alt="Company Logo" />
                 </Link>
-                <div className="w-[60%] h-full flex flex-col items-center">
+                <div className="w-full h-full flex flex-col items-center space-y-4">
                   <h1 className="text-3xl font-bold text-black">{event.title}</h1>
 
                   <div className="flex flex-col md:flex-row items-center justify-center w-full h-full space-y-6 md:space-y-0 md:space-x-16">

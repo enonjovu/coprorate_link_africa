@@ -42,7 +42,7 @@ const SingleBlogPage = async ({ params }: paramProps) => {
                                     <div className="max-w-full w-full px-4">
                                         {/* Post content */}
                                         <div className="leading-relaxed pb-4">
-                                            <figure className="flex items-center justify-center text-center mb-6 w-full h-full min-h-[60vh] max-h-[60vh]">
+                                            <figure className="flex items-center justify-center text-center mb-6 w-full h-full min-h-[60vh] max-h-[60vh] overflow-hidden">
                                                 <PicturesSlider images={blog.images} />
                                                 {/* <figcaption className='text-black'> Image Description</figcaption> */}
                                             </figure>

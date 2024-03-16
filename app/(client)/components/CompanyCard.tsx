@@ -18,6 +18,7 @@ type companyProps = {
 }
 
 const CompanyCard = ({ company }: companyProps) => {
+    console.log("Company => ", company)
     return (
         <div className="flex flex-col md:flex-row flex-wrap max-w-full w-full">
             {/* Compoany Description */}

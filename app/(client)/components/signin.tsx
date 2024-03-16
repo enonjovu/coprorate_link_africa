@@ -1,29 +1,26 @@
 "use client"
 
-import { auth } from "@/app/firebase";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { signIn } from "next-auth/react";
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
   const router = useRouter();
 
-  const handleSignInWithGoogle = async () => {
-    const res = await signInWithGoogle()
-    if (res) {
-      setEmail('')
-      setPassword('')
-      router.push('/')
-    }
-  }
+  // const handleSignInWithGoogle = async () => {
+  //   const res = await signInWithGoogle()
+  //   if (res) {
+  //     setEmail('')
+  //     setPassword('')
+  //     router.push('/')
+  //   }
+  // }
 
   const handleSignIn = async () => {
     try {
-      const res = await signInWithEmailAndPassword(email, password);
+      const res = await signIn("credentials", { email, password, redirect: false });
       if (res) {
         setEmail('')
         setPassword('')
@@ -50,7 +47,7 @@ const SignInForm = () => {
 
           <div className="mt-5">
             <button type="button" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              onClick={handleSignInWithGoogle}
+            // onClick={handleSignInWithGoogle}
             >
               <svg className="w-4 h-auto" width="46" height="47" viewBox="0 0 46 47" fill="none">
                 <path d="M46 24.0287C46 22.09 45.8533 20.68 45.5013 19.2112H23.4694V27.9356H36.4069C36.1429 30.1094 34.7347 33.37 31.5957 35.5731L31.5663 35.8669L38.5191 41.2719L38.9885 41.3306C43.4477 37.2181 46 31.1669 46 24.0287Z" fill="#4285F4" />
