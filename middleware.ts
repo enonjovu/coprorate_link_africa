@@ -10,8 +10,6 @@ export default withAuth(
       request.nextauth.token?.role !== "admin"
     ) {
       return NextResponse.rewrite(new URL("/denied", request.url));
-    } else {
-      return NextResponse.redirect("/admin");
     }
   },
   {
