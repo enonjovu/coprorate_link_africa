@@ -14,8 +14,6 @@ type FormData = {
     requirements: string[];
     images: { url: string; key: string; }[]
 };
-
-
 const initialFormData: FormData = {
     title: "",
     company: "",
@@ -24,8 +22,6 @@ const initialFormData: FormData = {
     requirements: [],
     images: [{ url: "", key: "" }],
 };
-
-
 
 const NewTender = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
