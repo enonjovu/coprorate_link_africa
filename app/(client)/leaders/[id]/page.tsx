@@ -30,7 +30,7 @@ const SingleLeader = () => {
 
                     <div className="w-full sm:text-center pl-5 mt-5 text-start flex flex-col items-center justify-center">
                         <p className="font-poppins text-black font-bold text-heading sm:text-4xl text-2xl">
-                            Mphatso
+                            Mr John Doe
                         </p>
                         <p className="text-gray-700">Software Engineer</p>
                     </div>
