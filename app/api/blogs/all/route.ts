@@ -11,7 +11,7 @@ export async function GET(req: Request, res: Response) {
     const page = pageNo ? parseInt(pageNo) : 1;
     // Fetch the data
     const results = await Blog.find({})
-      .sort({ date: -1 })
+      .sort({ createdAt: -1, date: -1 })
       .skip(12 * (page - 1))
       .limit(12);
 
