@@ -31,7 +31,7 @@ export async function GET(req: Request, res: Response) {
       const blog = results[0];
 
       const relatedArticles = await Blog.find({ category: blog.category })
-        .sort({ date: -1 })
+        .sort({ createdAt: -1, date: -1 })
         .limit(3);
 
       result.push({

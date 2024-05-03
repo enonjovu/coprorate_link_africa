@@ -51,6 +51,147 @@ const SingleBlogPage = async ({ params }: paramProps) => {
                                                 {blog?.story}
                                             </p>
                                         </div>
+                                        {/* Comments */}
+                                        {/* <div id="comments" className="pt-16">
+                                            <h3 className="text-2xl leading-normal mb-2 font-semibold text-gray-800 ">5 Comments</h3>
+
+                                            <ol className="mb-4">
+                                                <li className="py-2 mt-6">
+                                                    <div className="pb-4 border-b border-gray-200  border-dashed">
+                                                        <footer>
+                                                            <img className="w-20 h-20 border border-gray-200  max-w-full float-left mr-4" src="/src/img/avatar2.jpg" alt="avatar" />
+                                                            <div>
+                                                                <a className="text-lg leading-normal mb-2 font-semibold text-gray-800 " href="#" target="_blank">Carlos vila</a>
+                                                                <span className="md:float-right text-sm">
+                                                                    <time dateTime="2020-10-27">Oct 27, 2020</time>
+                                                                </span>
+                                                            </div>
+                                                        </footer>
+                                                        <div>
+                                                            <p className="text-gray-600">I like this themes, fast loading and look profesional</p>
+                                                        </div>
+                                                        <div>
+                                                            <a className="text-red-700 hover:text-red-800" href="#comment-form">Reply</a>
+                                                        </div>
+                                                    </div>
+                                                    <ul className="ml-12 md:ml-24">
+                                                        <li className="py-2 mt-6">
+                                                            <div className="pb-4 border-b border-gray-200  border-dashed">
+                                                                <footer>
+                                                                    <img className="w-20 h-20 border border-gray-200  max-w-full float-left mr-4" src="/src/img/avatar.jpg" alt="avatar" />
+                                                                    <div>
+                                                                        <a className="text-lg leading-normal mb-2 font-semibold text-gray-800 " href="#" target="_blank">Ari Budin</a>
+                                                                        <span className="md:float-right text-sm">
+                                                                            <time dateTime="2020-10-27">Oct 27, 2020</time>
+                                                                        </span>
+                                                                    </div>
+                                                                </footer>
+                                                                <div>
+                                                                    <p className="text-gray-600">Thank you Carlos!</p>
+                                                                </div>
+                                                                <div>
+                                                                    <a className="text-red-700 hover:text-red-800" href="#comment-form">Reply</a>
+                                                                </div>
+                                                            </div>
+                                                            <ul className="md:ml-24">
+                                                                <li className="py-2 mt-6" id="comment-5">
+                                                                    <div className="pb-4 border-b border-gray-200  border-dashed">
+                                                                        <footer>
+                                                                            <img className="w-20 h-20 border border-gray-200  max-w-full float-left mr-4" src="/src/img/avatar2.jpg" alt="avatar" />
+                                                                            <div>
+                                                                                <a className="text-lg leading-normal mb-2 font-semibold text-gray-800 " href="#" target="_blank">Carlos vila</a>
+                                                                                <span className="md:float-right text-sm">
+                                                                                    <time dateTime="2020-10-27">Oct 27, 2020</time>
+                                                                                </span>
+                                                                            </div>
+                                                                        </footer>
+                                                                        <div>
+                                                                            <p className="text-gray-600">You're welcome!</p>
+                                                                        </div>
+                                                                        <div>
+                                                                            <a className="text-red-700 hover:text-red-800" href="#comment-form">Reply</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li className="py-2 mt-6">
+                                                    <div className="pb-4 border-b border-gray-200  border-dashed">
+                                                        <footer>
+                                                            <img className="w-20 h-20 border border-gray-200  max-w-full float-left mr-4" src="/src/img/avatar.jpg" alt="avatar" />
+                                                            <div>
+                                                                <a className="text-lg leading-normal mb-2 font-semibold text-gray-800 " href="#" target="_blank">Ari Budin</a>
+                                                                <span className="md:float-right text-sm">
+                                                                    <time dateTime="2020-10-27">Oct 27, 2020</time>
+                                                                </span>
+                                                            </div>
+                                                        </footer>
+                                                        <div>
+                                                            <p className="text-gray-600">Please support me with give positive rating!</p>
+                                                        </div>
+                                                        <div>
+                                                            <a className="text-red-700 hover:text-red-800" href="#comment-form">Reply</a>
+                                                        </div>
+                                                    </div>
+                                                    <ul className="ml-12 md:ml-24">
+                                                        <li className="py-2 mt-6">
+                                                            <div className="pb-4 border-b border-gray-200  border-dashed">
+                                                                <footer>
+                                                                    <img className="w-20 h-20 border border-gray-200  max-w-full float-left mr-4" src="/src/img/avatar2.jpg" alt="avatar" />
+                                                                    <div>
+                                                                        <a className="text-lg leading-normal mb-2 font-semibold text-gray-800 " href="#" target="_blank">Carlos vila</a>
+                                                                        <span className="md:float-right text-sm">
+                                                                            <time dateTime="2020-10-27">Oct 27, 2020</time>
+                                                                        </span>
+                                                                    </div>
+                                                                </footer>
+                                                                <div>
+                                                                    <p className="text-gray-600">Yes Sure!</p>
+                                                                </div>
+                                                                <div>
+                                                                    <a className="text-red-700 hover:text-red-800" href="#comment-form">Reply</a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+
+                                            <div id="comment-form" className="mt-12">
+                                                <h4 className="text-2xl leading-normal mb-2 font-semibold text-gray-800 ">LEAVE A REPLY</h4>
+                                                <p className="mb-5">Your email address will not be published</p>
+                                                <div>
+                                                    <form action="#" >
+                                                        <div className="mt-2"></div>
+                                                        <div className="mb-6">
+                                                            <textarea className="w-full leading-5 relative py-3 px-5 text-gray-800 bg-white border border-gray-100 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 " placeholder="Comment" aria-label="insert comment" rows={4} ></textarea>
+                                                        </div>
+                                                        <div className="mb-6">
+                                                            <input className="w-full leading-5 relative py-3 px-5 text-gray-800 bg-white border border-gray-100 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 " placeholder="Name" aria-label="name" type="text" />
+                                                        </div>
+                                                        <div className="mb-6">
+                                                            <input className="w-full leading-5 relative py-3 px-5 text-gray-800 bg-white border border-gray-100 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 " placeholder="Email" aria-label="email" type="text" />
+                                                        </div>
+                                                        <div className="mb-6">
+                                                            <input className="w-full leading-5 relative py-3 px-5 text-gray-800 bg-white border border-gray-100 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 " placeholder="Website:" aria-label="website" type="text" />
+                                                        </div>
+                                                        <div className="mb-6">
+                                                            <div>
+                                                                <input className="form-checkbox h-5 w-5 text-red-500  border border-gray-100  focus:outline-none" id="comment-cookies" name="comment-cookies" type="checkbox" value="yes" />
+                                                                <label className="ml-2" htmlFor="comment-cookies">
+                                                                    Save my name, email, and website in this browser for the next time I comment.
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div className="mb-6">
+                                                            <button type="submit" className="flex items-center py-3 px-5 leading-5 text-gray-100 bg-black hover:text-white hover:bg-gray-900 hover:ring-0 focus:outline-none focus:ring-0">Post Comment</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">

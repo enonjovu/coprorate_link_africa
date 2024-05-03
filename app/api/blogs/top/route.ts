@@ -7,7 +7,9 @@ export async function GET(req: Request, res: Response) {
   try {
     await dbConnect();
     // Fetch the data
-    const results = await Blog.find({}).limit(4).sort({ date: -1 });
+    const results = await Blog.find({})
+      .limit(4)
+      .sort({ createdAt: -1, date: -1 });
 
     const convertedBlogs = [];
 

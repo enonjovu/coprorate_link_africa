@@ -10,7 +10,10 @@ export async function GET(req: Request, res: Response) {
     const category = searchParams.get("category");
 
     // Fetch the data
-    const results = await Blog.find({ category: category }).sort({ date: -1 });
+    const results = await Blog.find({ category: category }).sort({
+      createdAt: -1,
+      date: -1,
+    });
 
     // Create an empty array to store converted blogs
     const convertedBlogs = [];
