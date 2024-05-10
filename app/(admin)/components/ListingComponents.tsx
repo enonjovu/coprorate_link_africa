@@ -1,7 +1,6 @@
-import { fetchLatestBlogs, getItemsCount } from "@/app/action";
-import Link from "next/link"
-import UpdateNews from "./UpdateNews";
-
+import { fetchLatestBlogs, getItemsCount } from '@/app/action';
+import Link from 'next/link';
+import UpdateNews from './UpdateNews';
 
 const ListingComponent = async ({ page }: { page: string }) => {
     const blogs = await fetchLatestBlogs(page);
@@ -16,65 +15,69 @@ const ListingComponent = async ({ page }: { page: string }) => {
         if (index >= 1 && index <= totalPages) {
             pageNumbers.push(index);
         }
-
     }
 
     const currentPage = parseInt(page);
     const prevPage = currentPage - 1 > 0 ? currentPage - 1 : 1;
     const nextPage = currentPage + 1;
 
-
     return (
-        <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
+        <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
             <div className="flex flex-row flex-wrap">
-                <div className="flex-shrink max-w-full w-full overflow-hidden">
+                <div className="w-full max-w-full flex-shrink overflow-hidden">
                     <div className="w-full py-3">
-                        <h2 className="text-gray-800 dark:text-white text-2xl font-bold">
-                            <span className="inline-block h-5 border-l-3 border-red-600 border-2 mr-2"></span>
+                        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+                            <span className="border-l-3 mr-2 inline-block h-5 border-2 border-red-600"></span>
                             All Stories
                         </h2>
                     </div>
-                    <div className="flex flex-row flex-wrap -mx-3">
+                    <div className="-mx-3 flex flex-row flex-wrap">
                         <UpdateNews blogs={blogs} />
                     </div>
                 </div>
-                <div className="text-center mt-4">
+                <div className="mt-4 text-center">
                     <nav aria-label="Page navigation">
-                        <ul className="flex justify-center items-center space-x-0">
+                        <ul className="flex items-center justify-center space-x-0">
                             <li>
-                                {
-                                    currentPage === 1 ? (null)
-                                        : <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/admin/news/?page=${prevPage}`} aria-label="Previous">
-                                            <span aria-hidden="true">«</span>
-                                        </Link>
-                                }
+                                {currentPage === 1 ? null : (
+                                    <Link
+                                        className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                        href={`/admin/news/?page=${prevPage}`}
+                                        aria-label="Previous"
+                                    >
+                                        <span aria-hidden="true">«</span>
+                                    </Link>
+                                )}
                             </li>
 
-                            {
-                                pageNumbers.map((pageNo, index) => (
-                                    <li key={index}>
-                                        <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href={`/admin/news/?page=${pageNo}`}>
-                                            {pageNo}
-                                        </Link>
-                                    </li>
-                                ))
-                            }
+                            {pageNumbers.map((pageNo, index) => (
+                                <li key={index}>
+                                    <Link
+                                        className="relative -mr-0.5 block border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                        href={`/admin/news/?page=${pageNo}`}
+                                    >
+                                        {pageNo}
+                                    </Link>
+                                </li>
+                            ))}
 
                             <li>
-                                {
-                                    currentPage === totalPages ? (null)
-                                        : <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/admin/news/?page=${nextPage}`} aria-label="Next">
-                                            <span aria-hidden="true">»</span>
-                                        </Link>
-                                }
+                                {currentPage === totalPages ? null : (
+                                    <Link
+                                        className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                        href={`/admin/news/?page=${nextPage}`}
+                                        aria-label="Next"
+                                    >
+                                        <span aria-hidden="true">»</span>
+                                    </Link>
+                                )}
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
-
     );
-}
+};
 
 export default ListingComponent;

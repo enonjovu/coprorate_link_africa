@@ -1,10 +1,8 @@
-"use client"
-import SignInForm from "@/app/(client)/components/signin";
+'use client';
+import SignInForm from '@/app/(client)/components/signin';
 
 const SignIn = () => {
-    return (
-        <SignInForm />
-    );
-}
+    return <SignInForm />;
+};
 
 export default SignIn;

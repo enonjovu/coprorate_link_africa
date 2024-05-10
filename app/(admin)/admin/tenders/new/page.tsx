@@ -1,6 +1,6 @@
-"use client"
+'use client';
 import React, { useEffect, useState } from 'react';
-import Modal from "@/app/(admin)/components/Modal";
+import Modal from '@/app/(admin)/components/Modal';
 import { BsPlusCircle } from 'react-icons/bs';
 import { postTender } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
@@ -12,15 +12,15 @@ type FormData = {
     category: string;
     description: string;
     requirements: string[];
-    images: { url: string; key: string; }[]
+    images: { url: string; key: string }[];
 };
 const initialFormData: FormData = {
-    title: "",
-    company: "",
-    category: "",
-    description: "",
+    title: '',
+    company: '',
+    category: '',
+    description: '',
     requirements: [],
-    images: [{ url: "", key: "" }],
+    images: [{ url: '', key: '' }],
 };
 
 const NewTender = () => {
@@ -29,7 +29,7 @@ const NewTender = () => {
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [requirements, setRequirements] = useState<string[]>([]);
     const [newRequirement, setNewRequirement] = useState('');
-    const [images, setImages] = useState<{ url: string; key: string; }[]>([])
+    const [images, setImages] = useState<{ url: string; key: string }[]>([]);
 
     const addRequirement = () => {
         setRequirements((prevRequirements) => [...prevRequirements, newRequirement]);
@@ -38,10 +38,10 @@ const NewTender = () => {
 
     const handleSubmit = async () => {
         formData.requirements = requirements;
-        console.log("file", formData);
-        const response = await postTender(formData)
-        console.log("Response => ", response);
-        if (response.status === "true") {
+        console.log('file', formData);
+        const response = await postTender(formData);
+        console.log('Response => ', response);
+        if (response.status === 'true') {
             setIsModalOpen(true); // Open the modal
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
@@ -49,41 +49,52 @@ const NewTender = () => {
     };
 
     const handleImagesUpload = (res: any) => {
-        setImages(res)
+        setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
-        alert("Upload Completed");
-    }
+        alert('Upload Completed');
+    };
 
     return (
-        <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-            <div className="max-w-xl mx-auto">
+        <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+            <div className="mx-auto max-w-xl">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
-                        Create new tender
-                    </h1>
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white sm:text-4xl">Create new tender</h1>
                 </div>
 
                 <div className="mt-12">
                     {/* Form */}
                     <form key={formKey}>
                         <div className="grid gap-4 lg:gap-6">
-
                             <div>
-                                <label htmlFor="company" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Company Name</label>
-                                <input type="text" name="title" id="title" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                <label
+                                    htmlFor="company"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Company Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            title: e.target.value
-                                        })
+                                            title: e.target.value,
+                                        });
                                     }}
                                     value={formData.title}
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="blog-image" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Article Image</label>
+                                <label
+                                    htmlFor="blog-image"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Article Image
+                                </label>
                                 <UploadButton
                                     endpoint="imageUploader"
                                     onClientUploadComplete={(res) => {
@@ -100,55 +111,91 @@ const NewTender = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="title" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Tender Title</label>
-                                <input type="text" name="title" id="title" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                <label
+                                    htmlFor="title"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Tender Title
+                                </label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            title: e.target.value
-                                        })
+                                            title: e.target.value,
+                                        });
                                     }}
                                     value={formData.title}
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="requirements" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Tender Requirements</label>
+                                <label
+                                    htmlFor="requirements"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Tender Requirements
+                                </label>
                                 <div className="flex flex-row justify-between">
-                                    <input type="text" name="requirements" id="requirements" className="py-3 px-4 inline w-[95%] max-w-[90%] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                    <input
+                                        type="text"
+                                        name="requirements"
+                                        id="requirements"
+                                        className="inline w-[95%] max-w-[90%] rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
                                         placeholder="Enter requirement"
                                         value={newRequirement}
                                         onChange={(e) => setNewRequirement(e.target.value)}
                                     />
-                                    <button type='button' className='w-[5%] max-w-[5%]' onClick={addRequirement}><BsPlusCircle color={'blue'} size={30} /> </button>
+                                    <button type="button" className="w-[5%] max-w-[5%]" onClick={addRequirement}>
+                                        <BsPlusCircle color={'blue'} size={30} />{' '}
+                                    </button>
                                 </div>
                             </div>
 
                             <div>
-                                <label htmlFor="description" className="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Tender Description</label>
-                                <textarea id="description" wrap="hard" name="description" rows={10} className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                <label
+                                    htmlFor="description"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Tender Description
+                                </label>
+                                <textarea
+                                    id="description"
+                                    wrap="hard"
+                                    name="description"
+                                    rows={10}
+                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            description: e.target.value
-                                        })
+                                            description: e.target.value,
+                                        });
                                     }}
                                     value={formData.description}
                                 ></textarea>
                             </div>
-
                         </div>
                         {/* End Grid */}
 
                         <div className="mt-6 grid">
-                            <button type="button"
-                                className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                onClick={handleSubmit}>Post Tender
+                            <button
+                                type="button"
+                                className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                onClick={handleSubmit}
+                            >
+                                Post Tender
                             </button>
                         </div>
                     </form>
                     {/* End Form */}
-                    <Modal isOpen={isModalOpen} message="Tender created successfully" onClose={() => setIsModalOpen(false)} />
+                    <Modal
+                        isOpen={isModalOpen}
+                        message="Tender created successfully"
+                        onClose={() => setIsModalOpen(false)}
+                    />
                 </div>
             </div>
         </div>

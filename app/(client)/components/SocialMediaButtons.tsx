@@ -1,10 +1,10 @@
-"use client"
+'use client';
 import { FacebookShare, LinkedinShare, TwitterShare, WhatsappShare } from 'react-share-kit';
 const SocialMediaButtons = ({ url }: { url: string }) => {
     return (
-        <div className="flex-col flex">
-            <p className="font-bold text-black text-center">Share via social media</p>
-            <div className="w-full h-24 flex flex-row justify-around">
+        <div className="flex flex-col">
+            <p className="text-center font-bold text-black">Share via social media</p>
+            <div className="flex h-24 w-full flex-row justify-around">
                 <div className="rounded-full"></div>
                 <LinkedinShare size={40} url={url} />
                 <FacebookShare size={40} url={url} />
@@ -13,6 +13,6 @@ const SocialMediaButtons = ({ url }: { url: string }) => {
             </div>
         </div>
     );
-}
+};
 
 export default SocialMediaButtons;

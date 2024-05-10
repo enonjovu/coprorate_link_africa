@@ -1,7 +1,7 @@
-import TopStories from "./TopStories";
-import { fetchLatestBlogs, getItemsCount } from "../../action";
+import TopStories from './TopStories';
+import { fetchLatestBlogs, getItemsCount } from '../../action';
 import Image from 'next/image';
-import Link from "next/link";
+import Link from 'next/link';
 
 const LatestNews = async ({ page }: { page: string }) => {
     const blogs = await fetchLatestBlogs(page);
@@ -16,7 +16,6 @@ const LatestNews = async ({ page }: { page: string }) => {
         if (index >= 1 && index <= totalPages) {
             pageNumbers.push(index);
         }
-
     }
 
     const currentPage = parseInt(page);
@@ -25,73 +24,116 @@ const LatestNews = async ({ page }: { page: string }) => {
 
     return (
         <div className="bg-gray-50 py-2">
-            <div className="w-full flex justify-center overflow-hidden">
-                <div className="flex flex-wrap justify-between mb-4 w-full md:w-1/2 md:mt-4">
-                    <a href="/news/category/agriculture" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Agriculture</a>
-                    <a href="/news/category/business" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Business</a>
-                    <a href="/news/category/tech" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Tech</a>
-                    <a href="/news/category/environment" className="scale-75 md:scale-100 text-white bg-red-700 hover:text-white p-3 rounded-md">Environment</a>
+            <div className="flex w-full justify-center overflow-hidden">
+                <div className="mb-4 flex w-full flex-wrap justify-between md:mt-4 md:w-1/2">
+                    <a
+                        href="/news/category/agriculture"
+                        className="scale-75 rounded-md bg-red-700 p-3 text-white hover:text-white md:scale-100"
+                    >
+                        Agriculture
+                    </a>
+                    <a
+                        href="/news/category/business"
+                        className="scale-75 rounded-md bg-red-700 p-3 text-white hover:text-white md:scale-100"
+                    >
+                        Business
+                    </a>
+                    <a
+                        href="/news/category/tech"
+                        className="scale-75 rounded-md bg-red-700 p-3 text-white hover:text-white md:scale-100"
+                    >
+                        Tech
+                    </a>
+                    <a
+                        href="/news/category/environment"
+                        className="scale-75 rounded-md bg-red-700 p-3 text-white hover:text-white md:scale-100"
+                    >
+                        Environment
+                    </a>
                 </div>
             </div>
 
-            <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
+            <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
                 <div className="flex flex-row flex-wrap">
                     {/* post */}
-                    <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
+                    <div className="w-full max-w-full flex-shrink overflow-hidden lg:w-2/3">
                         <div className="w-full py-3">
-                            <h2 className="text-gray-800 text-2xl font-bold">
-                                <span className="inline-block h-5 border-l-2 border-red-600 mr-2"></span>Latest news
+                            <h2 className="text-2xl font-bold text-gray-800">
+                                <span className="mr-2 inline-block h-5 border-l-2 border-red-600"></span>Latest news
                             </h2>
                         </div>
 
-                        <div className="flex flex-row flex-wrap -mx-3">
-                            {blogs?.map(blog => (
-                                <div key={blog.id} className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
-                                    <div className="flex flex-col sm:block hover-img">
+                        <div className="-mx-3 flex flex-row flex-wrap">
+                            {blogs?.map((blog) => (
+                                <div
+                                    key={blog.id}
+                                    className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/3 sm:border-b-0 sm:pt-0"
+                                >
+                                    <div className="hover-img flex flex-col sm:block">
                                         <a href={`/news/single/${blog.id}`}>
-                                            <Image width={900} height={800} className="max-w-full w-full h-44 min-h-44 max-h-44 overflow-hidden object-cover mx-auto" src={blog.image.url} alt="alt title" />
+                                            <Image
+                                                width={900}
+                                                height={800}
+                                                className="min-h-44 mx-auto h-44 max-h-44 w-full max-w-full overflow-hidden object-cover"
+                                                src={blog.image.url}
+                                                alt="alt title"
+                                            />
                                         </a>
-                                        <div className="py-0 sm:py-3 pl-3 sm:pl-0">
-                                            <h3 className="text-lg font-bold leading-tight mb-2">
-                                                <a href={`/news/single/${blog.id}`} className="text-gray-800">{blog.title}</a>
+                                        <div className="py-0 pl-3 sm:py-3 sm:pl-0">
+                                            <h3 className="mb-2 text-lg font-bold leading-tight">
+                                                <a href={`/news/single/${blog.id}`} className="text-gray-800">
+                                                    {blog.title}
+                                                </a>
                                             </h3>
-                                            <p className="hidden md:block text-gray-600 leading-tight mb-1">{blog.story}</p>
-                                            <a href={`/news/category/${blog.category}`} className="text-gray-500"><span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{blog.category.toUpperCase()}</a>
+                                            <p className="mb-1 hidden leading-tight text-gray-600 md:block">
+                                                {blog.story}
+                                            </p>
+                                            <a href={`/news/category/${blog.category}`} className="text-gray-500">
+                                                <span className="mr-2 inline-block h-3 border-l-2 border-red-600"></span>
+                                                {blog.category.toUpperCase()}
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="text-center mt-4">
+                        <div className="mt-4 text-center">
                             <nav aria-label="Page navigation">
-                                <ul className="flex justify-center items-center space-x-0">
+                                <ul className="flex items-center justify-center space-x-0">
                                     <li>
-                                        {
-                                            currentPage === 1 ? (null)
-                                                : <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${prevPage}`} aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                </Link>
-                                        }
+                                        {currentPage === 1 ? null : (
+                                            <Link
+                                                className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                                href={`/?page=${prevPage}`}
+                                                aria-label="Previous"
+                                            >
+                                                <span aria-hidden="true">«</span>
+                                            </Link>
+                                        )}
                                     </li>
 
-                                    {
-                                        pageNumbers.map((pageNo, index) => (
-                                            <li key={index}>
-                                                <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5" href={`/?page=${pageNo}`}>
-                                                    {pageNo}
-                                                </Link>
-                                            </li>
-                                        ))
-                                    }
+                                    {pageNumbers.map((pageNo, index) => (
+                                        <li key={index}>
+                                            <Link
+                                                className="relative -mr-0.5 block border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                                href={`/?page=${pageNo}`}
+                                            >
+                                                {pageNo}
+                                            </Link>
+                                        </li>
+                                    ))}
 
                                     <li>
-                                        {
-                                            currentPage === totalPages ? (null)
-                                                : <Link className="block relative py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:text-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 -mr-0.5 rounded-r" href={`/?page=${nextPage}`} aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                </Link>
-                                        }
+                                        {currentPage === totalPages ? null : (
+                                            <Link
+                                                className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                                href={`/?page=${nextPage}`}
+                                                aria-label="Next"
+                                            >
+                                                <span aria-hidden="true">»</span>
+                                            </Link>
+                                        )}
                                     </li>
                                 </ul>
                             </nav>
@@ -103,6 +145,6 @@ const LatestNews = async ({ page }: { page: string }) => {
             </div>
         </div>
     );
-}
+};
 
 export default LatestNews;

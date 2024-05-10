@@ -1,63 +1,55 @@
-"use client";
+'use client';
 
-import React from "react";
-import { type Editor } from "@tiptap/react";
+import React from 'react';
+import { type Editor } from '@tiptap/react';
 import {
-  Bold,
-  Strikethrough,
-  Italic,
-  List,
-  ListOrdered,
-  Heading2,
-  Underline,
-  Quote,
-  Undo,
-  Redo,
-  Code,
-} from "lucide-react";
+    Bold,
+    Strikethrough,
+    Italic,
+    List,
+    ListOrdered,
+    Heading2,
+    Underline,
+    Quote,
+    Undo,
+    Redo,
+    Code,
+} from 'lucide-react';
 
 type Props = {
-  editor: Editor | null;
-  content: string;
+    editor: Editor | null;
+    content: string;
 };
 
 const Toolbar = ({ editor, content }: Props) => {
-  if (!editor) {
-    return null;
-  }
-  return (
-    <div
-      className="px-4 py-3 rounded-tl-md rounded-tr-md flex justify-between items-start
-    gap-5 w-full flex-wrap border border-gray-700"
-    >
-      <div className="flex justify-start items-center gap-5 w-full lg:w-10/12 flex-wrap ">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleBold().run();
-          }}
-          className={
-            editor.isActive("bold")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
+    if (!editor) {
+        return null;
+    }
+    return (
+        <div
+            className="flex w-full flex-wrap items-start justify-between gap-5 rounded-tl-md
+    rounded-tr-md border border-gray-700 px-4 py-3"
         >
-          <Bold className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleItalic().run();
-          }}
-          className={
-            editor.isActive("italic")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
-        >
-          <Italic className="w-5 h-5" />
-        </button>
-        {/* <button
+            <div className="flex w-full flex-wrap items-center justify-start gap-5 lg:w-10/12 ">
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().toggleBold().run();
+                    }}
+                    className={editor.isActive('bold') ? 'rounded-lg bg-sky-700 p-2 text-white' : 'text-sky-400'}
+                >
+                    <Bold className="h-5 w-5" />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().toggleItalic().run();
+                    }}
+                    className={editor.isActive('italic') ? 'rounded-lg bg-sky-700 p-2 text-white' : 'text-sky-400'}
+                >
+                    <Italic className="h-5 w-5" />
+                </button>
+                {/* <button
           onClick={(e) => {
             e.preventDefault();
             editor.chain().focus().toggleUnderline().run();
@@ -70,122 +62,99 @@ const Toolbar = ({ editor, content }: Props) => {
         >
           <Underline className="w-5 h-5" />
         </button> */}
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleStrike().run();
-          }}
-          className={
-            editor.isActive("strike")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
-        >
-          <Strikethrough className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleHeading({ level: 2 }).run();
-          }}
-          className={
-            editor.isActive("heading", { level: 2 })
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
-        >
-          <Heading2 className="w-5 h-5" />
-        </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().toggleStrike().run();
+                    }}
+                    className={editor.isActive('strike') ? 'rounded-lg bg-sky-700 p-2 text-white' : 'text-sky-400'}
+                >
+                    <Strikethrough className="h-5 w-5" />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().toggleHeading({ level: 2 }).run();
+                    }}
+                    className={
+                        editor.isActive('heading', { level: 2 })
+                            ? 'rounded-lg bg-sky-700 p-2 text-white'
+                            : 'text-sky-400'
+                    }
+                >
+                    <Heading2 className="h-5 w-5" />
+                </button>
 
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleBulletList().run();
-          }}
-          className={
-            editor.isActive("bulletList")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
-        >
-          <List className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleOrderedList().run();
-          }}
-          className={
-            editor.isActive("orderedList")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
-        >
-          <ListOrdered className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleBlockquote().run();
-          }}
-          className={
-            editor.isActive("blockquote")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
-        >
-          <Quote className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().setCode().run();
-          }}
-          className={
-            editor.isActive("code")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400"
-          }
-        >
-          <Code className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().undo().run();
-          }}
-          className={
-            editor.isActive("undo")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400 hover:bg-sky-700 hover:text-white p-1 hover:rounded-lg"
-          }
-        >
-          <Undo className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().redo().run();
-          }}
-          className={
-            editor.isActive("redo")
-              ? "bg-sky-700 text-white p-2 rounded-lg"
-              : "text-sky-400 hover:bg-sky-700 hover:text-white p-1 hover:rounded-lg"
-          }
-        >
-          <Redo className="w-5 h-5" />
-        </button>
-      </div>
-      {content && (
-        <button
-          type="submit"
-          className="px-4 bg-sky-700 text-white py-2 rounded-md"
-        >
-          Add
-        </button>
-      )}
-    </div>
-  );
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().toggleBulletList().run();
+                    }}
+                    className={editor.isActive('bulletList') ? 'rounded-lg bg-sky-700 p-2 text-white' : 'text-sky-400'}
+                >
+                    <List className="h-5 w-5" />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().toggleOrderedList().run();
+                    }}
+                    className={editor.isActive('orderedList') ? 'rounded-lg bg-sky-700 p-2 text-white' : 'text-sky-400'}
+                >
+                    <ListOrdered className="h-5 w-5" />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().toggleBlockquote().run();
+                    }}
+                    className={editor.isActive('blockquote') ? 'rounded-lg bg-sky-700 p-2 text-white' : 'text-sky-400'}
+                >
+                    <Quote className="h-5 w-5" />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().setCode().run();
+                    }}
+                    className={editor.isActive('code') ? 'rounded-lg bg-sky-700 p-2 text-white' : 'text-sky-400'}
+                >
+                    <Code className="h-5 w-5" />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().undo().run();
+                    }}
+                    className={
+                        editor.isActive('undo')
+                            ? 'rounded-lg bg-sky-700 p-2 text-white'
+                            : 'p-1 text-sky-400 hover:rounded-lg hover:bg-sky-700 hover:text-white'
+                    }
+                >
+                    <Undo className="h-5 w-5" />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        editor.chain().focus().redo().run();
+                    }}
+                    className={
+                        editor.isActive('redo')
+                            ? 'rounded-lg bg-sky-700 p-2 text-white'
+                            : 'p-1 text-sky-400 hover:rounded-lg hover:bg-sky-700 hover:text-white'
+                    }
+                >
+                    <Redo className="h-5 w-5" />
+                </button>
+            </div>
+            {content && (
+                <button type="submit" className="rounded-md bg-sky-700 px-4 py-2 text-white">
+                    Add
+                </button>
+            )}
+        </div>
+    );
 };
 
 export default Toolbar;

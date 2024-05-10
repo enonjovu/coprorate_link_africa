@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 
@@ -10,7 +10,7 @@ type adsProps = {
 
 const TopAdsSlider = ({ topAds }: { topAds: adsProps }) => {
     return (
-        <div className="max-h-[339px] md:h-full w-full bg-black m-0">
+        <div className="m-0 max-h-[339px] w-full bg-black md:h-full">
             <Carousel
                 showArrows={false}
                 showStatus={false}
@@ -25,18 +25,19 @@ const TopAdsSlider = ({ topAds }: { topAds: adsProps }) => {
                 centerMode={false}
                 centerSlidePercentage={100}
                 showThumbs={false}
-                className="relative max-h-[339px] md:h-full overflow-hidden m-0" // Set initial height using Tailwind classes
+                className="relative m-0 max-h-[339px] overflow-hidden md:h-full" // Set initial height using Tailwind classes
             >
-                {
-                    topAds?.map(advert => (
-                        <div className="w-full h-full flex items-center justify-center text-white" key={advert.images[0].key}>
-                            <img src={advert.images[0].url} className='h-full w-full object-cover' alt="" />
-                        </div>
-                    ))
-                }
+                {topAds?.map((advert) => (
+                    <div
+                        className="flex h-full w-full items-center justify-center text-white"
+                        key={advert.images[0].key}
+                    >
+                        <img src={advert.images[0].url} className="h-full w-full object-cover" alt="" />
+                    </div>
+                ))}
             </Carousel>
         </div>
     );
-}
+};
 
 export default TopAdsSlider;

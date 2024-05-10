@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
@@ -12,7 +12,7 @@ type adsProps = {
 
 const SideAdsSlider = ({ ads }: { ads: adsProps }) => {
     return (
-        <div className="w-full h-full text-center">
+        <div className="h-full w-full text-center">
             <Carousel
                 showArrows={true}
                 showStatus={false}
@@ -27,20 +27,24 @@ const SideAdsSlider = ({ ads }: { ads: adsProps }) => {
                 centerMode={false}
                 centerSlidePercentage={100}
                 showThumbs={false}
-                className="relative w-full h-full" // Set initial height using Tailwind classes
+                className="relative h-full w-full" // Set initial height using Tailwind classes
             >
-                {
-                    ads?.map(advert => (
-                        <div className="" key={advert.images[0].key}>
-                            <a href="#">
-                                <Image width={1000} height={1000} className="mx-auto" src={advert.images[0].url} alt="advertisement area" />
-                            </a>
-                        </div>
-                    ))
-                }
+                {ads?.map((advert) => (
+                    <div className="" key={advert.images[0].key}>
+                        <a href="#">
+                            <Image
+                                width={1000}
+                                height={1000}
+                                className="mx-auto"
+                                src={advert.images[0].url}
+                                alt="advertisement area"
+                            />
+                        </a>
+                    </div>
+                ))}
             </Carousel>
         </div>
     );
-}
+};
 
 export default SideAdsSlider;

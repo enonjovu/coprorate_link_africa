@@ -1,8 +1,8 @@
-"use client"
-import Faqs from "../components/Faqs";
+'use client';
+import Faqs from '../components/Faqs';
 
 const FaqsPage = () => {
-    return ( <Faqs/> );
-}
- 
+    return <Faqs />;
+};
+
 export default FaqsPage;
