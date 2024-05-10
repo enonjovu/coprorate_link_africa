@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@tinymce/tinymce-react": "^5.0.1",
-    "@tiptap/pm": "^2.1.13",
-    "@tiptap/react": "^2.1.13",
-    "@tiptap/starter-kit": "^2.1.13",
+    "@tiptap/pm": "^2.3.2",
+    "@tiptap/react": "^2.3.2",
+    "@tiptap/starter-kit": "^2.3.2",
     "@uploadthing/react": "^6.0.2",
     "@vercel/analytics": "^1.1.2",
     "bcrypt": "^5.1.1",
