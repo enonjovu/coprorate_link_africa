@@ -1,4 +1,9 @@
 const Videos = () => {
+
+    const youtubeVideos = [
+        {title:"Mining in Malawi", src:"https://www.youtube.com/embed/NsSZlWb7FPk"}
+    ];
+
     return ( 
         <div className="bg-white py-6">
             <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">

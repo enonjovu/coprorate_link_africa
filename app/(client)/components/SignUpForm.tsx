@@ -7,17 +7,32 @@ import { signUp } from '@/app/action';
 const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSignUp = async () => {
+
+    if(isLoading) {
+      return
+    }
+
+    setIsLoading(true)
     try {
       const res = await signUp({ email, password });
+
       setEmail('');
       setPassword('');
-      if (res) { router.push('/signin'); }
+
+      setIsLoading(false)
+
+      if (res) { 
+        router.push('/signin'); 
+      }
     } catch (e) {
       console.error(e);
     }
+
+    setIsLoading(false)
   }
 
   // const handleSignInWithGoogle = async () => {
@@ -100,7 +115,7 @@ const SignUpForm = () => {
                 {/* End Form Group */}
 
 
-                <button type="button" onClick={() => { handleSignUp() }} className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign Up</button>
+                <button disabled={isLoading} type="button" onClick={() => { handleSignUp() }} className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign Up</button>
               </div>
             </form>
             {/* End Form */}
