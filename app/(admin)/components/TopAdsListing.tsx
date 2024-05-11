@@ -1,7 +1,7 @@
+import Pagination from '@/app/(client)/components/Pagination';
 import { deleteTopAds, fetchTopAds } from '@/app/action';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
-import Link from 'next/link';
 import { BsTrash } from 'react-icons/bs';
 
 const TopAdsListingComponent = async ({ page }: { page: string }) => {
@@ -87,48 +87,7 @@ const TopAdsListingComponent = async ({ page }: { page: string }) => {
                         )}
                     </div>
                 </div>
-                {totalPages > 1 ? (
-                    <div className="mt-4 text-center">
-                        <nav aria-label="Page navigation">
-                            <ul className="flex items-center justify-center space-x-0">
-                                <li>
-                                    {currentPage === 1 ? null : (
-                                        <Link
-                                            className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                            href={`/admin/news/?page=${prevPage}`}
-                                            aria-label="Previous"
-                                        >
-                                            <span aria-hidden="true">«</span>
-                                        </Link>
-                                    )}
-                                </li>
-
-                                {pageNumbers.map((pageNo, index) => (
-                                    <li key={index}>
-                                        <Link
-                                            className="relative -mr-0.5 block border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                            href={`/admin/news/?page=${pageNo}`}
-                                        >
-                                            {pageNo}
-                                        </Link>
-                                    </li>
-                                ))}
-
-                                <li>
-                                    {currentPage === totalPages ? null : (
-                                        <Link
-                                            className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                            href={`/admin/news/?page=${nextPage}`}
-                                            aria-label="Next"
-                                        >
-                                            <span aria-hidden="true">»</span>
-                                        </Link>
-                                    )}
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                ) : null}
+                <Pagination itemCount={itemsCount} path="/admin/news" currentPage={pageNumber} />
             </div>
         </div>
     );

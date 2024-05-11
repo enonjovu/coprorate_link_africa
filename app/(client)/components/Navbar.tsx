@@ -123,7 +123,7 @@ const Navbar = () => {
                                         className="flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-red-500"
                                         href="/leaders"
                                     >
-                                        Business Leaders
+                                        Individial Profiles
                                     </a>
                                 </div>
                             </div>

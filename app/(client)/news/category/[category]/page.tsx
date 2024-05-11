@@ -1,3 +1,4 @@
+import Pagination from '@/app/(client)/components/Pagination';
 import TopStories from '@/app/(client)/components/TopStories';
 import { fetchBlogsByCategory } from '@/app/action';
 
@@ -7,9 +8,11 @@ import Link from 'next/link';
 type paramProps = {
     params: Params;
 };
+
 const BlogCategoryPage = async ({ params }: paramProps) => {
     const category: string = params.category;
     const blogs = await fetchBlogsByCategory(category.toLocaleLowerCase());
+
     console.log('Blogs byt category => ', blogs);
     return (
         <main id="content">

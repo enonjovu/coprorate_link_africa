@@ -8,6 +8,9 @@ const SignInForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    const [requestError, setRequestError] = useState('');
+
     const router = useRouter();
 
     // const handleSignInWithGoogle = async () => {
@@ -24,15 +27,25 @@ const SignInForm = () => {
             return;
         }
 
+        setRequestError('');
         setIsLoading(true);
+
         try {
             const res = await signIn('credentials', { email, password, redirect: false });
-            if (res) {
+
+            if (res?.error) {
+                setRequestError(res.error);
+                setIsLoading(false);
+                return;
+            }
+
+            if (res?.ok) {
                 setEmail('');
                 setPassword('');
-                router.push('/');
-
                 setIsLoading(false);
+
+                /** attempt to send user to admin if they are not admin the middleware will redirect them to home page */
+                return router.push('/admin');
             }
         } catch (e) {
             console.error(e);
@@ -86,6 +99,13 @@ const SignInForm = () => {
                         <div className="flex items-center py-3 text-xs uppercase text-gray-400 before:me-6 before:flex-[1_1_0%] before:border-t before:border-gray-200 after:ms-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">
                             Or
                         </div>
+
+                        {/* to show errors if request failed */}
+                        {requestError ? (
+                            <div className="w-full py-3">
+                                <p className="text-center text-sm text-red-600">{requestError}</p>
+                            </div>
+                        ) : null}
 
                         {/* Form */}
                         <form>
