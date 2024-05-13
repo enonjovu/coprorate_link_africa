@@ -585,5 +585,5 @@ export const signIn = async (formData: {}): Promise<any> => {
         throw Error('Invalid credentials');
     }
     const res = await response.json();
-    return await res.user;
+    return res.user;
 };

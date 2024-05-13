@@ -29,6 +29,7 @@ export const options: NextAuthOptions = {
                         email: credentials?.email,
                         password: credentials?.password,
                     });
+
                     return user;
                 } catch (err) {
                     throw new Error('Failed to log in');

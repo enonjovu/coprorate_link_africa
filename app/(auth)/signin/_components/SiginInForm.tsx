@@ -13,7 +13,9 @@ const SignInForm = () => {
 
     const router = useRouter();
 
-    const handleSignIn = async () => {
+    const handleSignIn = async (e: any) => {
+        e.preventDefault();
+
         if (isLoading) {
             return;
         }
@@ -39,6 +41,7 @@ const SignInForm = () => {
             }
         } catch (e) {
             console.error(e);
+            setIsLoading(false);
         }
         setIsLoading(false);
     };
@@ -52,7 +55,7 @@ const SignInForm = () => {
             ) : null}
 
             {/* Form */}
-            <form>
+            <form onSubmit={handleSignIn}>
                 <div className="grid gap-y-4">
                     {/* Form Group */}
                     <div>
@@ -156,9 +159,8 @@ const SignInForm = () => {
                     {/* End Checkbox */}
 
                     <button
-                        type="button"
+                        type="submit"
                         disabled={isLoading}
-                        onClick={handleSignIn}
                         className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-600 px-4 py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                     >
                         Sign in

@@ -1,23 +1,24 @@
 // models/User.ts
-import mongoose from "mongoose";
-import { Schema, model } from "mongoose";
+import type { UserDocument } from '@/lib/document-types';
+import mongoose from 'mongoose';
+import { Schema, model, type Model as ModelType } from 'mongoose';
 
 const UserSchema = new Schema(
-  {
-    name: String,
-    email: {
-      type: String,
-      unique: [true, "Email already exists"],
-      required: [true, "Email required."],
+    {
+        name: String,
+        email: {
+            type: String,
+            unique: [true, 'Email already exists'],
+            required: [true, 'Email required.'],
+        },
+        password: { type: String, required: [true, 'Password required.'] },
+        role: { type: String, required: true, default: 'user' },
     },
-    password: { type: String, required: [true, "Password required."] },
-    role: { type: String, required: true, default: "user" },
-  },
-  {
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    },
 );
 
-const User = mongoose.models.User || model("User", UserSchema);
+const User = (mongoose.models.User as ModelType<UserDocument>) || model<UserDocument>('User', UserSchema);
 
 export default User;

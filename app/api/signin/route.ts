@@ -9,6 +9,7 @@ export async function POST(req: Request) {
         const { email, password } = await req.json();
 
         await dbConnect();
+
         const user = await User.findOne({ email });
 
         if (!user) {
@@ -35,7 +36,7 @@ export async function POST(req: Request) {
             {
                 user,
             },
-            { status: 201 },
+            { status: 200 },
         );
     } catch (error) {
         console.error(error);

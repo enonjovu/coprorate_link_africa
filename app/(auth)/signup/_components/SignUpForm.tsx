@@ -3,15 +3,19 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signUp } from '@/app/action';
-import LoginWithGoogleButton from '../../_components/LoginWithGoogleButton';
 
 const SignUpForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    const [requestError, setRequestError] = useState('');
+
     const router = useRouter();
 
-    const handleSignUp = async () => {
+    const handleSignUp = async (e: any) => {
+        e.preventDefault();
+
         if (isLoading) {
             return;
         }
@@ -25,7 +29,13 @@ const SignUpForm = () => {
 
             setIsLoading(false);
 
-            if (res) {
+            if (!res.status) {
+                setRequestError(res.message);
+                console.log(res);
+                return;
+            }
+
+            if (res.status) {
                 router.push('/signin');
             }
         } catch (e) {
@@ -45,7 +55,14 @@ const SignUpForm = () => {
     // }
 
     return (
-        <form>
+        <form onSubmit={handleSignUp}>
+            {/* to show errors if request failed */}
+            {requestError ? (
+                <div className="w-full py-3">
+                    <p className="text-center text-sm text-red-600">{requestError}</p>
+                </div>
+            ) : null}
+
             <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
@@ -125,10 +142,7 @@ const SignUpForm = () => {
 
                 <button
                     disabled={isLoading}
-                    type="button"
-                    onClick={() => {
-                        handleSignUp();
-                    }}
+                    type="submit"
                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-600 px-4 py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                 >
                     Sign Up
