@@ -5,8 +5,14 @@ import { Schema, model, type Model as ModelType } from 'mongoose';
 
 const TenderSchema = new Schema(
     {
-        title: String,
-        description: String,
+        title: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+            required: true,
+        },
         requiremnets: Array,
     },
     {

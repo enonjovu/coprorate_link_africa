@@ -1,8 +1,9 @@
 import connectToDatabase from '@/lib/db';
 import bcrypt from 'bcrypt';
 import { getUserByEmail, createUser } from '../repositories/UserRepository';
+import { convertDocumentToModelObject } from '../helpers';
 
-type CreateUserAccountParameters = {
+type RegisterUserAccountParameters = {
     name: string;
     email: string;
     password: string;
@@ -14,7 +15,7 @@ type GetUserParameters = {
     password: string;
 };
 
-export async function createUserAccount(params: CreateUserAccountParameters) {
+export async function RegisterUserAccount(params: RegisterUserAccountParameters) {
     await connectToDatabase();
 
     const exists = await getUserByEmail(params.email);
@@ -46,5 +47,5 @@ export async function getUser(params: GetUserParameters) {
         throw new Error(`details provided dont match any registered user.`);
     }
 
-    return user;
+    return convertDocumentToModelObject(user);
 }

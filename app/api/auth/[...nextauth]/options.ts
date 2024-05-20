@@ -1,9 +1,9 @@
 import type { NextAuthOptions } from 'next-auth';
 // import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { signIn } from '@/app/action';
-import { JWT } from 'next-auth/jwt';
 
+import { JWT } from 'next-auth/jwt';
+import { getUser } from '@/lib/services/AuthServices';
 const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
 
 export const options: NextAuthOptions = {
@@ -25,14 +25,14 @@ export const options: NextAuthOptions = {
             },
             async authorize(credentials) {
                 try {
-                    const user = await signIn({
-                        email: credentials?.email,
-                        password: credentials?.password,
+                    const user = await getUser({
+                        email: credentials?.email ?? '',
+                        password: credentials?.password ?? '',
                     });
 
                     return user;
                 } catch (err) {
-                    throw new Error('Failed to log in');
+                    throw err;
                 }
             },
         }),

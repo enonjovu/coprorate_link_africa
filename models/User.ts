@@ -5,7 +5,10 @@ import { Schema, model, type Model as ModelType } from 'mongoose';
 
 const UserSchema = new Schema(
     {
-        name: String,
+        name: {
+            type: String,
+            required: true,
+        },
         email: {
             type: String,
             unique: [true, 'Email already exists'],

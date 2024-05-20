@@ -5,14 +5,26 @@ import { Schema, model, type Model as ModelType } from 'mongoose';
 
 const BlogSchema = new Schema(
     {
-        title: String,
-        story: String,
-        category: String,
+        title: {
+            type: String,
+            required: true,
+        },
+        story: {
+            type: String,
+            required: true,
+        },
+        category: {
+            type: String,
+            required: true,
+        },
         images: {
             type: Array,
             of: Object, // Assuming images are stored as URLs
         },
-        author: String,
+        author: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,

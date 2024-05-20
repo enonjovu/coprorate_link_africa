@@ -1,3 +1,4 @@
+import { PathParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import type { ModelDocumentWithId } from './types';
 import { Document } from 'mongoose';
 
@@ -35,4 +36,34 @@ export function trimText(story: String, from: number = 0, to: number = 8) {
     const trimmedWords = words.slice(from, to);
     const trimmedParagraph = trimmedWords.join(' ');
     return trimmedParagraph;
+}
+
+export function checkApplicationInProduction() {
+    return process.env.NODE_ENV == 'production';
+}
+
+export function createPaginationHandles(params: { count: number; current: number; distribution?: number }) {
+    const totalPages = Math.ceil(params.count / (params.distribution ?? 12));
+
+    const currentPage = params.current;
+
+    const pageNumbers = [];
+    const offsetNumer = 3;
+
+    for (let index = currentPage - offsetNumer; index <= currentPage + offsetNumer; index++) {
+        if (index >= 1 && index <= totalPages) {
+            pageNumbers.push(index);
+        }
+    }
+
+    const prev = currentPage - 1 > 0 ? currentPage - 1 : 1;
+    const next = currentPage + 1;
+
+    return {
+        prev,
+        next,
+        current: currentPage,
+        total: totalPages,
+        pages: pageNumbers,
+    };
 }

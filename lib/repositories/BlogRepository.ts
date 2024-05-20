@@ -38,10 +38,10 @@ export async function getBlogsByCategory(params: { category: string } & Paginato
     return results;
 }
 
-export async function getBlogsCount() {
+export async function getBlogsCount(params: Record<string, string> = {}) {
     await connectToDatabase();
 
-    const itemsCount = await Blog.countDocuments({});
+    const itemsCount = await Blog.countDocuments(params);
     return itemsCount;
 }
 

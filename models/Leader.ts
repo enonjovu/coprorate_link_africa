@@ -5,9 +5,15 @@ import { Schema, model, type Model as ModelType } from 'mongoose';
 
 const LeaderSchema = new Schema(
     {
-        name: String,
+        name: {
+            type: String,
+            required: true,
+        },
         images: Array,
-        description: String,
+        description: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,
