@@ -13,7 +13,7 @@ const TenderSchema = new Schema(
             type: String,
             required: true,
         },
-        requiremnets: Array,
+        requirements: Array,
     },
     {
         timestamps: true,

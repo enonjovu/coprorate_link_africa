@@ -5,15 +5,23 @@ export type DocumentUrlObject = {
     url: string;
 };
 
+export type ImageRecord = {
+    name: string;
+    size: string;
+    key: string;
+    serverData: string;
+    url: string;
+};
+
 export interface AdvertDocument extends Document {
-    images: Array<DocumentUrlObject>;
+    images: Array<ImageRecord>;
 }
 
 export interface BlogDocument extends Document {
     title: string;
     story: string;
     category: string;
-    images: Array<DocumentUrlObject>;
+    images: Array<ImageRecord>;
     author: string;
 }
 
@@ -26,12 +34,12 @@ export interface DirectoryDocument extends Document {
     website: string;
     lat: string;
     lon: string;
-    logo: Array<DocumentUrlObject>;
+    logo: Array<ImageRecord>;
 }
 
 export interface EventDocument extends Document {
     title: string;
-    images: Array<DocumentUrlObject>;
+    images: Array<ImageRecord>;
     description: string;
     eventDate: string;
     time: string;
@@ -40,14 +48,14 @@ export interface EventDocument extends Document {
 
 export interface LeaderDocument extends Document {
     name: string;
-    images: Array<DocumentUrlObject>;
+    images: Array<ImageRecord>;
     description: string;
 }
 
 export interface TenderDocument extends Document {
     title: string;
     description: string;
-    requiremnets: Array<DocumentUrlObject>;
+    requirements: Array<string>;
 }
 
 export interface UserDocument extends Document {

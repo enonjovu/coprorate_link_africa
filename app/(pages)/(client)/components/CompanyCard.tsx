@@ -1,23 +1,9 @@
+import { DirectoryDocument } from '@/lib/document-types';
 import Image from 'next/image';
 import { BsEnvelope, BsGlobeEuropeAfrica, BsPhone } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-type companyProps = {
-    company: {
-        _id: string;
-        name: string;
-        phone: string;
-        email: string;
-        website: string;
-        address: string;
-        lat: number;
-        lon: number;
-        description: string;
-        logo: { url: string; key: string }[];
-    };
-};
-
-const CompanyCard = ({ company }: companyProps) => {
+const CompanyCard = ({ company }: { company: DirectoryDocument }) => {
     console.log('Company => ', company);
     return (
         <div className="flex w-full max-w-full flex-col flex-wrap md:flex-row">

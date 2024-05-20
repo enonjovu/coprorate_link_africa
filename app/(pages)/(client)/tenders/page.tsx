@@ -1,6 +1,9 @@
+import TenderCard from '@/app/_components/Tender/TenderCard';
 import { fetchAllTenders } from '@/app/action';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getTenders, getTendersCount } from '@/lib/repositories/TenderRepository';
+import Pagination from '@/app/_components/Pagination';
 
 type tender = {
     _id: string;
@@ -11,10 +14,19 @@ type tender = {
     }[];
 }[];
 
-const TendersPage = async () => {
-    const res = await fetchAllTenders();
-    const tenders = res as tender;
-    console.log('Tenders => ', tenders);
+type PageProps = {
+    // params: { id: string };
+    searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+const TendersPage = async ({ searchParams }: PageProps) => {
+    const currentPage = parseInt(`${searchParams?.pages ?? 1}`);
+
+    const tenders = await getTenders({
+        currentPage,
+    });
+
+    const tendersCount = await getTendersCount();
 
     return (
         <div className="bg-gray-50 py-6">
@@ -43,31 +55,7 @@ const TendersPage = async () => {
                                     <div className="mx-auto w-full max-w-screen-xl px-4">
                                         <div className="grid w-full gap-6 sm:grid-cols-2 xl:grid-cols-4">
                                             {tenders.map((tender) => (
-                                                <div
-                                                    key={tender._id}
-                                                    className="relative flex max-w-sm flex-col overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                                                >
-                                                    <Link
-                                                        href={`tenders/${tender._id}`}
-                                                        className="absolute left-0 top-0 z-20 h-full w-full "
-                                                    >
-                                                        &nbsp;
-                                                    </Link>
-                                                    <div className="h-auto overflow-hidden">
-                                                        <div className="relative h-44 overflow-hidden">
-                                                            <img
-                                                                src="/src/img/logo.png"
-                                                                className="h-full w-full object-cover"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div className="bg-white px-3 py-4">
-                                                        <h3 className="mb-2 text-center font-bold text-black">
-                                                            {tender.title}
-                                                        </h3>
-                                                    </div>
-                                                </div>
+                                                <TenderCard tender={tender} key={tender.id} />
                                             ))}
                                         </div>
                                     </div>
@@ -81,6 +69,13 @@ const TendersPage = async () => {
             ) : (
                 <h1>Loading Tenders ...</h1>
             )}
+            <Pagination
+                count={tendersCount}
+                current={currentPage}
+                distribution={12}
+                path={`/tenders`}
+                className="my-6 text-center"
+            />
         </div>
     );
 };

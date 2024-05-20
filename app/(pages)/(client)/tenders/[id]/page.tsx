@@ -1,15 +1,27 @@
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import CompanyCard from '../../components/CompanyCard';
-import { fetchCompanyById, getTenderByID } from '@/app/action';
+import { getTenderById } from '@/lib/repositories/TenderRepository';
+import { notFound } from 'next/navigation';
 
 type paramProps = {
     params: Params;
 };
 
-const SingleTender = async ({ params }: paramProps) => {
+type PageProps = {
+    params: { id: string };
+    searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+const SingleTender = async ({ params }: PageProps) => {
     const id: string = params.id;
-    const result = await getTenderByID(id);
-    const tender = result[0];
+    const tender = await getTenderById(id);
+
+    if (!tender) {
+        notFound();
+    }
+
+    console.log(tender);
+
     return (
         <main id="content">
             <div className="bg-white py-10">
@@ -26,7 +38,7 @@ const SingleTender = async ({ params }: paramProps) => {
 
                             {tender.requirements?.length ? (
                                 <div className="w-full flex-col space-y-4">
-                                    <p className="text-lg font-bold text-black"> Requirements</p>
+                                    <p className="text-lg font-bold text-black"> requirements</p>
                                     <ul className="pl-4">
                                         {tender.requirements?.map((requirement, index) => (
                                             <li key={index} className="list-item list-disc text-black">
