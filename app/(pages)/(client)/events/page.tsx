@@ -3,28 +3,23 @@ import { fetchEvents } from '@/app/action';
 import Link from 'next/link';
 import EventsListing from '../components/EventsListing';
 import TopStories from '../components/TopStories';
+import { getEvents, getEventsCount } from '@/lib/repositories/EventRepository';
+import Pagination from '@/app/_components/Pagination';
+import Image from 'next/image';
+import EventCard from '@/app/_components/Event/EventCard';
 
-const EventsPage = async ({ searchParams }: { searchParams: Params }) => {
-    let page = searchParams['page'] ?? '1';
-    const results = await fetchEvents(page);
-    const events = results.events;
-    const itemsCount = results.itemsCount;
+type PageProps = {
+    searchParams?: { [key: string]: string | string[] | undefined };
+};
 
-    const totalPages = Math.ceil(itemsCount / 12);
-    const pageNumber = parseInt(page);
+const EventsPage = async ({ searchParams }: PageProps) => {
+    const currentPage = parseInt(`${searchParams?.pages ?? 1}`);
 
-    const pageNumbers = [];
-    const offsetNumer = 3;
+    const events = await getEvents({
+        currentPage,
+    });
 
-    for (let index = pageNumber - offsetNumer; index <= pageNumber + offsetNumer; index++) {
-        if (index >= 1 && index <= totalPages) {
-            pageNumbers.push(index);
-        }
-    }
-
-    const currentPage = parseInt(page);
-    const prevPage = currentPage - 1 > 0 ? currentPage - 1 : 1;
-    const nextPage = currentPage + 1;
+    const eventCount = await getEventsCount();
 
     return (
         <main id="content">
@@ -41,8 +36,45 @@ const EventsPage = async ({ searchParams }: { searchParams: Params }) => {
                             </div>
                             <div className="-mx-3 flex flex-row flex-wrap">
                                 {/* Events */}
-                                <EventsListing events={events} />
+                                <div className="bg-gray-50 py-6">
+                                    <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
+                                        <div className="flex flex-row flex-wrap">
+                                            <div className="w-full max-w-full flex-shrink overflow-hidden">
+                                                <div className="-mx-3 flex flex-row flex-wrap">
+                                                    <div className="w-full max-w-full flex-shrink px-3 pb-5">
+                                                        <div className="hover-img relative max-h-[50vh] overflow-hidden">
+                                                            {/*thumbnail*/}
+                                                            <a href="#">
+                                                                <Image
+                                                                    className="mx-auto h-auto w-full max-w-full object-cover"
+                                                                    width={1300}
+                                                                    height={400}
+                                                                    src="/src/img/events.jpg"
+                                                                    alt="Image description"
+                                                                />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    {events.length ? (
+                                                        events.map((event) => (
+                                                            <EventCard event={event} key={event._id} />
+                                                        ))
+                                                    ) : (
+                                                        <></>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <Pagination
+                                count={eventCount}
+                                current={currentPage}
+                                distribution={12}
+                                path={`/events`}
+                                className="mt-4 text-center"
+                            />
                         </div>
                     </div>
                 </div>

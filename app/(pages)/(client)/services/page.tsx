@@ -18,7 +18,7 @@ const ServicesPage = () => {
             <div className="-mx-4 flex flex-wrap">
                 <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
                     <div className="shadow-2 mb-9 rounded-[20px] bg-white p-10  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
-                        <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+                        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
                             <BsNewspaper size={50} className="text-black dark:text-white" />
                         </div>
                         <h4 className="text-dark mb-[14px] text-2xl font-semibold dark:text-white">
@@ -34,7 +34,7 @@ const ServicesPage = () => {
 
                 <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
                     <div className="shadow-2 mb-9 rounded-[20px] bg-white p-10  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
-                        <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+                        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
                             <BsMegaphone size={50} className="text-black dark:text-white" />
                         </div>
                         <h4 className="text-dark mb-[14px] text-2xl font-semibold dark:text-white">Advertising</h4>
@@ -47,7 +47,7 @@ const ServicesPage = () => {
                 </div>
                 <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
                     <div className="shadow-2 mb-9 rounded-[20px] bg-white p-10  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
-                        <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+                        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
                             <BsSearch size={50} className="text-black dark:text-white" />
                         </div>
                         <h4 className="text-dark mb-[14px] text-2xl font-semibold dark:text-white">
@@ -63,7 +63,7 @@ const ServicesPage = () => {
 
                 <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
                     <div className="shadow-2 mb-9 rounded-[20px] bg-white p-10  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
-                        <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+                        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
                             <FaChartPie size={50} className="text-black dark:text-white" />
                         </div>
                         <h4 className="text-dark mb-[14px] text-2xl font-semibold dark:text-white">
@@ -78,7 +78,7 @@ const ServicesPage = () => {
 
                 <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
                     <div className="shadow-2 mb-9 rounded-[20px] bg-white p-10  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
-                        <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+                        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
                             <BsMic size={50} className="text-black dark:text-white" />
                         </div>
                         <h4 className="text-dark mb-[14px] text-2xl font-semibold dark:text-white">
@@ -94,7 +94,7 @@ const ServicesPage = () => {
 
                 <div className="w-full px-4 md:w-1/2 lg:w-1/3 ">
                     <div className="shadow-2 mb-9 rounded-[20px] bg-white p-10  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
-                        <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+                        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
                             <BsCameraVideo size={50} className="text-black dark:text-white" />
                         </div>
                         <h4 className="text-dark mb-[14px] text-2xl font-semibold dark:text-white">Media Solutions:</h4>

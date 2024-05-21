@@ -1,13 +1,17 @@
-import Slider from './Slider';
-import { fetchAds, fetchAllAds, fetchTopBlogs } from '../../../action';
-import Image from 'next/image';
-import Link from 'next/link';
-import Ads from './Advertisment';
+import { getAllAdverts } from '@/lib/repositories/AdvertRepository';
+import AdvertHeroCarousel from '@/app/_components/Advert/AdvertHeroCarousel';
+import BlogHeroArticle from '@/app/_components/Blog/BlogHeroArticle';
+import Blog from '@/models/Blog';
+import { convertDocumentsToModelObjectCollection } from '@/lib/helpers';
 
 const Hero = async () => {
-    const blogs = await fetchTopBlogs();
-    console.log(blogs);
-    const adverts = await fetchAllAds();
+    const blogs = await Blog.find({}).limit(4).sort({ createdAt: -1, date: -1 });
+
+    let adverts = await getAllAdverts();
+
+    // to convert into plain doc objects since adverts will be rendered on the client
+    adverts = convertDocumentsToModelObjectCollection(adverts);
+
     return (
         <div className="bg-white py-6">
             <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
@@ -16,42 +20,14 @@ const Hero = async () => {
                     {/*Start left cover*/}
                     <div className="h-auto w-full max-w-full flex-shrink overflow-hidden pb-1 lg:w-1/2 lg:pb-0 lg:pr-1">
                         <div className="hover-img relative h-full max-h-[450px] w-full overflow-hidden">
-                            <Ads ads={adverts} />
+                            <AdvertHeroCarousel adverts={adverts} />
                         </div>
                     </div>
 
                     {/*Start box news*/}
                     <div className="h-full w-full max-w-full flex-shrink lg:w-1/2">
                         <div className="box-one flex h-full w-full flex-row flex-wrap">
-                            {blogs.length
-                                ? blogs.map((blog) => (
-                                      <article
-                                          key={blog.id}
-                                          className="h-auto w-full max-w-full flex-shrink overflow-y-hidden sm:w-1/2 lg:max-h-[65vh]"
-                                      >
-                                          <Link href={`/news/single/${blog.id}`}>
-                                              <div className="hover-img relative h-full max-h-[222px] w-full overflow-hidden">
-                                                  <img
-                                                      className="h-full w-full object-cover"
-                                                      src={blog.image.url}
-                                                      alt="Image description"
-                                                  />
-                                                  <div className="absolute bottom-0 flex h-full w-full flex-col justify-end bg-[#00000075] px-4 pb-4 pt-7">
-                                                      <h2 className="mb-1 text-lg font-bold capitalize leading-tight text-white">
-                                                          {blog.title}
-                                                      </h2>
-                                                      <div className="pt-1">
-                                                          <div className="text-gray-100">
-                                                              <div className="mr-2 inline-block h-3 border-l-2 border-red-600 text-gray-100"></div>
-                                                              {blog.category?.toUpperCase()}
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </Link>
-                                      </article>
-                                  ))
-                                : null}
+                            {blogs.length ? blogs.map((blog) => <BlogHeroArticle key={blog.id} blog={blog} />) : null}
                         </div>
                     </div>
                 </div>

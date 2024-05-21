@@ -1,10 +1,13 @@
 import LatestNews from './components/LatestNews';
 import Hero from './components/Hero';
 import Videos from './components/Videos';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
-export default async function Home({ searchParams }: { searchParams: Params }) {
-    let page = searchParams['page'] ?? '1';
+type PageProps = {
+    searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function Home({ searchParams }: PageProps) {
+    let page: string = (searchParams.page as string) ?? '1';
 
     return (
         <main id="content">
