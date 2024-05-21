@@ -16,6 +16,7 @@ type FormData = {
     lon: string;
     description: string;
     logo: { url: string; key: string }[];
+    iframe: string | null;
 };
 
 const initialFormData: FormData = {
@@ -28,6 +29,7 @@ const initialFormData: FormData = {
     lat: '',
     lon: '',
     logo: [{ url: '', key: '' }],
+    iframe: null,
 };
 
 const NewDirectory: React.FC = () => {
@@ -210,50 +212,26 @@ const NewDirectory: React.FC = () => {
                             {/* End Grid */}
 
                             {/* Grid */}
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
-                                <div>
-                                    <label
-                                        htmlFor="latitude"
-                                        className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
-                                    >
-                                        Company latitude
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="latitude"
-                                        id="latitude"
-                                        className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                                        onChange={(e) => {
-                                            setFormData({
-                                                ...formData,
-                                                lat: e.target.value,
-                                            });
-                                        }}
-                                        value={formData.lat}
-                                    />
-                                </div>
-
-                                <div>
-                                    <label
-                                        htmlFor="longitude"
-                                        className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
-                                    >
-                                        Company longitude
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="longitude"
-                                        id="longitude"
-                                        className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                                        onChange={(e) => {
-                                            setFormData({
-                                                ...formData,
-                                                lon: e.target.value,
-                                            });
-                                        }}
-                                        value={formData.lon}
-                                    />
-                                </div>
+                            <div>
+                                <label
+                                    htmlFor="google-map-iframe-code"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Google Map Iframe Code
+                                </label>
+                                <textarea
+                                    rows={2}
+                                    name="google-map-iframe-code"
+                                    id="google-map-iframe-code"
+                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            iframe: e.target.value,
+                                        });
+                                    }}
+                                    value={formData.iframe ?? ''}
+                                ></textarea>
                             </div>
                             {/* End Grid */}
 
