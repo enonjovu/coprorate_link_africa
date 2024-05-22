@@ -50,7 +50,9 @@ const SingleDirectory = async ({ params }: PageProps) => {
                                 ) : null}
                             </div>
                             <h1 className="text-3xl font-bold text-black">{directory.name}</h1>
-                            <p className="w-11/12 whitespace-pre-wrap text-gray-900">{directory.description}</p>
+                            <p className="prose w-11/12 max-w-full whitespace-pre-wrap text-gray-900">
+                                {directory.description}
+                            </p>
                         </div>
                         <div className="2-full flex flex-col items-center space-y-4 rounded-2xl p-4 shadow-lg md:w-1/3">
                             <h2 className="text-3xl font-bold text-black">Contact Details</h2>

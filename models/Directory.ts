@@ -2,6 +2,7 @@
 import type { DirectoryDocument } from '@/lib/document-types';
 import mongoose from 'mongoose';
 import { Schema, model, type Model as ModelType } from 'mongoose';
+import DirectoryCategory from './DirectoryCategory';
 
 const DirectorySchema = new Schema(
     {
@@ -33,6 +34,8 @@ const DirectorySchema = new Schema(
         iframe: String,
         promotion: Array,
         logo: Array,
+        category: mongoose.Schema.Types.ObjectId,
+        date: { type: Date, default: () => Date.now },
     },
     {
         timestamps: true,

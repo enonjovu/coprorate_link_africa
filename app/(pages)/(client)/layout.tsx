@@ -11,6 +11,7 @@ import InterFontWrapper from '@/app/_components/InterFontWrapper';
 //components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ToastWrapper from '@/app/_components/ToastWrapper';
 
 export const metadata: Metadata = {
     title: 'Corporate Link Africa',
@@ -23,9 +24,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body>
                 <AuthProvider>
                     <InterFontWrapper>
-                        <Navbar />
-                        {children}
-                        <Footer />
+                        <ToastWrapper>
+                            <Navbar />
+                            {children}
+                            <Footer />
+                        </ToastWrapper>
                     </InterFontWrapper>
                     <PrelineScript />
                 </AuthProvider>

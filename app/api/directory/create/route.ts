@@ -1,13 +1,15 @@
 import dbConnect from '@/lib/db';
 import Directory from '@/models/Directory';
 import { NextResponse } from 'next/server';
+import { createDirectory } from '@/lib/repositories/DirectoryRepository';
 
 export async function POST(req: Request) {
-    const date = Date.now();
-    const { name, email, description, phone, address, website, lat, lon, logo, iframe } = await req.json();
+    const { name, email, description, phone, address, website, lat, lon, logo, iframe, category } = await req.json();
+
     try {
         await dbConnect();
-        const newDirectory = await Directory.create({
+
+        const newDirectory = await createDirectory({
             name,
             email,
             description,
@@ -17,8 +19,8 @@ export async function POST(req: Request) {
             lat,
             lon,
             logo,
-            date: date,
             iframe,
+            category,
         });
 
         if (newDirectory) {

@@ -33,7 +33,11 @@ const NewPost: React.FC = () => {
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSubmit = async () => {
+        setIsLoading(true);
+
         formData.images = images;
         console.log('file', formData);
         const response = await postBlog(formData);
@@ -42,14 +46,21 @@ const NewPost: React.FC = () => {
             setIsModalOpen(true); // Open the modal
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
+            setImages([]);
         }
+
+        setIsLoading(false);
     };
 
     const handleImagesUpload = (res: any) => {
+        setIsLoading(true);
+
         setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
         alert('Upload Completed');
+
+        setIsLoading(false);
     };
 
     const title = images.length ? (
@@ -202,6 +213,7 @@ const NewPost: React.FC = () => {
                         <div className="mt-6 grid">
                             {images.length ? (
                                 <button
+                                    disabled={isLoading}
                                     type="button"
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     onClick={handleSubmit}
@@ -211,7 +223,7 @@ const NewPost: React.FC = () => {
                             ) : (
                                 <button
                                     type="button"
-                                    disabled
+                                    disabled={isLoading || !images.length}
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-600 px-4 
                                 py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                 >
