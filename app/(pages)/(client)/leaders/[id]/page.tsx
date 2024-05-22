@@ -108,7 +108,7 @@ const SingleLeader = () => {
                     </div>
                 </div>
             </div>
-            <SocialMediaButtons url={'/leaders/2'} />
+            <SocialMediaButtons title="Software" description="this" url={'/leaders/2'} />
         </div>
     );
 };

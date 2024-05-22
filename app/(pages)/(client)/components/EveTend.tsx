@@ -42,7 +42,7 @@ const EveTend = async (params: { eventsCount?: number; tendersCount?: number }) 
                                 >
                                     {event.title}
                                 </a>
-                                {event.venue ? <p className="text-sm text-gray-500">{event.venue}</p> : null}
+                                {event.venue ? <p className="text-sm capitalize text-gray-500">{event.venue}</p> : null}
                             </div>
                         </li>
                     ))}

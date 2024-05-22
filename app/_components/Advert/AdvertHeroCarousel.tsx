@@ -32,12 +32,12 @@ const AdvertHeroCarousel = (props: { adverts: AdvertDocument[] }) => {
                 className="relative h-full w-full" // Set initial height using Tailwind classes
             >
                 {props.adverts.map((ad) => (
-                    <div className="" key={ad.images[0].key}>
-                        <a href="#">
+                    <div className="h-full w-full" key={ad.images[0].key}>
+                        <a href="#" className="h-full w-full">
                             <Image
                                 width={635}
                                 height={450}
-                                className="mx-auto h-full w-full border border-red-800"
+                                className="mx-auto h-full"
                                 src={ad.images[0].url}
                                 alt="advertisement area"
                             />

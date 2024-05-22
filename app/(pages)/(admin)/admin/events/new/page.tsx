@@ -16,6 +16,7 @@ type FormData = {
     time: string;
     venue: string;
     images: { url: string; key: string }[];
+    enquiries_link: string | null;
 };
 
 const initialFormData: FormData = {
@@ -25,6 +26,7 @@ const initialFormData: FormData = {
     venue: '',
     time: '',
     images: [{ url: '', key: '' }],
+    enquiries_link: null,
 };
 
 const NewEvent = () => {
@@ -34,9 +36,14 @@ const NewEvent = () => {
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
     const [errMsg, setErrMsg] = useState(true);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSubmit = async () => {
+        setIsLoading(true);
+
         if (images.length < 1) {
             setErrMsg(false);
+            setIsLoading(false);
             return;
         } else {
             formData.images = images;
@@ -49,14 +56,20 @@ const NewEvent = () => {
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
         }
+
+        setIsLoading(false);
     };
 
     const handleImagesUpload = (res: any) => {
+        setIsLoading(true);
+
         setImages(res);
         formData.images = images;
         const json = JSON.stringify(res);
         console.log(json);
         alert('Upload Completed');
+
+        setIsLoading(false);
     };
 
     return (
@@ -217,6 +230,28 @@ const NewEvent = () => {
 
                             <div>
                                 <label
+                                    htmlFor="enquiries_link"
+                                    className="mb-2 flex space-x-2 text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    <p>Queries Link</p>
+                                </label>
+                                <input
+                                    type="url"
+                                    name="enquiries_link"
+                                    id="enquiries_link"
+                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            enquiries_link: e.target.value.toLocaleLowerCase(),
+                                        });
+                                    }}
+                                    value={formData.enquiries_link ?? ''}
+                                />
+                            </div>
+
+                            <div>
+                                <label
                                     htmlFor="description"
                                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
                                 >
@@ -243,6 +278,7 @@ const NewEvent = () => {
                         <div className="mt-6 grid">
                             <button
                                 type="button"
+                                disabled={isLoading}
                                 className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                 onClick={handleSubmit}
                             >
