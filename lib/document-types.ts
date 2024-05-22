@@ -34,9 +34,14 @@ export interface DirectoryDocument extends Document {
     website: string;
     lat?: string;
     lon?: string;
-    logo?: Array<ImageRecord>;
+    logo: Array<ImageRecord>;
     iframe?: string;
     promotion?: Array<ImageRecord>;
+    category?: DirectoryCategoryDocument;
+}
+
+export interface DirectoryCategoryDocument extends Document {
+    name: string;
 }
 
 export interface EventDocument extends Document {

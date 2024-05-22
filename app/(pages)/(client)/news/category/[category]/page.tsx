@@ -11,7 +11,7 @@ type PageProps = {
 const BlogCategoryPage = async ({ params, searchParams }: PageProps) => {
     const category: string = params.category.toLocaleLowerCase();
 
-    const currentPage = parseInt(`${searchParams?.pages ?? 1}`);
+    const currentPage = parseInt(`${searchParams?.page ?? 1}`);
 
     const blogs = await getBlogsByCategory({
         category: category,

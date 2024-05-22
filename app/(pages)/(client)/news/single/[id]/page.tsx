@@ -4,25 +4,47 @@ import PicturesSlider from '@/app/(pages)/(client)/components/PicturesSlider';
 import SocialMediaButtons from '@/app/(pages)/(client)/components/SocialMediaButtons';
 import TopStories from '@/app/(pages)/(client)/components/TopStories';
 import { fetchBlogsById } from '@/app/action';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
-type paramProps = {
-    params: Params;
+import Image from 'next/image';
+import type { Metadata, ResolvingMetadata } from 'next';
+import { trimText } from '@/lib/helpers';
+
+type PageProps = {
+    params: { id: string };
+    searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-const SingleBlogPage = async ({ params }: paramProps) => {
+export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+    const id = params.id;
+
+    const result = await fetchBlogsById(id);
+    const blog = result[0];
+
+    return {
+        title: blog.title,
+        openGraph: {
+            images: blog.images[0].url,
+            title: blog.title,
+            url: `https://www.clafrica.online/news/single/${id}`,
+            description: trimText(blog.title, 0, 30),
+        },
+        description: trimText(blog.title, 0, 30),
+    };
+}
+
+const SingleBlogPage = async ({ params }: PageProps) => {
     const id: string = params.id;
     const result = await fetchBlogsById(id);
     const blog = result[0];
     return (
         <main id="content">
             <>
-                <head>
+                {/* <head>
                     <meta property="og:title" content={blog.title} />
                     <meta property="og:description" content={blog.story} />
                     <meta property="og:image" content={blog.images[0].url} />
                     <meta property="og:url" content={`https://www.clafrica.online/news/single/${id}`} />
-                </head>
+                </head> */}
 
                 {/* block news */}
                 <div className="bg-gray-50 py-10">
@@ -42,12 +64,26 @@ const SingleBlogPage = async ({ params }: paramProps) => {
                                     <div className="w-full max-w-full px-4">
                                         {/* Post content */}
                                         <div className="pb-4 leading-relaxed">
-                                            <figure className="mb-6 flex h-full max-h-[60vh] min-h-[60vh] w-full items-center justify-center overflow-hidden text-center">
-                                                <PicturesSlider images={blog.images} />
-                                                {/* <figcaption className='text-black'> Image Description</figcaption> */}
+                                            <figure className="mb-6 flex h-full max-h-[60vh] min-h-[60vh] w-full flex-col items-center justify-center overflow-hidden text-center">
+                                                {blog.images && (
+                                                    <div className="relative h-full w-full overflow-hidden">
+                                                        <div className="inset-0 flex h-full w-full items-center justify-center">
+                                                            <Image
+                                                                width={1500} // You can remove fixed width for full responsiveness
+                                                                height={510} // You can remove fixed height for full responsiveness
+                                                                className="h-full w-full rounded-lg "
+                                                                src={blog.images[0].url}
+                                                                alt={blog.title}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                <figcaption className="text-black"> Image Description</figcaption>
                                             </figure>
 
-                                            <p className="mb-5 whitespace-pre-wrap text-black ">{blog?.story}</p>
+                                            <p className="prose mb-5 w-full max-w-7xl whitespace-pre-wrap text-black">
+                                                {blog?.story}
+                                            </p>
                                         </div>
                                         {/* Comments */}
                                         {/* <div id="comments" className="pt-16">
@@ -193,7 +229,11 @@ const SingleBlogPage = async ({ params }: paramProps) => {
                                     </div>
                                 </div>
                                 <div className="w-full max-w-full flex-shrink overflow-hidden lg:w-2/3">
-                                    <SocialMediaButtons url={`https://clafrica.online/news/single/${blog.id}`} />
+                                    <SocialMediaButtons
+                                        url={`https://clafrica.online/news/single/${blog.id}`}
+                                        title={blog.title}
+                                        description={trimText(blog.story, 0, 30)}
+                                    />
                                 </div>
                                 <div className="w-full max-w-full flex-shrink overflow-hidden lg:w-2/3">
                                     <div className="w-full py-3">
@@ -213,7 +253,7 @@ const SingleBlogPage = async ({ params }: paramProps) => {
                                                         <img
                                                             className="mx-auto h-40 max-h-40 min-h-40 w-full max-w-full overflow-hidden"
                                                             src={related.images[0].url}
-                                                            alt="alt title"
+                                                            alt={related.title}
                                                         />
                                                     </a>
                                                     <div className="py-0 pl-3 sm:py-3 sm:pl-0">

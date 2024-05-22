@@ -13,7 +13,7 @@ type PageProps = {
 };
 
 const EventsPage = async ({ searchParams }: PageProps) => {
-    const currentPage = parseInt(`${searchParams?.pages ?? 1}`);
+    const currentPage = parseInt(`${searchParams?.page ?? 1}`);
 
     const events = await getEvents({
         currentPage,

@@ -44,7 +44,7 @@ const sections = [
 function ServiceSection(props: { title: string; content: string; icon: React.ReactNode }) {
     return (
         <div className="shadow-2 mb-9 rounded-[20px] bg-white p-8  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
-            <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
+            <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
                 {props.icon}
             </div>
             <h4 className="text-dark mb-[14px] text-2xl font-semibold dark:text-white">{props.title}</h4>

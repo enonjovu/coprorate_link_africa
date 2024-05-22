@@ -1,21 +1,29 @@
 import { DirectoryDocument } from '@/lib/document-types';
-
+import { DevicePhoneMobileIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 export default function DirectoryCard(props: { directory: DirectoryDocument }) {
     return (
-        <div className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/3 sm:border-b-0 sm:pt-0">
-            <div className="hover-img flex flex-row sm:block">
-                <a href={`/directory/${props.directory.id}`}>
-                    <img
-                        className="mx-auto h-20 w-20 max-w-20 object-cover"
-                        src={props.directory.logo[0]?.url}
-                        alt="alt title"
-                    />
-                </a>
-                <div className="py-0 pl-3 sm:py-3 sm:pl-0">
-                    <h3 className="mb-2 text-center text-2xl font-bold leading-tight text-black">
-                        <a href={`/directory/${props.directory.id}`}>{props.directory.name}</a>
-                    </h3>
-                </div>
+        <div className="flex w-full items-start overflow-hidden rounded-md border">
+            <div className="shrink-0">
+                <img className="h-20 w-20" src={props.directory.logo[0]?.url} alt="alt title" />
+            </div>
+            <div className="ml-2 flex flex-1 flex-col space-y-2 p-1">
+                <h3 className="text-lg font-bold leading-tight text-black">
+                    <a href={`/directory/${props.directory.id}`}>{props.directory.name}</a>
+                </h3>
+
+                {props.directory.email && (
+                    <span className="flex items-center space-x-2 text-gray-700">
+                        <EnvelopeIcon className="size-4" />
+                        <p className="text-sm text-gray-700">{props.directory.email}</p>
+                    </span>
+                )}
+
+                {props.directory.phone && (
+                    <span className="flex items-center space-x-2 text-gray-700">
+                        <DevicePhoneMobileIcon className="size-4" />
+                        <p className="text-sm text-gray-700">{props.directory.phone}</p>
+                    </span>
+                )}
             </div>
         </div>
     );

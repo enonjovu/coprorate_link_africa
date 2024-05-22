@@ -230,19 +230,19 @@ export default function TipTapTextEditor(props: { value?: string; onChange?: (e:
         },
         editorProps: {
             attributes: {
-                class: 'h-[10rem] overflow-auto px-4 py-2 prose w-full',
+                class: 'h-[10rem] whitespace-pre-wrap overflow-auto px-4 py-2 prose w-full bg-white text-black',
             },
         },
     });
 
     return (
-        <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-700">
+        <div className="h-[14rem] max-h-[16rem] min-h-[12rem] overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-700">
             <div id="hs-editor-tiptap">
                 <div className="flex gap-x-0.5 border-b border-gray-200 p-2 align-middle dark:border-neutral-700">
                     <button
                         className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
                         type="button"
-                        onClick={() => editor?.chain().focus().toggleBold().run()}
+                        onClick={() => editor?.chain().focus().toggleBold().toggleHeading({ level: 3 }).run()}
                         disabled={!editor?.can().chain().focus().toggleBold().run()}
                     >
                         <svg

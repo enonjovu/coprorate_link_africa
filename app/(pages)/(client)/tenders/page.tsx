@@ -23,7 +23,7 @@ type PageProps = {
 };
 
 const TendersPage = async ({ searchParams }: PageProps) => {
-    const currentPage = parseInt(`${searchParams?.pages ?? 1}`);
+    const currentPage = parseInt(`${searchParams?.page ?? 1}`);
 
     const tenders = await getTenders({
         currentPage,

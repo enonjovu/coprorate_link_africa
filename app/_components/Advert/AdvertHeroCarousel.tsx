@@ -1,7 +1,8 @@
 'use client';
 
-import { AdvertDocument } from '@/lib/document-types';
+import type { AdvertDocument } from '@/lib/document-types';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 
@@ -11,7 +12,18 @@ type adsProps = {
     date: string;
 }[];
 
-const AdvertHeroCarousel = ({ adverts: ads }: { adverts: AdvertDocument[] }) => {
+const AdvertHeroCarousel = () => {
+    const [ads, setAds] = useState<AdvertDocument[]>([]);
+
+    useEffect(() => {
+        const fetchAdverts = async () => {
+            const res = await fetch('/api/adverts');
+            const data = await res.json();
+
+            setAds(data);
+        };
+        fetchAdverts();
+    }, []);
     return (
         <div className="h-full w-full text-center">
             <Carousel

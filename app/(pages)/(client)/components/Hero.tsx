@@ -1,16 +1,12 @@
-import { getAllAdverts } from '@/lib/repositories/AdvertRepository';
 import AdvertHeroCarousel from '@/app/_components/Advert/AdvertHeroCarousel';
 import BlogHeroArticle from '@/app/_components/Blog/BlogHeroArticle';
 import Blog from '@/models/Blog';
-import { convertDocumentsToModelObjectCollection } from '@/lib/helpers';
+import dbConnect from '@/lib/db';
 
 const Hero = async () => {
+    await dbConnect();
+
     const blogs = await Blog.find({}).limit(4).sort({ createdAt: -1, date: -1 });
-
-    let adverts = await getAllAdverts();
-
-    // to convert into plain doc objects since adverts will be rendered on the client
-    adverts = convertDocumentsToModelObjectCollection(adverts);
 
     return (
         <div className="bg-white py-6">
@@ -20,7 +16,7 @@ const Hero = async () => {
                     {/*Start left cover*/}
                     <div className="h-auto w-full max-w-full flex-shrink overflow-hidden pb-1 lg:w-1/2 lg:pb-0 lg:pr-1">
                         <div className="hover-img relative h-full max-h-[450px] w-full overflow-hidden">
-                            <AdvertHeroCarousel adverts={adverts} />
+                            <AdvertHeroCarousel />
                         </div>
                     </div>
 

@@ -3,22 +3,18 @@ import Image from 'next/image';
 import { getDirectories, getDirectoriesCount } from '@/lib/repositories/DirectoryRepository';
 import Pagination from '@/app/_components/Pagination';
 import DirectoryCategoryList from '@/app/_components/Directory/DirectoryCategoryList';
-// import { Metadata } from 'next'
-// export const metadata: Metadata = {
-//     title: '...',
-//     description: '...',
-//   }
 
 type PageProps = {
-    // params: { category: string };
+    params: { id: string };
     searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-const DirectoryPage = async ({ searchParams }: PageProps) => {
+export default async function DirectoryCategoryPage({ params, searchParams }: PageProps) {
     const currentPage = parseInt(`${searchParams?.page ?? 1}`);
 
     const directories = await getDirectories({
         currentPage,
+        category: params.id,
     });
 
     const directoriesCount = await getDirectoriesCount();
@@ -73,6 +69,4 @@ const DirectoryPage = async ({ searchParams }: PageProps) => {
             </div>
         </div>
     );
-};
-
-export default DirectoryPage;
+}

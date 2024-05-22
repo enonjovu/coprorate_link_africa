@@ -4,6 +4,8 @@ import Modal from '@/app/(pages)/(admin)/components/Modal';
 import { postCompany } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
 import { useState } from 'react';
+import TipTapMenuBar from '@/app/_components/TipTap/TipTapMenuBar';
+import TipTapTextEditor from '../../../components/TipTapTextEditor';
 
 // Initial state with types
 type FormData = {
@@ -17,6 +19,7 @@ type FormData = {
     description: string;
     logo: { url: string; key: string }[];
     iframe: string | null;
+    category: string | null;
 };
 
 const initialFormData: FormData = {
@@ -30,6 +33,7 @@ const initialFormData: FormData = {
     lon: '',
     logo: [{ url: '', key: '' }],
     iframe: null,
+    category: null,
 };
 
 const NewDirectory: React.FC = () => {
@@ -39,7 +43,11 @@ const NewDirectory: React.FC = () => {
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSubmit = async () => {
+        setIsLoading(true);
+
         formData.logo = images;
         console.log('file', formData);
         const response = await postCompany(formData);
@@ -48,14 +56,21 @@ const NewDirectory: React.FC = () => {
             setIsModalOpen(true); // Open the modal
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
+            setImages([]);
         }
+
+        setIsLoading(false);
     };
 
     const handleImagesUpload = (res: any) => {
+        setIsLoading(true);
+
         setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
         alert('Upload Completed');
+
+        setIsLoading(false);
     };
 
     return (
@@ -237,32 +252,52 @@ const NewDirectory: React.FC = () => {
 
                             <div>
                                 <label
-                                    htmlFor="description"
+                                    htmlFor="company-category"
                                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
                                 >
-                                    Company Details
+                                    Company Category
                                 </label>
-                                <textarea
-                                    id="description"
-                                    wrap="hard"
-                                    name="description"
-                                    rows={12}
+                                <input
+                                    type="text"
+                                    name="company-category"
+                                    id="company-category"
                                     className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            description: e.target.value,
+                                            category: e.target.value,
                                         });
                                     }}
+                                    value={formData.category ?? ''}
+                                />
+                            </div>
+
+                            <div>
+                                <label
+                                    htmlFor="story"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Company Details
+                                </label>
+                                <TipTapMenuBar />
+                                <TipTapTextEditor
                                     value={formData.description}
-                                ></textarea>
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            description: e,
+                                        });
+                                    }}
+                                />
                             </div>
                         </div>
+
                         {/* End Grid */}
 
                         <div className="mt-6 grid">
                             {images.length ? (
                                 <button
+                                    disabled={isLoading}
                                     type="button"
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     onClick={handleSubmit}
@@ -272,7 +307,7 @@ const NewDirectory: React.FC = () => {
                             ) : (
                                 <button
                                     type="button"
-                                    disabled
+                                    disabled={!images.length || isLoading}
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-600 px-4 
                                 py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                 >

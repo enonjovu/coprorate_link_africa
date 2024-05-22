@@ -1,6 +1,32 @@
 import Advert from '@/models/Advert';
-import type { PaginatorableParameters } from '../types';
+import type { PaginatorableParameters, SearchablePaginationParameters } from '../types';
 import connectToDatabase from '@/lib/db';
+import CONFIG from '../config';
+
+export async function getPaginatedAdverts(params: SearchablePaginationParameters) {
+    await connectToDatabase();
+
+    const queryParams: any = {};
+
+    if (params.search) {
+        queryParams['$text'] = { $search: params.search ? params.search : '' };
+    }
+
+    const page = params?.page ?? 1;
+    const limit = params?.limit ?? CONFIG.DEFAULT_PAGINATION_COUNT;
+
+    const skip = (page - 1) * limit;
+
+    const collection = await Advert.find(queryParams).sort({ created_at: -1 }).skip(skip).limit(limit);
+    const totalResults = await Advert.countDocuments();
+
+    const numberOfPages = Math.ceil(totalResults / limit);
+
+    return {
+        collection,
+        numberOfPages,
+    };
+}
 
 export async function getAdverts(params: PaginatorableParameters) {
     await connectToDatabase();

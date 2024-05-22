@@ -14,6 +14,7 @@ const TenderSchema = new Schema(
             required: true,
         },
         requirements: Array,
+        date: { type: Date, default: () => Date.now },
     },
     {
         timestamps: true,

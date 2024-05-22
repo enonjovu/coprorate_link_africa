@@ -8,3 +8,15 @@ export type PaginatorableParameters = {
     currentPage: number;
     search?: string;
 };
+
+export interface PaginationParameters {
+    page?: number;
+    limit?: number;
+    skip?: number;
+}
+
+export interface SearchParameter {
+    search?: string;
+}
+
+export interface SearchablePaginationParameters extends PaginationParameters, SearchParameter {}
