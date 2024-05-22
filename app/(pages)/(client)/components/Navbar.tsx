@@ -112,7 +112,7 @@ const Navbar = () => {
                                     </svg>
                                 </button>
 
-                                <div className="hs-dropdown-menu duration-[0.1ms] sm:duration-[150ms] top-full z-10 hidden rounded-lg bg-white p-2 opacity-0 transition-[opacity,margin] before:absolute before:-top-5  before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 sm:w-48 sm:border sm:shadow-md sm:dark:border">
+                                <div className="hs-dropdown-menu top-full z-10 hidden rounded-lg bg-white p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0  before:h-5 before:w-full hs-dropdown-open:opacity-100 sm:w-48 sm:border sm:shadow-md sm:duration-[150ms] sm:dark:border">
                                     <a
                                         className="flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-red-500"
                                         href="/directory"
