@@ -1,7 +1,7 @@
 import Directory from '@/models/Directory';
 import type { PaginatorableParameters, SearchablePaginationParameters } from '../types';
 import connectToDatabase from '@/lib/db';
-import CONFIG from '../config';
+import ApplicationConfiguration from '../config';
 import DirectoryCategory from '@/models/DirectoryCategory';
 
 type DirectoryParamters = {
@@ -28,7 +28,7 @@ export async function getPaginatedDirectories(params: SearchablePaginationParame
     }
 
     const page = params?.page ?? 1;
-    const limit = params?.limit ?? CONFIG.DEFAULT_PAGINATION_COUNT;
+    const limit = params?.limit ?? ApplicationConfiguration.DEFAULT_PAGINATION_COUNT;
 
     const skip = (page - 1) * limit;
 

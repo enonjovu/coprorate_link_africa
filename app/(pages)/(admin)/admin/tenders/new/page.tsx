@@ -4,6 +4,7 @@ import Modal from '@/app/(pages)/(admin)/components/Modal';
 import { BsPlusCircle } from 'react-icons/bs';
 import { postTender } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
+import toast from 'react-hot-toast';
 
 // Initial state with types
 type FormData = {
@@ -52,7 +53,7 @@ const NewTender = () => {
         setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
-        alert('Upload Completed');
+        toast('upload complete');
     };
 
     return (

@@ -6,7 +6,7 @@ export default function BlogHeroArticle({ blog }: { blog: BlogDocument }) {
     return (
         <article className="h-auto w-full max-w-full flex-shrink overflow-y-hidden sm:w-1/2 lg:max-h-[65vh]">
             <Link href={`/news/single/${blog.id}`}>
-                <div className="hover-img relative h-full max-h-[222px] w-full overflow-hidden">
+                <div className="hover-img relative h-full max-h-[220px] w-full overflow-hidden">
                     <Image
                         className="h-full w-full object-cover"
                         src={blog.images[0].url}

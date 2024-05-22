@@ -6,6 +6,7 @@ import { UploadButton } from '@/utils/uploadthing';
 import { useState } from 'react';
 import TipTapMenuBar from '@/app/_components/TipTap/TipTapMenuBar';
 import TipTapTextEditor from '../../../components/TipTapTextEditor';
+import toast from 'react-hot-toast';
 
 // Initial state with types
 type FormData = {
@@ -18,6 +19,7 @@ type FormData = {
     lon: string;
     description: string;
     logo: { url: string; key: string }[];
+    promotion_adverts: { url: string; key: string }[] | null;
     iframe: string | null;
     category: string | null;
 };
@@ -32,6 +34,7 @@ const initialFormData: FormData = {
     lat: '',
     lon: '',
     logo: [{ url: '', key: '' }],
+    promotion_adverts: null,
     iframe: null,
     category: null,
 };
@@ -41,7 +44,10 @@ const NewDirectory: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
     const [formData, setFormData] = useState<FormData>(initialFormData);
+
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
+
+    const [companyPromoImages, setCompanyPromoImages] = useState<{ url: string; key: string }[]>([]);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -49,11 +55,14 @@ const NewDirectory: React.FC = () => {
         setIsLoading(true);
 
         formData.logo = images;
+        formData.promotion_adverts = companyPromoImages;
+
         console.log('file', formData);
         const response = await postCompany(formData);
         console.log('Response => ', response);
         if (response.status === 'true') {
-            setIsModalOpen(true); // Open the modal
+            toast('directory was created');
+
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
             setImages([]);
@@ -68,7 +77,19 @@ const NewDirectory: React.FC = () => {
         setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
-        alert('Upload Completed');
+
+        toast('logo upload completed');
+
+        setIsLoading(false);
+    };
+
+    const handleUploadPromotionAdvertImages = async (res: any) => {
+        setIsLoading(true);
+
+        setCompanyPromoImages(res);
+        const json = JSON.stringify(res);
+
+        toast('promo images upload completed');
 
         setIsLoading(false);
     };
@@ -84,7 +105,7 @@ const NewDirectory: React.FC = () => {
 
                 <div className="mt-12">
                     {/* Form */}
-                    <form key={formKey}>
+                    <form key={formKey} className="space-y-4">
                         <div className="grid gap-4 lg:gap-6">
                             <div>
                                 <label
@@ -123,7 +144,7 @@ const NewDirectory: React.FC = () => {
                                             handleImagesUpload(res);
                                         }
                                     }}
-                                    onUploadError={(error: Error) => {
+                                    onUploadError={(error) => {
                                         // Do something with the error.
                                         alert(`ERROR! ${error.message}`);
                                     }}
@@ -279,7 +300,7 @@ const NewDirectory: React.FC = () => {
                                 >
                                     Company Details
                                 </label>
-                                <TipTapMenuBar />
+
                                 <TipTapTextEditor
                                     value={formData.description}
                                     onChange={(e) => {
@@ -292,6 +313,25 @@ const NewDirectory: React.FC = () => {
                             </div>
                         </div>
 
+                        <div>
+                            <label htmlFor="" className="mb-2 block text-sm font-medium text-gray-700 dark:text-white">
+                                Company Promotion Advert
+                            </label>
+                            <UploadButton
+                                endpoint="singleImage"
+                                onClientUploadComplete={(res) => {
+                                    if (res) {
+                                        // Do something with the response
+                                        handleUploadPromotionAdvertImages(res);
+                                    }
+                                }}
+                                onUploadError={(error: Error) => {
+                                    // Do something with the error.
+                                    alert(`ERROR! ${error.message}`);
+                                }}
+                            />
+                        </div>
+
                         {/* End Grid */}
 
                         <div className="mt-6 grid">
@@ -302,7 +342,7 @@ const NewDirectory: React.FC = () => {
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     onClick={handleSubmit}
                                 >
-                                    Save Company
+                                    {isLoading ? 'Saving...' : 'Save Company'}
                                 </button>
                             ) : (
                                 <button

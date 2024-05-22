@@ -32,7 +32,7 @@ const DirectorySchema = new Schema(
             type: String,
         },
         iframe: String,
-        promotion: Array,
+        promotion_adverts: Array,
         logo: Array,
         category: mongoose.Schema.Types.ObjectId,
         date: { type: Date, default: () => Date.now },

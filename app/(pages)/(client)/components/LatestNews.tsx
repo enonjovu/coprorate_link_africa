@@ -7,7 +7,10 @@ import HomeCategoryList from '@/app/_components/Categories/HomeCategoryList';
 const LatestNews = async ({ page }: { page: string }) => {
     const pageNumber = parseInt(page);
 
-    const blogs = await getBlogs({ currentPage: pageNumber });
+    const blogs = await getBlogs({
+        currentPage: pageNumber,
+        skip: pageNumber,
+    });
 
     const itemsCount = await getBlogsCount();
 

@@ -16,6 +16,7 @@ type FormData = {
     story: string;
     author: string;
     images: { url: string; key: string }[];
+    image_alt: string | null;
 };
 
 const initialFormData: FormData = {
@@ -24,6 +25,7 @@ const initialFormData: FormData = {
     story: '',
     author: '',
     images: [{ url: '', key: '' }],
+    image_alt: null,
 };
 
 const NewPost: React.FC = () => {
@@ -186,6 +188,28 @@ const NewPost: React.FC = () => {
                                         value={formData.category}
                                     />
                                 </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    htmlFor="image_alt"
+                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                                >
+                                    Article Image Caption
+                                </label>
+                                <input
+                                    type="text"
+                                    name="image_alt"
+                                    id="image_alt"
+                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            image_alt: e.target.value,
+                                        });
+                                    }}
+                                    value={formData.image_alt ?? ''}
+                                />
                             </div>
                             {/* End Grid */}
 

@@ -1,27 +1,36 @@
 import { BsCameraVideo, BsMegaphone, BsMic, BsNewspaper, BsSearch } from 'react-icons/bs';
 import { FaChartPie } from 'react-icons/fa';
 
+export const metadata = {
+    title: 'Corporate Link Africa - Service',
+    description: 'Simplified Business Narratives',
+};
+
 const sections = [
     {
         title: 'Corporate News Coverage',
+        idAnchor: 'corporate-news-coverage',
         content:
             'We specialize in providing real-time, insightful news coverage that goes beyond the surface,unraveling the intricate dynamics of the corporate landscape across Africa.',
         icon: <BsNewspaper size={40} className="text-black dark:text-white" />,
     },
     {
         title: 'Advertising',
+        idAnchor: 'advertising',
         content:
             'Our advertising services are designed to cut through the noise and deliver your message to the right audience. From creative concept development to strategic placement, we ensure your brand stands out in the crowded media landscape.',
         icon: <BsMegaphone size={40} className="text-black dark:text-white" />,
     },
     {
         title: 'In-Depth Analysis',
+        idAnchor: 'content-development',
         content:
             'Our team of seasoned analysts delves deep into industry trends, offering in-depth analysis and thought leadership that guides businesses in navigating the complexities of the African business terrain.',
         icon: <BsSearch size={40} className="text-black dark:text-white" />,
     },
     {
         title: 'Sector-Specific Reports',
+        idAnchor: 'documentaries',
         content:
             'We provide specialized reports offering granular insights into various industries, helping businesses stay ahead in a rapidly evolving market.',
         icon: <FaChartPie size={40} className="text-black dark:text-white" />,
@@ -29,21 +38,26 @@ const sections = [
 
     {
         title: 'Public Relations (PR)',
+        idAnchor: 'public-relations',
         content:
             'Our PR services are tailored to enhance your corporate image, manage reputations, and build meaningful relationships with stakeholders. From strategic communication plans to crisis management, we are your trusted partner in shaping and safeguarding your public image.',
         icon: <BsMic size={40} className="text-black dark:text-white" />,
     },
     {
         title: 'Media Solutions',
+        idAnchor: 'graphics-design',
         content:
             'As a comprehensive media company, we go beyond news reporting. Our suite of services includes Public Relations (PR), Advertising, Content Development and Creation, Documentaries, and more. We are your strategic partner in crafting and disseminating compelling corporate narratives.',
         icon: <BsCameraVideo size={40} className="text-black dark:text-white" />,
     },
 ];
 
-function ServiceSection(props: { title: string; content: string; icon: React.ReactNode }) {
+function ServiceSection(props: { title: string; content: string; icon: React.ReactNode; idAnchor: string }) {
     return (
-        <div className="shadow-2 mb-9 rounded-[20px] bg-white p-8  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white">
+        <div
+            id={props.idAnchor}
+            className="shadow-2 mb-9 rounded-[20px] bg-white p-8  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white"
+        >
             <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
                 {props.icon}
             </div>

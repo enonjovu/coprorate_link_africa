@@ -12,18 +12,7 @@ type adsProps = {
     date: string;
 }[];
 
-const AdvertHeroCarousel = () => {
-    const [ads, setAds] = useState<AdvertDocument[]>([]);
-
-    useEffect(() => {
-        const fetchAdverts = async () => {
-            const res = await fetch('/api/adverts');
-            const data = await res.json();
-
-            setAds(data);
-        };
-        fetchAdverts();
-    }, []);
+const AdvertHeroCarousel = (props: { adverts: AdvertDocument[] }) => {
     return (
         <div className="h-full w-full text-center">
             <Carousel
@@ -42,13 +31,13 @@ const AdvertHeroCarousel = () => {
                 showThumbs={false}
                 className="relative h-full w-full" // Set initial height using Tailwind classes
             >
-                {ads.map((ad) => (
+                {props.adverts.map((ad) => (
                     <div className="" key={ad.images[0].key}>
                         <a href="#">
                             <Image
                                 width={635}
                                 height={450}
-                                className="mx-auto"
+                                className="mx-auto h-full w-full border border-red-800"
                                 src={ad.images[0].url}
                                 alt="advertisement area"
                             />

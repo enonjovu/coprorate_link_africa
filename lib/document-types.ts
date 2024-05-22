@@ -15,6 +15,7 @@ export type ImageRecord = {
 
 export interface AdvertDocument extends Document {
     images: Array<ImageRecord>;
+    variant: 'normal' | 'top' | 'side';
 }
 
 export interface BlogDocument extends Document {
@@ -23,6 +24,7 @@ export interface BlogDocument extends Document {
     category: string;
     images: Array<ImageRecord>;
     author: string;
+    image_alt: string;
 }
 
 export interface DirectoryDocument extends Document {
@@ -36,7 +38,7 @@ export interface DirectoryDocument extends Document {
     lon?: string;
     logo: Array<ImageRecord>;
     iframe?: string;
-    promotion?: Array<ImageRecord>;
+    promotion_adverts?: Array<ImageRecord>;
     category?: DirectoryCategoryDocument;
 }
 

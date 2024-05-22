@@ -13,10 +13,7 @@ const BlogSchema = new Schema(
             type: String,
             required: true,
         },
-        category: {
-            type: String,
-            required: true,
-        },
+        category: String,
         images: {
             type: Array,
             of: Object, // Assuming images are stored as URLs
@@ -26,6 +23,8 @@ const BlogSchema = new Schema(
             required: true,
         },
         date: { type: Date, default: () => Date.now },
+
+        image_alt: String,
     },
     {
         timestamps: true,

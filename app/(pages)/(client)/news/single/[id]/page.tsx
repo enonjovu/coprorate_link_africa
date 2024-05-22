@@ -78,7 +78,9 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                                         </div>
                                                     </div>
                                                 )}
-                                                <figcaption className="text-black"> Image Description</figcaption>
+                                                <figcaption className="text-black">
+                                                    {blog.image_alt ?? blog.title}
+                                                </figcaption>
                                             </figure>
 
                                             <p className="prose mb-5 w-full max-w-7xl whitespace-pre-wrap text-black">

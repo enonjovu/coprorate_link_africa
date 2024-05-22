@@ -7,6 +7,11 @@ type PageProps = {
     searchParams?: { [key: string]: string | string[] | undefined };
 };
 
+export const metadata = {
+    title: 'Corporate Link Africa - Leaders',
+    description: 'Simplified Business Narratives',
+};
+
 const AllLaeders = async (params: PageProps) => {
     const currentPage = parseInt(`${params.searchParams?.page ?? 1}`);
 

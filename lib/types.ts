@@ -7,6 +7,7 @@ export type PaginatorableParameters = {
     limit?: number;
     currentPage: number;
     search?: string;
+    step?: number;
 };
 
 export interface PaginationParameters {

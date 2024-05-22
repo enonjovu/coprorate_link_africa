@@ -24,9 +24,12 @@ export async function getBlogs(params: { category?: string } & PaginatorablePara
         blogParameters['category'] = params.category;
     }
 
+    const step = params.step ?? 0;
+    const skip = (params.skip ?? 12 * (params.currentPage - 1)) + step;
+
     const results = await Blog.find(blogParameters)
         .sort({ createdAt: -1, date: -1 })
-        .skip(params.skip ?? 12 * (params.currentPage - 1))
+        .skip(skip)
         .limit(params.limit ?? 12);
 
     return results;

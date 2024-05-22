@@ -5,6 +5,7 @@ import { postAds } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
 import { useState } from 'react';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 // Initial state with types
 type FormData = {
@@ -22,25 +23,37 @@ const NewDirectory: React.FC = () => {
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSubmit = async () => {
+        setIsLoading(true);
+
         if (images.length < 1) {
+            setIsLoading(false);
             return;
         }
+
         formData.images = images;
         console.log('file', formData);
         const response = await postAds(formData);
         if (response.status === 'true') {
-            setIsModalOpen(true); // Open the modal
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
+            setImages([]);
+
+            setIsLoading(false);
+
+            toast('advert creation complete');
         }
+
+        setIsLoading(false);
     };
 
     const handleImagesUpload = (res: any) => {
         setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
-        alert('Upload Completed');
+        toast('Upload Completed');
     };
 
     const title = images.length ? (
@@ -111,16 +124,17 @@ const NewDirectory: React.FC = () => {
                         <div className="mt-6 grid">
                             {images.length ? (
                                 <button
+                                    disabled={isLoading}
                                     type="button"
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     onClick={handleSubmit}
                                 >
-                                    Post Advert
+                                    {isLoading ? 'Creating Advert...' : 'Post Advert'}
                                 </button>
                             ) : (
                                 <button
                                     type="button"
-                                    disabled
+                                    disabled={isLoading || !images.length}
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-600 px-4 
                                 py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                 >

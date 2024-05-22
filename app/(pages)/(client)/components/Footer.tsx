@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { BsEnvelope, BsFacebook, BsLinkedin, BsPhone, BsTwitterX, BsYoutube, BsInstagram } from 'react-icons/bs';
 import { FaArrowAltCircleUp, FaMapMarkerAlt } from 'react-icons/fa';
 
@@ -70,22 +71,22 @@ const Footer = () => {
                                         </h4>
                                         <ul>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/services">Advertising</a>
+                                                <a href="/services#advertising">Advertising</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/services">Corporate News Coverage</a>
+                                                <a href="/services#corporate-news-coverage">Corporate News Coverage</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/services">Content Development</a>
+                                                <a href="/services#content-development">Content Development</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/services">Graphics Design</a>
+                                                <a href="/services#graphics-design">Graphics Design</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/services">Public Relations</a>
+                                                <a href="/services#public-relations">Public Relations</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/services">Documentaries</a>
+                                                <a href="/services#documentaries">Documentaries</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -97,16 +98,16 @@ const Footer = () => {
                                         </h4>
                                         <ul>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/about">Our Mission</a>
+                                                <a href="/about#our-mission">Our Mission</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/about">Our Vision</a>
+                                                <a href="/about#our-vision">Our Vision</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/about">Our Story</a>
+                                                <a href="/about#our-story">Our Story</a>
                                             </li>
                                             <li className="py-1 hover:text-white">
-                                                <a href="/about">Our Team</a>
+                                                <a href="/about#our-team">Our Team</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -169,13 +170,13 @@ const Footer = () => {
             {/* end footer */}
 
             {/* =========={ SCROLL TO TOP }==========  */}
-            <a
-                href="#"
+            <Link
+                href=""
                 className="back-top fixed bottom-4 right-4 hidden rounded border border-gray-100 bg-gray-100 p-4 text-gray-500 dark:border-gray-800 dark:bg-gray-900"
                 aria-label="Scroll To Top"
             >
                 <FaArrowAltCircleUp size={20} color={'#fff'} />
-            </a>
+            </Link>
         </>
     );
 };

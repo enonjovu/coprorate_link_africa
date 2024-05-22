@@ -2,6 +2,11 @@ import Image from 'next/image';
 import { FaFacebook, FaInstagram, FaLinkedin, FaMapMarkedAlt } from 'react-icons/fa';
 import { BsEnvelope, BsPhoneFlip, BsTwitterX } from 'react-icons/bs';
 
+export const metadata = {
+    title: 'Corporate Link Africa - About',
+    description: 'Simplified Business Narratives',
+};
+
 const About = () => {
     return (
         <div className="h-full">
@@ -27,7 +32,7 @@ const About = () => {
                     </div>
 
                     <div className="flex flex-col flex-wrap md:flex-row ">
-                        <div className="mb-10 w-full px-4 lg:mb-0 lg:w-1/2 ">
+                        <div id="our-mission" className="mb-10 w-full px-4 lg:mb-0 lg:w-1/2 ">
                             <h2 className="mb-4 border-l-4 border-red-500 py-3 pl-2 text-2xl font-bold text-gray-700 dark:border-red-700 dark:text-gray-300">
                                 Our Mission
                             </h2>
@@ -37,7 +42,7 @@ const About = () => {
                             </p>
                         </div>
 
-                        <div className="mb-10 w-full px-4 lg:mb-0 lg:w-1/2 ">
+                        <div id="our-vision" className="mb-10 w-full px-4 lg:mb-0 lg:w-1/2 ">
                             <h2 className="mb-4 border-l-4 border-red-500 py-3 pl-2 text-2xl font-bold text-gray-700 dark:border-red-700 dark:text-gray-300">
                                 Our Vision
                             </h2>
@@ -49,7 +54,7 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-wrap ">
+                    <div id="our-story" className="flex flex-wrap ">
                         <div className="mb-10 w-full px-4 lg:mb-0 lg:w-1/2">
                             <Image
                                 width={500}
@@ -189,7 +194,7 @@ const About = () => {
                             reporting with strategic communication solutions, connecting your business to the heart of
                             corporate Africa.
                         </p>
-                        <div className="flex w-full justify-around">
+                        <div id="our-team" className="flex w-full justify-around">
                             <li className="flex space-x-4">
                                 <BsPhoneFlip size={20} color={'#000'} />
                                 <p>+265 (0) 885631138 / 997572483</p>{' '}
