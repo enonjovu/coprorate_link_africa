@@ -5,7 +5,9 @@ import { postBlog } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
 import { useState } from 'react';
 import Link from 'next/link';
-import TextEditor from '@/app/(pages)/(admin)/components/TextEditor';
+import TipTapEditor from '@/app/_components/TipTap/TipTapEditor';
+import TipTapMenuBar from '@/app/_components/TipTap/TipTapMenuBar';
+import TipTapTextEditor from '../../../components/TipTapTextEditor';
 
 // Initial state with types
 type FormData = {
@@ -183,21 +185,16 @@ const NewPost: React.FC = () => {
                                 >
                                     Story
                                 </label>
-                                <textarea
-                                    id="story"
-                                    wrap="hard"
-                                    name="story"
-                                    rows={4}
-                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+                                <TipTapMenuBar />
+                                <TipTapTextEditor
+                                    value={formData.story}
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            story: e.target.value,
+                                            story: e,
                                         });
                                     }}
-                                    value={formData.story}
-                                ></textarea>
-                                <TextEditor />
+                                />
                             </div>
                         </div>
                         {/* End Grid */}

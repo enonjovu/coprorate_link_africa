@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getTenders, getTendersCount } from '@/lib/repositories/TenderRepository';
 import Pagination from '@/app/_components/Pagination';
+import { trimText } from '@/lib/helpers';
+import { BsEye } from 'react-icons/bs';
+import { EyeIcon } from '@heroicons/react/24/outline';
 
 type tender = {
     _id: string;
@@ -52,11 +55,52 @@ const TendersPage = async ({ searchParams }: PageProps) => {
                                     />
                                 </div>
                                 {tenders.length ? (
-                                    <div className="mx-auto w-full max-w-screen-xl px-4">
-                                        <div className="grid w-full gap-6 sm:grid-cols-2 xl:grid-cols-4">
-                                            {tenders.map((tender) => (
-                                                <TenderCard tender={tender} key={tender.id} />
-                                            ))}
+                                    <div className="mx-auto w-full max-w-screen-xl">
+                                        <div className="relative overflow-x-auto">
+                                            <table className="w-full text-left text-sm text-gray-500 ">
+                                                <thead className="bg-red-600 text-xs uppercase text-gray-100 ">
+                                                    <tr className="divide-x divide-gray-100">
+                                                        <th scope="col" className="w-96 px-6 py-3">
+                                                            Title
+                                                        </th>
+                                                        <th scope="col" className="px-6 py-3">
+                                                            Description
+                                                        </th>
+
+                                                        <th scope="col" className="w-12 px-6 py-3">
+                                                            View
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {tenders.map((tender) => (
+                                                        <tr
+                                                            className="divide-x divide-gray-200 border-b bg-white"
+                                                            key={tender.id}
+                                                        >
+                                                            <th
+                                                                scope="row"
+                                                                className="px-6 py-4 font-medium text-gray-900 "
+                                                            >
+                                                                <Link href={`/tenders/${tender._id}`}>
+                                                                    {tender.title}
+                                                                </Link>
+                                                            </th>
+                                                            <td className="px-6 py-4">
+                                                                {trimText(tender.description, 0, 20)}...
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                <Link
+                                                                    className="grid size-12 place-items-center rounded-md bg-red-600 p-2 text-white"
+                                                                    href={`/tenders/${tender._id}`}
+                                                                >
+                                                                    <EyeIcon className="size-8" />
+                                                                </Link>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 ) : (

@@ -1,25 +1,22 @@
-import { PathParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import type { ModelDocumentWithId } from './types';
 import { Document } from 'mongoose';
 
 export function convertDocumentToModelObject<TDocument extends Document>(
-    document?: TDocument | null,
-): ModelDocumentWithId<TDocument> | null {
-    if (!document) {
-        return null;
-    }
+    document: TDocument,
+): ModelDocumentWithId<TDocument> {
+    const object = document.toJSON();
 
-    const object = document.toObject();
-
-    return {
+    const obj: any = {
         ...object,
-        id: object._id,
+        id: object._id as string,
     };
+
+    return obj;
 }
 
 export function convertDocumentsToModelObjectCollection<TDocument extends Document>(
     documents: TDocument[],
-): Array<ModelDocumentWithId<TDocument> | null> {
+): Array<ModelDocumentWithId<TDocument>> {
     return documents.map((doc) => convertDocumentToModelObject(doc));
 }
 

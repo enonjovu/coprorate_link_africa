@@ -3,12 +3,12 @@ import BlogCard from '@/app/_components/Blog/BlogCard';
 import Pagination from '@/app/_components/Pagination';
 import { getBlogsByCategory, getBlogsCount } from '@/lib/repositories/BlogRepository';
 
-type paramProps = {
+type PageProps = {
     params: { category: string };
     searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const BlogCategoryPage = async ({ params, searchParams }: paramProps) => {
+const BlogCategoryPage = async ({ params, searchParams }: PageProps) => {
     const category: string = params.category.toLocaleLowerCase();
 
     const currentPage = parseInt(`${searchParams?.pages ?? 1}`);

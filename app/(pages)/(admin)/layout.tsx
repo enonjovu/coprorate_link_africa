@@ -6,8 +6,8 @@ import AuthProvider from '@/app/context/AuthProvider';
 import PrelineScript from '@/app/_components/PrelineScripts';
 import Sidebar from './components/Sidebar';
 import HeaderComponent from './components/HeaderComponent';
-import { checkApplicationInProduction } from '@/lib/helpers';
 import InterFontWrapper from '@/app/_components/InterFontWrapper';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
     title: 'Corporate Link Africa',
@@ -15,8 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    const production = checkApplicationInProduction();
-
     return (
         <html lang="en">
             <body>
@@ -33,22 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                     aria-label="Toggle navigation"
                                 >
                                     <span className="sr-only">Toggle Navigation</span>
-                                    <svg
-                                        className="h-4 w-4 flex-shrink-0"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <line x1="3" x2="21" y1="6" y2="6" />
-                                        <line x1="3" x2="21" y1="12" y2="12" />
-                                        <line x1="3" x2="21" y1="18" y2="18" />
-                                    </svg>
+                                    <Bars3Icon className="size-8" />
                                 </button>
                                 {/* End Navigation Toggle */}
 
@@ -67,8 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                             <path
                                                 d="M5 1L10.6869 7.16086C10.8637 7.35239 10.8637 7.64761 10.6869 7.83914L5 14"
                                                 stroke="currentColor"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
                                             />
                                         </svg>
                                     </li>

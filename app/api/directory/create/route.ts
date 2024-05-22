@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
     const date = Date.now();
-    const { name, email, description, phone, address, website, lat, lon, logo } = await req.json();
+    const { name, email, description, phone, address, website, lat, lon, logo, iframe } = await req.json();
     try {
         await dbConnect();
         const newDirectory = await Directory.create({
@@ -18,6 +18,7 @@ export async function POST(req: Request) {
             lon,
             logo,
             date: date,
+            iframe,
         });
 
         if (newDirectory) {

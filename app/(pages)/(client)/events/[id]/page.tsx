@@ -52,7 +52,7 @@ const EventSingle = async ({ params }: paramProps) => {
 
                                         <p className="flex w-2/3 justify-start space-x-4 md:w-1/3 md:justify-center">
                                             <BsHouse size={20} color={'#000000'} />
-                                            <span className="font-bold text-black">{event.venue}</span>
+                                            <span className="font-bold capitalize text-black">{event.venue}</span>
                                         </p>
 
                                         <p className="flex w-2/3 justify-start space-x-4 md:w-1/3 md:justify-center">

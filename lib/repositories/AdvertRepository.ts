@@ -13,6 +13,14 @@ export async function getAdverts(params: PaginatorableParameters) {
     return results;
 }
 
+export async function getAllAdverts() {
+    await connectToDatabase();
+
+    const results = await Advert.find({}).sort({ date: -1 });
+
+    return results;
+}
+
 export async function getAdvertsCount() {
     await connectToDatabase();
 

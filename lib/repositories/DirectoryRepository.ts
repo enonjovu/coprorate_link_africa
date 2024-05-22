@@ -12,6 +12,7 @@ type DirectoryParamters = {
     lat: String;
     lon: String;
     logo: String;
+    iframe?: string;
 };
 
 export async function getDirectories(params: PaginatorableParameters) {

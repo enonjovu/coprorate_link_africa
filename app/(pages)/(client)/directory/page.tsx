@@ -13,6 +13,7 @@ const DirectoryPage = async ({ searchParams }: PageProps) => {
 
     const directories = await getDirectories({
         currentPage,
+        limit: 300,
     });
 
     const directoriesCount = await getDirectoriesCount();

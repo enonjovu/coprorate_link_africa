@@ -7,37 +7,31 @@ const DirectorySchema = new Schema(
     {
         name: {
             type: String,
-            required: true,
         },
         email: {
             type: String,
-            required: true,
             unique: true,
         },
         description: {
             type: String,
-            required: true,
         },
         phone: {
             type: String,
-            required: true,
         },
         address: {
             type: String,
-            required: true,
         },
         website: {
             type: String,
-            required: true,
         },
         lat: {
             type: String,
-            required: true,
         },
         lon: {
             type: String,
-            required: true,
         },
+        iframe: String,
+        promotion: Array,
         logo: Array,
     },
     {

@@ -32,9 +32,11 @@ export interface DirectoryDocument extends Document {
     phone: string;
     address: string;
     website: string;
-    lat: string;
-    lon: string;
-    logo: Array<ImageRecord>;
+    lat?: string;
+    lon?: string;
+    logo?: Array<ImageRecord>;
+    iframe?: string;
+    promotion?: Array<ImageRecord>;
 }
 
 export interface EventDocument extends Document {
