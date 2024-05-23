@@ -4,10 +4,12 @@ import PicturesSlider from '@/app/(pages)/(client)/components/PicturesSlider';
 import SocialMediaButtons from '@/app/(pages)/(client)/components/SocialMediaButtons';
 import TopStories from '@/app/(pages)/(client)/components/TopStories';
 import { fetchBlogsById } from '@/app/action';
+import { getBlogById, getBlogsRelatedTo } from '@/lib/repositories/BlogRepository';
 
 import Image from 'next/image';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { trimText } from '@/lib/helpers';
+import { notFound } from 'next/navigation';
 
 type PageProps = {
     params: { id: string };
@@ -17,8 +19,11 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
     const id = params.id;
 
-    const result = await fetchBlogsById(id);
-    const blog = result[0];
+    const blog = await getBlogById(id);
+
+    if (!blog) {
+        return {};
+    }
 
     return {
         title: blog.title,
@@ -34,8 +39,16 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
 
 const SingleBlogPage = async ({ params }: PageProps) => {
     const id: string = params.id;
-    const result = await fetchBlogsById(id);
-    const blog = result[0];
+
+    const blog = await getBlogById(id);
+
+    if (!blog) {
+        notFound();
+        return;
+    }
+
+    const relatedBlogs = await getBlogsRelatedTo(blog._id, { category: blog.category });
+
     return (
         <main id="content">
             <>
@@ -245,7 +258,7 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                         </h2>
                                     </div>
                                     <div className="-mx-3 flex flex-row flex-wrap">
-                                        {blog.related?.map((related) => (
+                                        {relatedBlogs?.map((related) => (
                                             <div
                                                 key={related._id}
                                                 className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/3 sm:border-b-0 sm:pt-0"

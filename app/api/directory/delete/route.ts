@@ -1,4 +1,5 @@
 import dbConnect from '@/lib/db';
+import { getDirectoryById } from '@/lib/repositories/DirectoryRepository';
 import Directory from '@/models/Directory';
 import { utapi } from '@/utils/utapicomponent';
 import { NextResponse } from 'next/server';
@@ -15,11 +16,11 @@ export async function GET(req: Request, res: Response) {
             return NextResponse.json({ error: 'Missing blog ID' });
         }
         // Fetch the data
-        const results = await Directory.find({ _id: id });
-        if (results[0]) {
-            const event = results[0];
-            for (let i = 0; i < event.images.length; i++) {
-                const image = event.images[i].key;
+        const directory = await getDirectoryById(id);
+
+        if (directory) {
+            for (let i = 0; i < directory.logo.length; i++) {
+                const image = directory.logo[i].key;
                 await utapi.deleteFiles(image);
             }
             await Directory.findOneAndDelete({ _id: id });

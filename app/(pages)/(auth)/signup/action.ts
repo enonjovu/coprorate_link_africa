@@ -27,7 +27,7 @@ export async function handleRegisterUser(params: Partial<RegistrationParameters>
             errors: {},
             data: newUser,
         };
-    } catch (err) {
+    } catch (err:any) {
         return {
             data: {},
             errors: {
