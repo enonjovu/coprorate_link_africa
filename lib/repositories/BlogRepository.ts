@@ -11,6 +11,14 @@ export async function getBlogById(id: string) {
     return blog;
 }
 
+export async function getBlogsRelatedTo(id: string, params: object = {}, options: { limit?: number } = {}) {
+    const limit = options.limit ?? 4;
+
+    const result = await Blog.find(params).where('_id').ne(id).sort({ createdAt: -1, date: -1 }).limit(limit);
+
+    return result;
+}
+
 export async function getBlogs(params: { category?: string } & PaginatorableParameters) {
     await connectToDatabase();
 

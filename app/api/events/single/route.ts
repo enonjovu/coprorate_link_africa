@@ -1,4 +1,5 @@
 import dbConnect from '@/lib/db';
+import { getFormatedDate } from '@/lib/helpers';
 import Event from '@/models/Event';
 import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
@@ -38,7 +39,7 @@ export async function GET(req: Request, res: Response) {
                 eventDate: event.eventDate,
                 time: event.time,
                 venue: event.venue,
-                date: await formatdDate(event.date),
+                date: getFormatedDate(event.date),
             });
         }
 

@@ -20,7 +20,7 @@ export function convertDocumentsToModelObjectCollection<TDocument extends Docume
     return documents.map((doc) => convertDocumentToModelObject(doc));
 }
 
-export function getFormatedDate(date: Date = new Date(Date.now())) {
+export function getFormatedDate(date: any = new Date(Date.now())) {
     return new Date(date).toLocaleDateString('en-US', {
         month: 'long',
         day: 'numeric',

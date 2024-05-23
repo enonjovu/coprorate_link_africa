@@ -42,7 +42,7 @@ const SignUpForm = () => {
         const response = await handleRegisterUser(data);
 
         if (response.errors) {
-            setErrors(response?.errors);
+            setErrors(response?.errors as Record<string, string[]>);
             console.log(errors);
             return response;
         }
