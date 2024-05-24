@@ -27,7 +27,7 @@ const EventSchema = new Schema(
             required: true,
         },
         enquiries_link: String,
-        date: { type: Date, default: () => Date.now },
+        date: { type: Date, required: true },
     },
     {
         timestamps: true,

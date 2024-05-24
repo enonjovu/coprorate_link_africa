@@ -28,10 +28,15 @@ export function getFormatedDate(date: any = new Date(Date.now())) {
     });
 }
 
-export function trimText(story: String, from: number = 0, to: number = 8) {
+export function trimText(story: String, from: number = 0, to: number = 8, stripHtml: boolean = true) {
     const words = story.split(' ');
     const trimmedWords = words.slice(from, to);
-    const trimmedParagraph = trimmedWords.join(' ');
+    let trimmedParagraph = trimmedWords.join(' ');
+
+    if (stripHtml) {
+        trimmedParagraph = trimmedParagraph.replace(/<[^>]*>/g, '');
+    }
+
     return trimmedParagraph;
 }
 

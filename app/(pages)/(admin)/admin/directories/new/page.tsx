@@ -4,7 +4,6 @@ import Modal from '@/app/(pages)/(admin)/components/Modal';
 import { postCompany } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
 import { useState } from 'react';
-import TipTapMenuBar from '@/app/_components/TipTap/TipTapMenuBar';
 import TipTapTextEditor from '../../../components/TipTapTextEditor';
 import toast from 'react-hot-toast';
 
