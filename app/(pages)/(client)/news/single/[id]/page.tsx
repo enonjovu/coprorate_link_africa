@@ -102,9 +102,11 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                                 </figcaption>
                                             </figure>
 
-                                            <p className="prose mb-5 w-full max-w-7xl whitespace-pre-wrap text-black">
-                                                {blog?.story}
-                                            </p>
+                                            <div dangerouslySetInnerHTML={{
+                                                __html:blog?.story
+                                            }} className="prose mb-5 w-full max-w-7xl whitespace-pre-wrap text-black">
+                                                
+                                            </div>
                                         </div>
                                         {/* Comments */}
                                         {/* <div id="comments" className="pt-16">

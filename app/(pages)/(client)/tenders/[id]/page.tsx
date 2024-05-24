@@ -26,9 +26,12 @@ const SingleTender = async ({ params }: PageProps) => {
                                 <h3 className="whitespace-pre-wrap text-xl font-bold text-black">{tender.title}</h3>
                                 {/* About The Role */}
                                 <div className="w-full flex-col space-y-4">
-                                    <p className="w-full whitespace-pre-wrap text-justify text-black">
-                                        {tender.description}
-                                    </p>
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: tender.description,
+                                        }}
+                                        className="w-full whitespace-pre-wrap text-justify text-black"
+                                    ></div>
                                 </div>
 
                                 {tender.requirements?.length ? (
