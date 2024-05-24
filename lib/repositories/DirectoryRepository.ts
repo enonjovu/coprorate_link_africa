@@ -96,6 +96,8 @@ export async function deleteDirectoryById(id: string) {
 export async function createDirectory(params: DirectoryParamters) {
     await connectToDatabase();
 
+    const date = Date.now();
+
     if (params.category) {
         let category = await DirectoryCategory.findOne({ name: params.category.trim() });
 
@@ -110,6 +112,7 @@ export async function createDirectory(params: DirectoryParamters) {
 
     const result = await Directory.create({
         ...params,
+        date,
     });
 
     return result;

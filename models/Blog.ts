@@ -22,7 +22,8 @@ const BlogSchema = new Schema(
             type: String,
             required: true,
         },
-        date: { type: Date, default: () => Date.now },
+
+        date: { type: Date, required: true },
 
         image_alt: String,
     },

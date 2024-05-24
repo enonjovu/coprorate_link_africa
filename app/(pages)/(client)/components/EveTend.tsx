@@ -6,12 +6,12 @@ import Image from 'next/image';
 const EveTend = async (params: { eventsCount?: number; tendersCount?: number }) => {
     const envents = await Event.find({})
         .sort({ createdAt: -1 })
-        .limit(params.eventsCount ?? 6)
+        .limit(params.eventsCount ?? 4)
         .find();
 
     const tenders = await Tender.find({})
         .sort({ createdAt: -1 })
-        .limit(params.tendersCount ?? 6)
+        .limit(params.tendersCount ?? 4)
         .find();
 
     return (

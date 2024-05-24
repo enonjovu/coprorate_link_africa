@@ -35,7 +35,7 @@ const DirectorySchema = new Schema(
         promotion_adverts: Array,
         logo: Array,
         category: mongoose.Schema.Types.ObjectId,
-        date: { type: Date, default: () => Date.now },
+        date: { type: Date, required: true },
     },
     {
         timestamps: true,

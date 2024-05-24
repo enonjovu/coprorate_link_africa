@@ -5,8 +5,7 @@ import { postBlog } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
 import { useState } from 'react';
 import Link from 'next/link';
-import TipTapEditor from '@/app/_components/TipTap/TipTapEditor';
-import TipTapMenuBar from '@/app/_components/TipTap/TipTapMenuBar';
+
 import TipTapTextEditor from '../../../components/TipTapTextEditor';
 
 // Initial state with types
@@ -220,7 +219,7 @@ const NewPost: React.FC = () => {
                                 >
                                     Story
                                 </label>
-                                <TipTapMenuBar />
+
                                 <TipTapTextEditor
                                     value={formData.story}
                                     onChange={(e) => {

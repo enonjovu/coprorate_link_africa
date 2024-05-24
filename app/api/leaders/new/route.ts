@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const { name, description } = await req.json();
     try {
         await dbConnect();
-        const newLeader = await Leader.create({ name, description });
+        const newLeader = await Leader.create({ name, description, date });
 
         if (newLeader) {
             return NextResponse.json({

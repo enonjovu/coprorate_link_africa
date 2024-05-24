@@ -5,6 +5,8 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
     const { title, story, category, images, author, image_alt } = await req.json();
     try {
+        const date = Date.now();
+
         await dbConnect();
 
         const newBlog = new Blog({
@@ -14,6 +16,7 @@ export async function POST(req: Request) {
             images,
             author,
             image_alt: image_alt ?? null,
+            date,
         });
 
         const blog = await newBlog.save();

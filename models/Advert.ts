@@ -7,7 +7,7 @@ const AdvertSchema = new Schema(
     {
         images: Array,
         variant: { type: String, required: true, default: 'normal' },
-        date: { type: Date, default: () => Date.now },
+        date: { type: Date, required: true },
     },
     {
         timestamps: true,

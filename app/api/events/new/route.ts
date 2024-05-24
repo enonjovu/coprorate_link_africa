@@ -3,9 +3,12 @@ import Event from '@/models/Event';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
+    const date = Date.now();
+
     const { title, images, eventDate, time, venue, description, enquiries_link = null } = await req.json();
     try {
         await dbConnect();
+
         const newEvent = await Event.create({
             title,
             images,
@@ -14,6 +17,7 @@ export async function POST(req: Request) {
             time,
             venue,
             enquiries_link: enquiries_link ?? null,
+            date,
         });
 
         if (newEvent) {
