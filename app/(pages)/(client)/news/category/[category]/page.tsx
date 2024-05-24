@@ -52,7 +52,7 @@ const BlogCategoryPage = async ({ params, searchParams }: PageProps) => {
                             />
                         </div>
                         {/* right */}
-                        <TopStories />
+                        <TopStories minimal={blogs.length < 8} />
                     </div>
                 </div>
             </div>
