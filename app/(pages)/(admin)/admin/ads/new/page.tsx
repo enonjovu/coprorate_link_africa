@@ -7,6 +7,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
+import { Radio, RadioGroup } from '@headlessui/react';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { AdvertVariant } from '@/lib/document-types';
+
 // Initial state with types
 type FormData = {
     images: { url: string; key: string }[];
@@ -15,6 +19,12 @@ type FormData = {
 const initialFormData: FormData = {
     images: [{ url: '', key: '' }],
 };
+
+const addTypes: { type: AdvertVariant; description: string }[] = [
+    { type: 'normal', description: 'For normal adverts' },
+    { type: 'top', description: 'For top adverts' },
+    { type: 'side', description: 'For side adverts' },
+];
 
 const NewDirectory: React.FC = () => {
     // Types for state variables
@@ -55,6 +65,8 @@ const NewDirectory: React.FC = () => {
         console.log(json);
         toast('Upload Completed');
     };
+
+    const [selected, setSelected] = useState(addTypes[0]);
 
     const title = images.length ? (
         <>
@@ -118,6 +130,41 @@ const NewDirectory: React.FC = () => {
                                 </div>
                             </div>
                             {/* End Grid */}
+                        </div>
+
+                        <div className="my-6 w-full px-4">
+                            <label
+                                htmlFor="blog-image"
+                                className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                            >
+                                Select Advert Variant
+                            </label>
+                            <div className="mx-auto w-full max-w-md">
+                                <RadioGroup
+                                    value={selected}
+                                    onChange={setSelected}
+                                    aria-label="Server size"
+                                    className="space-y-2"
+                                >
+                                    {addTypes.map((plan) => (
+                                        <Radio
+                                            key={plan.type}
+                                            value={plan.type}
+                                            className="group relative flex cursor-pointer rounded-lg bg-white/5 px-5 py-4 text-white shadow-md transition focus:outline-none data-[checked]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                                        >
+                                            <div className="flex w-full items-center justify-between">
+                                                <div className="text-sm/6">
+                                                    <p className="font-semibold text-white">{plan.type}</p>
+                                                    <div className="flex gap-2 text-white/50">
+                                                        <div>{plan.description}</div>
+                                                    </div>
+                                                </div>
+                                                <CheckCircleIcon className="size-6 fill-white opacity-0 transition group-data-[checked]:opacity-100" />
+                                            </div>
+                                        </Radio>
+                                    ))}
+                                </RadioGroup>
+                            </div>
                         </div>
                         {/* End Grid */}
 

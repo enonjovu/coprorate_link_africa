@@ -499,7 +499,7 @@ export const postCompany = async (formData: {}): Promise<{
         cache: 'no-store',
         body: JSON.stringify(formData),
     });
-    
+
     if (!response.ok) {
         throw new Error('Error Posting Data');
     }

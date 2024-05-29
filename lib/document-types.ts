@@ -5,21 +5,30 @@ export type DocumentUrlObject = {
     url: string;
 };
 
+export type HasTimestamp = {
+    createdAt: Date;
+    updatedAt: Date;
+};
+
 export type ImageRecord = {
-    name: string;
-    size: string;
+    name?: string;
+    size?: string;
     key: string;
-    serverData: string;
+    serverData?: string;
     url: string;
 };
 
-export interface AdvertDocument extends Document {
+export type AdvertVariant = 'normal' | 'top' | 'side';
+
+export type SocialPlatform = { url: string; platform: 'facebook' | 'whatsapp' | 'x' | 'instagram' | 'linkedin' };
+
+export interface AdvertDocument extends Document, HasTimestamp {
     images: Array<ImageRecord>;
-    variant: 'normal' | 'top' | 'side';
+    variant: AdvertVariant;
     date: number;
 }
 
-export interface BlogDocument extends Document {
+export interface BlogDocument extends Document, HasTimestamp {
     title: string;
     story: string;
     category: string;
@@ -29,7 +38,7 @@ export interface BlogDocument extends Document {
     date: number;
 }
 
-export interface DirectoryDocument extends Document {
+export interface DirectoryDocument extends Document, HasTimestamp {
     name: string;
     email: string;
     description: string;
@@ -45,12 +54,12 @@ export interface DirectoryDocument extends Document {
     date: number;
 }
 
-export interface DirectoryCategoryDocument extends Document {
+export interface DirectoryCategoryDocument extends Document, HasTimestamp {
     name: string;
     date: number;
 }
 
-export interface EventDocument extends Document {
+export interface EventDocument extends Document, HasTimestamp {
     title: string;
     images: Array<ImageRecord>;
     description: string;
@@ -61,21 +70,45 @@ export interface EventDocument extends Document {
     date: number;
 }
 
-export interface LeaderDocument extends Document {
+export interface IndividiualProfileDocument extends Document, HasTimestamp {
+    name: string;
+
+    email: string;
+
+    biography: string;
+
+    phone: string;
+
+    address: string;
+
+    website: string;
+
+    promotion_adverts: Array<ImageRecord>;
+
+    profile_image: Array<ImageRecord>;
+
+    social_handlers: Array<SocialPlatform>;
+
+    category?: DirectoryCategoryDocument;
+
+    date: Date;
+}
+
+export interface LeaderDocument extends Document, HasTimestamp {
     name: string;
     images: Array<ImageRecord>;
     description: string;
     date: number;
 }
 
-export interface TenderDocument extends Document {
+export interface TenderDocument extends Document, HasTimestamp {
     title: string;
     description: string;
     requirements: Array<string>;
     date: number;
 }
 
-export interface UserDocument extends Document {
+export interface UserDocument extends Document, HasTimestamp {
     name: string;
     email: string;
     password: string;

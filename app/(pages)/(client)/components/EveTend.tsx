@@ -65,7 +65,7 @@ const EveTend = async (params: { eventsCount?: number; tendersCount?: number; mi
                             <li key={`id-${tender.id}`} className="border-b border-gray-100 px-6 py-3 hover:bg-gray-50">
                                 <a
                                     className="flex flex-row items-center text-lg  font-bold text-black hover:underline"
-                                    href={`/tender/${tender.id}`}
+                                    href={`/tenders/${tender.id}`}
                                 >
                                     {tender.title}
                                 </a>

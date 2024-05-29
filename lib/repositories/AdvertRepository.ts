@@ -1,7 +1,7 @@
 import Advert from '@/models/Advert';
 import type { PaginatorableParameters, SearchablePaginationParameters } from '../types';
 import connectToDatabase from '@/lib/db';
-import ApplicationConfiguration from '../config';
+import config from '../config';
 
 export async function getPaginatedAdverts(params: SearchablePaginationParameters) {
     await connectToDatabase();
@@ -13,7 +13,7 @@ export async function getPaginatedAdverts(params: SearchablePaginationParameters
     }
 
     const page = params?.page ?? 1;
-    const limit = params?.limit ?? ApplicationConfiguration.DEFAULT_PAGINATION_COUNT;
+    const limit = params?.limit ?? config.DEFAULT_PAGINATION_COUNT;
 
     const skip = (page - 1) * limit;
 

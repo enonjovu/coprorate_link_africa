@@ -3,9 +3,9 @@ import BlogHeroArticle from '@/app/_components/Blog/BlogHeroArticle';
 import Blog from '@/models/Blog';
 import dbConnect from '@/lib/db';
 import { AdvertDocument } from '@/lib/document-types';
-import ApplicationConfiguration from '@/lib/config';
+import config from '@/lib/config';
 
-const rootUrl = ApplicationConfiguration.BASE_URL;
+const rootUrl = config.BASE_URL;
 
 const Hero = async () => {
     await dbConnect();
