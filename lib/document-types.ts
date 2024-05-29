@@ -18,11 +18,13 @@ export type ImageRecord = {
     url: string;
 };
 
+export type AdvertVariant = 'normal' | 'top' | 'side';
+
 export type SocialPlatform = { url: string; platform: 'facebook' | 'whatsapp' | 'x' | 'instagram' | 'linkedin' };
 
 export interface AdvertDocument extends Document, HasTimestamp {
     images: Array<ImageRecord>;
-    variant: 'normal' | 'top' | 'side';
+    variant: AdvertVariant;
     date: number;
 }
 

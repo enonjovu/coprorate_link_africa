@@ -34,7 +34,10 @@ const DirectorySchema = new Schema(
         iframe: String,
         promotion_adverts: Array,
         logo: Array,
-        category: mongoose.Schema.Types.ObjectId,
+        category: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'DirectoryCategory',
+        },
         date: { type: Date, required: true },
     },
     {

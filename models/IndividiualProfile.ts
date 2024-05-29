@@ -33,7 +33,10 @@ const IndividiualProfileSchema = new Schema(
 
         date: { type: Date, required: true },
 
-        category: mongoose.Schema.Types.ObjectId,
+        category: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'DirectoryCategory',
+        },
     },
     {
         timestamps: true,

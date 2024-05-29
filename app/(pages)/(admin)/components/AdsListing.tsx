@@ -3,6 +3,8 @@ import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsTrash } from 'react-icons/bs';
+import DashboardPageHeading from '../admin/_components/DashboardPageHeading';
+import ButtonLink from '../admin/_components/Button/ButtonLink';
 
 const AdsListingComponent = async ({ page }: { page: string }) => {
     const result = await fetchAds(page);
@@ -47,12 +49,10 @@ const AdsListingComponent = async ({ page }: { page: string }) => {
         <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
             <div className="flex flex-row flex-wrap">
                 <div className="w-full max-w-full flex-shrink overflow-hidden">
-                    <div className="w-full py-3">
-                        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-                            <span className="border-l-3 mr-2 inline-block h-5 border-2 border-red-600"></span>
-                            All Ads
-                        </h2>
-                    </div>
+                    <DashboardPageHeading title=" All Ads" className="my-6 inline-flex items-center justify-between">
+                        <ButtonLink href="/admin/ads/new">Create</ButtonLink>
+                    </DashboardPageHeading>
+
                     <div className="-mx-3 flex flex-row flex-wrap">
                         {ads.length > 0 ? (
                             ads.map((advert) => (

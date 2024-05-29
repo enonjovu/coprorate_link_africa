@@ -34,7 +34,8 @@ export default class IndividiualProfileRepository {
         const results = await IndividiualProfile.find(queryParameters)
             .sort({ date: -1, createdAt: -1 })
             .skip(skip)
-            .limit(limit);
+            .limit(limit)
+            .populate('category');
 
         return results;
     }
@@ -54,7 +55,8 @@ export default class IndividiualProfileRepository {
         const results = await IndividiualProfile.find(queryParameters)
             .sort({ date: -1, createdAt: -1 })
             .skip(skip)
-            .limit(limit);
+            .limit(limit)
+            .populate('category');
 
         const count = await IndividiualProfileRepository.count();
 
@@ -74,7 +76,7 @@ export default class IndividiualProfileRepository {
     static async getById(id: string): Promise<IndividiualProfileDocument | null> {
         await connectToDatabase();
 
-        const result = await IndividiualProfile.findOne({ _id: id });
+        const result = await IndividiualProfile.findOne({ _id: id }).populate('category');
 
         return result;
     }

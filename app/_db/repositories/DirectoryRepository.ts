@@ -34,7 +34,11 @@ export default class DirectoryRepository {
             queryParameters['$text'] = { $search: params.search ? params.search : '' };
         }
 
-        const results = await Directory.find(queryParameters).sort({ date: -1, createdAt: -1 }).skip(skip).limit(limit);
+        const results = await Directory.find(queryParameters)
+            .sort({ date: -1, createdAt: -1 })
+            .skip(skip)
+            .limit(limit)
+            .populate('category');
 
         return results;
     }
@@ -51,7 +55,11 @@ export default class DirectoryRepository {
             queryParameters['$text'] = { $search: params.search ? params.search : '' };
         }
 
-        const results = await Directory.find(queryParameters).sort({ date: -1, createdAt: -1 }).skip(skip).limit(limit);
+        const results = await Directory.find(queryParameters)
+            .sort({ date: -1, createdAt: -1 })
+            .skip(skip)
+            .limit(limit)
+            .populate('category');
 
         const count = await DirectoryRepository.count();
 
@@ -71,7 +79,7 @@ export default class DirectoryRepository {
     static async getById(id: string): Promise<DirectoryDocument | null> {
         await connectToDatabase();
 
-        const result = await Directory.findOne({ _id: id });
+        const result = await Directory.findOne({ _id: id }).populate('category');
 
         return result;
     }
@@ -134,6 +142,7 @@ export default class DirectoryRepository {
             logo: directory.logo,
             iframe: directory.iframe,
             promotion_adverts: directory.promotion_adverts,
+            category: directory.category?.name,
         };
     }
 
@@ -151,6 +160,7 @@ export default class DirectoryRepository {
             iframe: directory.iframe,
             promotion_adverts: directory.promotion_adverts,
             id: directory.id,
+            category: directory.category?.name,
         };
     }
 }
