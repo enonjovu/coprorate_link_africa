@@ -1,101 +1,145 @@
 'use client';
 import '@uploadthing/react/styles.css';
+import { BsTrash } from 'react-icons/bs';
 import Modal from '@/app/(pages)/(admin)/components/Modal';
-import { postBlog } from '@/app/action';
+import { deleteImage, postBlog, updateBlog } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { BlogDocument } from '@/lib/document-types';
 
-import TipTapTextEditor from '../../../components/TipTapTextEditor';
+type blogProps = {
+    id: string;
+    author: string;
+    date: string;
+    images: {
+        url: string;
+        key: string;
+    }[];
+    story: string;
+    title: string;
+    category: string;
+}[];
 
 // Initial state with types
 type FormData = {
+    id: string;
     title: string;
     category: string;
     story: string;
     author: string;
     images: { url: string; key: string }[];
-    image_alt: string | null;
 };
 
 const initialFormData: FormData = {
+    id: '',
     title: '',
     category: '',
     story: '',
     author: '',
     images: [{ url: '', key: '' }],
-    image_alt: null,
 };
 
-const NewPost: React.FC = () => {
+const EditNewsForm = ({ blog }: { blog: BlogDocument }) => {
     // Types for state variables
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+    const router = useRouter();
 
-    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        if (blog) {
+            setFormData({
+                id: blog.id,
+                title: blog.title,
+                category: blog.category,
+                story: blog.story,
+                author: blog.author,
+                images: blog.images.map((img) => ({
+                    url: img.url,
+                    key: img.key,
+                })),
+            });
+        }
+    }, []);
 
     const handleSubmit = async () => {
-        setIsLoading(true);
-
-        formData.images = images;
-        console.log('file', formData);
-        const response = await postBlog(formData);
-        console.log('Response => ', response);
-        if (response.status === 'true') {
-            setIsModalOpen(true); // Open the modal
-            setFormKey((prevKey) => prevKey + 1);
-            setFormData(initialFormData);
-            setImages([]);
+        if (images) {
+            images.map((image) => formData.images.push(image));
         }
+        const res = await updateBlog(formData, formData.id);
+        setModalMessage(res.message);
+        setIsModalOpen(true);
+        console.log('file', formData);
+    };
 
-        setIsLoading(false);
+    const handleDelete = async (key: string, id: string) => {
+        setLoading(true);
+        const res = await deleteImage(key, id);
+        if (res) {
+            // Remove the deleted image from formData
+            setFormData((prevState) => ({
+                ...prevState,
+                images: prevState.images.filter((image) => image.key !== key),
+            }));
+            setLoading(false);
+            setModalMessage('Image Deleted successfully');
+            setIsModalOpen(true);
+        }
+        router.push(`/admin/news/edit/${formData.id}`);
     };
 
     const handleImagesUpload = (res: any) => {
-        setIsLoading(true);
-
         setImages(res);
-        const json = JSON.stringify(res);
-        console.log(json);
         alert('Upload Completed');
-
-        setIsLoading(false);
     };
-
-    const title = images.length ? (
-        <>
-            <h1 className="my-5 text-xl">Upload Complete</h1>
-            <p>Uploaded {images.length} files</p>
-        </>
-    ) : null;
-
-    const imageList = (
-        <>
-            {title}
-            <ul>
-                {images.map((image) => (
-                    <li key={image.key}>
-                        <Link href={image.url} target="_blank">
-                            {image.url}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </>
-    );
 
     return (
         <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-xl">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">Create new article</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">Edit Article</h1>
                 </div>
-
-                {imageList}
-
-                <div className="mt-12">
+                <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setIsModalOpen(false)} />
+                <div className="sapce-x-6 mt-12">
+                    <div className="-mx-3 flex flex-row flex-wrap">
+                        {formData.images?.map((image) => (
+                            <div
+                                key={image.key}
+                                className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/3 sm:border-b-0 sm:pt-0"
+                            >
+                                <div className="hover-img relative flex flex-row sm:block">
+                                    <div className="absolute flex h-7 w-full justify-end">
+                                        {loading ? (
+                                            <button className="flex w-2/5 cursor-pointer items-center justify-center rounded-sm bg-red-700 text-white">
+                                                Deleting...
+                                            </button>
+                                        ) : (
+                                            <button
+                                                className="flex w-1/5 cursor-pointer items-center justify-center rounded-sm bg-red-700"
+                                                onClick={() => handleDelete(image.key, formData.id)}
+                                            >
+                                                <BsTrash color={'#fff'} size={20} />
+                                            </button>
+                                        )}
+                                    </div>
+                                    <Image
+                                        width={900}
+                                        height={800}
+                                        priority
+                                        className="mx-auto h-40 max-h-40 min-h-40 w-full max-w-full overflow-hidden object-cover"
+                                        src={image.url}
+                                        alt="alt title"
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                     {/* Form */}
                     <form key={formKey}>
                         <div className="grid gap-4 lg:gap-6">
@@ -135,7 +179,7 @@ const NewPost: React.FC = () => {
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            title: e.target.value.trim(),
+                                            title: e.target.value,
                                         });
                                     }}
                                     value={formData.title}
@@ -149,7 +193,7 @@ const NewPost: React.FC = () => {
                                         htmlFor="blog-image"
                                         className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
                                     >
-                                        Article Image
+                                        Add New Images
                                     </label>
                                     <UploadButton
                                         endpoint="imageUploader"
@@ -181,34 +225,12 @@ const NewPost: React.FC = () => {
                                         onChange={(e) => {
                                             setFormData({
                                                 ...formData,
-                                                category: e.target.value.toLocaleLowerCase().trim(),
+                                                category: e.target.value,
                                             });
                                         }}
                                         value={formData.category}
                                     />
                                 </div>
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="image_alt"
-                                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
-                                >
-                                    Article Image Caption
-                                </label>
-                                <input
-                                    type="text"
-                                    name="image_alt"
-                                    id="image_alt"
-                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                                    onChange={(e) => {
-                                        setFormData({
-                                            ...formData,
-                                            image_alt: e.target.value,
-                                        });
-                                    }}
-                                    value={formData.image_alt ?? ''}
-                                />
                             </div>
                             {/* End Grid */}
 
@@ -219,52 +241,40 @@ const NewPost: React.FC = () => {
                                 >
                                     Story
                                 </label>
-
-                                <TipTapTextEditor
-                                    value={formData.story}
+                                <textarea
+                                    id="story"
+                                    wrap="hard"
+                                    name="story"
+                                    rows={20}
+                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            story: e,
+                                            story: e.target.value,
                                         });
                                     }}
-                                />
+                                    value={formData.story}
+                                ></textarea>
                             </div>
                         </div>
                         {/* End Grid */}
 
                         <div className="mt-6 grid">
-                            {images.length ? (
-                                <button
-                                    disabled={isLoading}
-                                    type="button"
-                                    className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    onClick={handleSubmit}
-                                >
-                                    Post Article
-                                </button>
-                            ) : (
-                                <button
-                                    type="button"
-                                    disabled={isLoading || !images.length}
-                                    className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-600 px-4 
-                                py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                >
-                                    Upload Images before Posting!
-                                </button>
-                            )}
+                            <button
+                                type="button"
+                                className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                onClick={handleSubmit}
+                            >
+                                Update Article
+                            </button>
                         </div>
                     </form>
                     {/* End Form */}
-                    <Modal
-                        isOpen={isModalOpen}
-                        message="Article created successfully"
-                        onClose={() => setIsModalOpen(false)}
-                    />
+                    {/* <Modal isOpen={isModalOpen} message="Article created successfully" onClose={() => setIsModalOpen(false)} /> */}
                 </div>
             </div>
         </div>
     );
 };
 
-export default NewPost;
+export default EditNewsForm;

@@ -2,11 +2,13 @@ import Image from 'next/image';
 import TopAds from './TopAds';
 import SearchForm from './SearchForm';
 import AuthButtons from './AuthButons';
+import HeaderBannerAdverts from '@/app/_components/Advert/HeaderBannerAdverts';
 
 const Navbar = () => {
     return (
         <>
             {/* <TopAds /> */}
+            {/* <HeaderBannerAdverts /> */}
             <header className="z-50 flex w-full flex-wrap border-b border-gray-200 bg-white pb-2 text-sm sm:flex-col sm:justify-start sm:pb-0 dark:border-red-700 dark:bg-gray-100">
                 <nav
                     className="relative mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between sm:px-12 lg:px-16"

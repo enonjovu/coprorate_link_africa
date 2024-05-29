@@ -230,112 +230,110 @@ export default function TipTapTextEditor(props: { value?: string; onChange?: (e:
         },
         editorProps: {
             attributes: {
-                class: 'h-[10rem] whitespace-pre-wrap overflow-auto px-4 py-2 prose w-full bg-white text-black',
+                class: 'h-full whitespace-pre-wrap focus:outline-none overflow-auto px-4 py-2 prose w-full bg-white text-black w-full',
             },
         },
     });
 
     return (
-        <div className="h-[14rem] max-h-[16rem] min-h-[12rem] overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-700">
-            <div id="hs-editor-tiptap">
-                <div className="flex gap-x-0.5 border-b border-gray-200 p-2 align-middle dark:border-neutral-700">
-                    <button
-                        className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
-                        type="button"
-                        onClick={() => editor?.chain().focus().toggleBold().toggleHeading({ level: 3 }).run()}
-                        disabled={!editor?.can().chain().focus().toggleBold().run()}
+        <div className="min-h-[18rem] w-full  overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-700">
+            <div className="flex gap-x-0.5 border-b border-gray-200 p-2 align-middle dark:border-neutral-700">
+                <button
+                    className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
+                    type="button"
+                    onClick={() => editor?.chain().focus().toggleBold().toggleHeading({ level: 3 }).run()}
+                    disabled={!editor?.can().chain().focus().toggleBold().run()}
+                >
+                    <svg
+                        className="size-4 flex-shrink-0"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     >
-                        <svg
-                            className="size-4 flex-shrink-0"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path d="M14 12a4 4 0 0 0 0-8H6v8"></path>
-                            <path d="M15 20a4 4 0 0 0 0-8H6v8Z"></path>
-                        </svg>
-                    </button>
-                    <button
-                        className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
-                        type="button"
-                        onClick={() => editor?.chain().focus().toggleItalic().run()}
+                        <path d="M14 12a4 4 0 0 0 0-8H6v8"></path>
+                        <path d="M15 20a4 4 0 0 0 0-8H6v8Z"></path>
+                    </svg>
+                </button>
+                <button
+                    className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
+                    type="button"
+                    onClick={() => editor?.chain().focus().toggleItalic().run()}
+                >
+                    <svg
+                        className="size-4 flex-shrink-0"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     >
-                        <svg
-                            className="size-4 flex-shrink-0"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <line x1="19" x2="10" y1="4" y2="4"></line>
-                            <line x1="14" x2="5" y1="20" y2="20"></line>
-                            <line x1="15" x2="9" y1="4" y2="20"></line>
-                        </svg>
-                    </button>
+                        <line x1="19" x2="10" y1="4" y2="4"></line>
+                        <line x1="14" x2="5" y1="20" y2="20"></line>
+                        <line x1="15" x2="9" y1="4" y2="20"></line>
+                    </svg>
+                </button>
 
-                    <button
-                        className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
-                        type="button"
-                        onClick={() => editor?.chain().focus().toggleBulletList().run()}
+                <button
+                    className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
+                    type="button"
+                    onClick={() => editor?.chain().focus().toggleBulletList().run()}
+                >
+                    <svg
+                        className="size-4 flex-shrink-0"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     >
-                        <svg
-                            className="size-4 flex-shrink-0"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <line x1="8" x2="21" y1="6" y2="6"></line>
-                            <line x1="8" x2="21" y1="12" y2="12"></line>
-                            <line x1="8" x2="21" y1="18" y2="18"></line>
-                            <line x1="3" x2="3.01" y1="6" y2="6"></line>
-                            <line x1="3" x2="3.01" y1="12" y2="12"></line>
-                            <line x1="3" x2="3.01" y1="18" y2="18"></line>
-                        </svg>
-                    </button>
-                    <button
-                        className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
-                        type="button"
-                        onClick={() => editor?.chain().focus().toggleBlockquote().run()}
+                        <line x1="8" x2="21" y1="6" y2="6"></line>
+                        <line x1="8" x2="21" y1="12" y2="12"></line>
+                        <line x1="8" x2="21" y1="18" y2="18"></line>
+                        <line x1="3" x2="3.01" y1="6" y2="6"></line>
+                        <line x1="3" x2="3.01" y1="12" y2="12"></line>
+                        <line x1="3" x2="3.01" y1="18" y2="18"></line>
+                    </svg>
+                </button>
+                <button
+                    className="inline-flex size-8 items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
+                    type="button"
+                    onClick={() => editor?.chain().focus().toggleBlockquote().run()}
+                >
+                    <svg
+                        className="size-4 flex-shrink-0"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     >
-                        <svg
-                            className="size-4 flex-shrink-0"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path d="M17 6H3"></path>
-                            <path d="M21 12H8"></path>
-                            <path d="M21 18H8"></path>
-                            <path d="M3 12v6"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <EditorContent editor={editor} />
+                        <path d="M17 6H3"></path>
+                        <path d="M21 12H8"></path>
+                        <path d="M21 18H8"></path>
+                        <path d="M3 12v6"></path>
+                    </svg>
+                </button>
             </div>
+
+            <EditorContent className="h-[16rem] w-full bg-white p-2" editor={editor} />
         </div>
     );
 }

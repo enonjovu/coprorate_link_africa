@@ -4,21 +4,32 @@ import PicturesSlider from '@/app/(pages)/(client)/components/PicturesSlider';
 import SocialMediaButtons from '@/app/(pages)/(client)/components/SocialMediaButtons';
 import TopStories from '@/app/(pages)/(client)/components/TopStories';
 import { fetchBlogsById } from '@/app/action';
+import { getBlogById, getBlogsRelatedTo } from '@/lib/repositories/BlogRepository';
+
+import SideAds from '../../../components/SideAds';
+import EveTend from '../../../components/EveTend';
+import { Suspense } from 'react';
 
 import Image from 'next/image';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { trimText } from '@/lib/helpers';
+import { getFormatedDate, trimText } from '@/lib/helpers';
+import { notFound } from 'next/navigation';
 
 type PageProps = {
     params: { id: string };
     searchParams?: { [key: string]: string | string[] | undefined };
 };
 
+const LoadingDammy = () => <div className="h-52 w-full animate-pulse"></div>;
+
 export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
     const id = params.id;
 
-    const result = await fetchBlogsById(id);
-    const blog = result[0];
+    const blog = await getBlogById(id);
+
+    if (!blog) {
+        return {};
+    }
 
     return {
         title: blog.title,
@@ -34,8 +45,16 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
 
 const SingleBlogPage = async ({ params }: PageProps) => {
     const id: string = params.id;
-    const result = await fetchBlogsById(id);
-    const blog = result[0];
+
+    const blog = await getBlogById(id);
+
+    if (!blog) {
+        notFound();
+        return;
+    }
+
+    const relatedBlogs = await getBlogsRelatedTo(blog._id, { category: blog.category });
+
     return (
         <main id="content">
             <>
@@ -50,27 +69,27 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                 <div className="bg-gray-50 py-10">
                     <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
                         <div className="flex flex-row flex-wrap">
-                            {/* Left */}
+                            {/* post */}
                             <div className="w-full max-w-full flex-shrink overflow-hidden lg:w-2/3">
                                 <div className="mb-3 w-full py-3">
                                     <h2 className="text-3xl font-bold text-gray-800">
                                         <span className="mr-2 inline-block h-5 border-l-2 border-red-600"></span>
                                         {blog?.title}
                                     </h2>
-                                    <p className="text-black">{blog.date}</p>
+                                    <p className="text-black">{getFormatedDate(blog.date)}</p>
                                     <span className="text-gray-500">Written by {blog.author}</span>
                                 </div>
                                 <div className="-mx-3 flex flex-row flex-wrap">
                                     <div className="w-full max-w-full px-4">
                                         {/* Post content */}
                                         <div className="pb-4 leading-relaxed">
-                                            <figure className="mb-6 flex h-full max-h-[60vh] min-h-[60vh] w-full flex-col items-center justify-center overflow-hidden text-center">
+                                            <figure className="mb-6 flex h-full max-h-[60vh] min-h-[60vh] w-full flex-col items-center justify-center overflow-hidden text-center lg:max-h-[70vh]">
                                                 {blog.images && (
                                                     <div className="relative h-full w-full overflow-hidden">
-                                                        <div className="inset-0 flex h-full w-full items-center justify-center">
+                                                        <div className="inset-0 flex h-full w-full items-center justify-center overflow-hidden rounded-lg">
                                                             <Image
-                                                                width={1500} // You can remove fixed width for full responsiveness
-                                                                height={510} // You can remove fixed height for full responsiveness
+                                                                width={1280} // You can remove fixed width for full responsiveness
+                                                                height={720} // You can remove fixed height for full responsiveness
                                                                 className="h-full w-full rounded-lg "
                                                                 src={blog.images[0].url}
                                                                 alt={blog.title}
@@ -78,12 +97,16 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                                         </div>
                                                     </div>
                                                 )}
-                                                <figcaption className="text-black"> Image Description</figcaption>
+                                                <figcaption className="mt-4 text-xs font-medium text-gray-700">
+                                                    {blog.image_alt ?? blog.title}
+                                                </figcaption>
                                             </figure>
 
-                                            <p className="prose mb-5 w-full max-w-7xl whitespace-pre-wrap text-black">
-                                                {blog?.story}
-                                            </p>
+                                            <div dangerouslySetInnerHTML={{
+                                                __html:blog?.story
+                                            }} className="prose mb-5 w-full max-w-7xl whitespace-pre-wrap text-black">
+                                                
+                                            </div>
                                         </div>
                                         {/* Comments */}
                                         {/* <div id="comments" className="pt-16">
@@ -243,7 +266,7 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                         </h2>
                                     </div>
                                     <div className="-mx-3 flex flex-row flex-wrap">
-                                        {blog.related?.map((related) => (
+                                        {relatedBlogs?.map((related) => (
                                             <div
                                                 key={related._id}
                                                 className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/3 sm:border-b-0 sm:pt-0"
@@ -277,8 +300,17 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                     </div>
                                 </div>
                             </div>
-                            {/* right */}
-                            <TopStories />
+                            {/* sidebar */}
+                            <div className="order-last w-full max-w-full flex-shrink lg:w-1/3 lg:pb-8 lg:pl-8 lg:pt-14">
+                                <div className="sticky mb-6 text-sm">
+                                    <Suspense fallback={<LoadingDammy />}>
+                                        <SideAds />
+                                    </Suspense>
+                                </div>
+                                <Suspense fallback={<LoadingDammy />}>
+                                    <EveTend />
+                                </Suspense>
+                            </div>
                         </div>
                     </div>
                 </div>

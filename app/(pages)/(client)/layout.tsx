@@ -16,6 +16,10 @@ import ToastWrapper from '@/app/_components/ToastWrapper';
 export const metadata: Metadata = {
     title: 'Corporate Link Africa',
     description: 'Simplified Business Narratives',
+    openGraph: {
+        title: 'Corporate Link Africa',
+        description: 'Simplified Business Narratives',
+    },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

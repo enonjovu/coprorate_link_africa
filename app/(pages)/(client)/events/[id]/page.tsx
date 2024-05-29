@@ -60,11 +60,25 @@ const EventSingle = async ({ params }: paramProps) => {
                                             <span className="font-bold text-black">{event.eventDate}</span>
                                         </p>
                                     </div>
-                                    <p className="mb-5 w-11/12 whitespace-pre-wrap text-black ">{event.description}</p>
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: event.description,
+                                        }}
+                                        className="mb-5 w-11/12 whitespace-pre-wrap text-black "
+                                    ></div>
 
-                                    <button className="h-16 w-11/12 rounded-lg bg-red-700 text-center font-bold text-white md:w-1/3">
-                                        Get Tickets
-                                    </button>
+                                    {event.enquiries_link ? (
+                                        <Link
+                                            href={event.enquiries_link}
+                                            className="h-16 w-11/12 rounded-lg bg-red-700 text-center font-bold text-white md:w-1/3"
+                                        >
+                                            Enquiries
+                                        </Link>
+                                    ) : (
+                                        <button className="h-16 w-11/12 rounded-lg bg-red-700 text-center font-bold text-white md:w-1/3">
+                                            Enquiries
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>

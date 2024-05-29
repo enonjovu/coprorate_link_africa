@@ -1,4 +1,5 @@
 import dbConnect from '@/lib/db';
+import { getFormatedDate } from '@/lib/helpers';
 import Blog from '@/models/Blog';
 import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
@@ -40,7 +41,7 @@ export async function GET(req: Request, res: Response) {
                 category: blog.category,
                 story: blog.story,
                 images: blog.images,
-                date: await formatdDate(blog.date),
+                date: getFormatedDate(blog.date),
                 author: blog.author,
                 related: relatedArticles,
             });

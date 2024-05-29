@@ -1,7 +1,7 @@
 import Directory from '@/models/Directory';
 import type { PaginatorableParameters, SearchablePaginationParameters } from '../types';
 import connectToDatabase from '@/lib/db';
-import CONFIG from '../config';
+import ApplicationConfiguration from '../config';
 import DirectoryCategory from '@/models/DirectoryCategory';
 
 type DirectoryParamters = {
@@ -28,7 +28,7 @@ export async function getPaginatedDirectories(params: SearchablePaginationParame
     }
 
     const page = params?.page ?? 1;
-    const limit = params?.limit ?? CONFIG.DEFAULT_PAGINATION_COUNT;
+    const limit = params?.limit ?? ApplicationConfiguration.DEFAULT_PAGINATION_COUNT;
 
     const skip = (page - 1) * limit;
 
@@ -96,6 +96,8 @@ export async function deleteDirectoryById(id: string) {
 export async function createDirectory(params: DirectoryParamters) {
     await connectToDatabase();
 
+    const date = Date.now();
+
     if (params.category) {
         let category = await DirectoryCategory.findOne({ name: params.category.trim() });
 
@@ -110,6 +112,7 @@ export async function createDirectory(params: DirectoryParamters) {
 
     const result = await Directory.create({
         ...params,
+        date,
     });
 
     return result;

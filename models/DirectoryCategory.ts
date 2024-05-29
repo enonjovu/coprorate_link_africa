@@ -5,7 +5,7 @@ import { Schema, model, type Model as ModelType } from 'mongoose';
 
 const categorySchema = new Schema({
     name: { type: String, required: true },
-    date: { type: Date, default: () => Date.now },
+    date: { type: Date, required: true },
 });
 
 const DirectoryCategory =

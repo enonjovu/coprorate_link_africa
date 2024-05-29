@@ -1,5 +1,7 @@
 'use server';
 
+import { BlogDocument, EventDocument } from '@/lib/document-types';
+
 // Directory Props
 type directoryProps = {
     _id: string;
@@ -30,28 +32,7 @@ type blogProps = {
     category: string;
 }[];
 
-type singleBlogProps = {
-    id: string;
-    author: string;
-    date: string;
-    images: {
-        url: string;
-        key: string;
-    }[];
-    story: string;
-    title: string;
-    category: string;
-    related: {
-        _id: string;
-        title: string;
-        category: string;
-        story: string;
-        images: {
-            url: string;
-            key: string;
-        }[];
-    }[];
-}[];
+type singleBlogProps = BlogDocument & { related: BlogDocument[] }[];
 
 // Tender Props
 type tenderProps = {
@@ -301,7 +282,7 @@ export const fetchEvents = async (page: string): Promise<eventProps> => {
     }
     return await response.json();
 };
-export const fetchEventById = async (id: string): Promise<singleEventProps> => {
+export const fetchEventById = async (id: string): Promise<EventDocument[]> => {
     const response = await fetch(`${rootLink}/api/events/single/?id=${id}`, {
         next: { revalidate: 0 },
     });
@@ -518,6 +499,7 @@ export const postCompany = async (formData: {}): Promise<{
         cache: 'no-store',
         body: JSON.stringify(formData),
     });
+    
     if (!response.ok) {
         throw new Error('Error Posting Data');
     }

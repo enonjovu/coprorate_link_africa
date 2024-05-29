@@ -4,9 +4,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
     const date = Date.now();
-    const { title, images, eventDate, time, venue, description } = await req.json();
+
+    const { title, images, eventDate, time, venue, description, enquiries_link = null } = await req.json();
     try {
         await dbConnect();
+
         const newEvent = await Event.create({
             title,
             images,
@@ -14,6 +16,7 @@ export async function POST(req: Request) {
             eventDate,
             time,
             venue,
+            enquiries_link: enquiries_link ?? null,
             date,
         });
 

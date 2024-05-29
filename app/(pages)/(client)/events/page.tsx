@@ -12,6 +12,11 @@ type PageProps = {
     searchParams?: { [key: string]: string | string[] | undefined };
 };
 
+export const metadata = {
+    title: 'Corporate Link Africa - Events',
+    description: 'Simplified Business Narratives',
+};
+
 const EventsPage = async ({ searchParams }: PageProps) => {
     const currentPage = parseInt(`${searchParams?.page ?? 1}`);
 

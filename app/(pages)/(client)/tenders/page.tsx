@@ -8,6 +8,11 @@ import { trimText } from '@/lib/helpers';
 import { BsEye } from 'react-icons/bs';
 import { EyeIcon } from '@heroicons/react/24/outline';
 
+export const metadata = {
+    title: 'Corporate Link Africa - Tenders',
+    description: 'Simplified Business Narratives',
+};
+
 type tender = {
     _id: string;
     title: string;

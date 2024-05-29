@@ -9,6 +9,11 @@ import DirectoryCategoryList from '@/app/_components/Directory/DirectoryCategory
 //     description: '...',
 //   }
 
+export const metadata = {
+    title: 'Corporate Link Africa - Directory',
+    description: 'Simplified Business Narratives',
+};
+
 type PageProps = {
     // params: { category: string };
     searchParams?: { [key: string]: string | string[] | undefined };

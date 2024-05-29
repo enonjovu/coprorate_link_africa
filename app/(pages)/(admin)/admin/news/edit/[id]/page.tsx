@@ -1,12 +1,22 @@
-import EditPostComponent from '@/app/(pages)/(admin)/components/editNews';
-import { fetchSingleBlogById } from '@/app/action';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import EditNewsForm from './EditNewsForm';
+import { getBlogById } from '@/lib/repositories/BlogRepository';
+import { notFound } from 'next/navigation';
 
-const EditPost = async ({ params }: { params: Params }) => {
+type PageProps = {
+    params: { id: string };
+    searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+const EditPost = async ({ params }: PageProps) => {
     const id = params.id;
-    const blog = await fetchSingleBlogById(id);
 
-    return <EditPostComponent blog={blog} />;
+    const blog = await getBlogById(id);
+
+    if (!blog) {
+        return notFound();
+    }
+
+    return <EditNewsForm blog={blog} />;
 };
 
 export default EditPost;

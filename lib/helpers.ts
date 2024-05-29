@@ -20,7 +20,7 @@ export function convertDocumentsToModelObjectCollection<TDocument extends Docume
     return documents.map((doc) => convertDocumentToModelObject(doc));
 }
 
-export function getFormatedDate(date: Date = new Date(Date.now())) {
+export function getFormatedDate(date: any = new Date(Date.now())) {
     return new Date(date).toLocaleDateString('en-US', {
         month: 'long',
         day: 'numeric',
@@ -28,10 +28,15 @@ export function getFormatedDate(date: Date = new Date(Date.now())) {
     });
 }
 
-export function trimText(story: String, from: number = 0, to: number = 8) {
+export function trimText(story: String, from: number = 0, to: number = 8, stripHtml: boolean = true) {
     const words = story.split(' ');
     const trimmedWords = words.slice(from, to);
-    const trimmedParagraph = trimmedWords.join(' ');
+    let trimmedParagraph = trimmedWords.join(' ');
+
+    if (stripHtml) {
+        trimmedParagraph = trimmedParagraph.replace(/<[^>]*>/g, '');
+    }
+
     return trimmedParagraph;
 }
 

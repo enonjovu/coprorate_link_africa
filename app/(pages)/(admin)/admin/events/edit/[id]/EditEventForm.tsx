@@ -1,98 +1,86 @@
 'use client';
 import '@uploadthing/react/styles.css';
-import { UploadButton } from '@/utils/uploadthing';
-import React, { useState } from 'react';
+import { BsCalendar, BsClock, BsPencil } from 'react-icons/bs';
 import Modal from '@/app/(pages)/(admin)/components/Modal';
-import { postEvent } from '@/app/action';
-import Image from 'next/image';
-import { BsCalendar, BsClock, BsExclamationCircle, BsX } from 'react-icons/bs';
+import { updateEvent } from '@/app/action';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { EventDocument } from '@/lib/document-types';
+
+type singleEventProps = {
+    id: string;
+    title: string;
+    description: string;
+    images: { key: string; url: string }[];
+    date: string;
+    time: string;
+    venue: string;
+    eventDate: string;
+}[];
 
 // Initial state with types
 type FormData = {
+    id: string;
     title: string;
     description: string;
-    eventDate: string;
     time: string;
     venue: string;
-    images: { url: string; key: string }[];
-    enquiries_link: string | null;
+    eventDate: string;
+    images: { key: string; url: string }[];
 };
 
 const initialFormData: FormData = {
+    id: '',
     title: '',
-    description: '',
-    eventDate: '',
-    venue: '',
     time: '',
+    venue: '',
+    eventDate: '',
+    description: '',
     images: [{ url: '', key: '' }],
-    enquiries_link: null,
 };
 
-const NewEvent = () => {
+const EditEventComponent = ({ event }: { event: EventDocument }) => {
+    // Types for state variables
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
     const [formData, setFormData] = useState<FormData>(initialFormData);
-    const [images, setImages] = useState<{ url: string; key: string }[]>([]);
-    const [errMsg, setErrMsg] = useState(true);
+    const [modalMessage, setModalMessage] = useState('');
+    const router = useRouter();
 
-    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        if (event) {
+            setFormData({
+                id: event.id,
+                title: event.title,
+                time: event.time,
+                venue: event.venue,
+                eventDate: event.eventDate,
+                description: event.description,
+                images: event.images.map((img) => ({
+                    url: img.url,
+                    key: img.key,
+                })),
+            });
+        }
+    }, []);
 
     const handleSubmit = async () => {
-        setIsLoading(true);
-
-        if (images.length < 1) {
-            setErrMsg(false);
-            setIsLoading(false);
-            return;
-        } else {
-            formData.images = images;
-        }
+        const res = await updateEvent(formData, formData.id);
+        setModalMessage(res.message);
+        setIsModalOpen(true);
         console.log('file', formData);
-        const response = await postEvent(formData);
-        console.log('Response => ', response);
-        if (response.status === 'true') {
-            setIsModalOpen(true);
-            setFormKey((prevKey) => prevKey + 1);
-            setFormData(initialFormData);
-        }
-
-        setIsLoading(false);
-    };
-
-    const handleImagesUpload = (res: any) => {
-        setIsLoading(true);
-
-        setImages(res);
-        formData.images = images;
-        const json = JSON.stringify(res);
-        console.log(json);
-        alert('Upload Completed');
-
-        setIsLoading(false);
+        router.refresh();
     };
 
     return (
-        <div className="relative mx-auto max-w-[85rem] overflow-hidden px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-xl">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">Create new event</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">Edit Event</h1>
                 </div>
-                {errMsg ? null : (
-                    <div className="absolute right-0 top-0 -mx-3 mt-4 flex h-screen w-full items-center justify-center bg-[#000000a9]">
-                        <div className="flex  h-20 w-3/4 items-center justify-center  rounded-2xl bg-red-700 text-white ">
-                            <div className="flex w-11/12 space-x-3">
-                                <BsExclamationCircle size={20} color={'#fff'} />
-                                <p className="w-3/4">No Image Uploaded</p>
-                            </div>
-                            <button className={'cursor-pointer'} onClick={() => setErrMsg(true)}>
-                                <BsX size={25} color={'#fff'} />
-                            </button>
-                        </div>
-                    </div>
-                )}
-
-                <div className="mt-12">
+                <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setIsModalOpen(false)} />
+                <div className="sapce-x-6 mt-12">
                     {/* Form */}
                     <form key={formKey}>
                         <div className="grid gap-4 lg:gap-6">
@@ -116,46 +104,6 @@ const NewEvent = () => {
                                     }}
                                     value={formData.title}
                                 />
-                            </div>
-
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
-                                {images[0]?.url ? null : (
-                                    <div>
-                                        <label
-                                            htmlFor="blog-image"
-                                            className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
-                                        >
-                                            Event Image
-                                        </label>
-                                        <UploadButton
-                                            endpoint="singleImage"
-                                            onClientUploadComplete={(res) => {
-                                                if (res) {
-                                                    // Do something with the response
-                                                    handleImagesUpload(res);
-                                                }
-                                            }}
-                                            onUploadError={(error: Error) => {
-                                                // Do something with the error.
-                                                alert(`ERROR! ${error.message}`);
-                                            }}
-                                        />
-                                    </div>
-                                )}
-
-                                {images[0]?.url ? (
-                                    <div className="">
-                                        <div className="h-60 w-full overflow-hidden rounded">
-                                            <Image
-                                                width={1000}
-                                                height={1000}
-                                                src={images[0].url}
-                                                className="h-full w-full object-cover"
-                                                alt="Event Thumbnail"
-                                            />
-                                        </div>
-                                    </div>
-                                ) : null}
                             </div>
 
                             <div className="flex justify-between gap-4 sm:grid-cols-2 lg:gap-6">
@@ -220,34 +168,12 @@ const NewEvent = () => {
                                         onChange={(e) => {
                                             setFormData({
                                                 ...formData,
-                                                venue: e.target.value.toLocaleLowerCase(),
+                                                venue: e.target.value,
                                             });
                                         }}
                                         value={formData.venue}
                                     />
                                 </div>
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="enquiries_link"
-                                    className="mb-2 flex space-x-2 text-sm font-medium text-gray-700 dark:text-white"
-                                >
-                                    <p>Queries Link</p>
-                                </label>
-                                <input
-                                    type="url"
-                                    name="enquiries_link"
-                                    id="enquiries_link"
-                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                                    onChange={(e) => {
-                                        setFormData({
-                                            ...formData,
-                                            enquiries_link: e.target.value.toLocaleLowerCase(),
-                                        });
-                                    }}
-                                    value={formData.enquiries_link ?? ''}
-                                />
                             </div>
 
                             <div>
@@ -278,24 +204,19 @@ const NewEvent = () => {
                         <div className="mt-6 grid">
                             <button
                                 type="button"
-                                disabled={isLoading}
-                                className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                className="inline-flex w-full items-center justify-center gap-x-2 space-x-3 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                 onClick={handleSubmit}
                             >
-                                Post Event
+                                <p>Edit Event</p>
+                                <BsPencil size={20} color={'#fff'} />
                             </button>
                         </div>
                     </form>
                     {/* End Form */}
-                    <Modal
-                        isOpen={isModalOpen}
-                        message="Article created successfully"
-                        onClose={() => setIsModalOpen(false)}
-                    />
                 </div>
             </div>
         </div>
     );
 };
 
-export default NewEvent;
+export default EditEventComponent;
