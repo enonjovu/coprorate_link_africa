@@ -6,8 +6,9 @@ import type { DirectoryDocument, ImageRecord } from '@/lib/document-types';
 import config from '@/lib/config';
 
 import DirectoryCategory from '@/models/DirectoryCategory';
+import DirectoryCategoryRepository from './DirectoryCategoryRepository';
 
-type DirectoryParamters = {
+export type DirectoryParamters = {
     name: string;
     email: string;
     description: string;
@@ -89,13 +90,7 @@ export default class DirectoryRepository {
         const date = Date.now();
 
         if (params.category) {
-            let category = await DirectoryCategory.findOne({ name: params.category.trim() });
-
-            if (!category) {
-                category = await DirectoryCategory.create({ name: params.category.trim() });
-            }
-
-            params.category = category._id as string;
+            params.category = (await DirectoryCategoryRepository.fistOrCreate(params.category)).id;
         } else {
             params.category = null;
         }
@@ -111,10 +106,51 @@ export default class DirectoryRepository {
     static async updateById(id: string, params: Partial<DirectoryParamters>) {
         await connectToDatabase();
 
+        if (params.category) {
+            params.category = (await DirectoryCategoryRepository.fistOrCreate(params.category)).id;
+        } else {
+            params.category = null;
+        }
+
         const updateData = {
             $set: params,
         };
 
         const result = await Directory.updateOne({ _id: id }, updateData);
+
+        return result;
+    }
+
+    static getPropeties(directory: DirectoryDocument): Partial<DirectoryParamters> {
+        return {
+            name: directory.name,
+            email: directory.email,
+            description: directory.description,
+            phone: directory.phone,
+            address: directory.address,
+            website: directory.website,
+            lon: directory.lon,
+            lat: directory.lat,
+            logo: directory.logo,
+            iframe: directory.iframe,
+            promotion_adverts: directory.promotion_adverts,
+        };
+    }
+
+    static getPropetiesWithId(directory: DirectoryDocument): Partial<DirectoryParamters> & { id: string } {
+        return {
+            name: directory.name,
+            email: directory.email,
+            description: directory.description,
+            phone: directory.phone,
+            address: directory.address,
+            website: directory.website,
+            lon: directory.lon,
+            lat: directory.lat,
+            logo: directory.logo,
+            iframe: directory.iframe,
+            promotion_adverts: directory.promotion_adverts,
+            id: directory.id,
+        };
     }
 }

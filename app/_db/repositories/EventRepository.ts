@@ -5,7 +5,7 @@ import type { EventDocument, ImageRecord } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
-type EventParamters = {
+export type EventParamters = {
     title: string;
     images: Array<ImageRecord>;
     description: string;
@@ -97,5 +97,7 @@ export default class EventRepository {
         };
 
         const result = await Event.updateOne({ _id: id }, updateData);
+
+        return result;
     }
 }

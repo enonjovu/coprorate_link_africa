@@ -5,7 +5,7 @@ import type { UserDocument } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
-type UserParamters = {
+export type UserParamters = {
     name: String;
     email: String;
     password: String;
@@ -94,5 +94,7 @@ export default class UserRepository {
         };
 
         const result = await User.updateOne({ _id: id }, updateData);
+
+        return result;
     }
 }

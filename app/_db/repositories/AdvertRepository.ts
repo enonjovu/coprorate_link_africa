@@ -5,7 +5,7 @@ import type { AdvertDocument, ImageRecord } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
-type AdvertParamters = {
+export type AdvertParamters = {
     images: Array<ImageRecord>;
     variant: 'normal' | 'top' | 'side';
 };
@@ -92,5 +92,7 @@ export default class AdvertRepository {
         };
 
         const result = await Advert.updateOne({ _id: id }, updateData);
+
+        return result;
     }
 }

@@ -5,7 +5,7 @@ import type { TenderDocument } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
-type TenderParamters = {
+export type TenderParamters = {
     title: string;
     company: string;
     description: string;
@@ -94,5 +94,7 @@ export default class TenderRepository {
         };
 
         const result = await Tender.updateOne({ _id: id }, updateData);
+
+        return result;
     }
 }

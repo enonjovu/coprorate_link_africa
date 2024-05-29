@@ -2,6 +2,8 @@ import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import EventsListing from '../../components/EventsListing';
 import { fetchEvents } from '@/app/action';
 import Link from 'next/link';
+import ButtonLink from '../_components/Button/ButtonLink';
+import DashboardPageHeading from '../_components/DashboardPageHeading';
 
 const AllEvents = async ({ searchParams }: { searchParams: Params }) => {
     let page = searchParams['page'] ?? '1';
@@ -29,12 +31,9 @@ const AllEvents = async ({ searchParams }: { searchParams: Params }) => {
         <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
             <div className="flex flex-row flex-wrap">
                 <div className="w-full max-w-full flex-shrink overflow-hidden">
-                    <div className="w-full py-3">
-                        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-                            <span className="border-l-3 mr-2 inline-block h-5 border-2 border-red-600"></span>
-                            All Events
-                        </h2>
-                    </div>
+                    <DashboardPageHeading title="All Events" className=" inline-flex items-center justify-between">
+                        <ButtonLink href="/admin/events/new">Create</ButtonLink>
+                    </DashboardPageHeading>
                     <EventsListing events={events} />
                 </div>
                 <div className="mt-4 text-center">

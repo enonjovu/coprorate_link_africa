@@ -5,7 +5,7 @@ import type { BlogDocument, DocumentUrlObject, ImageRecord } from '@/lib/documen
 
 import config from '@/lib/config';
 
-type BlogParamters = {
+export type BlogParamters = {
     title: string;
     story: string;
     category: string;
@@ -106,6 +106,8 @@ export default class BlogRepository {
         };
 
         const result = await Blog.updateOne({ _id: id }, updateData);
+
+        return result;
     }
 
     static async getRelatedTo(id: string, params: object = {}, options: { limit?: number } = {}) {

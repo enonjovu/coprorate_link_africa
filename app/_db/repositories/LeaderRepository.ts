@@ -5,7 +5,7 @@ import type { ImageRecord, LeaderDocument } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
-type LeaderParamters = {
+export type LeaderParamters = {
     name: string;
     images: Array<ImageRecord>;
     description: string;
@@ -93,5 +93,7 @@ export default class LeaderRepository {
         };
 
         const result = await Leader.updateOne({ _id: id }, updateData);
+
+        return result;
     }
 }

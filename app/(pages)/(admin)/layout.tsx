@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                 </div>
                             </div>
                             <Sidebar />
-                            <div className="w-full px-4 pt-10 sm:px-6 md:px-8 lg:ps-72">{children}</div>
+                            <div className="w-full px-4 pb-16 pt-10 sm:px-6 md:px-8 lg:ps-72">{children}</div>
                         </ToastWrapper>
                         <PrelineScript />
                     </InterFontWrapper>

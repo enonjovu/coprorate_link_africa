@@ -11,12 +11,14 @@ export type HasTimestamp = {
 };
 
 export type ImageRecord = {
-    name: string;
-    size: string;
+    name?: string;
+    size?: string;
     key: string;
-    serverData: string;
+    serverData?: string;
     url: string;
 };
+
+export type SocialPlatform = { url: string; platform: 'facebook' | 'whatsapp' | 'x' | 'instagram' | 'linkedin' };
 
 export interface AdvertDocument extends Document, HasTimestamp {
     images: Array<ImageRecord>;
@@ -64,6 +66,30 @@ export interface EventDocument extends Document, HasTimestamp {
     venue: string;
     enquiries_link?: string | null;
     date: number;
+}
+
+export interface IndividiualProfileDocument extends Document, HasTimestamp {
+    name: string;
+
+    email: string;
+
+    biography: string;
+
+    phone: string;
+
+    address: string;
+
+    website: string;
+
+    promotion_adverts: Array<ImageRecord>;
+
+    profile_image: Array<ImageRecord>;
+
+    social_handlers: Array<SocialPlatform>;
+
+    category?: DirectoryCategoryDocument;
+
+    date: Date;
 }
 
 export interface LeaderDocument extends Document, HasTimestamp {
