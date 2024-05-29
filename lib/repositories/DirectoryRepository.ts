@@ -105,7 +105,7 @@ export async function createDirectory(params: DirectoryParamters) {
             category = await DirectoryCategory.create({ name: params.category.trim() });
         }
 
-        params.category = category._id;
+        params.category = category.id;
     } else {
         params.category = null;
     }

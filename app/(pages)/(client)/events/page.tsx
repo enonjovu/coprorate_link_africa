@@ -62,7 +62,7 @@ const EventsPage = async ({ searchParams }: PageProps) => {
                                                     </div>
                                                     {events.length ? (
                                                         events.map((event) => (
-                                                            <EventCard event={event} key={event._id} />
+                                                            <EventCard event={event} key={event.id} />
                                                         ))
                                                     ) : (
                                                         <></>

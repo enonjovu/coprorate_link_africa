@@ -53,7 +53,7 @@ const SingleBlogPage = async ({ params }: PageProps) => {
         return;
     }
 
-    const relatedBlogs = await getBlogsRelatedTo(blog._id, { category: blog.category });
+    const relatedBlogs = await getBlogsRelatedTo(blog.id, { category: blog.category });
 
     return (
         <main id="content">
@@ -269,11 +269,11 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                     <div className="-mx-3 flex flex-row flex-wrap">
                                         {relatedBlogs?.map((related) => (
                                             <div
-                                                key={related._id}
+                                                key={`key-${related.id}`}
                                                 className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/3 sm:border-b-0 sm:pt-0"
                                             >
                                                 <div className="hover-img flex flex-row sm:block">
-                                                    <a href={`/news/single/${related._id}`}>
+                                                    <a href={`/news/single/${related.id}`}>
                                                         <img
                                                             className="mx-auto h-40 max-h-40 min-h-40 w-full max-w-full overflow-hidden"
                                                             src={related.images[0].url}
