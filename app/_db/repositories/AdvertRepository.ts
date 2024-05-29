@@ -1,15 +1,13 @@
 import type { PaginatableParameters, SearchQueryParameters, PaginatedCollection } from '@/app/_db/parameter-types';
 import connectToDatabase from '@/lib/db';
 import Advert from '@/models/Advert';
-import type { AdvertDocument } from '@/lib/document-types';
+import type { AdvertDocument, ImageRecord } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
 type AdvertParamters = {
-    title: string;
-    company: string;
-    description: string;
-    requirements: string;
+    images: Array<ImageRecord>;
+    variant: 'normal' | 'top' | 'side';
 };
 
 export default class AdvertRepository {

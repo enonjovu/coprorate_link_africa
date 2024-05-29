@@ -9,7 +9,7 @@ type TenderParamters = {
     title: string;
     company: string;
     description: string;
-    requirements: string;
+    requirements: Array<string>;
 };
 
 export default class TenderRepository {

@@ -1,15 +1,14 @@
 import type { PaginatableParameters, SearchQueryParameters, PaginatedCollection } from '@/app/_db/parameter-types';
 import connectToDatabase from '@/lib/db';
 import Leader from '@/models/Leader';
-import type { LeaderDocument } from '@/lib/document-types';
+import type { ImageRecord, LeaderDocument } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
 type LeaderParamters = {
-    title: string;
-    company: string;
+    name: string;
+    images: Array<ImageRecord>;
     description: string;
-    requirements: string;
 };
 
 export default class LeaderRepository {

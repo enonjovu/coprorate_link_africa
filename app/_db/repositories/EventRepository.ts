@@ -1,17 +1,18 @@
 import type { PaginatableParameters, SearchQueryParameters, PaginatedCollection } from '@/app/_db/parameter-types';
 import connectToDatabase from '@/lib/db';
 import Event from '@/models/Event';
-import type { EventDocument } from '@/lib/document-types';
+import type { EventDocument, ImageRecord } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
 type EventParamters = {
     title: string;
-    images: string;
+    images: Array<ImageRecord>;
     description: string;
     eventDate: string;
     time: string;
     venue: string;
+    enquiries_link?: string | null;
 };
 
 export default class EventRepository {

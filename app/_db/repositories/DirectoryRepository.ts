@@ -1,23 +1,24 @@
 import type { PaginatableParameters, SearchQueryParameters, PaginatedCollection } from '@/app/_db/parameter-types';
 import connectToDatabase from '@/lib/db';
 import Directory from '@/models/Directory';
-import type { DirectoryDocument } from '@/lib/document-types';
+import type { DirectoryDocument, ImageRecord } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
 import DirectoryCategory from '@/models/DirectoryCategory';
 
 type DirectoryParamters = {
-    name: String;
-    email: String;
-    description: String;
-    phone: String;
-    address: String;
-    website: String;
-    lat: String;
-    lon: String;
-    logo: String;
+    name: string;
+    email: string;
+    description: string;
+    phone: string;
+    address: string;
+    website: string;
+    lat?: string;
+    lon?: string;
+    logo: Array<ImageRecord>;
     iframe?: string;
+    promotion_adverts?: Array<ImageRecord>;
     category?: string | null;
 };
 

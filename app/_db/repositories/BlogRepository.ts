@@ -1,16 +1,17 @@
 import type { PaginatableParameters, SearchQueryParameters, PaginatedCollection } from '@/app/_db/parameter-types';
 import connectToDatabase from '@/lib/db';
 import Blog from '@/models/Blog';
-import type { BlogDocument, DocumentUrlObject } from '@/lib/document-types';
+import type { BlogDocument, DocumentUrlObject, ImageRecord } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
 type BlogParamters = {
-    title: String;
-    story: String;
-    category: String;
-    images: Array<DocumentUrlObject>;
-    author: String;
+    title: string;
+    story: string;
+    category: string;
+    images: Array<ImageRecord>;
+    author: string;
+    image_alt: string;
 };
 
 export default class BlogRepository {
