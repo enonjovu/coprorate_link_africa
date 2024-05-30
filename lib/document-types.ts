@@ -18,7 +18,7 @@ export type ImageRecord = {
     url: string;
 };
 
-export type AdvertVariant = 'normal' | 'top' | 'side';
+export type AdvertVariant = 'normal' | 'top' | 'side' | 'banner';
 
 export type SocialPlatformNames = 'facebook' | 'whatsapp' | 'x' | 'instagram' | 'linkedin';
 

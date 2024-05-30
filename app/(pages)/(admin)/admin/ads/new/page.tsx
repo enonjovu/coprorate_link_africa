@@ -14,17 +14,14 @@ import { AdvertVariant } from '@/lib/document-types';
 // Initial state with types
 type FormData = {
     images: { url: string; key: string }[];
+    variant: AdvertVariant;
 };
 
 const initialFormData: FormData = {
     images: [{ url: '', key: '' }],
+    variant: 'normal',
 };
-
-const addTypes: { type: AdvertVariant; description: string }[] = [
-    { type: 'normal', description: 'For normal adverts' },
-    { type: 'top', description: 'For top adverts' },
-    { type: 'side', description: 'For side adverts' },
-];
+const advertTypes: AdvertVariant[] = ['top', 'side', 'banner', 'normal'];
 
 const NewDirectory: React.FC = () => {
     // Types for state variables
@@ -44,7 +41,7 @@ const NewDirectory: React.FC = () => {
         }
 
         formData.images = images;
-        console.log('file', formData);
+
         const response = await postAds(formData);
         if (response.status === 'true') {
             setFormKey((prevKey) => prevKey + 1);
@@ -62,11 +59,9 @@ const NewDirectory: React.FC = () => {
     const handleImagesUpload = (res: any) => {
         setImages(res);
         const json = JSON.stringify(res);
-        console.log(json);
+
         toast('Upload Completed');
     };
-
-    const [selected, setSelected] = useState(addTypes[0]);
 
     const title = images.length ? (
         <>
@@ -139,32 +134,25 @@ const NewDirectory: React.FC = () => {
                             >
                                 Select Advert Variant
                             </label>
-                            <div className="mx-auto w-full max-w-md">
-                                <RadioGroup
-                                    value={selected}
-                                    onChange={setSelected}
-                                    aria-label="Server size"
-                                    className="space-y-2"
-                                >
-                                    {addTypes.map((plan) => (
-                                        <Radio
-                                            key={plan.type}
-                                            value={plan.type}
-                                            className="group relative flex cursor-pointer rounded-lg bg-white/5 px-5 py-4 text-white shadow-md transition focus:outline-none data-[checked]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
-                                        >
-                                            <div className="flex w-full items-center justify-between">
-                                                <div className="text-sm/6">
-                                                    <p className="font-semibold text-white">{plan.type}</p>
-                                                    <div className="flex gap-2 text-white/50">
-                                                        <div>{plan.description}</div>
-                                                    </div>
-                                                </div>
-                                                <CheckCircleIcon className="size-6 fill-white opacity-0 transition group-data-[checked]:opacity-100" />
-                                            </div>
-                                        </Radio>
-                                    ))}
-                                </RadioGroup>
-                            </div>
+                            <select
+                                required
+                                value={formData.variant}
+                                className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        variant: e.target.value as AdvertVariant,
+                                    })
+                                }
+                                name="social-platform"
+                                id="social-platform"
+                            >
+                                {advertTypes.map((dt) => (
+                                    <option key={dt} value={dt}>
+                                        {dt}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         {/* End Grid */}
 
