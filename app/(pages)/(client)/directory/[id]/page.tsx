@@ -166,7 +166,7 @@ const SingleDirectory = async ({ params }: PageParameters<{ id: string }>) => {
                                         </li>
                                     )}
 
-                                    {directory.promotion_adverts && (
+                                    {directory.promotion_adverts && directory.promotion_adverts[0] && (
                                         <li className="flex w-full flex-row items-center justify-center rounded-md border border-gray-200 bg-gray-100 p-2  text-black shadow-md">
                                             <Image
                                                 className="w-full rounded-md object-cover"
