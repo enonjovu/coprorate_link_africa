@@ -1,8 +1,10 @@
+import SocialMediaButtons from '../../components/SocialMediaButtons';
+import config from '@/lib/config';
 import IndividiualProfileRepository from '@/app/_db/repositories/IndividiualProfileRepository';
+import Image from 'next/image';
+
 import { PageParameters } from '@/lib/types';
 import { notFound } from 'next/navigation';
-
-import Image from 'next/image';
 import {
     BsEnvelope,
     BsGlobeEuropeAfrica,
@@ -14,7 +16,6 @@ import {
     BsTwitterX,
 } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-
 import { SocialPlatformNames } from '@/lib/document-types';
 import { ReactNode } from 'react';
 import type { Metadata, ResolvingMetadata } from 'next';
@@ -94,7 +95,7 @@ export default async function SingleLeader(props: PageParameters<{ id: string }>
                                 )}
                             </div>
 
-                            <div className="w-full">
+                            <div className="w-full space-y-4">
                                 <div className="mb-2">
                                     <h2 className="w-fit border-b-2 border-red-600 pb-2 pr-3 text-2xl font-black text-black">
                                         Biography
@@ -104,20 +105,26 @@ export default async function SingleLeader(props: PageParameters<{ id: string }>
                                     dangerouslySetInnerHTML={{
                                         __html: profile.biography,
                                     }}
-                                    className="prose w-11/12 max-w-full whitespace-pre-wrap text-gray-900 prose-headings:w-fit prose-headings:border-b-2 prose-headings:border-red-600 prose-headings:pb-2 prose-headings:pr-3"
+                                    className="prose w-[100%] max-w-full whitespace-pre-wrap text-gray-900 prose-headings:w-fit prose-headings:border-b-2 prose-headings:border-red-600 prose-headings:pb-2 prose-headings:pr-3"
                                 ></div>
-                            </div>
-
-                            <div className="mt-4 inline-flex w-full items-center justify-center">
-                                <ul className="flex items-center space-x-4">
-                                    {profile.social_handlers.map((handle) => (
-                                        <li key={handle.url}>
-                                            <a href={handle.url} target="_blank">
-                                                {SocialMediaIcons[handle.platform]}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="mt-4 inline-flex w-full items-center justify-center pt-6">
+                                    <ul className="flex items-center space-x-4">
+                                        {profile.social_handlers.map((handle) => (
+                                            <li key={handle.url}>
+                                                <a href={handle.url} className="text-black" target="_blank">
+                                                    {SocialMediaIcons[handle.platform]}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="flex w-full items-center pt-6">
+                                    <SocialMediaButtons
+                                        url={`${config.BASE_URL}/directory/${id}`}
+                                        description={trimText(profile.biography)}
+                                        title={profile.name}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="flex w-full flex-col items-center space-y-4 rounded-2xl p-4 md:w-1/3">

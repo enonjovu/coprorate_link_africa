@@ -1,28 +1,22 @@
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
-import CompanyCard from '../../components/CompanyCard';
+import './page.css';
+
 import dynamic from 'next/dynamic';
-import { fetchCompanyById } from '@/app/action';
-import { getDirectoryById } from '@/lib/repositories/DirectoryRepository';
 import Image from 'next/image';
+import SocialMediaButtons from '../../components/SocialMediaButtons';
+import config from '@/lib/config';
+
+import { PageParameters } from '@/lib/types';
+import { notFound } from 'next/navigation';
+import { getDirectoryById } from '@/lib/repositories/DirectoryRepository';
 import { BsEnvelope, BsGlobeEuropeAfrica, BsPhone } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import { notFound } from 'next/navigation';
-import './page.css';
+import { trimText } from '@/lib/helpers';
 
 const DynamicMap = dynamic(() => import('../../components/MapComponent'), {
     ssr: false,
 });
 
-type paramProps = {
-    params: Params;
-};
-
-type PageProps = {
-    params: { id: string };
-    searchParams?: { [key: string]: string | string[] | undefined };
-};
-
-const SingleDirectory = async ({ params }: PageProps) => {
+const SingleDirectory = async ({ params }: PageParameters<{ id: string }>) => {
     const id: string = params.id;
 
     const directory = await getDirectoryById(id);
@@ -37,7 +31,7 @@ const SingleDirectory = async ({ params }: PageProps) => {
                 <div className="mx-auto space-y-10 px-3 xl:container sm:px-4 xl:px-2">
                     <div className="flex w-full max-w-full flex-col flex-wrap md:flex-row">
                         {/* Compoany Description */}
-                        <div className="flex w-full flex-col items-center space-y-4 rounded-2xl p-4  md:w-3/5">
+                        <div className="flex w-full flex-col items-center space-y-6 rounded-2xl p-4  md:w-3/5">
                             <div className="h-40 w-40">
                                 {directory.logo ? (
                                     <Image
@@ -54,8 +48,16 @@ const SingleDirectory = async ({ params }: PageProps) => {
                                 dangerouslySetInnerHTML={{
                                     __html: directory.description,
                                 }}
-                                className="prose w-11/12 max-w-full whitespace-pre-wrap text-gray-900"
+                                className="prose w-[100%] max-w-full whitespace-pre-wrap text-gray-900 prose-headings:w-fit prose-headings:border-b-2 prose-headings:border-red-600 prose-headings:pb-2 prose-headings:pr-3"
                             ></div>
+
+                            <div className="flex w-full items-center pt-6">
+                                <SocialMediaButtons
+                                    url={`${config.BASE_URL}/directory/${id}`}
+                                    description={trimText(directory.description)}
+                                    title={directory.name}
+                                />
+                            </div>
                         </div>
                         <div className="flex w-full flex-col items-center space-y-4 rounded-2xl p-4 md:w-1/3">
                             <h2 className="text-xl font-bold text-black">Contact Details</h2>

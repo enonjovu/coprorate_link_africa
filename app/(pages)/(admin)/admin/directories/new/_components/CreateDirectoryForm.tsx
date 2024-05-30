@@ -44,8 +44,6 @@ export default function CreateDirectoryForm() {
         formData.logo = images;
         formData.promotion_adverts = companyPromoImages;
 
-        console.log('file', formData);
-
         const response = await fetch('/admin/directories/new/store', {
             method: 'post',
             body: JSON.stringify(formData),
@@ -55,7 +53,7 @@ export default function CreateDirectoryForm() {
         // console.log('Response => ', response);
 
         if (response.ok) {
-            toast('individual profile was created', { duration: 5000 });
+            toast('company profile was created', { duration: 5000 });
 
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
@@ -75,7 +73,6 @@ export default function CreateDirectoryForm() {
 
         setImages(res);
         const json = JSON.stringify(res);
-        console.log(json);
 
         toast('logo upload completed', { duration: 5000 });
 
@@ -88,7 +85,7 @@ export default function CreateDirectoryForm() {
         setCompanyPromoImages(res);
         const json = JSON.stringify(res);
 
-        toast('promo images upload completed', { duration: 2000 });
+        toast('promo images upload completed', { duration: 5000 });
 
         setIsLoading(false);
     };

@@ -23,6 +23,6 @@ export interface SearchParameter {
 export interface SearchablePaginationParameters extends PaginationParameters, SearchParameter {}
 
 export interface PageParameters<T extends Record<string, string> = {}> {
-    params?: T;
+    params: T;
     searchParams?: { [key: string]: string | string[] | undefined };
 }
