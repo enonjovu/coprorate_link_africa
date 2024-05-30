@@ -37,7 +37,10 @@ const SocialMediaButtons = (props: { url: string; description: string; title: st
 
     return (
         <div className="flex w-full items-center justify-center">
-            <button className="inline-flex items-center rounded-full p-2 text-black" onClick={handleShare}>
+            <button
+                className="inline-flex w-28 items-center rounded-full bg-red-600 p-2  text-white"
+                onClick={handleShare}
+            >
                 <p className="text-lg">Share</p>
                 <ShareIcon className="ml-2 size-8" />
             </button>

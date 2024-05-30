@@ -139,6 +139,28 @@ export default function EditProfileForm(props: { id: string; profile: Partial<In
                         </div>
                     </div>
 
+                    <div>
+                        <label
+                            htmlFor="profile-profession"
+                            className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                        >
+                            Individual Profile Profession
+                        </label>
+                        <input
+                            type="text"
+                            name="profile-profession"
+                            id="profile-profession"
+                            className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+                            onChange={(e) => {
+                                setFormData({
+                                    ...formData,
+                                    profession: e.target.value,
+                                });
+                            }}
+                            value={formData.profession}
+                        />
+                    </div>
+
                     {/* Grid */}
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
                         <div>

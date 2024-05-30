@@ -18,6 +18,7 @@ export type IndividiualProfileParamters = {
     profile_image?: Array<ImageRecord>;
     social_handlers?: Array<SocialPlatform>;
     category?: string | null;
+    profession: string;
 };
 
 export default class IndividiualProfileRepository {
@@ -134,6 +135,7 @@ export default class IndividiualProfileRepository {
             phone: IndividiualProfile.phone,
             address: IndividiualProfile.address,
             website: IndividiualProfile.website,
+            profession: IndividiualProfile.profession,
 
             profile_image: IndividiualProfile.profile_image,
             social_handlers: IndividiualProfile.social_handlers,
@@ -151,6 +153,7 @@ export default class IndividiualProfileRepository {
             phone: IndividiualProfile.phone,
             address: IndividiualProfile.address,
             website: IndividiualProfile.website,
+            profession: IndividiualProfile.profession,
 
             profile_image: IndividiualProfile.profile_image,
             social_handlers: IndividiualProfile.social_handlers,
