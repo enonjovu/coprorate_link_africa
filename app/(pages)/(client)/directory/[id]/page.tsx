@@ -11,10 +11,47 @@ import { getDirectoryById } from '@/lib/repositories/DirectoryRepository';
 import { BsEnvelope, BsGlobeEuropeAfrica, BsPhone } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { trimText } from '@/lib/helpers';
+import { Suspense } from 'react';
+import Directory from '@/models/Directory';
+import Link from 'next/link';
+import SideAds from '../../components/SideAds';
 
 const DynamicMap = dynamic(() => import('../../components/MapComponent'), {
     ssr: false,
 });
+
+async function ExtraDirectories({ id }: { id: string }) {
+    const directories = await Directory.find({}).where('id').ne(id).limit(5).sort({ date: -1 });
+
+    if (!directories) {
+        return <></>;
+    }
+
+    return (
+        <>
+            <h2 className="text-xl font-bold text-black">See Other Directories</h2>
+            <ul className="space-y-4 ">
+                {directories.map((dir) => (
+                    <li key={dir.id}>
+                        <Link
+                            href={`/directory/${dir.id}`}
+                            className="inline-flex w-full items-center rounded-md border border-gray-200 bg-gray-100 p-2  text-black shadow-md"
+                        >
+                            <div className="shrink-0">
+                                <img src={dir.logo[0].url} alt={dir.name} className="size-16 rounded-md" />
+                            </div>
+                            <div className="ml-2 flex w-full flex-col items-start text-black">
+                                <h3 className="text-lg font-semibold">{dir.name}</h3>
+                                <p className="text-sm">{dir.email}</p>
+                                <p className="text-sm">{dir.address}</p>
+                            </div>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
+}
 
 const SingleDirectory = async ({ params }: PageParameters<{ id: string }>) => {
     const id: string = params.id;
@@ -60,86 +97,108 @@ const SingleDirectory = async ({ params }: PageParameters<{ id: string }>) => {
                             </div>
                         </div>
                         <div className="flex w-full flex-col items-center space-y-4 rounded-2xl p-4 md:w-1/3">
-                            <h2 className="text-xl font-bold text-black">Contact Details</h2>
+                            <div className="w-full">
+                                <h2 className="text-xl font-bold text-black">Contact Details</h2>
 
-                            <ul className="flex min-w-full flex-col items-center justify-center space-y-4 md:w-10/12">
-                                {directory.phone && (
-                                    <li className="w-full rounded-md border border-red-200 bg-red-100 p-2 pl-8 text-black shadow-md">
-                                        <a
-                                            href={`tel:${directory.phone}`}
-                                            className="flex w-full flex-row items-center justify-center"
-                                        >
+                                <ul className="flex min-w-full flex-col items-center justify-center space-y-4 md:w-10/12">
+                                    {directory.phone && (
+                                        <li className="w-full rounded-md border border-gray-200 bg-gray-100 p-2 pl-8 text-black shadow-md">
+                                            <a
+                                                href={`tel:${directory.phone}`}
+                                                className="flex w-full flex-row items-center justify-center"
+                                            >
+                                                <div className="icon flex w-1/6 items-center justify-start">
+                                                    <BsPhone size={20} />
+                                                </div>
+                                                <div className="flex w-full flex-col flex-wrap items-start justify-center md:w-3/4">
+                                                    <p className="font-semibold">Phone</p>
+                                                    <span className="font-medium text-gray-700">{directory.phone}</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    )}
+
+                                    {directory.email && (
+                                        <li className="w-full rounded-md border border-gray-200 bg-gray-100 p-2 pl-8 text-black shadow-md">
+                                            <a
+                                                href={`mailto:${directory.email}`}
+                                                className="flex w-full flex-row items-center justify-center"
+                                            >
+                                                <div className="icon flex w-1/6 items-center justify-start">
+                                                    <BsEnvelope size={20} />
+                                                </div>
+                                                <div className="flex w-full flex-col flex-wrap items-start justify-center md:w-3/4">
+                                                    <p className="font-semibold">Email</p>
+                                                    <span className="font-medium text-gray-700">{directory.email}</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    )}
+                                    {directory.website && (
+                                        <li className="w-full rounded-md border border-gray-200 bg-gray-100 p-2 pl-8 text-black shadow-md">
+                                            <a
+                                                href={directory.website}
+                                                target="_blank"
+                                                className="flex w-full flex-row items-center justify-center"
+                                            >
+                                                <div className="icon flex w-1/6 items-center justify-start">
+                                                    <BsGlobeEuropeAfrica size={20} />
+                                                </div>
+                                                <div className="flex w-full flex-col flex-wrap items-start justify-center md:w-3/4">
+                                                    <p className="font-semibold">Website</p>
+                                                    <span className="font-medium text-gray-700">{directory.name}</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    )}
+
+                                    {directory.address && (
+                                        <li className="flex w-full flex-row items-center justify-center rounded-md border border-gray-200 bg-gray-100 p-2 pl-8 text-black shadow-md ">
                                             <div className="icon flex w-1/6 items-center justify-start">
-                                                <BsPhone size={20} />
+                                                <FaMapMarkerAlt size={20} />
                                             </div>
                                             <div className="flex w-full flex-col flex-wrap items-start justify-center md:w-3/4">
-                                                <p className="font-semibold">Phone</p>
-                                                <span className="font-medium text-gray-700">{directory.phone}</span>
+                                                <p className="font-semibold">Address</p>
+                                                <span className="font-medium text-gray-700">
+                                                    {directory.address ? directory.address : 'Not availabe'}
+                                                </span>
                                             </div>
-                                        </a>
-                                    </li>
-                                )}
+                                        </li>
+                                    )}
 
-                                {directory.email && (
-                                    <li className="w-full rounded-md border border-red-200 bg-red-100 p-2 pl-8 text-black shadow-md">
-                                        <a
-                                            href={`mailto:${directory.email}`}
-                                            className="flex w-full flex-row items-center justify-center"
-                                        >
-                                            <div className="icon flex w-1/6 items-center justify-start">
-                                                <BsEnvelope size={20} />
-                                            </div>
-                                            <div className="flex w-full flex-col flex-wrap items-start justify-center md:w-3/4">
-                                                <p className="font-semibold">Email</p>
-                                                <span className="font-medium text-gray-700">{directory.email}</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                )}
-                                {directory.website && (
-                                    <li className="w-full rounded-md border border-red-200 bg-red-100 p-2 pl-8 text-black shadow-md">
-                                        <a
-                                            href={directory.website}
-                                            target="_blank"
-                                            className="flex w-full flex-row items-center justify-center"
-                                        >
-                                            <div className="icon flex w-1/6 items-center justify-start">
-                                                <BsGlobeEuropeAfrica size={20} />
-                                            </div>
-                                            <div className="flex w-full flex-col flex-wrap items-start justify-center md:w-3/4">
-                                                <p className="font-semibold">Website</p>
-                                                <span className="font-medium text-gray-700">{directory.name}</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                )}
+                                    {directory.promotion_adverts && (
+                                        <li className="flex w-full flex-row items-center justify-center rounded-md border border-gray-200 bg-gray-100 p-2  text-black shadow-md">
+                                            <Image
+                                                className="w-full rounded-md object-cover"
+                                                width={600}
+                                                height={200}
+                                                src={directory.promotion_adverts[0].url}
+                                                alt="company promo"
+                                            />
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
 
-                                {directory.address && (
-                                    <li className="flex w-full flex-row items-center justify-center rounded-md border border-red-200 bg-red-100 p-2 pl-8 text-black shadow-md ">
-                                        <div className="icon flex w-1/6 items-center justify-start">
-                                            <FaMapMarkerAlt size={20} />
-                                        </div>
-                                        <div className="flex w-full flex-col flex-wrap items-start justify-center md:w-3/4">
-                                            <p className="font-semibold">Address</p>
-                                            <span className="font-medium text-gray-700">
-                                                {directory.address ? directory.address : 'Not availabe'}
-                                            </span>
-                                        </div>
-                                    </li>
-                                )}
+                            <div className="w-full">
+                                <Suspense
+                                    fallback={<div className="h-64 w-full animate-pulse rounded-md bg-gray-300"></div>}
+                                >
+                                    <SideAds />
+                                </Suspense>
+                            </div>
 
-                                {directory.promotion_adverts && (
-                                    <li className="flex w-full flex-row items-center justify-center rounded-md border border-red-200 bg-red-100 p-2  text-black shadow-md">
-                                        <Image
-                                            className="w-full rounded-md object-cover"
-                                            width={600}
-                                            height={200}
-                                            src={directory.promotion_adverts[0].url}
-                                            alt="company promo"
-                                        />
-                                    </li>
-                                )}
-                            </ul>
+                            {!directory.promotion_adverts && (
+                                <div className="w-full space-y-4">
+                                    <Suspense
+                                        fallback={
+                                            <div className="h-64 w-full animate-pulse rounded-md bg-gray-300"></div>
+                                        }
+                                    >
+                                        <ExtraDirectories id={id} />
+                                    </Suspense>
+                                </div>
+                            )}
                         </div>
                     </div>
 
