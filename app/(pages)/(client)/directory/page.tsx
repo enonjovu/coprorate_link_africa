@@ -57,7 +57,7 @@ const DirectoryPage = async ({ searchParams }: PageProps) => {
 
                             {/* <DirectoryCategoryList /> */}
 
-                            <div className="my-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            <div className="my-4 grid gap-6 p-4 md:grid-cols-2 lg:grid-cols-3">
                                 {directories.length
                                     ? directories.map((directory) => (
                                           <DirectoryCard key={`id-${directory.id}`} directory={directory} />
