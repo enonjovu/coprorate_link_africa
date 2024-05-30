@@ -48,8 +48,6 @@ export default function CreateProfileForm() {
         formData.profile_image = images;
         formData.social_handlers = socialHandles;
 
-        console.log('file', formData);
-
         try {
             /**
              * server action were throwing a error when creating so i had to use this way
@@ -78,7 +76,6 @@ export default function CreateProfileForm() {
 
             setIsLoading(false);
         } catch (e) {
-            console.error(e);
             setIsLoading(false);
         }
     };
@@ -88,9 +85,8 @@ export default function CreateProfileForm() {
 
         setImages(res);
         const json = JSON.stringify(res);
-        console.log(json);
 
-        toast('image upload completed', { duration: 2000 });
+        toast('image upload completed', { duration: 5000 });
 
         setIsLoading(false);
     };
@@ -98,8 +94,6 @@ export default function CreateProfileForm() {
     const handleChangeSocialHandle = (index: number, field: string, value: string) => {
         const newPairs = [...socialHandles];
         newPairs[index] = { ...newPairs[index], [field]: value };
-
-        console.log({ field, value });
 
         setSocialHandles(newPairs);
     };

@@ -1,17 +1,18 @@
 // import Ads from "@/app/(client)/components/Advertisment";
 
+import Image from 'next/image';
 import PicturesSlider from '@/app/(pages)/(client)/components/PicturesSlider';
 import SocialMediaButtons from '@/app/(pages)/(client)/components/SocialMediaButtons';
 import TopStories from '@/app/(pages)/(client)/components/TopStories';
+
 import { fetchBlogsById } from '@/app/action';
 import { getBlogById, getBlogsRelatedTo } from '@/lib/repositories/BlogRepository';
 
 import SideAds from '../../../components/SideAds';
-import EveTend from '../../../components/EveTend';
 import { Suspense } from 'react';
 
-import Image from 'next/image';
 import type { Metadata, ResolvingMetadata } from 'next';
+import EveTend from '../../../components/EveTend';
 import { getFormatedDate, trimText } from '@/lib/helpers';
 import { notFound } from 'next/navigation';
 
@@ -106,7 +107,7 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                                 dangerouslySetInnerHTML={{
                                                     __html: blog?.story,
                                                 }}
-                                                className="prose mb-5 w-full max-w-7xl whitespace-pre-wrap text-black"
+                                                className="prose mb-5 w-[100%] max-w-7xl whitespace-pre-wrap text-black"
                                             ></div>
                                         </div>
                                         {/* Comments */}

@@ -35,8 +35,6 @@ export default function EditProfileForm(props: { id: string; profile: Partial<In
         formData.profile_image = images;
         formData.social_handlers = socialHandles;
 
-        console.log('file', formData);
-
         try {
             const response = await handleUpdateProfile(props.id, formData);
 
@@ -53,7 +51,6 @@ export default function EditProfileForm(props: { id: string; profile: Partial<In
 
             setIsLoading(false);
         } catch (e) {
-            console.error(e);
             setIsLoading(false);
         }
     };
@@ -63,7 +60,6 @@ export default function EditProfileForm(props: { id: string; profile: Partial<In
 
         setImages(res);
         const json = JSON.stringify(res);
-        console.log(json);
 
         toast('image upload completed', { duration: 5000 });
 
@@ -73,8 +69,6 @@ export default function EditProfileForm(props: { id: string; profile: Partial<In
     const handleChangeSocialHandle = (index: number, field: string, value: string) => {
         const newPairs = [...socialHandles];
         newPairs[index] = { ...newPairs[index], [field]: value };
-
-        console.log({ field, value });
 
         setSocialHandles(newPairs);
     };
