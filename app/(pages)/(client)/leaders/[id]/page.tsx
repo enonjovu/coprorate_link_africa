@@ -73,8 +73,8 @@ async function ExtraProfile({ id }: { id: string }) {
             <ul className="space-y-4 ">
                 {profiles.map((dir) => (
                     <li key={dir.id}>
-                        <Link
-                            href={`/directory/${dir.id}`}
+                        <a
+                            href={`/leaders/${dir.id}`}
                             className="inline-flex w-full items-center rounded-md border border-gray-200 bg-gray-100 p-2  text-black shadow-md"
                         >
                             <div className="shrink-0">
@@ -85,7 +85,7 @@ async function ExtraProfile({ id }: { id: string }) {
                                 <p className="text-sm">{dir.email}</p>
                                 <p className="text-sm">{dir.address}</p>
                             </div>
-                        </Link>
+                        </a>
                     </li>
                 ))}
             </ul>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getDirectories, getDirectoriesCount } from '@/lib/repositories/DirectoryRepository';
 import Pagination from '@/app/_components/Pagination';
 import DirectoryCategoryList from '@/app/_components/Directory/DirectoryCategoryList';
+import AdvertBanner from '@/app/_components/Advert/AdvertBanner';
 // import { Metadata } from 'next'
 // export const metadata: Metadata = {
 //     title: '...',
@@ -40,20 +41,7 @@ const DirectoryPage = async ({ searchParams }: PageProps) => {
                             </h2>
                         </div>
                         <div className="-mx-3 flex flex-row flex-wrap">
-                            <div className="w-full max-w-full flex-shrink px-3 pb-5">
-                                <div className="hover-img relative max-h-[50vh] overflow-hidden">
-                                    {/*thumbnail*/}
-                                    <a href="#">
-                                        <Image
-                                            className="mx-auto h-auto w-full max-w-full object-cover"
-                                            width={1300}
-                                            height={400}
-                                            src="/src/img/directory.jpg"
-                                            alt="Image description"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
+                            <AdvertBanner />
 
                             {/* <DirectoryCategoryList /> */}
 

@@ -16,7 +16,7 @@ export async function POST(req: Request) {
             });
         }
     } catch (err) {
-        console.log(`Failed to post Advert ${err}`);
+        console.error(`Failed to post Advert ${err}`);
         return NextResponse.json({
             status: 'error',
             message: 'Something went wrong',
