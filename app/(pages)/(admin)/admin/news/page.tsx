@@ -20,7 +20,7 @@ export default async function AllNews({ searchParams }: PageParameters) {
                     </DashboardPageHeading>
 
                     <div className="-mx-3 flex flex-row flex-wrap">
-                        {blogs && blogs.map((blog) => <BlogCard blog={blog} />)}
+                        {blogs && blogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)}
                     </div>
                 </div>
                 <div className="mb-6 mt-4 w-full text-center">

@@ -20,7 +20,9 @@ export type ImageRecord = {
 
 export type AdvertVariant = 'normal' | 'top' | 'side';
 
-export type SocialPlatform = { url: string; platform: 'facebook' | 'whatsapp' | 'x' | 'instagram' | 'linkedin' };
+export type SocialPlatformNames = 'facebook' | 'whatsapp' | 'x' | 'instagram' | 'linkedin';
+
+export type SocialPlatform = { url: string; platform: SocialPlatformNames };
 
 export interface AdvertDocument extends Document, HasTimestamp {
     images: Array<ImageRecord>;
@@ -82,6 +84,8 @@ export interface IndividiualProfileDocument extends Document, HasTimestamp {
     address: string;
 
     website: string;
+
+    profession: string;
 
     promotion_adverts: Array<ImageRecord>;
 
