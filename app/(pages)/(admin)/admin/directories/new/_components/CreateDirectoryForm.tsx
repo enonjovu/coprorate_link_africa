@@ -8,6 +8,8 @@ import TipTapTextEditor from '@/app/(pages)/(admin)/components/TipTapTextEditor'
 import toast from 'react-hot-toast';
 import { DirectoryParamters } from '@/app/_db/repositories/DirectoryRepository';
 import { handleCreateDirectory } from '../../actions';
+import { DirectoryCategoryType } from '@/app/_db/repositories/DirectoryCategoryRepository';
+import SelectCategoryCombobox from '../../../_components/SelectCategoryCombobox';
 
 const initialFormData: DirectoryParamters = {
     name: '',
@@ -24,13 +26,15 @@ const initialFormData: DirectoryParamters = {
     category: null,
 };
 
-export default function CreateDirectoryForm() {
+export default function CreateDirectoryForm(props: { categories: DirectoryCategoryType[] }) {
     const [error, setError] = useState<string | null>(null);
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
 
     const [formData, setFormData] = useState<DirectoryParamters>(initialFormData);
+
+    const [selectedCategory, setCategorySelected] = useState(props.categories[0]);
 
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
 
@@ -43,6 +47,7 @@ export default function CreateDirectoryForm() {
 
         formData.logo = images;
         formData.promotion_adverts = companyPromoImages;
+        formData.category = selectedCategory.id ?? null;
 
         const response = await fetch('/admin/directories/new/store', {
             method: 'post',
@@ -260,19 +265,13 @@ export default function CreateDirectoryForm() {
                         >
                             Company Category
                         </label>
-                        <input
-                            type="text"
-                            name="company-category"
-                            id="company-category"
-                            className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                            onChange={(e) => {
-                                setFormData({
-                                    ...formData,
-                                    category: e.target.value,
-                                });
-                            }}
-                            value={formData.category ?? ''}
-                        />
+                        <div className="w-full md:w-72">
+                            <SelectCategoryCombobox
+                                data={props.categories}
+                                value={selectedCategory}
+                                onChange={(e) => setCategorySelected(e)}
+                            />
+                        </div>
                     </div>
 
                     <div>

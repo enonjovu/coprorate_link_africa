@@ -34,6 +34,8 @@ export default class DirectoryRepository {
             queryParameters['$text'] = { $search: params.search ? params.search : '' };
         }
 
+        await connectToDatabase();
+
         const results = await Directory.find(queryParameters)
             .sort({ date: -1, createdAt: -1 })
             .skip(skip)
@@ -97,12 +99,6 @@ export default class DirectoryRepository {
 
         const date = Date.now();
 
-        if (params.category) {
-            params.category = (await DirectoryCategoryRepository.fistOrCreate(params.category)).id;
-        } else {
-            params.category = null;
-        }
-
         const result = await Directory.create({
             ...params,
             date,
@@ -113,12 +109,6 @@ export default class DirectoryRepository {
 
     static async updateById(id: string, params: Partial<DirectoryParamters>) {
         await connectToDatabase();
-
-        if (params.category) {
-            params.category = (await DirectoryCategoryRepository.fistOrCreate(params.category)).id;
-        } else {
-            params.category = null;
-        }
 
         const updateData = {
             $set: params,

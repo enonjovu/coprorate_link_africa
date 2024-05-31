@@ -95,28 +95,18 @@ export default class IndividiualProfileRepository {
 
         const date = Date.now();
 
-        if (params.category) {
-            params.category = (await DirectoryCategoryRepository.fistOrCreate(params.category)).id;
-        } else {
-            params.category = null;
-        }
-
-        const result = await IndividiualProfile.create({
+        const profile = new IndividiualProfile({
             ...params,
             date,
         });
+
+        const result = await profile.save();
 
         return result;
     }
 
     static async updateById(id: string, params: Partial<IndividiualProfileParamters>) {
         await connectToDatabase();
-
-        if (params.category) {
-            params.category = (await DirectoryCategoryRepository.fistOrCreate(params.category)).id;
-        } else {
-            params.category = null;
-        }
 
         const updateData = {
             $set: params,

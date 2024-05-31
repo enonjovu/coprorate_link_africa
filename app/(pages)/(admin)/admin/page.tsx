@@ -5,8 +5,11 @@ import IndividiualProfile from '@/models/IndividiualProfile';
 import Tender from '@/models/Tender';
 import User from '@/models/User';
 import DashboardPageHeading from './_components/DashboardPageHeading';
+import dbConnect from '@/lib/db';
 
 export default async function Dashboard() {
+    const db = await dbConnect();
+
     const blogs = await Blog.countDocuments();
     const directories = await Directory.countDocuments();
     const profiles = await IndividiualProfile.countDocuments();

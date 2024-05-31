@@ -10,7 +10,22 @@ export type DirectoryCategoryParamters = {
     name: string;
 };
 
+export type DirectoryCategoryType = {
+    name: string;
+    id: string;
+};
+
 export default class DirectoryCategoryRepository {
+    static async getList({ limit = 20 }: { limit?: number }) {
+        await connectToDatabase();
+
+        const results = await DirectoryCategory.find({}).sort({ date: -1, createdAt: -1 }).limit(limit);
+
+        const categoriesList = results.map((cat) => ({ id: cat.id, name: cat.name }));
+
+        return categoriesList;
+    }
+
     static async get(params: SearchQueryParameters): Promise<DirectoryCategoryDocument[]> {
         const queryParameters: any = {};
 
@@ -20,6 +35,8 @@ export default class DirectoryCategoryRepository {
         if (params.search) {
             queryParameters['$text'] = { $search: params.search ? params.search : '' };
         }
+
+        await connectToDatabase();
 
         const results = await DirectoryCategory.find(queryParameters)
             .sort({ date: -1, createdAt: -1 })
