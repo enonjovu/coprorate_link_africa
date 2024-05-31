@@ -20,7 +20,7 @@ const sidebar = () => {
         { name: 'Events', icon: <CalendarDaysIcon className="size-6" />, href: '/admin/events' },
         { name: 'Tenders', icon: <BriefcaseIcon className="size-6" />, href: '/admin/tenders' },
         { name: 'Directories', icon: <FaListAlt className="size-6" />, href: '/admin/directories' },
-        { name: 'Profiles', icon: <UserGroupIcon className="size-6" />, href: '/admin/profiles' },
+        { name: 'Leaders', icon: <UserGroupIcon className="size-6" />, href: '/admin/profiles' },
         { name: 'Adverts', icon: <FaAd className="size-6" />, href: '/admin/ads' },
         { name: 'Administration', icon: <Cog6ToothIcon className="size-6" />, href: '/admin/administration' },
     ];

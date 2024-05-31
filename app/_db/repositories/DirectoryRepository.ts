@@ -45,7 +45,9 @@ export default class DirectoryRepository {
         return results;
     }
 
-    static async getPaginated(params: PaginatableParameters): Promise<PaginatedCollection<DirectoryDocument>> {
+    static async getPaginated(
+        params: PaginatableParameters<{ category?: string }>,
+    ): Promise<PaginatedCollection<DirectoryDocument>> {
         await connectToDatabase();
 
         const queryParameters: any = {};
@@ -57,13 +59,17 @@ export default class DirectoryRepository {
             queryParameters['$text'] = { $search: params.search ? params.search : '' };
         }
 
+        if (params.options?.category) {
+            queryParameters['category'] = params.options?.category;
+        }
+
         const results = await Directory.find(queryParameters)
             .sort({ date: -1, createdAt: -1 })
             .skip(skip)
             .limit(limit)
             .populate('category');
 
-        const count = await DirectoryRepository.count();
+        const count = await DirectoryRepository.count(queryParameters);
 
         const numberOfPages = Math.ceil(count / limit);
 

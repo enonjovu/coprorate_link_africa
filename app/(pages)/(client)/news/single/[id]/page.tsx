@@ -50,8 +50,7 @@ const SingleBlogPage = async ({ params }: PageProps) => {
     const blog = await getBlogById(id);
 
     if (!blog) {
-        notFound();
-        return;
+        return notFound();
     }
 
     const relatedBlogs = await getBlogsRelatedTo(blog.id, { category: blog.category });
@@ -59,13 +58,6 @@ const SingleBlogPage = async ({ params }: PageProps) => {
     return (
         <main id="content">
             <>
-                {/* <head>
-                    <meta property="og:title" content={blog.title} />
-                    <meta property="og:description" content={blog.story} />
-                    <meta property="og:image" content={blog.images[0].url} />
-                    <meta property="og:url" content={`https://www.clafrica.online/news/single/${id}`} />
-                </head> */}
-
                 {/* block news */}
                 <div className="bg-gray-50 py-10">
                     <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
@@ -260,47 +252,6 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                         description={trimText(blog.story, 0, 30)}
                                     />
                                 </div>
-                                <div className="w-full max-w-full flex-shrink overflow-hidden lg:w-2/3">
-                                    <div className="w-full py-3">
-                                        <h2 className="text-2xl font-bold text-gray-800">
-                                            <span className="mr-2 inline-block h-5 border-l-2 border-red-600"></span>
-                                            Related Articles
-                                        </h2>
-                                    </div>
-                                    <div className="-mx-3 flex flex-row flex-wrap">
-                                        {relatedBlogs?.map((related) => (
-                                            <div
-                                                key={`key-${related.id}`}
-                                                className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/3 sm:border-b-0 sm:pt-0"
-                                            >
-                                                <div className="hover-img flex flex-row sm:block">
-                                                    <a href={`/news/single/${related.id}`}>
-                                                        <img
-                                                            className="mx-auto h-40 max-h-40 min-h-40 w-full max-w-full overflow-hidden"
-                                                            src={related.images[0].url}
-                                                            alt={related.title}
-                                                        />
-                                                    </a>
-                                                    <div className="py-0 pl-3 sm:py-3 sm:pl-0">
-                                                        <h3 className="mb-2 text-lg font-bold leading-tight">
-                                                            <a href="#" className="text-black">
-                                                                {related.title}
-                                                            </a>
-                                                        </h3>
-                                                        {/* <p className="hidden md:block text-gray-600 leading-tight mb-1">{related.story}</p> */}
-                                                        <a
-                                                            href={`/news/single/${related._id}`}
-                                                            className="text-gray-500"
-                                                        >
-                                                            <span className="mr-2 inline-block h-3 border-l-2 border-red-600"></span>
-                                                            {related.category}
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
                             </div>
                             {/* sidebar */}
                             <div className="order-last w-full max-w-full flex-shrink lg:w-1/3 lg:pb-8 lg:pl-8 lg:pt-14">
@@ -312,6 +263,44 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                 <Suspense fallback={<LoadingDammy />}>
                                     <EveTend />
                                 </Suspense>
+                            </div>
+                        </div>
+                        <div className="mt-8 w-full max-w-full flex-shrink overflow-hidden">
+                            <div className="w-full py-3">
+                                <h2 className="text-2xl font-bold text-gray-800">
+                                    <span className="mr-2 inline-block h-5 border-l-2 border-red-600"></span>
+                                    Related Articles
+                                </h2>
+                            </div>
+                            <div className="-mx-3 flex flex-row flex-wrap">
+                                {relatedBlogs?.map((related) => (
+                                    <div
+                                        key={`key-${related.id}`}
+                                        className="w-full max-w-full flex-shrink border-b-2 border-dotted border-gray-100 px-3 pb-3 pt-3 sm:w-1/4 sm:border-b-0 sm:pt-0"
+                                    >
+                                        <div className="hover-img flex flex-row sm:block">
+                                            <a href={`/news/single/${related.id}`}>
+                                                <img
+                                                    className="mx-auto h-40 max-h-40 min-h-40 w-full max-w-full overflow-hidden"
+                                                    src={related.images[0].url}
+                                                    alt={related.title}
+                                                />
+                                            </a>
+                                            <div className="py-0 pl-3 sm:py-3 sm:pl-0">
+                                                <h3 className="mb-2 text-lg font-bold leading-tight">
+                                                    <a href="#" className="text-black">
+                                                        {related.title}
+                                                    </a>
+                                                </h3>
+                                                {/* <p className="hidden md:block text-gray-600 leading-tight mb-1">{related.story}</p> */}
+                                                <a href={`/news/single/${related._id}`} className="text-gray-500">
+                                                    <span className="mr-2 inline-block h-3 border-l-2 border-red-600 capitalize"></span>
+                                                    {related.category}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

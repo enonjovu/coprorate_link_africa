@@ -54,8 +54,6 @@ export default function EditDirectoryForm(props: {
             setFormKey((prevKey) => prevKey + 1);
 
             setFormData(response.data);
-
-            setImages([]);
         }
 
         setIsLoading(false);
@@ -64,9 +62,13 @@ export default function EditDirectoryForm(props: {
     const handleImagesUpload = (res: any) => {
         setIsLoading(true);
 
+        const loadingToast = toast.loading('uploading image');
+
         setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
+
+        toast.dismiss(loadingToast);
 
         toast('logo upload completed');
 
@@ -76,9 +78,11 @@ export default function EditDirectoryForm(props: {
     const handleUploadPromotionAdvertImages = async (res: any) => {
         setIsLoading(true);
 
+        const loadingToast = toast.loading('uploading image');
+
         setCompanyPromoImages(res);
         const json = JSON.stringify(res);
-
+        toast.dismiss(loadingToast);
         toast('promo images upload completed');
 
         setIsLoading(false);

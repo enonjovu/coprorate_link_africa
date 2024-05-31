@@ -4,6 +4,9 @@ import { getDirectories, getDirectoriesCount } from '@/lib/repositories/Director
 import Pagination from '@/app/_components/Pagination';
 import DirectoryCategoryList from '@/app/_components/Directory/DirectoryCategoryList';
 import AdvertBanner from '@/app/_components/Advert/AdvertBanner';
+import DirectoryRepository from '@/app/_db/repositories/DirectoryRepository';
+import { PageParameters } from '@/lib/types';
+
 // import { Metadata } from 'next'
 // export const metadata: Metadata = {
 //     title: '...',
@@ -15,19 +18,12 @@ export const metadata = {
     description: 'Simplified Business Narratives',
 };
 
-type PageProps = {
-    // params: { category: string };
-    searchParams?: { [key: string]: string | string[] | undefined };
-};
-
-const DirectoryPage = async ({ searchParams }: PageProps) => {
+const DirectoryPage = async ({ searchParams }: PageParameters) => {
     const currentPage = parseInt(`${searchParams?.page ?? 1}`);
 
-    const directories = await getDirectories({
-        currentPage,
+    const { data: directories, count: directoriesCount } = await DirectoryRepository.getPaginated({
+        page: currentPage,
     });
-
-    const directoriesCount = await getDirectoriesCount();
 
     return (
         <div className="bg-gray-50 py-6">
@@ -43,7 +39,7 @@ const DirectoryPage = async ({ searchParams }: PageProps) => {
                         <div className="-mx-3 flex flex-row flex-wrap">
                             <AdvertBanner />
 
-                            {/* <DirectoryCategoryList /> */}
+                            <DirectoryCategoryList />
 
                             <div className="my-4 grid gap-6 p-4 md:grid-cols-2 lg:grid-cols-3">
                                 {directories.length

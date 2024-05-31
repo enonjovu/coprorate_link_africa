@@ -14,10 +14,7 @@ export default async function ProfilesPage({ searchParams }: PageParameters) {
         <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
             <div className="flex flex-row flex-wrap">
                 <div className="w-full max-w-full flex-shrink overflow-hidden">
-                    <DashboardPageHeading
-                        title="All Individual Companies"
-                        className=" mb-6 inline-flex items-center justify-between"
-                    >
+                    <DashboardPageHeading title="Leaders" className=" mb-6 inline-flex items-center justify-between">
                         <ButtonLink href="/admin/profiles/create">Create</ButtonLink>
                     </DashboardPageHeading>
                     <div className="-mx-3 flex flex-row flex-wrap">

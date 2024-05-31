@@ -3,21 +3,31 @@ import Image from 'next/image';
 import { getDirectories, getDirectoriesCount } from '@/lib/repositories/DirectoryRepository';
 import Pagination from '@/app/_components/Pagination';
 import DirectoryCategoryList from '@/app/_components/Directory/DirectoryCategoryList';
+import AdvertBanner from '@/app/_components/Advert/AdvertBanner';
+import DirectoryRepository from '@/app/_db/repositories/DirectoryRepository';
+import { PageParameters } from '@/lib/types';
+import DirectoryCategoryRepository from '@/app/_db/repositories/DirectoryCategoryRepository';
+import DirectoryCategory from '@/models/DirectoryCategory';
+import { notFound } from 'next/navigation';
+import dbConnect from '@/lib/db';
 
-type PageProps = {
-    params: { id: string };
-    searchParams?: { [key: string]: string | string[] | undefined };
-};
-
-export default async function DirectoryCategoryPage({ params, searchParams }: PageProps) {
+export default async function DirectoryCategoryPage({ params, searchParams }: PageParameters<{ id: string }>) {
     const currentPage = parseInt(`${searchParams?.page ?? 1}`);
 
-    const directories = await getDirectories({
-        currentPage,
-        category: params.id,
-    });
+    await dbConnect();
 
-    const directoriesCount = await getDirectoriesCount();
+    const category = await DirectoryCategory.findOne({ _id: params.id });
+
+    if (!category) {
+        return notFound();
+    }
+
+    const { data: directories, count: directoriesCount } = await DirectoryRepository.getPaginated({
+        page: currentPage,
+        options: {
+            category: category.id,
+        },
+    });
 
     return (
         <div className="bg-gray-50 py-6">
@@ -31,24 +41,11 @@ export default async function DirectoryCategoryPage({ params, searchParams }: Pa
                             </h2>
                         </div>
                         <div className="-mx-3 flex flex-row flex-wrap">
-                            <div className="w-full max-w-full flex-shrink px-3 pb-5">
-                                <div className="hover-img relative max-h-[50vh] overflow-hidden">
-                                    {/*thumbnail*/}
-                                    <a href="#">
-                                        <Image
-                                            className="mx-auto h-auto w-full max-w-full object-cover"
-                                            width={1300}
-                                            height={400}
-                                            src="/src/img/directory.jpg"
-                                            alt="Image description"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
+                            <AdvertBanner />
 
-                            {/* <DirectoryCategoryList /> */}
+                            <DirectoryCategoryList active={category} />
 
-                            <div className="my-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            <div className="my-4 grid gap-6 p-4 md:grid-cols-2 lg:grid-cols-3">
                                 {directories.length
                                     ? directories.map((directory) => (
                                           <DirectoryCard key={`id-${directory.id}`} directory={directory} />
