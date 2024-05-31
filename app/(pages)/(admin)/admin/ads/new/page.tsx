@@ -43,6 +43,7 @@ const NewDirectory: React.FC = () => {
         formData.images = images;
 
         const response = await postAds(formData);
+
         if (response.status === 'true') {
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
@@ -50,7 +51,9 @@ const NewDirectory: React.FC = () => {
 
             setIsLoading(false);
 
-            toast('advert creation complete');
+            toast('created', { duration: 5000 });
+        } else {
+            toast('failed', { duration: 5000 });
         }
 
         setIsLoading(false);

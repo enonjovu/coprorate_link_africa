@@ -23,6 +23,8 @@ export default class TenderRepository {
             queryParameters['$text'] = { $search: params.search ? params.search : '' };
         }
 
+        await connectToDatabase();
+
         const results = await Tender.find(queryParameters).sort({ date: -1, createdAt: -1 }).skip(skip).limit(limit);
 
         return results;

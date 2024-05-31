@@ -12,14 +12,26 @@ import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { SocialPlatform } from '@/lib/document-types';
 
 import { handleUpdateProfile } from '../../actions';
+import type { DirectoryCategoryType } from '@/app/_db/repositories/DirectoryCategoryRepository';
+import SelectCategoryCombobox from '../../../_components/SelectCategoryCombobox';
 
-export default function EditProfileForm(props: { id: string; profile: Partial<IndividiualProfileParamters> }) {
+export default function EditProfileForm(props: {
+    id: string;
+    profile: Partial<IndividiualProfileParamters>;
+    categories: DirectoryCategoryType[];
+}) {
+    const categoryList = props.categories;
+
     const [error, setError] = useState<string | null>(null);
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
 
     const [formData, setFormData] = useState<Partial<IndividiualProfileParamters>>(props.profile);
+
+    const [selectedCategory, setCategorySelected] = useState(
+        categoryList.find((c) => c.name == props.profile.category || c.id == props.profile.category) ?? categoryList[0],
+    );
 
     const [images, setImages] = useState<{ url: string; key: string }[]>(props.profile.profile_image ?? []);
 
@@ -34,6 +46,7 @@ export default function EditProfileForm(props: { id: string; profile: Partial<In
 
         formData.profile_image = images;
         formData.social_handlers = socialHandles;
+        formData.category = selectedCategory.id ?? null;
 
         try {
             const response = await handleUpdateProfile(props.id, formData);
@@ -258,19 +271,13 @@ export default function EditProfileForm(props: { id: string; profile: Partial<In
                         >
                             Individual Profile Category
                         </label>
-                        <input
-                            type="text"
-                            name="company-category"
-                            id="company-category"
-                            className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                            onChange={(e) => {
-                                setFormData({
-                                    ...formData,
-                                    category: e.target.value,
-                                });
-                            }}
-                            value={formData.category ?? ''}
-                        />
+                        <div className="w-full md:w-72">
+                            <SelectCategoryCombobox
+                                data={props.categories}
+                                value={selectedCategory}
+                                onChange={(e) => setCategorySelected(e)}
+                            />
+                        </div>
                     </div>
 
                     <div>

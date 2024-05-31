@@ -5,7 +5,9 @@ import {
     BriefcaseIcon,
     UserGroupIcon,
     Cog6ToothIcon,
+    TagIcon,
 } from '@heroicons/react/24/outline';
+
 import Link from 'next/link';
 
 import { FaAd, FaListAlt } from 'react-icons/fa';
@@ -14,10 +16,11 @@ const sidebar = () => {
     const navigationLinks = [
         { name: 'Dashboard', icon: <HomeIcon className="size-6" />, href: '/admin' },
         { name: 'News', icon: <NewspaperIcon className="size-6" />, href: '/admin/news' },
+        { name: 'Categories', icon: <TagIcon className="size-6" />, href: '/admin/categories' },
         { name: 'Events', icon: <CalendarDaysIcon className="size-6" />, href: '/admin/events' },
         { name: 'Tenders', icon: <BriefcaseIcon className="size-6" />, href: '/admin/tenders' },
         { name: 'Directories', icon: <FaListAlt className="size-6" />, href: '/admin/directories' },
-        { name: 'Profiles', icon: <UserGroupIcon className="size-6" />, href: '/admin/profiles' },
+        { name: 'Leaders', icon: <UserGroupIcon className="size-6" />, href: '/admin/profiles' },
         { name: 'Adverts', icon: <FaAd className="size-6" />, href: '/admin/ads' },
         { name: 'Administration', icon: <Cog6ToothIcon className="size-6" />, href: '/admin/administration' },
     ];

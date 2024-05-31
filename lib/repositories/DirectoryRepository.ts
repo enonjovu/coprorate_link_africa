@@ -70,9 +70,9 @@ export async function getDirectories(params: { category?: string } & Paginatorab
     return results;
 }
 
-export async function getDirectoriesCount() {
+export async function getDirectoriesCount(options: object = {}) {
     await connectToDatabase();
-    const itemsCount = await Directory.countDocuments({});
+    const itemsCount = await Directory.countDocuments(options);
 
     return itemsCount;
 }

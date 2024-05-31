@@ -7,13 +7,24 @@ import { DirectoryParamters } from '@/app/_db/repositories/DirectoryRepository';
 import toast from 'react-hot-toast';
 import TipTapTextEditor from '@/app/(pages)/(admin)/components/TipTapTextEditor';
 import { handleUpdateDirectory } from '../../../actions';
+import { DirectoryCategoryType } from '@/app/_db/repositories/DirectoryCategoryRepository';
+import SelectCategoryCombobox from '../../../../_components/SelectCategoryCombobox';
 
-export default function EditDirectoryForm(props: { propeties: Partial<DirectoryParamters>; id: string }) {
+export default function EditDirectoryForm(props: {
+    propeties: Partial<DirectoryParamters>;
+    id: string;
+    categories: DirectoryCategoryType[];
+}) {
     // Types for state variables
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
 
     const [formData, setFormData] = useState<Partial<DirectoryParamters>>(props.propeties);
+
+    const [selectedCategory, setCategorySelected] = useState(
+        props.categories.find((c) => c.name == props.propeties.category || c.id == props.propeties.category) ??
+            props.categories[0],
+    );
 
     const [images, setImages] = useState<{ url: string; key: string }[]>(props.propeties.logo ?? []);
 
@@ -30,6 +41,7 @@ export default function EditDirectoryForm(props: { propeties: Partial<DirectoryP
 
         formData.logo = images;
         formData.promotion_adverts = companyPromoImages;
+        formData.category = selectedCategory.id ?? null;
 
         console.log('file', formData);
         const response = await handleUpdateDirectory(props.id, formData);
@@ -42,8 +54,6 @@ export default function EditDirectoryForm(props: { propeties: Partial<DirectoryP
             setFormKey((prevKey) => prevKey + 1);
 
             setFormData(response.data);
-
-            setImages([]);
         }
 
         setIsLoading(false);
@@ -52,9 +62,13 @@ export default function EditDirectoryForm(props: { propeties: Partial<DirectoryP
     const handleImagesUpload = (res: any) => {
         setIsLoading(true);
 
+        const loadingToast = toast.loading('uploading image');
+
         setImages(res);
         const json = JSON.stringify(res);
         console.log(json);
+
+        toast.dismiss(loadingToast);
 
         toast('logo upload completed');
 
@@ -64,9 +78,11 @@ export default function EditDirectoryForm(props: { propeties: Partial<DirectoryP
     const handleUploadPromotionAdvertImages = async (res: any) => {
         setIsLoading(true);
 
+        const loadingToast = toast.loading('uploading image');
+
         setCompanyPromoImages(res);
         const json = JSON.stringify(res);
-
+        toast.dismiss(loadingToast);
         toast('promo images upload completed');
 
         setIsLoading(false);
@@ -250,19 +266,13 @@ export default function EditDirectoryForm(props: { propeties: Partial<DirectoryP
                         >
                             Company Category
                         </label>
-                        <input
-                            type="text"
-                            name="company-category"
-                            id="company-category"
-                            className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                            onChange={(e) => {
-                                setFormData({
-                                    ...formData,
-                                    category: e.target.value,
-                                });
-                            }}
-                            value={formData.category ?? ''}
-                        />
+                        <div className="w-full md:w-72">
+                            <SelectCategoryCombobox
+                                data={props.categories}
+                                value={selectedCategory}
+                                onChange={(e) => setCategorySelected(e)}
+                            />
+                        </div>
                     </div>
 
                     <div>

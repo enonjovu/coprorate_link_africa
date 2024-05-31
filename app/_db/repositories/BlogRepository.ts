@@ -29,6 +29,8 @@ export default class BlogRepository {
             queryParameters['category'] = params.options?.category;
         }
 
+        await connectToDatabase();
+
         const results = await Blog.find(queryParameters).sort({ date: -1, createdAt: -1 }).skip(skip).limit(limit);
 
         return results;

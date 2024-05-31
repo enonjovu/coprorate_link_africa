@@ -1,17 +1,16 @@
 'use client';
 import '@uploadthing/react/styles.css';
 import Modal from '@/app/(pages)/(admin)/components/Modal';
-import { postCompany } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
 import { FormEvent, useState } from 'react';
 import TipTapTextEditor from '@/app/(pages)/(admin)/components/TipTapTextEditor';
 import toast from 'react-hot-toast';
 
-import { handleCreateProfile } from '../actions';
-
 import { IndividiualProfileParamters } from '@/app/_db/repositories/IndividiualProfileRepository';
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { SocialPlatform } from '@/lib/document-types';
+
+import SelectCategoryCombobox from '../../_components/SelectCategoryCombobox';
 
 const initialFormData: IndividiualProfileParamters = {
     name: '',
@@ -26,7 +25,12 @@ const initialFormData: IndividiualProfileParamters = {
     profession: '',
 };
 
-export default function CreateProfileForm() {
+export default function CreateProfileForm(prop: { categories: { id: string; name: string }[] }) {
+    const categoryList = prop.categories;
+
+    const [query, setQuery] = useState('');
+    const [selectedCategory, setCategorySelected] = useState(categoryList[1]);
+
     const [error, setError] = useState<string | null>(null);
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -47,6 +51,7 @@ export default function CreateProfileForm() {
 
         formData.profile_image = images;
         formData.social_handlers = socialHandles;
+        formData.category = selectedCategory.id ?? null;
 
         try {
             /**
@@ -84,7 +89,6 @@ export default function CreateProfileForm() {
         setIsLoading(true);
 
         setImages(res);
-        const json = JSON.stringify(res);
 
         toast('image upload completed', { duration: 5000 });
 
@@ -282,19 +286,13 @@ export default function CreateProfileForm() {
                         >
                             Individual Profile Category
                         </label>
-                        <input
-                            type="text"
-                            name="company-category"
-                            id="company-category"
-                            className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                            onChange={(e) => {
-                                setFormData({
-                                    ...formData,
-                                    category: e.target.value,
-                                });
-                            }}
-                            value={formData.category ?? ''}
-                        />
+                        <div className="w-full md:w-72">
+                            <SelectCategoryCombobox
+                                data={prop.categories}
+                                value={selectedCategory}
+                                onChange={(e) => setCategorySelected(e)}
+                            />
+                        </div>
                     </div>
 
                     <div>

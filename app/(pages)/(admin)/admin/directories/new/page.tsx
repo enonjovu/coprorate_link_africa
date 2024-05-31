@@ -1,6 +1,9 @@
+import DirectoryCategoryRepository from '@/app/_db/repositories/DirectoryCategoryRepository';
 import CreateDirectoryForm from './_components/CreateDirectoryForm';
 
-export default function NewDirectory() {
+export default async function NewDirectory() {
+    const categories = await DirectoryCategoryRepository.getList({ limit: 20 });
+
     return (
         <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-xl">
@@ -10,7 +13,7 @@ export default function NewDirectory() {
                     </h1>
                 </div>
 
-                <CreateDirectoryForm />
+                <CreateDirectoryForm categories={categories} />
             </div>
         </div>
     );

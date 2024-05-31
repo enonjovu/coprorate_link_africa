@@ -113,7 +113,7 @@ const Footer = () => {
                                     </div>
 
                                     {/* Contact US */}
-                                    <div className="mb-6 w-1/2 max-w-full flex-shrink md:w-1/4 lg:mb-0">
+                                    <div className="mb-6 w-full max-w-full flex-shrink md:w-1/4 lg:mb-0">
                                         <h4 className="mb-3 text-base uppercase leading-normal text-gray-100">
                                             Contact Us
                                         </h4>

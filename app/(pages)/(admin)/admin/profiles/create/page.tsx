@@ -1,7 +1,10 @@
 import { PageParameters } from '@/lib/types';
 import CreateProfileForm from './CreateProfileForm';
+import DirectoryCategoryRepository from '@/app/_db/repositories/DirectoryCategoryRepository';
 
-export default function ProfileCreatePage(props: PageParameters) {
+export default async function ProfileCreatePage(props: PageParameters) {
+    const categories = await DirectoryCategoryRepository.getList({ limit: 20 });
+
     return (
         <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-xl">
@@ -11,7 +14,7 @@ export default function ProfileCreatePage(props: PageParameters) {
                     </h1>
                 </div>
 
-                <CreateProfileForm />
+                <CreateProfileForm categories={categories} />
             </div>
         </div>
     );
