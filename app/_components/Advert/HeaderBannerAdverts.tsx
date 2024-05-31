@@ -1,9 +1,13 @@
 // import { Carousel } from 'react-responsive-carousel';
 
+import dbConnect from '@/lib/db';
 import Advert from '@/models/Advert';
 
 // import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 export default async function HeaderBannerAdverts() {
+
+    await dbConnect();
+    
     const advert = await Advert.findOne({ variant: 'top' });
 
     if (!advert) {
