@@ -36,7 +36,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </InterFontWrapper>
                     <PrelineScript />
                 </AuthProvider>
-                <InjectAnalyticsScripts />
             </body>
         </html>
     );
