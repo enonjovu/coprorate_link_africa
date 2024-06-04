@@ -69,7 +69,9 @@ export default async function Home({ searchParams }: PageProps) {
                     </div>
                 </div>
             </div>
-            <Videos />
+            <Suspense fallback={<LoadingDammy />}>
+                <Videos />
+            </Suspense>
         </main>
     );
 }

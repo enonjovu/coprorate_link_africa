@@ -6,14 +6,14 @@ import Image from 'next/image';
 const EveTend = async (params: { eventsCount?: number; tendersCount?: number; minimal?: boolean }) => {
     const envents = await Event.find({})
         .sort({ createdAt: -1 })
-        .limit(params.eventsCount ?? 4)
+        .limit(params.eventsCount ?? 6)
         .find();
 
     const tenders = params.minimal
         ? []
         : await Tender.find({})
               .sort({ createdAt: -1 })
-              .limit(params.tendersCount ?? 4)
+              .limit(params.tendersCount ?? 5)
               .find();
 
     return (
