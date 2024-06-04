@@ -20,6 +20,7 @@ export async function POST(req: Request) {
         });
 
         const exists = await User.findOne({ email });
+
         if (exists) {
             return NextResponse.json(
                 {
@@ -30,6 +31,7 @@ export async function POST(req: Request) {
             );
         }
         const user = await newUser.save();
+
         if (user) {
             return NextResponse.json(
                 {
