@@ -1,3 +1,4 @@
+import AdvertBanner from '@/app/_components/Advert/AdvertBanner';
 import Pagination from '@/app/_components/Pagination';
 import IndividiualProfileRepository from '@/app/_db/repositories/IndividiualProfileRepository';
 import { IndividiualProfileDocument } from '@/lib/document-types';
@@ -59,6 +60,9 @@ const AllLaeders = async (params: PageProps) => {
         <div className="relative flex min-h-screen flex-col  overflow-hidden bg-white py-6">
             <div className="mx-auto w-full max-w-screen-xl px-4">
                 <h2 className="mb-4 text-xl font-bold text-gray-600">Business Profiles.</h2>
+                <div className="w-full max-w-full flex-shrink px-3 pb-5">
+                    <AdvertBanner />
+                </div>
                 <div className="grid w-full gap-6 sm:grid-cols-2 xl:grid-cols-4">
                     {profiles.length > 0 ? (
                         profiles.map((profile) => <ProfileCard key={profile.id} profile={profile} />)

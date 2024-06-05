@@ -1,5 +1,7 @@
 import type { ModelDocumentWithId } from './types';
 import { Document } from 'mongoose';
+import { utapi } from '@/utils/utapicomponent';
+import { ImageRecord } from './document-types';
 
 export function convertDocumentToModelObject<TDocument extends Document>(
     document: TDocument,
@@ -68,4 +70,10 @@ export function createPaginationHandles(params: { count: number; current: number
         total: totalPages,
         pages: pageNumbers,
     };
+}
+
+export async function deleteImageFiles(data: ImageRecord[]) {
+    for (const imageFile of data) {
+        await utapi.deleteFiles(imageFile.key);
+    }
 }

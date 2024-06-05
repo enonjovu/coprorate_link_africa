@@ -7,7 +7,7 @@ import Pagination from '@/app/_components/Pagination';
 import { trimText } from '@/lib/helpers';
 import { BsEye } from 'react-icons/bs';
 import { EyeIcon } from '@heroicons/react/24/outline';
-import { AdvertBannerType1 } from '@/app/_components/Advert/AdvertBanner';
+import AdvertBanner, { AdvertBannerType1 } from '@/app/_components/Advert/AdvertBanner';
 
 export const metadata = {
     title: 'Corporate Link Africa - Tenders',
@@ -51,7 +51,9 @@ const TendersPage = async ({ searchParams }: PageProps) => {
                             </div>
 
                             <div className="relative flex min-h-screen flex-col justify-center  space-y-6 overflow-hidden sm:py-12">
-                                <AdvertBannerType1 />
+                                <div className="w-full max-w-full flex-shrink px-3 pb-5">
+                                    <AdvertBanner index={2} />
+                                </div>
                                 {tenders.length ? (
                                     <div className="mx-auto w-full max-w-screen-xl">
                                         <div className="relative overflow-x-auto">
