@@ -1,7 +1,7 @@
 import type { PaginatableParameters, SearchQueryParameters, PaginatedCollection } from '@/app/_db/parameter-types';
 import connectToDatabase from '@/lib/db';
 import Advert from '@/models/Advert';
-import type { AdvertDocument, ImageRecord } from '@/lib/document-types';
+import type { AdvertDocument, AdvertVariant, ImageRecord } from '@/lib/document-types';
 
 import config from '@/lib/config';
 
@@ -97,4 +97,20 @@ export default class AdvertRepository {
 
         return result;
     }
+
+    static async getOneRandom(params: { variant: AdvertVariant }) {
+        await connectToDatabase();
+
+        const record = await Advert.aggregate([
+            {
+                $sample: { size: 1 },
+            },
+        ]);
+
+        return record;
+    }
+    static async getOneLatest(params: { variant: AdvertVariant }) {}
+
+    static async getRandom(params: { variant: AdvertVariant; limit?: number }) {}
+    static async getLatest(params: { variant: AdvertVariant; limit?: number }) {}
 }

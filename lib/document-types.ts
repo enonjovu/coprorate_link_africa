@@ -28,6 +28,7 @@ export interface AdvertDocument extends Document, HasTimestamp {
     images: Array<ImageRecord>;
     variant: AdvertVariant;
     date: number;
+    link: string;
 }
 
 export interface BlogDocument extends Document, HasTimestamp {

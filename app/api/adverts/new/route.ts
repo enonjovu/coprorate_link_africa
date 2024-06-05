@@ -3,11 +3,14 @@ import Advert from '@/models/Advert';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
-    const { images, variant = 'normal' } = await req.json();
+    const { images, variant = 'normal', link = null } = await req.json();
+
     try {
         await dbConnect();
 
-        const newAd = await Advert.create({ images, variant });
+        const date = Date.now();
+
+        const newAd = await Advert.create({ images, variant, date, link });
 
         if (newAd) {
             return NextResponse.json({

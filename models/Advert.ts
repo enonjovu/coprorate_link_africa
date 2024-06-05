@@ -1,13 +1,26 @@
 // models/Advert.ts
-import type { AdvertDocument } from '@/lib/document-types';
+import type { AdvertDocument, AdvertVariant } from '@/lib/document-types';
 import mongoose from 'mongoose';
 import { Schema, model, type Model as ModelType } from 'mongoose';
+
+const AdvertTypes: AdvertVariant[] = ['top', 'side', 'banner', 'normal'];
 
 const AdvertSchema = new Schema(
     {
         images: Array,
-        variant: { type: String, required: true, default: 'normal' },
-        date: { type: Date, required: true },
+        variant: {
+            type: String,
+            required: true,
+            default: 'normal',
+        },
+        date: {
+            type: Date,
+            required: true,
+        },
+        link: {
+            required: false,
+            type: String,
+        },
     },
     {
         timestamps: true,

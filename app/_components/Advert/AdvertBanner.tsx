@@ -1,3 +1,4 @@
+import Advert from '@/models/Advert';
 import Image from 'next/image';
 
 export function AdvertBannerType1() {
@@ -13,7 +14,7 @@ export function AdvertBannerType1() {
         </div>
     );
 }
-export function AdvertBannerType2() {
+export async function AdvertBannerType2() {
     return (
         <div className="w-full max-w-full flex-shrink px-3 pb-5">
             <div className="hover-img relative max-h-[50vh] overflow-hidden">
