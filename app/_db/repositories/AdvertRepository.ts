@@ -7,11 +7,11 @@ import config from '@/lib/config';
 
 export type AdvertParamters = {
     images: Array<ImageRecord>;
-    variant: 'normal' | 'top' | 'side';
+    variant: AdvertVariant;
 };
 
 export default class AdvertRepository {
-    static async get(params: SearchQueryParameters): Promise<AdvertDocument[]> {
+    static async get(params: SearchQueryParameters<{ variant?: AdvertVariant }>): Promise<AdvertDocument[]> {
         const queryParameters: any = {};
 
         const skip = params.skip ?? 0;
@@ -19,6 +19,10 @@ export default class AdvertRepository {
 
         if (params.search) {
             queryParameters['$text'] = { $search: params.search ? params.search : '' };
+        }
+
+        if (params.options?.variant) {
+            queryParameters['variant'] = params.options?.variant;
         }
 
         await connectToDatabase();
@@ -112,6 +116,7 @@ export default class AdvertRepository {
 
         return result;
     }
+
     static async getOneLatest(params: { variant: AdvertVariant }) {}
 
     static async getRandom(params: { variant: AdvertVariant; limit?: number }) {}

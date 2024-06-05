@@ -13,6 +13,8 @@ type adsProps = {
 }[];
 
 const AdvertHeroCarousel = (props: { adverts: AdvertDocument[] }) => {
+    const defaultImages = ['/src/img/ad.jpg', '/src/img/ads2.jpg'];
+
     return (
         <div className="h-full w-full text-center">
             <Carousel
@@ -31,19 +33,33 @@ const AdvertHeroCarousel = (props: { adverts: AdvertDocument[] }) => {
                 showThumbs={false}
                 className="relative h-full w-full" // Set initial height using Tailwind classes
             >
-                {props.adverts.map((ad) => (
-                    <div className="h-full w-full" key={ad.images[0].key}>
-                        <a href="#" className="h-full w-full">
-                            <Image
-                                width={635}
-                                height={450}
-                                className="mx-auto h-full"
-                                src={ad.images[0].url}
-                                alt="advertisement area"
-                            />
-                        </a>
-                    </div>
-                ))}
+                {props.adverts.length > 0
+                    ? props.adverts.map((ad) => (
+                          <div className="h-full w-full" key={ad.images[0].key}>
+                              <a href="#" className="h-full w-full">
+                                  <Image
+                                      width={635}
+                                      height={450}
+                                      className="mx-auto h-full"
+                                      src={ad.images[0].url}
+                                      alt="advertisement area"
+                                  />
+                              </a>
+                          </div>
+                      ))
+                    : defaultImages.map((path) => (
+                          <div key={path} className="h-full w-full">
+                              <a href="#" className="h-full w-full">
+                                  <Image
+                                      width={635}
+                                      height={450}
+                                      className="mx-auto h-full"
+                                      src={path}
+                                      alt="advertisement area"
+                                  />
+                              </a>
+                          </div>
+                      ))}
             </Carousel>
         </div>
     );
