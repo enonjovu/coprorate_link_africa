@@ -3,7 +3,7 @@ import '@uploadthing/react/styles.css';
 import Modal from '@/app/(pages)/(admin)/components/Modal';
 import { postAds } from '@/app/action';
 import { UploadButton } from '@/utils/uploadthing';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
@@ -15,13 +15,22 @@ import { AdvertVariant } from '@/lib/document-types';
 type FormData = {
     images: { url: string; key: string }[];
     variant: AdvertVariant;
+    link: string;
 };
 
 const initialFormData: FormData = {
     images: [{ url: '', key: '' }],
     variant: 'normal',
+    link: '',
 };
 const advertTypes: AdvertVariant[] = ['top', 'side', 'banner', 'normal'];
+
+const advertTypesDescritption: Record<AdvertVariant, string> = {
+    top: 'Top Banner - Rect',
+    side: 'Side Panel - Square',
+    banner: 'Top Banner - (Directory/Tenders)',
+    normal: 'Home Card',
+};
 
 const NewDirectory: React.FC = () => {
     // Types for state variables
@@ -32,7 +41,9 @@ const NewDirectory: React.FC = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+
         setIsLoading(true);
 
         if (images.length < 1) {
@@ -61,9 +72,10 @@ const NewDirectory: React.FC = () => {
 
     const handleImagesUpload = (res: any) => {
         setImages(res);
+
         const json = JSON.stringify(res);
 
-        toast('Upload Completed');
+        toast('Upload image Completed');
     };
 
     const title = images.length ? (
@@ -101,7 +113,7 @@ const NewDirectory: React.FC = () => {
 
                 <div className="mt-12">
                     {/* Form */}
-                    <form key={formKey}>
+                    <form key={formKey} onSubmit={handleSubmit} className="space-y-5">
                         <div className="grid gap-4 lg:gap-6">
                             {/* Grid */}
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
@@ -132,10 +144,10 @@ const NewDirectory: React.FC = () => {
 
                         <div className="my-6 w-full px-4">
                             <label
-                                htmlFor="blog-image"
+                                htmlFor="select-advert-variant"
                                 className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
                             >
-                                Select Advert Variant
+                                Select Advert variant
                             </label>
                             <select
                                 required
@@ -147,15 +159,37 @@ const NewDirectory: React.FC = () => {
                                         variant: e.target.value as AdvertVariant,
                                     })
                                 }
-                                name="social-platform"
-                                id="social-platform"
+                                name="variant"
+                                id="select-advert-variant"
                             >
                                 {advertTypes.map((dt) => (
                                     <option key={dt} value={dt}>
-                                        {dt}
+                                        {advertTypesDescritption[dt]}
                                     </option>
                                 ))}
                             </select>
+                        </div>
+
+                        <div>
+                            <label
+                                htmlFor="advert-link"
+                                className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"
+                            >
+                                Advert Link
+                            </label>
+                            <input
+                                type="url"
+                                name="link"
+                                id="advert-link"
+                                className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+                                onChange={(e) => {
+                                    setFormData({
+                                        ...formData,
+                                        link: e.target.value,
+                                    });
+                                }}
+                                value={formData.link}
+                            />
                         </div>
                         {/* End Grid */}
 
@@ -163,9 +197,8 @@ const NewDirectory: React.FC = () => {
                             {images.length ? (
                                 <button
                                     disabled={isLoading}
-                                    type="button"
+                                    type="submit"
                                     className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    onClick={handleSubmit}
                                 >
                                     {isLoading ? 'Creating Advert...' : 'Post Advert'}
                                 </button>

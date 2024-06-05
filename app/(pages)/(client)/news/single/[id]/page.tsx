@@ -83,7 +83,7 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                                             <Image
                                                                 width={1280} // You can remove fixed width for full responsiveness
                                                                 height={720} // You can remove fixed height for full responsiveness
-                                                                className="h-full w-full rounded-lg "
+                                                                className="h-full w-full rounded-lg object-contain"
                                                                 src={blog.images[0].url}
                                                                 alt={blog.title}
                                                             />
