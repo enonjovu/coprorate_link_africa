@@ -1,5 +1,4 @@
 import AdvertRepository from '@/app/_db/repositories/AdvertRepository';
-import Advert from '@/models/Advert';
 import Image from 'next/image';
 
 export function AdvertBannerType1() {
@@ -15,12 +14,16 @@ export function AdvertBannerType1() {
         </div>
     );
 }
-export async function AdvertBannerType2() {
+export async function AdvertBannerType2(props: { index?: number }) {
     const advert = await AdvertRepository.getOneRandom({ variant: 'banner' });
+
+    const optionalImages = ['/src/img/directory.jpg', '/src/img/events.jpg', '/src/img/tenders.jpg'];
+
+    const randomImage = optionalImages[props.index ?? Math.floor(Math.random() * optionalImages.length)];
 
     return advert ? (
         <div className="w-full max-w-full flex-shrink px-3 pb-5">
-            <div className="hover-img relative max-h-[50vh] overflow-hidden">
+            <div className="hover-img relative max-h-[395px]  overflow-hidden">
                 {/*thumbnail*/}
                 <a href={advert.link ?? '#'}>
                     <Image
@@ -28,7 +31,7 @@ export async function AdvertBannerType2() {
                         width={1300}
                         height={400}
                         src={advert.images[0].url}
-                        alt="Image description"
+                        alt="advert image"
                     />
                 </a>
             </div>
@@ -42,8 +45,8 @@ export async function AdvertBannerType2() {
                         className="mx-auto h-auto w-full max-w-full object-cover"
                         width={1300}
                         height={400}
-                        src="/src/img/directory.jpg"
-                        alt="Image description"
+                        src={randomImage}
+                        alt="Advert Image"
                     />
                 </a>
             </div>
@@ -51,6 +54,42 @@ export async function AdvertBannerType2() {
     );
 }
 
-export default function AdvertBanner() {
-    return <AdvertBannerType2 />;
+export default async function AdvertBanner(props: { index?: number }) {
+    const advert = await AdvertRepository.getOneRandom({ variant: 'banner' });
+
+    const optionalImages = ['/src/img/directory.jpg', '/src/img/events.jpg', '/src/img/tenders.jpg'];
+
+    const randomImage = optionalImages[props.index ?? Math.floor(Math.random() * optionalImages.length)];
+
+    return advert ? (
+        <div className="w-full max-w-full flex-shrink px-3 pb-5">
+            <div className="hover-img relative max-h-[395px]  overflow-hidden">
+                {/*thumbnail*/}
+                <a href={advert.link ?? '#'}>
+                    <Image
+                        className="mx-auto h-auto w-full max-w-full object-cover"
+                        width={1300}
+                        height={400}
+                        src={advert.images[0].url}
+                        alt="advert image"
+                    />
+                </a>
+            </div>
+        </div>
+    ) : (
+        <div className="w-full max-w-full flex-shrink px-3 pb-5">
+            <div className="hover-img relative max-h-[50vh] overflow-hidden">
+                {/*thumbnail*/}
+                <a href="#">
+                    <Image
+                        className="mx-auto h-auto w-full max-w-full object-cover"
+                        width={1300}
+                        height={400}
+                        src={randomImage}
+                        alt="Advert Image"
+                    />
+                </a>
+            </div>
+        </div>
+    );
 }

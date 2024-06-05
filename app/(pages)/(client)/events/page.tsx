@@ -7,6 +7,7 @@ import { getEvents, getEventsCount } from '@/lib/repositories/EventRepository';
 import Pagination from '@/app/_components/Pagination';
 import Image from 'next/image';
 import EventCard from '@/app/_components/Event/EventCard';
+import AdvertBanner from '@/app/_components/Advert/AdvertBanner';
 
 type PageProps = {
     searchParams?: { [key: string]: string | string[] | undefined };
@@ -47,18 +48,7 @@ const EventsPage = async ({ searchParams }: PageProps) => {
                                             <div className="w-full max-w-full flex-shrink overflow-hidden">
                                                 <div className="-mx-3 flex flex-row flex-wrap">
                                                     <div className="w-full max-w-full flex-shrink px-3 pb-5">
-                                                        <div className="hover-img relative max-h-[50vh] overflow-hidden">
-                                                            {/*thumbnail*/}
-                                                            <a href="#">
-                                                                <Image
-                                                                    className="mx-auto h-auto w-full max-w-full object-cover"
-                                                                    width={1300}
-                                                                    height={400}
-                                                                    src="/src/img/events.jpg"
-                                                                    alt="Image description"
-                                                                />
-                                                            </a>
-                                                        </div>
+                                                        <AdvertBanner index={2} />
                                                     </div>
                                                     {events.length ? (
                                                         events.map((event) => (

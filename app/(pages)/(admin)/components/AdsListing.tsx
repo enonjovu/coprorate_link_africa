@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { BsTrash } from 'react-icons/bs';
 import DashboardPageHeading from '../admin/_components/DashboardPageHeading';
 import ButtonLink from '../admin/_components/Button/ButtonLink';
+import Advert from '@/models/Advert';
+import { deleteImageFiles } from '@/lib/helpers';
+import Pagination from '@/app/_components/Pagination';
 
 const AdsListingComponent = async ({ page }: { page: string }) => {
     const result = await fetchAds(page);
@@ -26,23 +29,20 @@ const AdsListingComponent = async ({ page }: { page: string }) => {
     const prevPage = currentPage - 1 > 0 ? currentPage - 1 : 1;
     const nextPage = currentPage + 1;
 
-    async function handleDelete(data: FormData) {
+    async function handleDelete(id: string) {
         'use server';
 
-        const itemId = data.get('itemId') as string;
+        const result = await Advert.findById(id);
 
-        if (itemId != null) {
-            try {
-                const res = await deleteAds(itemId);
-                if (res) {
-                    revalidatePath('/admin/ads');
-                } else {
-                    console.log('Failed to delete the advert!');
-                }
-            } catch (error) {
-                console.log(error);
-            }
+        if (!result) {
+            return;
         }
+
+        await Advert.findOneAndDelete({ _id: id });
+
+        await deleteImageFiles(result.images);
+
+        revalidatePath('/admin/ads');
     }
 
     return (
@@ -69,15 +69,16 @@ const AdsListingComponent = async ({ page }: { page: string }) => {
                                             alt="alt title"
                                         />
                                         <div className="roundeg-lg flex h-16 w-full items-center justify-center bg-red-700">
-                                            <form action={handleDelete}>
-                                                <input name="itemId" className="hidden" value={advert._id} />
-                                                <button
-                                                    type="submit"
-                                                    className="cursor-pointer rounded-lg border-[1px] border-white p-2"
-                                                >
-                                                    <BsTrash size={20} color={'#fff'} />
-                                                </button>
-                                            </form>
+                                            <button
+                                                formAction={async () => {
+                                                    'use server';
+                                                    await handleDelete(advert._id);
+                                                }}
+                                                type="submit"
+                                                className="cursor-pointer rounded-lg border-[1px] border-white p-2"
+                                            >
+                                                <BsTrash size={20} color={'#fff'} />
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -87,48 +88,10 @@ const AdsListingComponent = async ({ page }: { page: string }) => {
                         )}
                     </div>
                 </div>
-                {totalPages > 1 ? (
-                    <div className="mt-4 text-center">
-                        <nav aria-label="Page navigation">
-                            <ul className="flex items-center justify-center space-x-0">
-                                <li>
-                                    {currentPage === 1 ? null : (
-                                        <Link
-                                            className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                            href={`/admin/news/?page=${prevPage}`}
-                                            aria-label="Previous"
-                                        >
-                                            <span aria-hidden="true">«</span>
-                                        </Link>
-                                    )}
-                                </li>
 
-                                {pageNumbers.map((pageNo, index) => (
-                                    <li key={index}>
-                                        <Link
-                                            className="relative -mr-0.5 block border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                            href={`/admin/news/?page=${pageNo}`}
-                                        >
-                                            {pageNo}
-                                        </Link>
-                                    </li>
-                                ))}
-
-                                <li>
-                                    {currentPage === totalPages ? null : (
-                                        <Link
-                                            className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                            href={`/admin/news/?page=${nextPage}`}
-                                            aria-label="Next"
-                                        >
-                                            <span aria-hidden="true">»</span>
-                                        </Link>
-                                    )}
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                ) : null}
+                <div className="my-4">
+                    <Pagination count={totalPages} current={currentPage} path="/admin/ads" />
+                </div>
             </div>
         </div>
     );

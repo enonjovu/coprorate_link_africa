@@ -37,7 +37,7 @@ const DirectoryPage = async ({ searchParams }: PageParameters) => {
                             </h2>
                         </div>
                         <div className="-mx-3 flex flex-row flex-wrap">
-                            <AdvertBanner />
+                            <AdvertBanner index={0} />
 
                             <DirectoryCategoryList />
 

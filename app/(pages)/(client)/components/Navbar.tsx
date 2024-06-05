@@ -9,7 +9,7 @@ const Navbar = () => {
     return (
         <>
             {/* <TopAds /> */}
-            <Suspense fallback={<div className="m-0 max-h-[339px] w-full  animate-pulse bg-gray-300 md:h-full"></div>}>
+            <Suspense fallback={<div className="m-0 max-h-[100px] w-full  animate-pulse bg-gray-300 md:h-full"></div>}>
                 <HeaderBannerAdverts />
             </Suspense>
             <header className="z-50 flex w-full flex-wrap border-b border-gray-200 bg-white pb-2 text-sm sm:flex-col sm:justify-start sm:pb-0 dark:border-red-700 dark:bg-gray-100">
