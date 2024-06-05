@@ -3,7 +3,7 @@ import type { AdvertDocument, AdvertVariant } from '@/lib/document-types';
 import mongoose from 'mongoose';
 import { Schema, model, type Model as ModelType } from 'mongoose';
 
-const AdvertTypes: AdvertVariant[] = ['top', 'side', 'banner', 'normal'];
+export const AdvertVariantList: AdvertVariant[] = ['top', 'side', 'banner', 'normal'];
 
 const AdvertSchema = new Schema(
     {

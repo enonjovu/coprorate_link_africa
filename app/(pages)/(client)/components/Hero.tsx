@@ -13,7 +13,7 @@ const Hero = async () => {
     const blogs = await Blog.find({}).limit(4).sort({ createdAt: -1, date: -1 });
 
     const res = await fetch(rootUrl + '/api/adverts', {
-        next: { revalidate: 0 },
+        cache: 'no-store',
     });
 
     const adverts = (await res.json()) as AdvertDocument[];

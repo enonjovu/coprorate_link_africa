@@ -6,7 +6,7 @@ const rootUrl = config.BASE_URL;
 
 const SideAds = async () => {
     const res = await fetch(rootUrl + '/api/adverts', {
-        next: { revalidate: 0 },
+        cache: 'no-store',
     });
 
     const adverts = (await res.json()) as AdvertDocument[];
