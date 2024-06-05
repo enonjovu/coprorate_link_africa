@@ -142,7 +142,7 @@ const NewDirectory: React.FC = () => {
                             {/* End Grid */}
                         </div>
 
-                        <div className="my-6 w-full px-4">
+                        <div className="my-6 w-full">
                             <label
                                 htmlFor="select-advert-variant"
                                 className="mb-2 block text-sm font-medium text-gray-700 dark:text-white"

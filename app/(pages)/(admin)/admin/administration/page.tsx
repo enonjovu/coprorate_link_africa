@@ -13,9 +13,10 @@ export default async function AdministrationsPage(props: PageParameters) {
         <div className="mx-auto px-3 xl:container sm:px-4 xl:px-2">
             <div className="flex flex-row flex-wrap">
                 <div className="w-full max-w-full flex-shrink overflow-hidden">
-                    <DashboardPageHeading title="All Users" className=" mb-6 inline-flex items-center justify-between">
-                        <ButtonLink href="/admin/administration/create">Create</ButtonLink>
-                    </DashboardPageHeading>
+                    <DashboardPageHeading
+                        title="All Users"
+                        className=" mb-6 inline-flex items-center justify-between"
+                    />
                     <div className="-mx-3 flex flex-row flex-wrap">
                         {data.length > 0 ? (
                             <div className="flex flex-col">
@@ -27,25 +28,25 @@ export default async function AdministrationsPage(props: PageParameters) {
                                                     <tr>
                                                         <th
                                                             scope="col"
-                                                            className="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-500"
+                                                            className="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-200"
                                                         >
                                                             Name
                                                         </th>
                                                         <th
                                                             scope="col"
-                                                            className="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-500"
+                                                            className="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-200"
                                                         >
                                                             Email
                                                         </th>
                                                         <th
                                                             scope="col"
-                                                            className="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-500"
+                                                            className="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-neutral-200"
                                                         >
                                                             Role
                                                         </th>
                                                         <th
                                                             scope="col"
-                                                            className="px-6 py-3 text-end text-xs font-medium uppercase text-gray-500 dark:text-neutral-500"
+                                                            className="px-6 py-3 text-end text-xs font-medium uppercase text-gray-500 dark:text-neutral-200"
                                                         >
                                                             Action
                                                         </th>
@@ -55,7 +56,7 @@ export default async function AdministrationsPage(props: PageParameters) {
                                                     {data.map((user) => (
                                                         <tr key={`id-${user.id}`}>
                                                             <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-neutral-200">
-                                                                {user.role}
+                                                                {user.name ?? 'None'}
                                                             </td>
                                                             <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-neutral-200">
                                                                 {user.email}

@@ -43,13 +43,13 @@ const sidebar = () => {
                 <ul className="space-y-1.5">
                     {navigationLinks.map((navlink) => (
                         <li key={navlink.href}>
-                            <a
+                            <Link
                                 className="flex items-center gap-x-3.5 rounded-lg bg-gray-100 px-2.5 py-2 text-sm text-slate-700 hover:bg-gray-100 dark:bg-gray-900/40 dark:text-white dark:hover:bg-gray-900/90 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                 href={navlink.href}
                             >
                                 {navlink.icon}
                                 <p>{navlink.name}</p>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>
