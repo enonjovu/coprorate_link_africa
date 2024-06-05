@@ -103,11 +103,14 @@ export default class AdvertRepository {
 
         const record = await Advert.aggregate([
             {
-                $sample: { size: 1 },
+                $match: params,
             },
+            { $sample: { size: 1 } },
         ]);
 
-        return record;
+        const result = record[0] ?? null;
+
+        return result;
     }
     static async getOneLatest(params: { variant: AdvertVariant }) {}
 
