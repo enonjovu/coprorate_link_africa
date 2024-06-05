@@ -3,6 +3,8 @@ import { convertDocumentsToModelObjectCollection } from '@/lib/helpers';
 import { getAllAdverts } from '@/lib/repositories/AdvertRepository';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
     let adverts = await AdvertRepository.get({ options: { variant: 'normal' }, limit: 4 });
 
