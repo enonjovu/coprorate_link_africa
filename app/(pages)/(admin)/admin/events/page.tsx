@@ -4,6 +4,7 @@ import { fetchEvents } from '@/app/action';
 import Link from 'next/link';
 import ButtonLink from '../_components/Button/ButtonLink';
 import DashboardPageHeading from '../_components/DashboardPageHeading';
+import Pagination from '@/app/_components/Pagination';
 
 const AllEvents = async ({ searchParams }: { searchParams: Params }) => {
     let page = searchParams['page'] ?? '1';
@@ -37,44 +38,7 @@ const AllEvents = async ({ searchParams }: { searchParams: Params }) => {
                     <EventsListing events={events} />
                 </div>
                 <div className="mt-4 text-center">
-                    <nav aria-label="Page navigation">
-                        <ul className="flex items-center justify-center space-x-0">
-                            <li>
-                                {currentPage === 1 ? null : (
-                                    <Link
-                                        className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                        href={`/admin/news/?page=${prevPage}`}
-                                        aria-label="Previous"
-                                    >
-                                        <span aria-hidden="true">«</span>
-                                    </Link>
-                                )}
-                            </li>
-
-                            {pageNumbers.map((pageNo, index) => (
-                                <li key={index}>
-                                    <Link
-                                        className="relative -mr-0.5 block border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                        href={`/admin/news/?page=${pageNo}`}
-                                    >
-                                        {pageNo}
-                                    </Link>
-                                </li>
-                            ))}
-
-                            <li>
-                                {currentPage === totalPages ? null : (
-                                    <Link
-                                        className="relative -mr-0.5 block rounded-r border border-gray-200 bg-white px-4 py-3 hover:bg-gray-700 hover:text-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                        href={`/admin/news/?page=${nextPage}`}
-                                        aria-label="Next"
-                                    >
-                                        <span aria-hidden="true">»</span>
-                                    </Link>
-                                )}
-                            </li>
-                        </ul>
-                    </nav>
+                    <Pagination current={currentPage} count={itemsCount} path="/admin/events" />
                 </div>
             </div>
         </div>

@@ -54,7 +54,7 @@ export default function EditProfileForm(props: {
             // console.log('Response => ', response);
 
             if (response.ok) {
-                toast('individual profile was edited', { duration: 5000 });
+                toast.success('individual profile was edited', { duration: 5000 });
 
                 setFormKey((prevKey) => prevKey + 1);
                 setFormData(props.profile);
@@ -74,7 +74,7 @@ export default function EditProfileForm(props: {
         setImages(res);
         const json = JSON.stringify(res);
 
-        toast('image upload completed', { duration: 5000 });
+        toast.success('image upload completed', { duration: 5000 });
 
         setIsLoading(false);
     };
