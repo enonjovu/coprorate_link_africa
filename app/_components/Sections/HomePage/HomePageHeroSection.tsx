@@ -7,7 +7,7 @@ import AdvertRepository from '@/app/_db/repositories/AdvertRepository';
 
 function AdvertCarousel(props: { adverts: AdvertDocument[] }) {
     return (
-        <Carousel className="h-64 md:h-96 lg:h-full" slideInterval={5000}>
+        <Carousel className="h-64 md:h-[26rem] lg:h-full" slideInterval={5000}>
             {props.adverts.map((advert) => (
                 <Image width={600} height={400} key={advert.id} src={advert.images[0].url} alt="..." />
             ))}
