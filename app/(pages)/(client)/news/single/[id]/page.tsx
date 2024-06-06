@@ -76,21 +76,17 @@ const SingleBlogPage = async ({ params }: PageProps) => {
                                     <div className="w-full max-w-full px-4">
                                         {/* Post content */}
                                         <div className="pb-4 leading-relaxed">
-                                            <figure className="mb-6 flex h-full max-h-[60vh] min-h-[60vh] w-full flex-col items-center justify-center overflow-hidden text-center lg:max-h-[70vh]">
+                                            <figure className="">
                                                 {blog.images && (
-                                                    <div className="relative h-full w-full overflow-hidden">
-                                                        <div className="inset-0 flex h-full w-full items-center justify-center overflow-hidden rounded-lg">
-                                                            <Image
-                                                                width={1280} // You can remove fixed width for full responsiveness
-                                                                height={720} // You can remove fixed height for full responsiveness
-                                                                className="h-full w-full rounded-lg object-contain"
-                                                                src={blog.images[0].url}
-                                                                alt={blog.title}
-                                                            />
-                                                        </div>
-                                                    </div>
+                                                    <Image
+                                                        className="rounded-md"
+                                                        width={1280} // You can remove fixed width for full responsiveness
+                                                        height={720} // You can remove fixed height for full responsiveness
+                                                        src={blog.images[0].url}
+                                                        alt={blog.title}
+                                                    />
                                                 )}
-                                                <figcaption className="mt-4 text-xs font-medium text-gray-700">
+                                                <figcaption className="my-3 text-center text-xs font-medium text-gray-700">
                                                     {blog.image_alt ?? blog.title}
                                                 </figcaption>
                                             </figure>
