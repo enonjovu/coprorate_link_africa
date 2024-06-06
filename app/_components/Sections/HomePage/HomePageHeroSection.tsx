@@ -30,9 +30,9 @@ function BlogHeroArticle({ blog }: { blog: BlogDocument }) {
                     <div className="absolute bottom-0 flex h-full w-full flex-col justify-end bg-[#00000075] px-4 pb-4 pt-7">
                         <h2 className="mb-1 text-lg font-bold capitalize leading-tight text-white">{blog.title}</h2>
                         <div className="pt-1">
-                            <div className="text-gray-100">
+                            <div className="capitalize text-gray-100">
                                 <div className="mr-2 inline-block h-3 border-l-2 border-red-600 text-gray-100"></div>
-                                {blog.category}
+                                {blog.category.toUpperCase()}
                             </div>
                         </div>
                     </div>
