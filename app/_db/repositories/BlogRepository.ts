@@ -119,4 +119,27 @@ export default class BlogRepository {
 
         return result;
     }
+
+    static getPropeties(blog: BlogDocument): BlogParamters {
+        return {
+            title: blog.title,
+            story: blog.story,
+            category: blog.category,
+            images: blog.images,
+            author: blog.author,
+            image_alt: blog.image_alt,
+        };
+    }
+
+    static getPropetiesWithId(blog: BlogDocument): BlogParamters & { id: string } {
+        return {
+            title: blog.title,
+            story: blog.story,
+            category: blog.category,
+            images: blog.images,
+            author: blog.author,
+            image_alt: blog.image_alt,
+            id: blog.id,
+        };
+    }
 }

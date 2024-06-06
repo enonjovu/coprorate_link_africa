@@ -1,3 +1,4 @@
+import BlogRepository from '@/app/_db/repositories/BlogRepository';
 import EditNewsForm from './EditNewsForm';
 import { getBlogById } from '@/lib/repositories/BlogRepository';
 import { notFound } from 'next/navigation';
@@ -16,7 +17,9 @@ const EditPost = async ({ params }: PageProps) => {
         return notFound();
     }
 
-    return <EditNewsForm blog={blog} />;
+    const blogPropeties = BlogRepository.getPropeties(blog);
+
+    return <EditNewsForm blog={blogPropeties} id={id} />;
 };
 
 export default EditPost;

@@ -9,6 +9,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { BlogDocument } from '@/lib/document-types';
+import TipTapTextEditor from '@/app/(pages)/(admin)/components/TipTapTextEditor';
+import { BlogParamters } from '@/app/_db/repositories/BlogRepository';
 
 type blogProps = {
     id: string;
@@ -42,11 +44,24 @@ const initialFormData: FormData = {
     images: [{ url: '', key: '' }],
 };
 
-const EditNewsForm = ({ blog }: { blog: BlogDocument }) => {
+const EditNewsForm = ({ blog, id: blog_id }: { blog: BlogParamters; id: string }) => {
     // Types for state variables
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
-    const [formData, setFormData] = useState<FormData>(initialFormData);
+
+    const [formData, setFormData] = useState<FormData>({
+        id: blog_id,
+        title: blog.title,
+        category: blog.category,
+        story: blog.story,
+        author: blog.author,
+        images:
+            blog.images?.map((img) => ({
+                url: img.url,
+                key: img.key,
+            })) ?? [],
+    });
+
     const [images, setImages] = useState<{ url: string; key: string }[]>([]);
     const [loading, setLoading] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
@@ -55,15 +70,16 @@ const EditNewsForm = ({ blog }: { blog: BlogDocument }) => {
     useEffect(() => {
         if (blog) {
             setFormData({
-                id: blog.id,
+                id: blog_id,
                 title: blog.title,
                 category: blog.category,
                 story: blog.story,
                 author: blog.author,
-                images: blog.images.map((img) => ({
-                    url: img.url,
-                    key: img.key,
-                })),
+                images:
+                    blog.images?.map((img) => ({
+                        url: img.url,
+                        key: img.key,
+                    })) ?? [],
             });
         }
     }, []);
@@ -128,10 +144,7 @@ const EditNewsForm = ({ blog }: { blog: BlogDocument }) => {
                                             </button>
                                         )}
                                     </div>
-                                    <Image
-                                        width={900}
-                                        height={800}
-                                        priority
+                                    <img
                                         className="mx-auto h-40 max-h-40 min-h-40 w-full max-w-full overflow-hidden object-cover"
                                         src={image.url}
                                         alt="alt title"
@@ -241,20 +254,15 @@ const EditNewsForm = ({ blog }: { blog: BlogDocument }) => {
                                 >
                                     Story
                                 </label>
-                                <textarea
-                                    id="story"
-                                    wrap="hard"
-                                    name="story"
-                                    rows={20}
-                                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-                                    onChange={(e) => {
+                                <TipTapTextEditor
+                                    onChange={(content) => {
                                         setFormData({
                                             ...formData,
-                                            story: e.target.value,
+                                            story: content, // Directly use the content
                                         });
                                     }}
                                     value={formData.story}
-                                ></textarea>
+                                />
                             </div>
                         </div>
                         {/* End Grid */}
