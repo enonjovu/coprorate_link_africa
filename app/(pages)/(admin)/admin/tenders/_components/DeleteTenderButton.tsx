@@ -13,9 +13,9 @@ export default function DeleteTenderButton({ id }: { id: string }) {
         const result = await handleDeleteTender(id);
 
         if (result.data) {
-            toast('blog was deleted', { duration: 2000 });
+            toast.success('blog was deleted', { duration: 2000 });
         } else {
-            toast('could not delete blog', { duration: 2000 });
+            toast.error('could not delete blog', { duration: 2000 });
         }
     };
 

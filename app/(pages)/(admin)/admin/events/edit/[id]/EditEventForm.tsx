@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { EventDocument } from '@/lib/document-types';
+import { EventParamters } from '@/app/_db/repositories/EventRepository';
 
 type singleEventProps = {
     id: string;
@@ -40,7 +41,7 @@ const initialFormData: FormData = {
     images: [{ url: '', key: '' }],
 };
 
-const EditEventComponent = ({ event }: { event: EventDocument }) => {
+const EditEventComponent = ({ event, event_id }: { event: EventParamters; event_id: string }) => {
     // Types for state variables
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [formKey, setFormKey] = useState<number>(0);
@@ -51,7 +52,7 @@ const EditEventComponent = ({ event }: { event: EventDocument }) => {
     useEffect(() => {
         if (event) {
             setFormData({
-                id: event.id,
+                id: event_id,
                 title: event.title,
                 time: event.time,
                 venue: event.venue,
@@ -66,7 +67,7 @@ const EditEventComponent = ({ event }: { event: EventDocument }) => {
     }, []);
 
     const handleSubmit = async () => {
-        const res = await updateEvent(formData, formData.id);
+        const res = await updateEvent(formData, event_id);
         setModalMessage(res.message);
         setIsModalOpen(true);
         console.log('file', formData);

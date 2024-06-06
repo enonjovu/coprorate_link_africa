@@ -13,9 +13,9 @@ export default function DeleteDirectoryButton({ id }: { id: string }) {
         const result = await handleDeleteIndividiualProfile(id);
 
         if (result.data) {
-            toast('directory was deleted', { duration: 2000 });
+            toast.success('directory was deleted', { duration: 2000 });
         } else {
-            toast('could not delete directory', { duration: 2000 });
+            toast.error('could not delete directory', { duration: 2000 });
         }
     };
 

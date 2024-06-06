@@ -1,6 +1,7 @@
 import { getEventById } from '@/lib/repositories/EventRepository';
 import { notFound } from 'next/navigation';
 import EditEventComponent from './EditEventForm';
+import EventRepository from '@/app/_db/repositories/EventRepository';
 
 type PageProps = {
     params: { id: string };
@@ -16,7 +17,9 @@ const EditEvent = async ({ params }: PageProps) => {
         return notFound();
     }
 
-    return <EditEventComponent event={event} />;
+    const eventPropeties = EventRepository.getPropeties(event);
+
+    return <EditEventComponent event_id={id} event={eventPropeties} />;
 };
 
 export default EditEvent;

@@ -7,6 +7,7 @@ import { postEvent } from '@/app/action';
 import Image from 'next/image';
 import { BsCalendar, BsClock, BsExclamationCircle, BsX } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 // Initial state with types
 type FormData = {
@@ -53,6 +54,9 @@ const NewEvent = () => {
         console.log('Response => ', response);
         if (response.status === 'true') {
             setIsModalOpen(true);
+
+            toast.success('events created', { duration: 5000 });
+
             setFormKey((prevKey) => prevKey + 1);
             setFormData(initialFormData);
         }

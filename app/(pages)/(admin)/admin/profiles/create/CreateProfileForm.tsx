@@ -66,7 +66,7 @@ export default function CreateProfileForm(prop: { categories: { id: string; name
             // console.log('Response => ', response);
 
             if (response.ok) {
-                toast('individual profile was created', { duration: 2000 });
+                toast.success('individual profile was created', { duration: 5000 });
 
                 setFormKey((prevKey) => prevKey + 1);
                 setFormData(initialFormData);
@@ -90,7 +90,7 @@ export default function CreateProfileForm(prop: { categories: { id: string; name
 
         setImages(res);
 
-        toast('image upload completed', { duration: 5000 });
+        toast.success('image upload completed', { duration: 5000 });
 
         setIsLoading(false);
     };

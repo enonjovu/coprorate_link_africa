@@ -102,4 +102,29 @@ export default class EventRepository {
 
         return result;
     }
+
+    static getPropeties(event: EventDocument): EventParamters {
+        return {
+            title: event.title,
+            images: event.images,
+            description: event.description,
+            eventDate: event.eventDate,
+            time: event.time,
+            venue: event.venue,
+            enquiries_link: event.enquiries_link,
+        };
+    }
+
+    static getPropetiesWithId(event: EventDocument): EventParamters & { id: string } {
+        return {
+            title: event.title,
+            images: event.images,
+            description: event.description,
+            eventDate: event.eventDate,
+            time: event.time,
+            venue: event.venue,
+            enquiries_link: event.enquiries_link,
+            id: event.id,
+        };
+    }
 }
