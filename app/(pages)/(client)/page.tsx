@@ -8,6 +8,8 @@ import HomeCategoryList from '@/app/_components/Categories/HomeCategoryList';
 import SideAds from './components/SideAds';
 import EveTend from './components/EveTend';
 import { Suspense } from 'react';
+import HomePageHeroSection from '@/app/_components/Sections/HomePage/HomePageHeroSection';
+import HomePageYoutubeVideoSection from '@/app/_components/Sections/HomePage/HomePageYoutubeVideoSection';
 
 type PageProps = {
     searchParams: { [key: string]: string | string[] | undefined };
@@ -29,7 +31,7 @@ export default async function Home({ searchParams }: PageProps) {
 
     return (
         <main id="content">
-            <Hero />
+            <HomePageHeroSection />
             <div className="bg-gray-50 py-2">
                 <HomeCategoryList />
 
@@ -70,7 +72,7 @@ export default async function Home({ searchParams }: PageProps) {
                 </div>
             </div>
             <Suspense fallback={<LoadingDammy />}>
-                <Videos />
+                <HomePageYoutubeVideoSection />
             </Suspense>
         </main>
     );
