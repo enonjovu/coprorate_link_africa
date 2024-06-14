@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <InterFontWrapper>
                         <ToastWrapper>
                             <HeaderComponent />
-                            <div className="sticky inset-x-0 top-0 z-20 border-y bg-white px-4 sm:px-6 md:px-8 lg:hidden dark:border-gray-700 dark:bg-gray-800">
+                            <div className="sticky inset-x-0 top-0 z-20 border-y bg-white px-4 dark:border-gray-700 dark:bg-gray-800 sm:px-6 md:px-8 lg:hidden">
                                 <div className="flex items-center py-4">
                                     <button
                                         type="button"

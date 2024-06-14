@@ -56,7 +56,7 @@ function ServiceSection(props: { title: string; content: string; icon: React.Rea
     return (
         <div
             id={props.idAnchor}
-            className="shadow-2 mb-9 rounded-[20px] bg-white p-8  text-black hover:shadow-lg md:px-7 xl:px-10 dark:bg-[#1d1d1d] dark:text-white"
+            className="shadow-2 mb-9 rounded-[20px] bg-white p-8  text-black hover:shadow-lg dark:bg-[#1d1d1d] dark:text-white md:px-7 xl:px-10"
         >
             <div className="bg-primary mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
                 {props.icon}
@@ -72,7 +72,7 @@ const ServicesPage = () => {
             <div className="-mx-4 flex flex-wrap">
                 <div className="w-full px-4">
                     <div className="mx-auto my-12 max-w-[510px] text-center lg:mb-20">
-                        <h2 className="text-dark mb-3 text-3xl font-bold leading-[1.2] sm:text-4xl md:text-[40px] dark:text-white">
+                        <h2 className="text-dark mb-3 text-3xl font-bold leading-[1.2] dark:text-white sm:text-4xl md:text-[40px]">
                             Our Services
                         </h2>
                         <p className="mt-1 text-gray-600 dark:text-gray-400">Here is what we offer</p>

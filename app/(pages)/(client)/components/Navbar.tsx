@@ -12,7 +12,7 @@ const Navbar = () => {
             <Suspense fallback={<div className="m-0 max-h-[100px] w-full  animate-pulse bg-gray-300 md:h-full"></div>}>
                 <HeaderBannerAdverts />
             </Suspense>
-            <header className="z-50 flex w-full flex-wrap border-b border-gray-200 bg-white pb-2 text-sm sm:flex-col sm:justify-start sm:pb-0 dark:border-red-700 dark:bg-gray-100">
+            <header className="z-50 flex w-full flex-wrap border-b border-gray-200 bg-white pb-2 text-sm dark:border-red-700 dark:bg-gray-100 sm:flex-col sm:justify-start sm:pb-0">
                 <nav
                     className="relative mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between sm:px-12 lg:px-16"
                     aria-label="Global"
@@ -78,19 +78,19 @@ const Navbar = () => {
                         <div className="mt-5 flex flex-col gap-x-0 gap-y-4 sm:mt-0 sm:flex-row sm:items-center sm:justify-end sm:gap-x-7 sm:gap-y-0 sm:ps-7">
                             {/* News */}
                             <a
-                                className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400"
+                                className="font-medium text-gray-800 hover:text-gray-500 dark:text-red-500 dark:hover:text-gray-400 sm:py-6"
                                 href="/news/category/mining"
                             >
                                 Mining
                             </a>
                             <a
-                                className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400"
+                                className="font-medium text-gray-800 hover:text-gray-500 dark:text-red-500 dark:hover:text-gray-400 sm:py-6"
                                 href="/news/category/energy"
                             >
                                 Energy
                             </a>
                             <a
-                                className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400"
+                                className="font-medium text-gray-800 hover:text-gray-500 dark:text-red-500 dark:hover:text-gray-400 sm:py-6"
                                 href="/news/category/tourism"
                             >
                                 Tourism
@@ -134,25 +134,25 @@ const Navbar = () => {
                             </div>
 
                             <a
-                                className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400"
+                                className="font-medium text-gray-800 hover:text-gray-500 dark:text-red-500 dark:hover:text-gray-400 sm:py-6"
                                 href="/tenders"
                             >
                                 Tenders
                             </a>
                             <a
-                                className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400"
+                                className="font-medium text-gray-800 hover:text-gray-500 dark:text-red-500 dark:hover:text-gray-400 sm:py-6"
                                 href="/events"
                             >
                                 Events
                             </a>
                             <a
-                                className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400"
+                                className="font-medium text-gray-800 hover:text-gray-500 dark:text-red-500 dark:hover:text-gray-400 sm:py-6"
                                 href="/services"
                             >
                                 Services
                             </a>
                             <a
-                                className="font-medium text-gray-800 hover:text-gray-500 sm:py-6 dark:text-red-500 dark:hover:text-gray-400"
+                                className="font-medium text-gray-800 hover:text-gray-500 dark:text-red-500 dark:hover:text-gray-400 sm:py-6"
                                 href="/about"
                             >
                                 About

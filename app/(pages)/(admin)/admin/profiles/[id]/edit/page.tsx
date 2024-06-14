@@ -25,7 +25,7 @@ export default async function ProfileEditPage(props: PageParameters<{ id: string
         <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-xl">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">edit profile</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white sm:text-4xl">edit profile</h1>
                 </div>
 
                 <EditProfileForm categories={categories} id={id} profile={profilePropeties} />

@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const HeaderComponent = () => {
     return (
-        <header className="sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap border-b bg-white py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-4 lg:ps-64 dark:border-gray-700 dark:bg-gray-800">
+        <header className="sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap border-b bg-white py-2.5 text-sm dark:border-gray-700 dark:bg-gray-800 sm:flex-nowrap sm:justify-start sm:py-4 lg:ps-64">
             <nav className="mx-auto flex w-full basis-full items-center px-4 sm:px-6 md:px-8" aria-label="Global">
                 <div className="me-5 lg:me-0 lg:hidden">
                     <a className="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">

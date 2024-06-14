@@ -66,7 +66,7 @@ const EditEventComponent = ({ event }: { event: singleEventProps }) => {
         <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-xl">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">Edit Event</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white sm:text-4xl">Edit Event</h1>
                 </div>
                 <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setIsModalOpen(false)} />
                 <div className="sapce-x-6 mt-12">

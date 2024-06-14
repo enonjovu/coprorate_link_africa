@@ -20,14 +20,14 @@ const Faqs = () => {
                 >
                     <button
                         type="button"
-                        className="active flex w-full items-center justify-between rounded-xl p-3 text-start hover:bg-gray-100 hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent md:flex-col md:p-5 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:hs-tab-active:bg-white/[.05]"
+                        className="active flex w-full items-center justify-between rounded-xl p-3 text-start hover:bg-gray-100 hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:hs-tab-active:bg-white/[.05] md:flex-col md:p-5"
                         id="tabs-with-card-item-1"
                         data-hs-tab="#tabs-with-card-1"
                         aria-controls="tabs-with-card-1"
                         role="tab"
                     >
                         <svg
-                            className="h-7  w-7 flex-shrink-0 text-gray-800 hs-tab-active:text-red-600 sm:block dark:text-white dark:hs-tab-active:text-red-500"
+                            className="h-7  w-7 flex-shrink-0 text-gray-800 hs-tab-active:text-red-600 dark:text-white dark:hs-tab-active:text-red-500 sm:block"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
@@ -45,20 +45,20 @@ const Faqs = () => {
                             <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z" />
                         </svg>
                         <span className="md:mt-5">
-                            <span className=" text-gray-800 md:mt-2 lg:block dark:text-gray-200">General.</span>
+                            <span className=" text-gray-800 dark:text-gray-200 md:mt-2 lg:block">General.</span>
                         </span>
                     </button>
 
                     <button
                         type="button"
-                        className="flex w-full items-center justify-between rounded-xl p-3 text-start hover:bg-gray-100 hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent md:flex-col md:p-5 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:hs-tab-active:bg-white/[.05]"
+                        className="flex w-full items-center justify-between rounded-xl p-3 text-start hover:bg-gray-100 hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:hs-tab-active:bg-white/[.05] md:flex-col md:p-5"
                         id="tabs-with-card-item-2"
                         data-hs-tab="#tabs-with-card-2"
                         aria-controls="tabs-with-card-2"
                         role="tab"
                     >
                         <svg
-                            className="h-7  w-7 flex-shrink-0 text-gray-800 hs-tab-active:text-red-600 sm:block dark:text-white dark:hs-tab-active:text-red-500"
+                            className="h-7  w-7 flex-shrink-0 text-gray-800 hs-tab-active:text-red-600 dark:text-white dark:hs-tab-active:text-red-500 sm:block"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
@@ -73,7 +73,7 @@ const Faqs = () => {
                             <path d="M3.34 19a10 10 0 1 1 17.32 0" />
                         </svg>
                         <span className="md:mt-5">
-                            <span className=" text-gray-800 md:mt-2 lg:block dark:text-gray-200">
+                            <span className=" text-gray-800 dark:text-gray-200 md:mt-2 lg:block">
                                 Content Development.
                             </span>
                         </span>
@@ -81,14 +81,14 @@ const Faqs = () => {
 
                     <button
                         type="button"
-                        className="flex w-full items-center justify-between rounded-xl p-3 text-start hover:bg-gray-100 hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent md:flex-col md:p-5 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:hs-tab-active:bg-white/[.05]"
+                        className="flex w-full items-center justify-between rounded-xl p-3 text-start hover:bg-gray-100 hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:hs-tab-active:bg-white/[.05] md:flex-col md:p-5"
                         id="tabs-with-card-item-3"
                         data-hs-tab="#tabs-with-card-3"
                         aria-controls="tabs-with-card-3"
                         role="tab"
                     >
                         <svg
-                            className="h-7  w-7 flex-shrink-0 text-gray-800 hs-tab-active:text-red-600 sm:block dark:text-white dark:hs-tab-active:text-red-500"
+                            className="h-7  w-7 flex-shrink-0 text-gray-800 hs-tab-active:text-red-600 dark:text-white dark:hs-tab-active:text-red-500 sm:block"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
@@ -106,7 +106,7 @@ const Faqs = () => {
                             <path d="M17 19h4" />
                         </svg>
                         <span className="md:mt-5">
-                            <span className=" text-gray-800 md:mt-2 lg:block dark:text-gray-200">Advertisment.</span>
+                            <span className=" text-gray-800 dark:text-gray-200 md:mt-2 lg:block">Advertisment.</span>
                         </span>
                     </button>
                 </nav>

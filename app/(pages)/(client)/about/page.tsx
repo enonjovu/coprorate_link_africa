@@ -14,7 +14,7 @@ const About = () => {
             <section className="font-poppins flex h-full items-center bg-stone-100 dark:bg-[#111]">
                 <div className="mx-auto h-full max-w-6xl flex-1 justify-center space-y-8 py-4 md:px-6 lg:py-6">
                     <div className="mb-10 px-4 md:mb-20 md:text-center">
-                        <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">About us</h1>
+                        <h1 className="text-3xl font-bold text-gray-800 dark:text-white sm:text-4xl">About us</h1>
                         <p className="mt-1 text-gray-600 dark:text-gray-400">Get to know us, take a look at we do.</p>
                     </div>
 

@@ -26,7 +26,7 @@ export default function BlogCard({ blog }: { blog: BlogDocument }) {
                             {blog.title}
                         </a>
                     </h3>
-                    <p className="mb-1 hidden leading-tight text-gray-600 md:block dark:text-gray-300">
+                    <p className="mb-1 hidden leading-tight text-gray-600 dark:text-gray-300 md:block">
                         {trimText(blog.story)}
                     </p>
                     <a href={`/news/category/${blog.category}`} className="text-gray-500 dark:text-gray-300">
