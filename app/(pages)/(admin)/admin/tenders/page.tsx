@@ -52,15 +52,15 @@ export default async function TendersPage({ searchParams }: PageParameters) {
                                                         scope="row"
                                                         className="px-6 py-4 font-medium text-gray-900 dark:text-white"
                                                     >
-                                                        <a href={`/tenders/${tender._id}`}>{tender.title}</a>
+                                                        <a href={`/admin/tenders/edit/${tender._id}`}>{tender.title}</a>
                                                     </th>
 
                                                     <td className="inline-flex items-center space-x-4 px-6 py-4">
                                                         <a
-                                                            className="grid size-12 place-items-center rounded-md bg-red-600 p-2 text-white"
+                                                            className="block rounded-md bg-red-600 p-2 text-white"
                                                             href={`/admin/tenders/edit/${tender._id}`}
                                                         >
-                                                            <PencilIcon className="size-8" />
+                                                            <PencilIcon className="size-6" />
                                                         </a>
                                                         <DeleteTenderButton id={tender.id} />
                                                     </td>
