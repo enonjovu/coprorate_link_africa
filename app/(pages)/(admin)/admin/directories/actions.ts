@@ -13,9 +13,10 @@ export async function handleDeleteDirectory(id: string) {
             errors: null,
         };
     } catch (error: unknown) {
-        console.log('Failed to delete the company!');
-
-        console.log(error);
+        console.error({
+            message: 'Failed to delete directory',
+            error,
+        });
 
         return {
             data: null,
