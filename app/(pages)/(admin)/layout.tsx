@@ -1,4 +1,4 @@
-import '@/app/_styles/global.css';
+import '@/app/_styles/admin.css';
 
 import { Metadata } from 'next';
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body>
+            <body className="bg-white text-black dark:bg-neutral-900 dark:text-white">
                 <AuthProvider>
                     <InterFontWrapper>
                         <ToastWrapper>

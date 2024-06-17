@@ -31,7 +31,7 @@ const sidebar = () => {
         >
             <div className="px-6">
                 <a
-                    className="flex-none text-xl font-semibold dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    className="flex-none text-xl font-semibold text-black dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                     href="/admin"
                     aria-label="Brand"
                 >

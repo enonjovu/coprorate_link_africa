@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import { Radio, RadioGroup } from '@headlessui/react';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { AdvertVariant } from '@/lib/document-types';
+import FormHeading from '../../_components/FormHeading';
 
 // Initial state with types
 type FormData = {
@@ -103,11 +104,7 @@ const NewDirectory: React.FC = () => {
     return (
         <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-xl">
-                <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white sm:text-4xl">
-                        Create a new advert
-                    </h1>
-                </div>
+                <FormHeading>Create a new advert</FormHeading>
 
                 {imageList}
 
