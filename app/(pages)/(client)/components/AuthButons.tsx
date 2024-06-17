@@ -12,14 +12,14 @@ const AuthButtons = () => {
             onClick={() => {
                 signOut({ callbackUrl: '/' });
             }}
-            className="flex cursor-pointer items-center gap-x-2 font-semibold text-gray-500 hover:text-red-600 sm:my-6 sm:border-s sm:border-gray-300 sm:ps-6 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500"
+            className="flex cursor-pointer items-center gap-x-2 font-semibold text-gray-500 hover:text-red-600 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500 sm:my-6 sm:border-s sm:border-gray-300 sm:ps-6"
         >
             Sign Out
             <BsDoorOpen className="h-4 w-4 flex-shrink-0" color={'red'} size={20} />
         </button>
     ) : (
         <a
-            className="flex items-center gap-x-2 font-semibold text-gray-500 hover:text-red-600 sm:my-6 sm:border-s sm:border-gray-300 sm:ps-6 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500"
+            className="flex items-center gap-x-2 font-semibold text-gray-500 hover:text-red-600 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500 sm:my-6 sm:border-s sm:border-gray-300 sm:ps-6"
             href="/signin"
         >
             Sign In

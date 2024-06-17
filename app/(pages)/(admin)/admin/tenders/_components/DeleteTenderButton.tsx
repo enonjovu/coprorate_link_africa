@@ -3,7 +3,7 @@
 import { BsTrash } from 'react-icons/bs';
 import { handleDeleteTender } from '../actions';
 import toast from 'react-hot-toast';
-
+import { TrashIcon } from '@heroicons/react/24/outline';
 export default function DeleteTenderButton({ id }: { id: string }) {
     const handleClick = async () => {
         if (!confirm('Are you sure')) {
@@ -20,8 +20,12 @@ export default function DeleteTenderButton({ id }: { id: string }) {
     };
 
     return (
-        <button onClick={handleClick} type="button" className="cursor-pointer rounded-lg border-[1px] border-white p-2">
-            <BsTrash size={20} color={'#fff'} />
+        <button
+            onClick={handleClick}
+            type="button"
+            className="cursor-pointer rounded-lg border-[1px] border-white bg-red-600 p-2 text-white"
+        >
+            <TrashIcon className="size-6 text-white" />
         </button>
     );
 }

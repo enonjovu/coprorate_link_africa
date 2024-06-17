@@ -16,7 +16,7 @@ const Contacts = () => {
         <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className="mx-auto max-w-2xl lg:max-w-5xl">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">Contact us</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white sm:text-4xl">Contact us</h1>
                     <p className="mt-1 text-gray-600 dark:text-gray-400">
                         We'd love to talk about how we can help you.
                     </p>
@@ -24,7 +24,7 @@ const Contacts = () => {
 
                 <div className="mt-12 grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
                     {/* Card */}
-                    <div className="flex flex-col rounded-xl border p-4 sm:p-6 lg:p-8 dark:border-gray-700">
+                    <div className="flex flex-col rounded-xl border p-4 dark:border-gray-700 sm:p-6 lg:p-8">
                         <h2 className="mb-8 text-xl font-semibold text-gray-800 dark:text-gray-200">
                             Fill in the form
                         </h2>

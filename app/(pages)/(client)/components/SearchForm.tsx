@@ -13,7 +13,7 @@ const SearchForm: React.FC = () => {
     };
 
     return (
-        <div className="flex h-full items-center gap-x-2 font-semibold text-gray-500 hover:text-red-600 sm:my-6 sm:border-s sm:border-gray-300 sm:ps-6 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500">
+        <div className="flex h-full items-center gap-x-2 font-semibold text-gray-500 hover:text-red-600 dark:border-gray-700 dark:text-red-500 dark:hover:text-red-500 sm:my-6 sm:border-s sm:border-gray-300 sm:ps-6">
             <input
                 type="text"
                 placeholder="Search"

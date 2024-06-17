@@ -1,5 +1,3 @@
-'use client';
-
 import LoginWithGoogleButton from './LoginWithGoogleButton';
 
 export default function AuthFormWrapper(props: {

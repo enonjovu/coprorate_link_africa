@@ -70,7 +70,7 @@ const NewTopAd: React.FC = () => {
             <div className="mx-auto max-w-xl">
                 {imageList}
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white sm:text-4xl">
                         Create a new right side advert
                     </h1>
                 </div>

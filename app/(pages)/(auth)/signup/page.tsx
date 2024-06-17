@@ -1,5 +1,3 @@
-'use client';
-
 import AuthFormWrapper from '../_components/AuthFormWrapper';
 import SignUpForm from './_components/SignUpForm';
 
