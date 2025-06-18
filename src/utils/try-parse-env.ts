@@ -2,7 +2,7 @@ import { ZodError, type ZodObject, type ZodRawShape } from 'zod';
 
 export default function tryParseEnv<T extends ZodRawShape>(
     schema: ZodObject<T>,
-    buildEnv: Record<string, string | undefined> = process.env
+    buildEnv: Record<string, string | undefined> = process.env,
 ) {
     try {
         schema.parse(buildEnv);
@@ -18,7 +18,7 @@ export default function tryParseEnv<T extends ZodRawShape>(
             e.stack = '';
             throw e;
         } else {
-            console.log(error);
+            console.error(error);
         }
     }
 }

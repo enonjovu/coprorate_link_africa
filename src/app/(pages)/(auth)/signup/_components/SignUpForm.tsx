@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { handleRegisterUser } from '../action';
 import { useFormStatus } from 'react-dom';
@@ -31,31 +31,8 @@ const SignUpForm = () => {
     const [errors, setErrors] = useState<Record<string, string[]>>(InitialState);
     const router = useRouter();
 
-    const handleSignUp = async (formData: FormData) => {
-        const data = {
-            name: (formData.get('name') ?? '') as string,
-            email: (formData.get('email') ?? '') as string,
-            password: (formData.get('password') ?? '') as string,
-            password_confirmation: (formData.get('password_confirmation') ?? '') as string,
-        };
-
-        const response = await handleRegisterUser(data);
-
-        if (response.errors) {
-            setErrors(response?.errors as Record<string, string[]>);
-            console.log(errors);
-            return response;
-        }
-
-        if (!!response.data) {
-            return router.push('/signin');
-        }
-
-        return response;
-    };
-
     return (
-        <form action={handleSignUp}>
+        <form>
             <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
