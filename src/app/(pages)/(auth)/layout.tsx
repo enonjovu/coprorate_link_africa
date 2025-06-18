@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
-import '@/app/_styles/global.css';
+//import '@/app/_styles/global.css';
+import '@/app/_styles/client.css';
+
 import PrelineScript from '@/app/_components/PrelineScripts';
 import AuthProvider from '@/app/context/AuthProvider';
 

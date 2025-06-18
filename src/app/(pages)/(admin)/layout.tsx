@@ -1,3 +1,4 @@
+//import '@/app/_styles/global.css';
 import '@/app/_styles/admin.css';
 
 import { Metadata } from 'next';
