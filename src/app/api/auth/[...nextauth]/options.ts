@@ -4,10 +4,10 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { JWT } from 'next-auth/jwt';
 import { getUser } from '@/lib/services/AuthServices';
-const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
+import env from '@/utils/env';
 
 export const options: NextAuthOptions = {
-    secret: NEXTAUTH_SECRET,
+    secret: env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/signin',
     },

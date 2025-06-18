@@ -3,12 +3,9 @@ import BlogHeroArticle from '@/app/_components/Blog/BlogHeroArticle';
 import Blog from '@/models/Blog';
 import dbConnect from '@/lib/db';
 import { AdvertDocument } from '@/lib/document-types';
-import config from '@/lib/config';
 import { Carousel } from 'flowbite-react';
 import Image from 'next/image';
 import AdvertRepository from '@/app/_db/repositories/AdvertRepository';
-
-const rootUrl = config.BASE_URL;
 
 const Hero = async () => {
     await dbConnect();
