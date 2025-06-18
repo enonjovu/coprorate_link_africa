@@ -1,11 +1,9 @@
 import AdvertHeroCarousel from '@/app/_components/Advert/AdvertHeroCarousel';
-import config from '@/lib/config';
 import { AdvertDocument } from '@/lib/document-types';
-
-const rootUrl = config.BASE_URL;
+import env from '@/utils/env';
 
 export default async function SideAds() {
-    const res = await fetch(rootUrl + '/api/adverts/side', {
+    const res = await fetch(env.ROOT_LINK + '/api/adverts/side', {
         cache: 'no-store',
     });
 
