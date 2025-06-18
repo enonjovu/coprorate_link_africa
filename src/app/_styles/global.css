@@ -1,12 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
 
-    --clr-black:rgb(0,0,0);
-    --clr-white-gray:rgb(214,219,220);
-    --clr-white:rgb(255,255,255);
+    --clr-black: rgb(0, 0, 0);
+    --clr-white-gray: rgb(214, 219, 220);
+    --clr-white: rgb(255, 255, 255);
 
     --foreground-rgb: var(--clr-black);
     --background-start-rgb: var(--clr-white-gray);
